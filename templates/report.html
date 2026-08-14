@@ -27,6 +27,7 @@
   <p class="mut" style="margin:8px 0 4px">Why they ask: {{g.why}}</p>
   <div><b style="font-size:14px">How to learn it</b><ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul></div>
   {% if g.link %}<a class="learnbtn" href="{{g.link.strip()}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}
+  {% if g.tools %}<div style="margin-top:10px"><b style="font-size:14px">Tools &amp; AI to use</b><ul>{% for t in g.tools %}<li>{{t}}</li>{% endfor %}</ul></div>{% endif %}
   <p class="mut" style="margin-top:10px"><b>Say this in the interview:</b> {{g.proof}}</p>
 </div>
 {% endfor %}

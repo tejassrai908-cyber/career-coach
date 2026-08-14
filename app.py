@@ -266,7 +266,7 @@ def analyse(jd_text, resume_text):
         adj = s.get("adjacent", [])
         adj_hit = [a for a in adj if hits(a, res)]
         rec = dict(key=s["key"], why=s["why"], learn=s["learn"], proof=s["proof"],
-                   link=s.get("link", ""),
+                   link=s.get("link", ""), tools=s.get("tools", []),
                    matched=[a for a in s["aliases"] if hits(a, jd)][:6],
                    bridge=adj_hit[:3])
         asked.append(rec)
@@ -285,7 +285,7 @@ def analyse(jd_text, resume_text):
                 adj = s.get("adjacent", [])
                 adj_hit = [a for a in adj if hits(a, res)]
                 implied.append(dict(key=s["key"], why=s["why"], learn=s["learn"],
-                                    proof=s["proof"], link=s.get("link", ""),
+                                    proof=s["proof"], link=s.get("link", ""), tools=s.get("tools", []),
                                     matched=[], near=bool(adj_hit), bridge=adj_hit[:3]))
 
     total = len(asked) or 1
