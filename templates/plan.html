@@ -9,6 +9,7 @@
   <b>{{loop.index}}. {{g.key}}</b> <span class="pill">appeared in {{g.n}} job{{'' if g.n==1 else 's'}}</span>
   <p class="mut" style="margin:8px 0 4px">{{g.why}}</p>
   <ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
+  {% if g.link %}<a class="learnbtn" href="{{g.link.strip()}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}
   <p class="mut" style="margin-top:10px"><b>Interview line once done:</b> {{g.proof}}</p>
 </div>
 {% endfor %}

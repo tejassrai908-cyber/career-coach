@@ -18,6 +18,7 @@ SKILLS = [
          learn=["Free: ATD 'ADDIE model' article + Cathy Moore's Action Mapping blog (2 hrs read)",
                 "Coursera - 'Instructional Design Foundations and Applications' (Univ. of Illinois), audit free",
                 "Do it: rebuild one of your NHT Day 1-3 sessions as a formal ADDIE doc (Analyse/Design/Develop/Implement/Evaluate)"],
+         link="https://www.cathy-moore.com/action-mapping-a-no-nonsense-approach-to-design/ ",
          proof="Say: 'I redesigned NHT Day 1-3 using ADDIE; analysis showed X gap, redesign cut ramp time by Y%'"),
 
     dict(key="Kirkpatrick training evaluation (L1-L4)", roles=["trainer", "training manager", "l&d"],
@@ -27,6 +28,7 @@ SKILLS = [
          learn=["Free: Kirkpatrick Partners website 'The New World Kirkpatrick Model' overview",
                 "YouTube: 'Kirkpatrick 4 Levels explained' (20 min)",
                 "Do it: build a 1-page L1(feedback) / L2(quiz score) / L3(on-floor behaviour) / L4(business metric) sheet for your own NHT batches"],
+         link="https://www.kirkpatrickpartners.com/the-kirkpatrick-model/ ",
          proof="Carry a printed L1-L4 sheet from a real batch to the interview. Instant credibility."),
 
     dict(key="TNI / TNA (Training Needs Identification)", roles=["training manager", "l&d"],
@@ -35,6 +37,7 @@ SKILLS = [
          why="Manager-level JDs expect you to decide WHAT training is needed, not just run it.",
          learn=["Free: SHRM / ATD articles on 'Training Needs Analysis template'",
                 "Do it: run a TNI on your 12 trainers - survey + performance data + manager interviews - and keep the output as a work sample"],
+         link="https://www.shrm.org/topics-tools/hr-topics/learning-development/training-needs-assessment ",
          proof="Show the TNI doc: data sources, gaps found, programs you launched because of it."),
 
     dict(key="LMS administration", roles=["trainer", "training manager", "l&d"],
@@ -44,6 +47,7 @@ SKILLS = [
          learn=["Free hands-on: create a free Moodle sandbox (moodle.org demo / MoodleCloud free tier) and build one course end to end",
                 "Free: TalentLMS free plan (up to 5 users) - upload content, enrol users, pull completion reports",
                 "LinkedIn Learning: 'Learning Management Systems' basics"],
+         link="https://www.talentlms.com/free-lms/ ",
          proof="'I administered courses on <LMS>: enrolment, completion tracking, compliance reporting.'"),
 
     dict(key="e-learning authoring (Articulate / Rise / Captivate)", roles=["trainer", "l&d"],
@@ -53,6 +57,7 @@ SKILLS = [
          learn=["Articulate 360 free 30-day trial - build ONE Rise course (your NHT Day 1) in a weekend",
                 "Free alternative: Canva + Camtasia trial, or free H5P inside Moodle",
                 "YouTube: 'Articulate Rise 360 full tutorial for beginners'"],
+         link="https://www.articulate.com/products/rise.php ",
          proof="Keep a shareable link to one finished Rise course as your portfolio."),
 
     dict(key="Train-the-Trainer / facilitation certification", roles=["trainer", "training manager", "l&d"],
@@ -62,6 +67,7 @@ SKILLS = [
          learn=["Low cost: 'Train the Trainer' on Udemy (frequent Rs.400-600 sales) with certificate",
                 "Higher value: ATD Master Trainer / CIPD L3 (paid) - only if company sponsors",
                 "Free: Harvard ManageMentor style facilitation guides + practice recording yourself"],
+         link="https://www.udemy.com/courses/search/?q=train+the+trainer&price=price-free ",
          proof="Put the certificate name on your Naukri headline - recruiters search for it."),
 
     dict(key="Coaching & feedback models (GROW, SBI)", roles=["trainer", "training manager", "l&d", "rsm"],
@@ -70,6 +76,7 @@ SKILLS = [
          why="Manager interviews always include 'how do you coach an underperformer?'",
          learn=["Free: GROW model explainer (MindTools) + SBI feedback framework (CCL) - 1 hr total",
                 "Do it: run 4 structured GROW coaching sessions with your own trainers, note outcomes"],
+         link="https://www.mindtools.com/pages/article/newLDR_89.htm ",
          proof="Have 2 stories ready: an underperformer you coached, and the measurable change."),
 
     dict(key="Content / SOP documentation", roles=["trainer", "training manager", "l&d"],
@@ -78,6 +85,7 @@ SKILLS = [
          why="Cheap to demonstrate, frequently listed, and you already do it.",
          learn=["Free: Google 'Nielsen Norman job aid design'; keep material to 1 page per task",
                 "Do it: convert 3 recurring processes (MIS Update, Attendance Regularization, Visit Barge) into 1-page SOPs"],
+         link="https://www.nngroup.com/articles/job-aids/ ",
          proof="Bring the SOP pack; it doubles as proof of documentation skill."),
 
     # ---------------- Data / reporting ----------------
@@ -88,6 +96,7 @@ SKILLS = [
          learn=["Free: ExcelJet + Chandoo.org; then Microsoft's free 'Excel for Windows training'",
                 "YouTube: Leila Gharani 'Excel Pivot Tables' + 'XLOOKUP' (3 hrs total)",
                 "Do it: build one live dashboard of your 12 trainers' daily activity with pivots + slicers"],
+         link="https://support.microsoft.com/en-us/training ",
          proof="Screenshot of your dashboard on your laptop, ready to show."),
 
     dict(key="Power BI / data visualisation", roles=["training manager", "l&d", "rsm"],
@@ -96,6 +105,7 @@ SKILLS = [
          why="Increasingly listed for manager roles - they want insight, not raw sheets.",
          learn=["Free: Power BI Desktop is free; Microsoft Learn 'Get started with Power BI' path (~6 hrs)",
                 "Do it: load your trainer activity CSV into Power BI, make a 1-page report"],
+         link="https://learn.microsoft.com/en-us/training/powerplatform/power-bi/ ",
          proof="'I publish a weekly Power BI report on training throughput and attendance.'"),
 
     dict(key="Learning analytics / MIS reporting", roles=["training manager", "l&d"],
@@ -104,6 +114,7 @@ SKILLS = [
          why="Bridges your current MIS work to manager-level language.",
          learn=["Free: read 'training metrics that matter' (ATD) - learn the vocabulary: fill rate, throughput, TAT, certification %, attrition-linked-to-training",
                 "Do it: rename your existing MIS columns to these industry terms"],
+         link="https://www.td.org/insights/what-are-the-most-important-training-metrics ",
          proof="Speak in metrics: 'batch throughput 92%, certification pass 88%, D30 attrition down 6%'."),
 
     # ---------------- Sales / RSM ----------------
@@ -113,6 +124,7 @@ SKILLS = [
          why="RSM shortlisting is almost purely 'have you carried a number and hit it?'",
          learn=["Free: HubSpot Academy 'Sales Management' + 'Inbound Sales' (free certificates)",
                 "Do it: if you have no quota history, target a Sales Trainer or Sales Capability role first - it's the realistic bridge from L&D to RSM"],
+         link="https://academy.hubspot.com/courses/sales-management ",
          proof="Numbers only: target vs achieved vs %, for 4+ quarters. Without this, RSM is a low-probability path."),
 
     dict(key="Channel / distributor management", roles=["rsm"],
@@ -121,6 +133,7 @@ SKILLS = [
          why="Regional roles are mostly about managing partners, not direct selling.",
          learn=["Free: YouTube 'FMCG channel sales / beat plan explained'",
                 "Read: 'Route to Market' basics; learn terms - ROI of distributor, coverage, TLSD, must-sell SKUs"],
+         link="https://www.youtube.com/results?search_query=fmcg+channel+sales+beat+plan+explained ",
          proof="Be able to explain how you'd plan a territory's coverage and distributor ROI."),
 
     dict(key="CRM tools (Salesforce / Zoho / LeadSquared)", roles=["rsm"],
@@ -128,6 +141,7 @@ SKILLS = [
          why="Standard tool requirement in sales-side JDs.",
          learn=["Free: Salesforce Trailhead (gamified, gives badges you can list on Naukri)",
                 "Free: Zoho CRM free edition - create leads, stages, reports"],
+         link="https://trailhead.salesforce.com/en/content/learn/trails/administrator_beginner ",
          proof="List Trailhead badges/superbadges on your resume."),
 
     dict(key="Team leadership & performance management", roles=["rsm", "training manager", "l&d"],
@@ -138,6 +152,7 @@ SKILLS = [
          why="The single biggest gap when moving from individual trainer to manager.",
          learn=["Free: Coursera 'Managing Talent' / 'Leading People and Teams' (audit free)",
                 "Do it: document that you already coordinate 12 trainers - that IS span of control. Quantify it."],
+         link="https://www.coursera.org/learn/leading-teams ",
          proof="'I coordinate a 12-member trainer team: rostering, daily activity governance, capability reviews.'"),
 
     # ---------------- Cross-cutting ----------------
@@ -147,6 +162,7 @@ SKILLS = [
          why="Manager roles are 60% managing upward and sideways.",
          learn=["Free: read on RACI + running WBR/MBR governance calls",
                 "Do it: start sending a weekly written summary to your manager with insight, not just data (you already do the WhatsApp update - formalise it)"],
+         link="https://www.atlassian.com/work-management/project-planning/raci ",
          proof="Bring a sample WBR deck you own."),
 
     dict(key="Onboarding / new hire training programme design", roles=["trainer", "training manager", "l&d"],
@@ -154,6 +170,7 @@ SKILLS = [
                   "on the job training", "nesting", "ramp up", "certification process"],
          why="Your strongest existing asset - NHT Day 1-12. Most candidates cannot show a 12-day structured programme.",
          learn=["Nothing to learn - package it: write a 1-page NHT programme architecture (days, objectives, assessments, certification gates, ramp metrics)"],
+         link="https://www.shrm.org/topics-tools/hr-topics/employee-relations/onboarding ",
          proof="Lead with this. 'I own a 12-day NHT plus 3-day technical curriculum for a 12-trainer team.'"),
 
     dict(key="Compliance / audit readiness of training records", roles=["training manager", "l&d"],
@@ -162,6 +179,7 @@ SKILLS = [
          why="BFSI/BPO L&D managers are judged on audit-clean records.",
          learn=["Free: learn your industry's training-record retention rules; build a simple audit checklist",
                 "Do it: run one mock audit on your own batch records and fix the gaps"],
+         link="https://www.iso.org/iso-9001-quality-management.html ",
          proof="'Zero audit observations on training records for N quarters.'"),
 
     dict(key="Communication & business English / presentation", roles=["trainer", "training manager", "l&d", "rsm"],
@@ -171,6 +189,7 @@ SKILLS = [
          learn=["Free: practise a 10-min demo session, record it on your phone, watch for fillers",
                 "Free: Toastmasters guest sessions; 'BBC Learning English - Business English'",
                 "Prepare 3 demo topics you can teach cold for 10 minutes"],
+         link="https://www.toastmasters.org/ ",
          proof="Nail the demo round - most trainer offers are decided there."),
 
     dict(key="AI tools for L&D (ChatGPT/Gemini for content)", roles=["trainer", "training manager", "l&d"],
@@ -179,6 +198,7 @@ SKILLS = [
          why="2025-26 JDs increasingly ask this; it is a cheap differentiator right now.",
          learn=["Free: Google 'Prompting Essentials' / Microsoft Copilot learning path",
                 "Do it: use AI to draft assessments and role-play scripts, then note the time saved"],
+         link="https://learnprompting.org/ ",
          proof="'I cut content development time ~40% using AI-assisted drafting for assessments and role-plays.'"),
 
     dict(key="Vendor & training budget management", roles=["training manager", "l&d"],
@@ -187,6 +207,7 @@ SKILLS = [
          why="Separates 'senior trainer' from 'training manager' on paper.",
          learn=["Free: learn 'cost per trainee' and 'training spend as % of payroll' benchmarks",
                 "Do it: build a costed plan for one program (trainer hours, material, venue, opportunity cost)"],
+         link="https://www.atd.org/capability-model ",
          proof="'I managed a Rs.X lakh annual training budget / reduced cost per trainee by Y%.'"),
 ]
 

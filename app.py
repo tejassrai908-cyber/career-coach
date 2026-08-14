@@ -201,6 +201,7 @@ def analyse(jd_text, resume_text):
             continue
         in_res = any(hits(a, res) for a in s["aliases"]) or hits(s["key"], res)
         rec = dict(key=s["key"], why=s["why"], learn=s["learn"], proof=s["proof"],
+                   link=s.get("link", ""),
                    matched=[a for a in s["aliases"] if hits(a, jd)][:6])
         asked.append(rec)
         (have if in_res else gaps).append(rec)
@@ -211,7 +212,7 @@ def analyse(jd_text, resume_text):
         if role in s["roles"] and s["key"] not in [a["key"] for a in asked]:
             if not (any(hits(a, res) for a in s["aliases"]) or hits(s["key"], res)):
                 implied.append(dict(key=s["key"], why=s["why"], learn=s["learn"],
-                                    proof=s["proof"], matched=[]))
+                                    proof=s["proof"], link=s.get("link", ""), matched=[]))
 
     total = len(asked) or 1
     return dict(role=role, role_label=ROLE_LABELS[role],
