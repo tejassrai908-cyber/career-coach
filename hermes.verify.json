@@ -1,0 +1,8 @@
+{
+  "name": "Career Coach",
+  "bootstrap": "venv/Scripts/python.exe -m pip install -r requirements.txt",
+  "test": "venv/Scripts/python.exe verify_app.py",
+  "boot": "venv/Scripts/python.exe app.py",
+  "readinessUrl": "http://127.0.0.1:5055/",
+  "notes": "verify_app.py boots the app on port 5077 in both no-PIN (local) and PIN (cloud) modes and exercises every route, including the OCR screenshot path and backup/restore. Exits non-zero on failure."
+}

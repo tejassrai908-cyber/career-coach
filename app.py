@@ -528,5 +528,6 @@ def plan():
 
 if __name__ == "__main__":
     init_db()
-    print("\n  Career Coach running -> http://127.0.0.1:5055\n")
-    app.run(host="0.0.0.0", port=5055, debug=False)
+    port = int(os.environ.get("PORT", 5055))
+    print(f"\n  Career Coach running -> http://127.0.0.1:{port}\n")
+    app.run(host="0.0.0.0", port=port, debug=False)
