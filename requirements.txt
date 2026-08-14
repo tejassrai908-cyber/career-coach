@@ -4,5 +4,4 @@ pymupdf==1.26.6
 python-docx==1.2.0
 pytesseract==0.3.13
 pillow==12.3.0
-pyheif==0.8.0
 qrcode==8.2
