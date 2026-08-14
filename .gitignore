@@ -6,4 +6,6 @@ uploads/*
 !uploads/.gitkeep
 mkicon.py
 mkpng.py
+verify_app.py
+.hermes/
 *.lnk

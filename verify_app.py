@@ -21,7 +21,16 @@ import urllib.request
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 PY = os.path.join(BASE, "venv", "Scripts", "python.exe")
-PORT = 5077
+
+
+def free_port():
+    """Grab an OS-assigned free port so we never collide with a running app."""
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
+
+
+PORT = free_port()
 ROOT = f"http://127.0.0.1:{PORT}"
 fails = []
 
@@ -63,21 +72,28 @@ def opener():
         urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
 
 
+def _try(fn, tries=3):
+    """Flask's dev server occasionally resets a keep-alive socket; retry once or twice."""
+    for i in range(tries):
+        try:
+            return fn()
+        except urllib.error.HTTPError as e:
+            return e.code, e.read().decode("utf-8", "ignore")
+        except (ConnectionResetError, urllib.error.URLError, OSError):
+            if i == tries - 1:
+                raise
+            time.sleep(0.6)
+
+
 def get(op, path):
-    try:
-        r = op.open(ROOT + path, timeout=25)
-        return r.getcode(), r.read().decode("utf-8", "ignore")
-    except urllib.error.HTTPError as e:
-        return e.code, e.read().decode("utf-8", "ignore")
+    return _try(lambda: (lambda r: (r.getcode(), r.read().decode("utf-8", "ignore")))(
+        op.open(ROOT + path, timeout=25)))
 
 
 def post(op, path, fields):
     data = urllib.parse.urlencode(fields).encode()
-    try:
-        r = op.open(urllib.request.Request(ROOT + path, data=data), timeout=60)
-        return r.getcode(), r.read().decode("utf-8", "ignore")
-    except urllib.error.HTTPError as e:
-        return e.code, e.read().decode("utf-8", "ignore")
+    return _try(lambda: (lambda r: (r.getcode(), r.read().decode("utf-8", "ignore")))(
+        op.open(urllib.request.Request(ROOT + path, data=data), timeout=60)))
 
 
 def post_file(op, path, field, fname, content, ctype="text/plain", extra=None):
@@ -92,11 +108,8 @@ def post_file(op, path, field, fname, content, ctype="text/plain", extra=None):
         f"\r\n--{b}--\r\n".encode()
     req = urllib.request.Request(ROOT + path, data=body)
     req.add_header("Content-Type", f"multipart/form-data; boundary={b}")
-    try:
-        r = op.open(req, timeout=90)
-        return r.getcode(), r.read().decode("utf-8", "ignore")
-    except urllib.error.HTTPError as e:
-        return e.code, e.read().decode("utf-8", "ignore")
+    return _try(lambda: (lambda r: (r.getcode(), r.read().decode("utf-8", "ignore")))(
+        op.open(req, timeout=90)))
 
 
 RESUME = ("Tejas S R - Training Operations Coordinator\n"
