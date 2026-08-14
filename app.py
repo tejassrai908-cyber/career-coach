@@ -30,6 +30,15 @@ app.secret_key = os.environ.get("SECRET_KEY", "career-coach-local")
 app.config["MAX_CONTENT_LENGTH"] = 40 * 1024 * 1024  # 40 MB
 
 
+# --- TEMP diagnostic: surface real tracebacks on Render (remove after fix) ---
+import traceback as _tb
+import sys as _sys
+@app.errorhandler(500)
+def _dump(e):
+    _sys.stderr.write("500: " + _tb.format_exc() + "\n")
+    return ("<pre>" + _tb.format_exc() + "</pre>"), 500
+
+
 @app.before_request
 def require_pin():
     """When APP_PIN is set (cloud), demand it once per browser session."""
