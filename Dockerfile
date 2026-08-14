@@ -3,7 +3,7 @@ FROM python:3.11-slim
 # Tesseract = the program that reads text out of screenshots.
 # This is why we use Docker on Render: plain Python runtime cannot install it.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        tesseract-ocr tesseract-ocr-eng \
+        tesseract-ocr tesseract-ocr-eng libheif-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

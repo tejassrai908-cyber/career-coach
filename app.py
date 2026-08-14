@@ -30,13 +30,21 @@ app.secret_key = os.environ.get("SECRET_KEY", "career-coach-local")
 app.config["MAX_CONTENT_LENGTH"] = 40 * 1024 * 1024  # 40 MB
 
 
+@app.route("/health")
+def health():
+    """Lightweight status check - reports whether screenshot OCR is available
+    on this deployment (Tesseract installed or not). No auth needed."""
+    return {"ok": True, "ocr": ocr_available(),
+            "role_count": len(SKILLS)}
+
+
 @app.before_request
 def require_pin():
     """When APP_PIN is set (cloud), demand it once per browser session."""
     from flask import session
     if not APP_PIN:
         return None
-    if request.endpoint in ("login", "static") or request.path.startswith("/static"):
+    if request.endpoint in ("login", "static", "health") or request.path.startswith("/static"):
         return None
     if session.get("ok"):
         return None
@@ -136,19 +144,40 @@ def extract_text(storage):
     if name.endswith((".txt", ".md")):
         return raw.decode("utf-8", "ignore"), "text file"
 
-    if name.endswith((".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tif", ".tiff")):
-        if not ocr_available():
-            return "", ("Tesseract OCR is not installed yet, so I cannot read text out of "
-                        "screenshots. Paste the job text into the box instead.")
-        import pytesseract
-        from PIL import Image
-        img = Image.open(io.BytesIO(raw))
-        if img.mode not in ("RGB", "L"):
-            img = img.convert("RGB")
-        if max(img.size) < 1400:                      # upscale small phone shots
-            f = 1400 / max(img.size)
-            img = img.resize((int(img.width * f), int(img.height * f)))
-        return pytesseract.image_to_string(img), "screenshot via OCR"
+    if name.endswith((".heic", ".heif")):
+        # iPhone photos are often HEIC; Pillow can't read them without pyheif.
+        try:
+            import pyheif
+            from PIL import Image
+            img = Image.open(io.BytesIO(pyheif.read(raw).data))
+            img.load()
+        except Exception:
+            return "", ("This screenshot is a HEIC file (iPhone format) I can't read. "
+                        "On your phone, convert it to JPG/PNG (open it, tap Share > Save as image, "
+                        "or screenshot it again) and upload that. Or just paste the job text.")
+    else:
+        # Anything Pillow can open -> OCR it (covers png/jpg/jpeg/webp/bmp/gif/tif/tiff).
+        try:
+            from PIL import Image
+            img = Image.open(io.BytesIO(raw))
+            img.load()
+        except Exception:
+            return "", f"unsupported or unreadable image: {name}"
+
+    if not ocr_available():
+        return "", ("Tesseract OCR is not installed yet, so I cannot read text out of "
+                    "screenshots. Paste the job text into the box instead.")
+    import pytesseract
+    if img.mode not in ("RGB", "L"):
+        img = img.convert("RGB")
+    if max(img.size) < 1400:                      # upscale small phone shots
+        f = 1400 / max(img.size)
+        img = img.resize((int(img.width * f), int(img.height * f)))
+    try:
+        txt = pytesseract.image_to_string(img)
+    except Exception as e:
+        return "", f"screenshot OCR failed ({type(e).__name__}). Paste the job text instead."
+    return txt, "screenshot via OCR"
 
     return "", f"unsupported file type: {name}"
 
@@ -277,8 +306,10 @@ def do_analyse():
 
     jd_text = "\n\n".join(x for x in chunks if x).strip()
     if len(jd_text) < 60:
-        flash("I couldn't get enough job-description text. "
-              + (" | ".join(notes) if notes else "Upload a screenshot or paste the text."), "bad")
+        flash("I couldn't read enough job-description text from what you gave me. "
+              + (" | ".join(notes) if notes else "Upload a screenshot or paste the text.")
+              + " Tip: if it's a phone screenshot, make sure it's JPG/PNG (not HEIC), and the text is clear. "
+              + "You can also just paste the job text.", "bad")
         return redirect(url_for("home"))
 
     rep = analyse(jd_text, r["text"])
