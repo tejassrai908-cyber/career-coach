@@ -89,6 +89,11 @@ def get_resume():
         return c.execute("SELECT * FROM resume WHERE id=1").fetchone()
 
 
+# Create tables at import time so the app works under gunicorn/Render too
+# (gunicorn imports app:app and never runs the __main__ block below).
+init_db()
+
+
 # --------------------------------------------------------------- text extraction
 def ocr_available():
     import pytesseract
