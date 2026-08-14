@@ -219,6 +219,39 @@ def detect_role(text):
     return best if score[best] else "training manager"
 
 
+def build_verdict(rep, resume_text):
+    """Plain-English synthesis: what this JD means for THIS candidate specifically."""
+    gaps = rep["gaps"]
+    near = [g for g in gaps if g.get("near")]
+    true_gaps = [g for g in gaps if not g.get("near")]
+    have = rep["have"]
+    role = rep["role_label"]
+
+    lines = []
+    if have:
+        top = ", ".join(h["key"].split(" (")[0] for h in have[:3])
+        lines.append(f"Your strongest cards for this {role} role are already on your resume: {top}.")
+    if near:
+        n = ", ".join(g["key"].split(" (")[0] for g in near[:4])
+        lines.append(f"You're closer than the JD makes it look on: {n}. "
+                     f"You already do the work - you just lack the framework name or the tool. "
+                     f"That's a vocabulary-and-proof gap, not a from-zero gap, and it's the fastest to close.")
+    if true_gaps:
+        t = ", ".join(g["key"].split(" (")[0] for g in true_gaps[:4])
+        lines.append(f"Genuine new skills to learn: {t}. "
+                     f"These need real practice, not just words - use your own NHT programme as the lab.")
+    if not gaps and have:
+        lines.append("Nothing in this JD is missing from your background. Lead with proof and numbers in the interview.")
+    if not have and gaps:
+        lines.append("This role is a stretch from your current resume - build the adjacent proof first.")
+    bottom = (f"Bottom line: {len(near)} skill(s) you can reframe from what you already do, "
+              f"{len(true_gaps)} you need to actually learn. "
+              f"Start with the 'near' ones - they turn into interview wins in days, not months.")
+    lines.append(bottom)
+    return " ".join(lines)
+
+
+# --------------------------------------------------------------- routes
 def analyse(jd_text, resume_text):
     jd, res = norm(jd_text), norm(resume_text)
     role = detect_role(jd_text)
@@ -229,26 +262,40 @@ def analyse(jd_text, resume_text):
         if not in_jd:
             continue
         in_res = any(hits(a, res) for a in s["aliases"]) or hits(s["key"], res)
+        # ADJACENT: resume shows related work even if it doesn't name the framework
+        adj = s.get("adjacent", [])
+        adj_hit = [a for a in adj if hits(a, res)]
         rec = dict(key=s["key"], why=s["why"], learn=s["learn"], proof=s["proof"],
                    link=s.get("link", ""),
-                   matched=[a for a in s["aliases"] if hits(a, jd)][:6])
+                   matched=[a for a in s["aliases"] if hits(a, jd)][:6],
+                   bridge=adj_hit[:3])
         asked.append(rec)
-        (have if in_res else gaps).append(rec)
+        if in_res:
+            have.append(rec)
+        else:
+            # mark as 'near' if resume shows adjacent work -> reframe as vocabulary gap
+            rec["near"] = bool(adj_hit)
+            gaps.append(rec)
 
     # role-critical skills the JD implies even if not literally worded
     implied = []
     for s in SKILLS:
         if role in s["roles"] and s["key"] not in [a["key"] for a in asked]:
             if not (any(hits(a, res) for a in s["aliases"]) or hits(s["key"], res)):
+                adj = s.get("adjacent", [])
+                adj_hit = [a for a in adj if hits(a, res)]
                 implied.append(dict(key=s["key"], why=s["why"], learn=s["learn"],
-                                    proof=s["proof"], link=s.get("link", ""), matched=[]))
+                                    proof=s["proof"], link=s.get("link", ""),
+                                    matched=[], near=bool(adj_hit), bridge=adj_hit[:3]))
 
     total = len(asked) or 1
-    return dict(role=role, role_label=ROLE_LABELS[role],
-                match_pct=round(100 * len(have) / total),
-                have=have, gaps=gaps, implied=implied[:6],
-                asked_count=len(asked),
-                generated=dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
+    rep = dict(role=role, role_label=ROLE_LABELS[role],
+               match_pct=round(100 * len(have) / total),
+               have=have, gaps=gaps, implied=implied[:6],
+               asked_count=len(asked),
+               generated=dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
+    rep["verdict"] = build_verdict(rep, res)
+    return rep
 
 
 # --------------------------------------------------------------- routes

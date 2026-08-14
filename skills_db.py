@@ -19,7 +19,9 @@ SKILLS = [
                 "Coursera - 'Instructional Design Foundations and Applications' (Univ. of Illinois), audit free",
                 "Do it: rebuild one of your NHT Day 1-3 sessions as a formal ADDIE doc (Analyse/Design/Develop/Implement/Evaluate)"],
          link="https://www.cathy-moore.com/action-mapping-a-no-nonsense-approach-to-design/ ",
-         proof="Say: 'I redesigned NHT Day 1-3 using ADDIE; analysis showed X gap, redesign cut ramp time by Y%'"),
+         proof="Say: 'I redesigned NHT Day 1-3 using ADDIE; analysis showed X gap, redesign cut ramp time by Y%'",
+         adjacent=["curriculum", "nht", "day 1", "module", "content", "training program",
+                   "training track", "courseware", "session design", "syllabus"]),
 
     dict(key="Kirkpatrick training evaluation (L1-L4)", roles=["trainer", "training manager", "l&d"],
          aliases=["kirkpatrick", "training effectiveness", "l1", "l2", "l3", "l4",
@@ -29,7 +31,9 @@ SKILLS = [
                 "YouTube: 'Kirkpatrick 4 Levels explained' (20 min)",
                 "Do it: build a 1-page L1(feedback) / L2(quiz score) / L3(on-floor behaviour) / L4(business metric) sheet for your own NHT batches"],
          link="https://www.kirkpatrickpartners.com/the-kirkpatrick-model/ ",
-         proof="Carry a printed L1-L4 sheet from a real batch to the interview. Instant credibility."),
+         proof="Carry a printed L1-L4 sheet from a real batch to the interview. Instant credibility.",
+         adjacent=["feedback", "quiz", "assessment", "score", "report", "effectiveness",
+                   "batch result", "completion", "dashboard", "mis"]),
 
     dict(key="TNI / TNA (Training Needs Identification)", roles=["training manager", "l&d"],
          aliases=["tni", "tna", "training need", "needs identification", "needs analysis",
@@ -38,7 +42,8 @@ SKILLS = [
          learn=["Free: SHRM / ATD articles on 'Training Needs Analysis template'",
                 "Do it: run a TNI on your 12 trainers - survey + performance data + manager interviews - and keep the output as a work sample"],
          link="https://www.shrm.org/topics-tools/hr-topics/learning-development/training-needs-assessment ",
-         proof="Show the TNI doc: data sources, gaps found, programs you launched because of it."),
+         proof="Show the TNI doc: data sources, gaps found, programs you launched because of it.",
+         adjacent=["gap", "survey", "performance", "coaching", "capability", "audit", "data"]),
 
     dict(key="LMS administration", roles=["trainer", "training manager", "l&d"],
          aliases=["lms", "learning management system", "moodle", "cornerstone", "successfactors",
@@ -48,7 +53,9 @@ SKILLS = [
                 "Free: TalentLMS free plan (up to 5 users) - upload content, enrol users, pull completion reports",
                 "LinkedIn Learning: 'Learning Management Systems' basics"],
          link="https://www.talentlms.com/free-lms/ ",
-         proof="'I administered courses on <LMS>: enrolment, completion tracking, compliance reporting.'"),
+         proof="'I administered courses on <LMS>: enrolment, completion tracking, compliance reporting.'",
+         adjacent=["enrol", "enrollment", "tracker", "completion", "certification", "attendance",
+                   "mis", "dashboard", "record"]),
 
     dict(key="e-learning authoring (Articulate / Rise / Captivate)", roles=["trainer", "l&d"],
          aliases=["articulate", "storyline", "rise 360", "captivate", "camtasia", "authoring tool",
@@ -58,7 +65,9 @@ SKILLS = [
                 "Free alternative: Canva + Camtasia trial, or free H5P inside Moodle",
                 "YouTube: 'Articulate Rise 360 full tutorial for beginners'"],
          link="https://www.articulate.com/products/rise.php ",
-         proof="Keep a shareable link to one finished Rise course as your portfolio."),
+         proof="Keep a shareable link to one finished Rise course as your portfolio.",
+         adjacent=["content", "module", "courseware", "ppt", "presentation", "nht", "deck",
+                   "material", "job aid", "sop"]),
 
     dict(key="Train-the-Trainer / facilitation certification", roles=["trainer", "training manager", "l&d"],
          aliases=["train the trainer", "ttt", "facilitation", "facilitator", "certified trainer",
@@ -68,7 +77,9 @@ SKILLS = [
                 "Higher value: ATD Master Trainer / CIPD L3 (paid) - only if company sponsors",
                 "Free: Harvard ManageMentor style facilitation guides + practice recording yourself"],
          link="https://www.udemy.com/courses/search/?q=train+the+trainer&price=price-free ",
-         proof="Put the certificate name on your Naukri headline - recruiters search for it."),
+         proof="Put the certificate name on your Naukri headline - recruiters search for it.",
+         adjacent=["trainer", "facilitat", "coach", "session", "demo", "deliver", "nht",
+                   "conduct", "session"]),
 
     dict(key="Coaching & feedback models (GROW, SBI)", roles=["trainer", "training manager", "l&d", "rsm"],
          aliases=["coaching", "mentoring", "grow model", "sbi feedback", "one on one",
@@ -77,7 +88,8 @@ SKILLS = [
          learn=["Free: GROW model explainer (MindTools) + SBI feedback framework (CCL) - 1 hr total",
                 "Do it: run 4 structured GROW coaching sessions with your own trainers, note outcomes"],
          link="https://www.mindtools.com/pages/article/newLDR_89.htm ",
-         proof="Have 2 stories ready: an underperformer you coached, and the measurable change."),
+         proof="Have 2 stories ready: an underperformer you coached, and the measurable change.",
+         adjacent=["coach", "one on one", "mentor", "feedback", "trainer", "capability", "review"]),
 
     dict(key="Content / SOP documentation", roles=["trainer", "training manager", "l&d"],
          aliases=["sop", "documentation", "job aid", "knowledge base", "process documentation",
@@ -86,7 +98,8 @@ SKILLS = [
          learn=["Free: Google 'Nielsen Norman job aid design'; keep material to 1 page per task",
                 "Do it: convert 3 recurring processes (MIS Update, Attendance Regularization, Visit Barge) into 1-page SOPs"],
          link="https://www.nngroup.com/articles/job-aids/ ",
-         proof="Bring the SOP pack; it doubles as proof of documentation skill."),
+         proof="Bring the SOP pack; it doubles as proof of documentation skill.",
+         adjacent=["sop", "document", "job aid", "process", "content", "nht", "material", "checklist"]),
 
     # ---------------- Data / reporting ----------------
     dict(key="Excel advanced (pivots, lookups, dashboards)", roles=["trainer", "training manager", "l&d", "rsm"],
@@ -97,7 +110,8 @@ SKILLS = [
                 "YouTube: Leila Gharani 'Excel Pivot Tables' + 'XLOOKUP' (3 hrs total)",
                 "Do it: build one live dashboard of your 12 trainers' daily activity with pivots + slicers"],
          link="https://support.microsoft.com/en-us/training ",
-         proof="Screenshot of your dashboard on your laptop, ready to show."),
+         proof="Screenshot of your dashboard on your laptop, ready to show.",
+         adjacent=["excel", "tracker", "mis", "dashboard", "pivot", "lookup", "vlookup", "report", "data"]),
 
     dict(key="Power BI / data visualisation", roles=["training manager", "l&d", "rsm"],
          aliases=["power bi", "powerbi", "tableau", "dashboard", "data visualization",
@@ -106,7 +120,8 @@ SKILLS = [
          learn=["Free: Power BI Desktop is free; Microsoft Learn 'Get started with Power BI' path (~6 hrs)",
                 "Do it: load your trainer activity CSV into Power BI, make a 1-page report"],
          link="https://learn.microsoft.com/en-us/training/powerplatform/power-bi/ ",
-         proof="'I publish a weekly Power BI report on training throughput and attendance.'"),
+         proof="'I publish a weekly Power BI report on training throughput and attendance.'",
+         adjacent=["power bi", "dashboard", "mis", "excel", "report", "visual", "chart", "data"]),
 
     dict(key="Learning analytics / MIS reporting", roles=["training manager", "l&d"],
          aliases=["learning analytics", "training mis", "dashboard reporting", "metrics",
@@ -115,7 +130,8 @@ SKILLS = [
          learn=["Free: read 'training metrics that matter' (ATD) - learn the vocabulary: fill rate, throughput, TAT, certification %, attrition-linked-to-training",
                 "Do it: rename your existing MIS columns to these industry terms"],
          link="https://www.td.org/insights/what-are-the-most-important-training-metrics ",
-         proof="Speak in metrics: 'batch throughput 92%, certification pass 88%, D30 attrition down 6%'."),
+         proof="Speak in metrics: 'batch throughput 92%, certification pass 88%, D30 attrition down 6%'.",
+         adjacent=["mis", "dashboard", "metric", "report", "data", "excel", "power bi", "tracking"]),
 
     # ---------------- Sales / RSM ----------------
     dict(key="Sales target ownership & pipeline management", roles=["rsm"],
@@ -153,7 +169,8 @@ SKILLS = [
          learn=["Free: Coursera 'Managing Talent' / 'Leading People and Teams' (audit free)",
                 "Do it: document that you already coordinate 12 trainers - that IS span of control. Quantify it."],
          link="https://www.coursera.org/learn/leading-teams ",
-         proof="'I coordinate a 12-member trainer team: rostering, daily activity governance, capability reviews.'"),
+         proof="'I coordinate a 12-member trainer team: rostering, daily activity governance, capability reviews.'",
+         adjacent=["team", "trainer", "coordinate", "12", "roster", "governance", "span of control", "lead"]),
 
     # ---------------- Cross-cutting ----------------
     dict(key="Stakeholder / business partnering", roles=["training manager", "l&d", "rsm"],
@@ -163,7 +180,8 @@ SKILLS = [
          learn=["Free: read on RACI + running WBR/MBR governance calls",
                 "Do it: start sending a weekly written summary to your manager with insight, not just data (you already do the WhatsApp update - formalise it)"],
          link="https://www.atlassian.com/work-management/project-planning/raci ",
-         proof="Bring a sample WBR deck you own."),
+         proof="Bring a sample WBR deck you own.",
+         adjacent=["stakeholder", "manager", "update", "whatsapp", "report", "governance", "partner", "wbr", "mbr"]),
 
     dict(key="Onboarding / new hire training programme design", roles=["trainer", "training manager", "l&d"],
          aliases=["onboarding", "induction", "new hire", "nht", "fresher training", "ojt",
@@ -171,7 +189,8 @@ SKILLS = [
          why="Your strongest existing asset - NHT Day 1-12. Most candidates cannot show a 12-day structured programme.",
          learn=["Nothing to learn - package it: write a 1-page NHT programme architecture (days, objectives, assessments, certification gates, ramp metrics)"],
          link="https://www.shrm.org/topics-tools/hr-topics/employee-relations/onboarding ",
-         proof="Lead with this. 'I own a 12-day NHT plus 3-day technical curriculum for a 12-trainer team.'"),
+         proof="Lead with this. 'I own a 12-day NHT plus 3-day technical curriculum for a 12-trainer team.'",
+         adjacent=["nht", "day 1", "new hire", "induction", "ramp", "curriculum", "training program"]),
 
     dict(key="Compliance / audit readiness of training records", roles=["training manager", "l&d"],
          aliases=["compliance", "audit", "regulatory", "iso", "documentation audit",
@@ -190,7 +209,8 @@ SKILLS = [
                 "Free: Toastmasters guest sessions; 'BBC Learning English - Business English'",
                 "Prepare 3 demo topics you can teach cold for 10 minutes"],
          link="https://www.toastmasters.org/ ",
-         proof="Nail the demo round - most trainer offers are decided there."),
+         proof="Nail the demo round - most trainer offers are decided there.",
+         adjacent=["trainer", "session", "demo", "deliver", "facilitat", "present", "nht", "english"]),
 
     dict(key="AI tools for L&D (ChatGPT/Gemini for content)", roles=["trainer", "training manager", "l&d"],
          aliases=["ai", "genai", "chatgpt", "gemini", "copilot", "prompt", "automation",
@@ -199,7 +219,8 @@ SKILLS = [
          learn=["Free: Google 'Prompting Essentials' / Microsoft Copilot learning path",
                 "Do it: use AI to draft assessments and role-play scripts, then note the time saved"],
          link="https://learnprompting.org/ ",
-         proof="'I cut content development time ~40% using AI-assisted drafting for assessments and role-plays.'"),
+         proof="'I cut content development time ~40% using AI-assisted drafting for assessments and role-plays.'",
+         adjacent=["chatgpt", "gemini", "ai", "content", "draft", "prompt", "tool"]),
 
     dict(key="Vendor & training budget management", roles=["training manager", "l&d"],
          aliases=["budget", "vendor", "cost per trainee", "procurement", "p&l", "cost management",
