@@ -1,0 +1,51 @@
+{% extends "base.html" %}{% block body %}
+<h1>{{jd.title}}</h1>
+<p class="sub">Read as a <b>{{r.role_label}}</b> role &middot; {{r.generated}}</p>
+<div class="card" style="text-align:center;background:#14304a">
+<a href="/resume-draft/{{jd.id}}" style="font-weight:600;font-size:17px">See how my resume should look for this job &rarr;</a></div>
+
+<div class="card row">
+  <div><div class="big" style="color:{{'#37d39b' if r.match_pct>=70 else ('#d3a437' if r.match_pct>=40 else '#ff6b6b')}}">{{r.match_pct}}%</div>
+    <div class="mut">of what this JD asks for is already on your resume</div></div>
+  <div><div class="big">{{r.gaps|length}}</div><div class="mut">skills asked for but missing from your CV</div></div>
+  <div><div class="big">{{r.have|length}}</div><div class="mut">you already have &mdash; lead with these</div></div>
+</div>
+
+{% if r.gaps %}
+<h2>Close these first (the JD literally asks for them)</h2>
+{% for g in r.gaps %}
+<div class="card gap">
+  <b>{{g.key}}</b>
+  {% if g.matched %}<div class="mut">JD wording: {{g.matched|join(', ')}}</div>{% endif %}
+  <p class="mut" style="margin:8px 0 4px">Why they ask: {{g.why}}</p>
+  <div><b style="font-size:14px">How to learn it</b><ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul></div>
+  <p class="mut" style="margin-top:10px"><b>Say this in the interview:</b> {{g.proof}}</p>
+</div>
+{% endfor %}
+{% else %}
+<div class="card good flash">Nothing in this JD is missing from your resume. Focus on interview stories and numbers.</div>
+{% endif %}
+
+{% if r.implied %}
+<h2>Also expected at this level (not worded in the JD, but they'll probe it)</h2>
+{% for g in r.implied %}
+<div class="card imp"><b>{{g.key}}</b>
+<p class="mut" style="margin:8px 0 4px">{{g.why}}</p>
+<ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
+<p class="mut" style="margin-top:10px"><b>Say this:</b> {{g.proof}}</p></div>
+{% endfor %}
+{% endif %}
+
+{% if r.have %}
+<h2>Your strengths for this job</h2>
+<div class="card">
+{% for h in r.have %}<div class="hav"><b>{{h.key}}</b><div class="mut">{{h.proof}}</div></div>{% endfor %}
+</div>
+{% endif %}
+
+<h2>What was read</h2>
+<div class="card mut">{{ r.sources|join(' | ') }}
+<details style="margin-top:10px"><summary>Show the job text the app read</summary>
+<pre style="white-space:pre-wrap;font-size:12px">{{jd.jd_text}}</pre></details></div>
+<p><a href="/">&larr; Back</a> &middot; <a href="/plan">See my combined learning plan</a></p>
+{% endblock %}

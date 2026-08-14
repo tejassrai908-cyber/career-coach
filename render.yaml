@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: career-coach
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      # Change this PIN on the Render dashboard after first deploy.
+      - key: APP_PIN
+        value: "2468"
+      - key: SECRET_KEY
+        generateValue: true

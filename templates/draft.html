@@ -1,0 +1,41 @@
+{% extends "base.html" %}{% block body %}
+<h1>How your resume should look</h1>
+<p class="sub">Tuned to: <b>{{jd.title}}</b> ({{r.role_label}}). Copy each block straight into Naukri / your CV.</p>
+
+<div class="warn">Rule I follow: the <b>green</b> block is rewording things you already do, in this JD's language — safe to use today.
+The <b>amber</b> block is wording you add only <i>after</i> you actually learn the skill. Never paste amber lines before that.</div>
+
+<h2>1. Naukri headline (Resume Headline field)</h2>
+<div class="card"><textarea readonly rows="3">{{d.headline}}</textarea>
+<p class="mut">Recruiters search this field. Keep the role title in it.</p></div>
+
+<h2>2. Profile summary</h2>
+<div class="card"><textarea readonly rows="6">{{d.summary}}</textarea></div>
+
+<h2>3. Key Skills box (paste these exact keywords)</h2>
+<div class="card"><textarea readonly rows="5">{{ d.keywords|join(', ') }}</textarea>
+<p class="mut">These are lifted from this JD's own wording — this is what makes your profile surface in recruiter searches.</p></div>
+
+<h2>4. Experience bullets — use now</h2>
+<div class="card">
+{% if d.now %}
+<textarea readonly rows="{{ 2 + d.now|length * 3 }}">{% for b in d.now %}• {{b.bullet}}
+{% endfor %}</textarea>
+<p class="mut">Replace any &lt;fill in number&gt; with your real figures. Numbers are what get you shortlisted.</p>
+{% else %}<p class="mut">No overlap found yet — work the learning plan first.</p>{% endif %}
+</div>
+
+{% if d.later %}
+<h2>5. Add these lines only after you learn the skill</h2>
+<div class="card imp">
+{% for b in d.later %}
+<div class="gap" style="border-left-color:#d3a437">
+<b>{{b.skill}}</b>
+<textarea readonly rows="3">• {{b.bullet}}</textarea>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+<p><a href="/report/{{jd.id}}">&larr; Back to the skill-gap report</a> &middot; <a href="/plan">Learning plan</a></p>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block body %}
+<h1>My learning plan</h1>
+<p class="sub">Built from {{jobs}} job{{'' if jobs==1 else 's'}} you've analysed. Ranked by how often the gap appeared &mdash; learn top-down.</p>
+{% if not ranked %}
+<div class="card">Add a job on the <a href="/">home page</a> first.</div>
+{% else %}
+{% for g in ranked %}
+<div class="card gap">
+  <b>{{loop.index}}. {{g.key}}</b> <span class="pill">appeared in {{g.n}} job{{'' if g.n==1 else 's'}}</span>
+  <p class="mut" style="margin:8px 0 4px">{{g.why}}</p>
+  <ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
+  <p class="mut" style="margin-top:10px"><b>Interview line once done:</b> {{g.proof}}</p>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

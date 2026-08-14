@@ -1,0 +1,31 @@
+{% extends "base.html" %}{% block body %}
+<h1>Use this on your phone</h1>
+<p class="sub">Same app, opened from your phone — so you can screenshot a Naukri job and upload it straight away, no transferring to the laptop.</p>
+
+<div class="card" style="text-align:center">
+  <img src="/qr.png" alt="QR code" style="width:230px;height:230px;background:#fff;padding:10px;border-radius:12px">
+  <p style="margin:14px 0 4px"><b>Scan this with your phone camera</b></p>
+  <p class="mut">Or type this into your phone browser:</p>
+  <textarea readonly rows="2" style="text-align:center;font-size:18px">http://{{ip}}:{{port}}/</textarea>
+</div>
+
+<h2>Then make it look like a real app</h2>
+<div class="card">
+<p><b>On Android (Chrome):</b> open that address &rarr; tap the <b>⋮</b> menu (top right) &rarr; tap
+<b>Add to Home screen</b> &rarr; Add.</p>
+<p><b>On iPhone (Safari):</b> open that address &rarr; tap the <b>Share</b> button (square with an arrow, at the bottom)
+&rarr; scroll down &rarr; <b>Add to Home Screen</b> &rarr; Add.</p>
+<p class="mut">You'll get a Career Coach icon on your home screen. Tapping it opens the app full-screen with no browser
+bars — it looks and feels like a normal app.</p>
+</div>
+
+<h2>Two things to know</h2>
+<div class="warn">
+<p style="margin:0 0 8px"><b>1. Your phone and laptop must be on the same Wi-Fi.</b> This app lives on your laptop, so the phone
+is just viewing it across your home network.</p>
+<p style="margin:0"><b>2. Your laptop must be switched on with the app running.</b> If the laptop is asleep or off,
+the phone icon won't load anything. That's the trade-off of keeping your resume data private on your own machine.</p>
+</div>
+
+<p><a href="/">&larr; Back</a></p>
+{% endblock %}

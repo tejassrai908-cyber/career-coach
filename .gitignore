@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+career.db
+uploads/*
+!uploads/.gitkeep
+mkicon.py
+mkpng.py
+*.lnk

@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block body %}
+<h1>Career Coach</h1>
+<p class="sub">Enter your PIN to continue.</p>
+<div class="card">
+<form method="post" action="/login">
+  <label>PIN</label>
+  <input type="password" name="pin" inputmode="numeric" autocomplete="current-password" autofocus>
+  <button>Open</button>
+</form>
+<p class="mut" style="margin-top:14px">This keeps your resume private, since the app is on the internet.
+You can change the PIN any time on your Render dashboard.</p>
+</div>
+{% endblock %}

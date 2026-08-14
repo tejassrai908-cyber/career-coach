@@ -1,0 +1,60 @@
+{% extends "base.html" %}{% block body %}
+<h1>Career Coach</h1>
+<p class="sub">Your resume stays saved here. Drop in Naukri job screenshots &rarr; get the skill gap and how to close it.</p>
+
+{% if not ocr %}
+<div class="warn"><b>Screenshot reading is not active yet.</b> Tesseract OCR isn't installed on this laptop,
+so image uploads won't be readable. Until it's installed, paste the job text into the box instead — everything else works.</div>
+{% endif %}
+
+<div class="card">
+<h2 style="margin-top:0">Step 1 &mdash; Your resume {% if resume %}<span class="pill">saved</span>{% endif %}</h2>
+{% if resume %}
+<p class="mut">Saved: <b>{{resume.filename}}</b> &middot; {{resume.uploaded}} &middot; {{resume.text.split()|length}} words.
+You never need to upload it again unless you update your CV.</p>
+{% else %}
+<p class="mut">Upload once. PDF or Word works best.</p>
+{% endif %}
+<form method="post" action="/resume" enctype="multipart/form-data">
+  <input type="file" name="file" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg">
+  <button>{{ 'Replace my resume' if resume else 'Save my resume' }}</button>
+</form>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">Step 2 &mdash; Add a Naukri job</h2>
+<form method="post" action="/analyse" enctype="multipart/form-data">
+  <label>Job name (optional)</label>
+  <input type="text" name="title" placeholder="e.g. Training Manager - HDFC Bangalore">
+  <label>Screenshots from the Naukri app (you can pick several)</label>
+  <input type="file" name="shots" accept="image/*" multiple>
+  <label>...or paste the job description text here</label>
+  <textarea name="pasted" placeholder="Paste the Naukri job description"></textarea>
+  <button>Find my skill gap</button>
+</form>
+</div>
+
+{% if jds %}
+<h2>Jobs analysed</h2>
+<div class="card"><table>
+<tr><th>Job</th><th>Role read as</th><th>Match</th><th>Gaps</th><th></th></tr>
+{% for j in jds %}
+<tr><td><a href="/report/{{j.id}}">{{j.title}}</a><div class="mut">{{j.created}}</div></td>
+<td>{{j.role}}</td><td><b>{{j.pct}}%</b></td><td>{{j.gaps}}</td>
+<td><form method="post" action="/delete/{{j.id}}"><button style="width:auto;padding:5px 10px;margin:0;background:#3d1616;font-size:12px">del</button></form></td></tr>
+{% endfor %}
+</table></div>
+{% endif %}
+
+<h2>Backup &amp; restore</h2>
+<div class="card">
+<p class="mut" style="margin-top:0">If this app is running on the internet (Render free plan), your saved data
+can be wiped whenever the app restarts. Download a backup now and then; restore it in one click.</p>
+<p><a href="/backup"><b>Download my backup file</b></a></p>
+<form method="post" action="/restore" enctype="multipart/form-data" style="margin-top:10px">
+  <label>Restore from a backup file</label>
+  <input type="file" name="bak" accept=".json">
+  <button style="background:#2a3550">Restore</button>
+</form>
+</div>
+{% endblock %}

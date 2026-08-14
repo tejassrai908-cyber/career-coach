@@ -1,0 +1,51 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Career Coach</title>
+<link rel="manifest" href="/static/manifest.json">
+<meta name="theme-color" content="#0f1420">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Career Coach">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
+<style>
+:root{--bg:#0f1420;--card:#18203033;--line:#2a3550;--tx:#e8eefc;--mut:#93a1c0;--ok:#37d39b;--bad:#ff6b6b;--acc:#5b8cff}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#0b1018,#131c2c);color:var(--tx);
+ font:16px/1.55 system-ui,Segoe UI,Roboto,sans-serif;padding:18px;max-width:940px;margin:auto}
+h1{font-size:26px;margin:6px 0 2px}h2{font-size:19px;margin:26px 0 10px}
+.sub{color:var(--mut);margin:0 0 18px}
+.card{background:#18203099;border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+label{display:block;font-weight:600;margin:10px 0 6px;font-size:14px}
+input[type=text],textarea,input[type=file]{width:100%;padding:11px;border-radius:10px;
+ border:1px solid var(--line);background:#0d1422;color:var(--tx);font:inherit}
+textarea{min-height:130px;resize:vertical}
+button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:13px 20px;
+ font:600 16px system-ui;cursor:pointer;margin-top:14px;width:100%}
+button:hover{filter:brightness(1.1)}
+.flash{padding:12px 14px;border-radius:10px;margin-bottom:12px;font-size:14px}
+.good{background:#0f3d2c;border:1px solid var(--ok)}
+.bad{background:#3d1616;border:1px solid var(--bad)}
+.warn{background:#3d3316;border:1px solid #d3a437;font-size:13px;padding:11px;border-radius:10px;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+a{color:var(--acc)}
+.pill{display:inline-block;background:#233;border:1px solid var(--line);border-radius:99px;
+ padding:2px 10px;font-size:12px;color:var(--mut)}
+.big{font-size:34px;font-weight:700}
+ul{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
+.gap{border-left:3px solid var(--bad);padding-left:14px;margin:16px 0}
+.hav{border-left:3px solid var(--ok);padding-left:14px;margin:10px 0}
+.imp{border-left:3px solid #d3a437;padding-left:14px;margin:16px 0}
+.mut{color:var(--mut);font-size:13px}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:150px}
+nav{margin-bottom:14px;font-size:14px}nav a{margin-right:16px}
+</style></head><body>
+<nav><a href="/">Home</a><a href="/plan">My learning plan</a><a href="/phone">Use on my phone</a></nav>
+{% with m = get_flashed_messages(with_categories=true) %}{% for c,t in m %}
+<div class="flash {{c}}">{{t}}</div>{% endfor %}{% endwith %}
+{% block body %}{% endblock %}
+</body></html>
