@@ -33,13 +33,27 @@ PERPLEXITY_MODEL = os.environ.get("PERPLEXITY_MODEL", "sonar").strip() or "sonar
 HF_KEY = os.environ.get("HF_API_KEY", "").strip() or os.environ.get("HUGGINGFACE_API_KEY", "").strip()
 HF_MODEL = os.environ.get("HF_MODEL", "meta-llama/Llama-3.3-70B-Instruct").strip() or "meta-llama/Llama-3.3-70B-Instruct"
 OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "").strip()
+OPENROUTER_KEYS_RAW = os.environ.get("OPENROUTER_KEYS", "").strip()
+# Key pool: combine the single-key var and the comma-separated pool var.
+# The 50/day free limit is PER KEY, so stacking keys multiplies daily free quota.
+_OPENROUTER_KEYS = []
+for _k in [OPENROUTER_KEY, OPENROUTER_KEYS_RAW]:
+    for _part in _k.split(","):
+        _part = _part.strip()
+        if _part and _part.startswith("sk-or"):
+            _OPENROUTER_KEYS.append(_part)
+# de-dup preserving order
+OPENROUTER_KEYS = []
+for _k in _OPENROUTER_KEYS:
+    if _k not in OPENROUTER_KEYS:
+        OPENROUTER_KEYS.append(_k)
 OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemma-4-31b-it:free").strip() or "google/gemma-4-31b-it:free"
 
 
 def provider():
     """Return which provider has a key, in priority order.
     openrouter first (free tier, works in most regions), then perplexity/hf/gemini/openai/groq."""
-    if OPENROUTER_KEY:
+    if OPENROUTER_KEYS:
         return "openrouter"
     if PERPLEXITY_KEY:
         return "perplexity"
@@ -202,30 +216,33 @@ OPENROUTER_FALLBACK_MODELS = [
 
 def _openrouter_call(prompt):
     # OpenRouter is OpenAI-compatible; free tier works in most regions (incl. India).
-    # Try each free model in the fallback list so a rate-limited model doesn't
-    # force a silent fall-back to the rule-based matcher.
+    # The 50/day free limit is PER KEY, so we rotate through the key pool and,
+    # within each key, through the fallback model list. A 429 on one key/model
+    # moves to the next combination instead of silently dropping to rule-based.
+    keys = OPENROUTER_KEYS or ([OPENROUTER_KEY] if OPENROUTER_KEY else [])
     last_err = None
-    for model in OPENROUTER_FALLBACK_MODELS:
-        if not model:
-            continue
-        try:
-            return _openrouter_one(prompt, model)
-        except urllib.error.HTTPError as e:
-            last_err = e
-            # 429/404 on a free model = try the next one; don't give up yet
-            if e.code in (429, 404):
+    for key in keys:
+        for model in OPENROUTER_FALLBACK_MODELS:
+            if not model:
                 continue
-            raise
-        except Exception as e:
-            last_err = e
-            continue
-    # All free models failed — surface the last error so analyse() can report it
+            try:
+                return _openrouter_one(prompt, model, key)
+            except urllib.error.HTTPError as e:
+                last_err = e
+                # 429 (quota) or 404 (retired model) = try next key/model
+                if e.code in (429, 404):
+                    continue
+                raise
+            except Exception as e:
+                last_err = e
+                continue
+    # Every key/model combo failed — surface the last error so analyse() reports it
     if last_err:
         raise last_err
-    raise RuntimeError("No OpenRouter free model available")
+    raise RuntimeError("No OpenRouter free key/model available")
 
 
-def _openrouter_one(prompt, model):
+def _openrouter_one(prompt, model, key):
     url = "https://openrouter.ai/api/v1/chat/completions"
     # system message strongly constrains output so free models don't echo the
     # prompt back (which previously broke json.loads -> silent rule-based fall-back)
@@ -245,7 +262,7 @@ def _openrouter_one(prompt, model):
     }).encode()
     req = urllib.request.Request(url, data=body,
                                  headers={"Content-Type": "application/json",
-                                          "Authorization": f"Bearer {OPENROUTER_KEY}",
+                                          "Authorization": f"Bearer {key}",
                                           "HTTP-Referer": "https://career-coach-fnyw.onrender.com",
                                           "X-Title": "Career Coach"})
     with urllib.request.urlopen(req, timeout=120) as r:
