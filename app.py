@@ -56,6 +56,16 @@ def ai_status_route():
     return ai_status()
 
 
+@app.route("/env-debug")
+def env_debug():
+    """Temporary: list env var NAMES containing KEY/API/AI/GROQ (values hidden)
+    so we can see exactly what Render passed without leaking secrets."""
+    import os
+    names = [k for k in os.environ
+             if any(s in k.upper() for s in ("KEY", "API", "AI_", "GROQ", "GEMINI", "OPENAI"))]
+    return {"env_var_names_seen": sorted(names)}
+
+
 @app.before_request
 def require_pin():
     """When APP_PIN is set (cloud), demand it once per browser session."""
