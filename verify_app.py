@@ -196,9 +196,17 @@ try:
                      {"title": "Combined submit", "pasted": JD_TM})
     check("combined resume+JD submit accepted", c in (200, 302))
     _, b3 = get(op, "/report/3")
-    check("combined report renders + interview section",
+    check("report 4 renders + interview section",
           "Interview questions" in b3, "interview section" if "Interview questions" in b3 else "missing")
     check("interview Q count >=6", b3.count("Say this:") >= 6, f"{b3.count('Say this:')} answers")
+    check("clearance plan section present", "Interview Clearance Plan" in b3,
+          "plan" if "Interview Clearance Plan" in b3 else "missing")
+    check("plan has 'Chances if you learn' per skill", b3.count("Chances if you learn") >= 4,
+          f"{b3.count('Chances if you learn')} skill blocks")
+    check("plan has resource links", "Official / start here" in b3,
+          "resources" if "Official / start here" in b3 else "missing")
+    check("plan shows experience required", "Experience this role usually wants" in b3,
+          "exp line" if "Experience this role usually wants" in b3 else "missing")
 
     # role switching (now report id 4)
     post(op, "/analyse", {"title": "RSM South", "pasted": JD_RSM})

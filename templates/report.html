@@ -66,6 +66,33 @@
 </div>
 {% endif %}
 
+{% if r.plan and r.plan.items %}
+<h2>Your Interview Clearance Plan</h2>
+<div class="card" style="background:#10243a">
+  <p class="mut" style="margin:0 0 10px"><b>Job read as:</b> {{r.plan.role_label}}<br>
+  <b>Experience this role usually wants:</b> {{ROLE_EXPERIENCE.get(r.plan.role_read, '')}}<br>
+  <b>Skills the JD asks for:</b> {{r.plan.asked}} &middot; <b>You already have:</b> {{r.plan.have}} &middot; <b>Lacking / to build:</b> {{r.plan.gaps}}</p>
+</div>
+
+{% for g in r.plan['items'] %}
+<div class="card gap">
+  <h3 style="margin:0 0 6px;color:#ffd479">{{loop.index}}. {{g.key}}</h3>
+  {% if g.near %}<div class="hav" style="margin-bottom:8px"><b>You already do this.</b> Resume shows: {{g.bridge|join(', ')}}. Just learn the framework name + proof.</div>{% endif %}
+  <p class="mut" style="margin:4px 0"><b>Why the JD wants it:</b> {{g.why}}</p>
+  <p style="margin:4px 0"><b>Skills required to clear the interview:</b> {{g.key}} — {{g.proof}}</p>
+  <p class="mut" style="margin:4px 0"><b>How to learn (free-first):</b></p>
+  <ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
+  <p style="margin:6px 0 2px"><b>Chances if you learn it:</b> {% if g.near %}High — you already do the work; reframing + 1 proof gets you past this.{% else %}Medium-High — this is a real new skill; with a work sample + the proof line above you clear the question.{% endif %}</p>
+  <p class="mut" style="margin:6px 0 2px"><b>Resources to upskill:</b></p>
+  {% if g.link %}<div>&#9656; Official / start here: <a href="{{g.link}}" target="_blank" rel="noopener">{{g.link}}</a></div>{% endif %}
+  {% if g.books %}{% for b in g.books %}<div>&#9656; Read: {{b}}</div>{% endfor %}{% endif %}
+  {% if g.yt %}{% for y in g.yt %}<div>&#9656; YouTube: {{y}}</div>{% endfor %}{% endif %}
+  {% if g.free_tools %}{% for t in g.free_tools %}<div>&#9656; Free tool: {{t}}</div>{% endfor %}{% endif %}
+  {% if g.ai %}{% for a in g.ai %}<div>&#9656; AI helper: {{a}}</div>{% endfor %}{% endif %}
+</div>
+{% endfor %}
+{% endif %}
+
 <h2>What was read</h2>
 <div class="card mut">{{ r.sources|join(' | ') }}
 <details style="margin-top:10px"><summary>Show the job text the app read</summary>

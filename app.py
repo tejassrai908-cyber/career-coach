@@ -325,6 +325,57 @@ def analyse(jd_text, resume_text):
     return rep
 
 
+def clearance_plan(rep, jd_text, resume_text):
+    """Build the point-by-point 'Interview Clearance Plan' the user asked for:
+    Job / Experience required / Skills lacking in resume / Skills required /
+    How to learn / Chances if learned / Resources (links, books, YouTube, free tools).
+    This is more structured than the gap cards and reads like a checklist."""
+    res = norm(resume_text)
+    jd = norm(jd_text)
+    role_label = rep["role_label"]
+
+    # Roll up every skill the JD asks for but the resume is weak on (gaps + implied)
+    items = []
+    for g in (rep["gaps"] + rep["implied"]):
+        # "how to learn" = the learn steps (already free-first)
+        learn = g.get("learn", [])
+        # "resources" = the link (official) + tools block (books/yt/tools/ai)
+        tools = g.get("tools", [])
+        # split tools into labelled buckets for clean pointers
+        books, yt, free_tools, ai = [], [], [], []
+        for t in tools:
+            tl = t.lower()
+            if "youtube" in tl:
+                yt.append(t)
+            elif "book" in tl or "read" in tl or "article" in tl or "atd" in tl \
+                 or "kirkpatrick" in tl or "shrm" in tl or "iso" in tl or "nngroup" in tl:
+                books.append(t)
+            elif "ai:" in tl or "chatgpt" in tl or "gemini" in tl or "copilot" in tl:
+                ai.append(t)
+            else:
+                free_tools.append(t)
+        link = (g.get("link") or "").strip()
+        items.append(dict(
+            key=g["key"],
+            why=g.get("why", ""),
+            proof=g.get("proof", ""),
+            near=bool(g.get("near")),
+            bridge=g.get("bridge", []),
+            learn=learn,
+            link=link,
+            books=books, yt=yt, free_tools=free_tools, ai=ai))
+    return dict(role_label=role_label, role_read=ROLE_LABELS.get(rep["role"], role_label),
+                asked=len(rep["have"]) + len(rep["gaps"]),
+                have=len(rep["have"]), gaps=len(rep["gaps"]),
+                items=items)
+
+
+ROLE_EXPERIENCE = {
+    "training manager": "Typically 4-7 yrs in training/L&D with team coordination; shows you can own a curriculum end-to-end and manage people, not just deliver sessions.",
+    "l&d": "Typically 3-6 yrs in L&D / OD; shows you design learning strategy and run programmes, not only facilitate.",
+    "trainer": "Typically 1-4 yrs facilitating; shows you can deliver and design sessions and handle a demo round cold.",
+    "rsm": "Typically 4-8 yrs with a carried revenue/quota number and team/territory handling; L&D-to-RSM is a stretch without quota history.",
+}
 def interview_questions(rep, jd_text, resume_text):
     """Generate the questions THIS employer will most likely ask this candidate,
     drawn from the gaps the engine found plus the candidate's own resume.
@@ -439,6 +490,7 @@ def do_analyse():
     rep = analyse(jd_text, r["text"])
     rep["sources"] = notes
     rep["interview"] = interview_questions(rep, jd_text, r["text"])
+    rep["plan"] = clearance_plan(rep, jd_text, r["text"])
     title = (request.form.get("title") or "").strip() or (
         jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Untitled job")
     with db() as c:
@@ -456,7 +508,8 @@ def report(jd_id):
     if not row:
         flash("That report is gone.", "bad")
         return redirect(url_for("home"))
-    return render_template("report.html", jd=row, r=json.loads(row["report"]))
+    return render_template("report.html", jd=row, r=json.loads(row["report"]),
+                           ROLE_EXPERIENCE=ROLE_EXPERIENCE)
 
 
 @app.route("/delete/<int:jd_id>", methods=["POST"])
