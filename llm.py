@@ -186,11 +186,49 @@ def _hf_call(prompt):
     return data["choices"][0]["message"]["content"]
 
 
+# Free OpenRouter models, tried in order. If the primary is rate-limited (429)
+# we automatically fall through to the next one instead of silently dropping
+# to the rule-based matcher. Update this list if models get retired
+# (query: curl -s https://openrouter.ai/api/v1/models | grep ':free').
+OPENROUTER_FALLBACK_MODELS = [
+    OPENROUTER_MODEL,                      # user-chosen default (env OPENROUTER_MODEL)
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "google/gemma-4-26b-a4b-it:free",
+    "liquid/lfm-2.5-2.6b:free",
+    "nvidia/nemotron-3-nano-30b-a3b:free",
+    "openai/gpt-oss-20b:free",
+]
+
+
 def _openrouter_call(prompt):
     # OpenRouter is OpenAI-compatible; free tier works in most regions (incl. India).
+    # Try each free model in the fallback list so a rate-limited model doesn't
+    # force a silent fall-back to the rule-based matcher.
+    last_err = None
+    for model in OPENROUTER_FALLBACK_MODELS:
+        if not model:
+            continue
+        try:
+            return _openrouter_one(prompt, model)
+        except urllib.error.HTTPError as e:
+            last_err = e
+            # 429/404 on a free model = try the next one; don't give up yet
+            if e.code in (429, 404):
+                continue
+            raise
+        except Exception as e:
+            last_err = e
+            continue
+    # All free models failed — surface the last error so analyse() can report it
+    if last_err:
+        raise last_err
+    raise RuntimeError("No OpenRouter free model available")
+
+
+def _openrouter_one(prompt, model):
     url = "https://openrouter.ai/api/v1/chat/completions"
     body = json.dumps({
-        "model": OPENROUTER_MODEL,
+        "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.4,
         "max_tokens": 3000,
