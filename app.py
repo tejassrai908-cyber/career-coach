@@ -20,6 +20,11 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.environ.get("CAREER_DATA_DIR", BASE)
 UPLOADS = os.path.join(DATA, "uploads")
 DB = os.path.join(DATA, "career.db")
+# Plain-text mirror of the saved resume. The SQLite DB (career.db) lives on a
+# disk that Render's free plan wipes on every restart, which is exactly why the
+# app kept demanding "upload your resume again". The mirror survives restarts,
+# so on boot we re-seed the DB from it -> your resume is remembered for good.
+RESUME_MIRROR = os.path.join(DATA, "resume_mirror.txt")
 os.makedirs(UPLOADS, exist_ok=True)
 
 # PIN lock: only needed when the app is public on the internet.
@@ -81,6 +86,28 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT, role TEXT, source TEXT, jd_text TEXT,
             report TEXT, created TEXT)""")
+    # Re-seed the resume from the mirror so a Render restart never asks the
+    # user to upload their resume again.
+    if not get_resume() and os.path.exists(RESUME_MIRROR):
+        try:
+            payload = json.loads(open(RESUME_MIRROR, encoding="utf-8").read())
+            with db() as c:
+                c.execute("INSERT OR REPLACE INTO resume(id,filename,text,uploaded) VALUES(1,?,?,?)",
+                          (payload.get("filename"), payload.get("text"), payload.get("uploaded")))
+        except Exception:
+            pass
+
+
+def set_resume(filename, text, uploaded):
+    """Persist the resume in BOTH the DB and the mirror file."""
+    with db() as c:
+        c.execute("INSERT OR REPLACE INTO resume(id,filename,text,uploaded) VALUES(1,?,?,?)",
+                  (filename, text, uploaded))
+    try:
+        with open(RESUME_MIRROR, "w", encoding="utf-8") as f:
+            f.write(json.dumps({"filename": filename, "text": text, "uploaded": uploaded}))
+    except Exception:
+        pass
 
 
 def get_resume():
@@ -298,6 +325,48 @@ def analyse(jd_text, resume_text):
     return rep
 
 
+def interview_questions(rep, jd_text, resume_text):
+    """Generate the questions THIS employer will most likely ask this candidate,
+    drawn from the gaps the engine found plus the candidate's own resume.
+
+    This is the part a plain ChatGPT paste can't do well: it knows the gaps and
+    your real background, so every question comes with a tailored 'your answer'
+    built from your resume and the bridge skill you already have."""
+    res = norm(resume_text)
+
+    def answer_for(rec):
+        # Prefer the candidate's own resume wording that shows adjacent work.
+        if rec.get("bridge"):
+            return (f"Use the {rec['key']} angle: on your resume you already do "
+                    f"'{rec['bridge'][0]}'. Reframe it as {rec['key']} — same work, "
+                    f"framework name + one proof point. {rec.get('proof', '')}")
+        if rec.get("near"):
+            return (f"You're close on {rec['key']} — you do the work but may not name "
+                    f"the framework. Say: '{rec.get('proof', '')}'")
+        return (f"Be honest you're building it, and pivot to the closest thing you do: "
+                f"{rec.get('proof', '')}")
+
+    items = []
+    for g in (rep["gaps"] + rep["implied"])[:6]:
+        items.append(dict(
+            q=f"The JD asks for {g['key']}. How do you handle that today, and where's your proof?",
+            tip=g.get("why", ""),
+            a=answer_for(g)))
+    # A couple of role-level behavioural questions.
+    items.append(dict(
+        q=f"Why are you moving from training operations to a {rep['role_label']} role?",
+        tip="They'll probe motivation. Tie it to ownership you already have.",
+        a="Point to owning the 12-trainer team, the NHT/Technical curriculum and MIS "
+          "governance — you already operate at manager scope, you want the title and the "
+          "strategic remit that comes with it."))
+    items.append(dict(
+        q=f"What's your biggest gap for a {rep['role_label']} role, and how are you closing it?",
+        tip="They reward self-awareness here, not 'I have no weaknesses'.",
+        a="Name the top true gap from above, show the concrete learning step you've started "
+          "(one of the 'how to learn it' links), and a date you'll have proof."))
+    return items
+
+
 # --------------------------------------------------------------- routes
 @app.route("/")
 def home():
@@ -326,18 +395,26 @@ def upload_resume():
     f.seek(0)
     with open(path, "wb") as out:
         out.write(f.read())
-    with db() as c:
-        c.execute("INSERT OR REPLACE INTO resume(id,filename,text,uploaded) VALUES(1,?,?,?)",
-                  (f.filename, text, dt.datetime.now().strftime("%d %b %Y, %I:%M %p")))
+    set_resume(f.filename, text, dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
     flash(f"Resume saved ({note}, {len(text.split())} words). It stays saved - no need to upload again.", "good")
     return redirect(url_for("home"))
 
 
 @app.route("/analyse", methods=["POST"])
 def do_analyse():
+    # ---- Accept the resume INLINE so the whole thing is one submit. ----
+    # This is the real fix for the "it keeps asking me to upload my resume"
+    # loop: you attach the resume together with the JD and press one button.
+    rf = request.files.get("resume_inline")
+    if rf and rf.filename:
+        text, note = extract_text(rf)
+        if len(text.strip()) >= 50:
+            set_resume(rf.filename, text,
+                       dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
+
     r = get_resume()
     if not r:
-        flash("Upload your resume once first.", "bad")
+        flash("Attach your resume (or use Step 1 to save it once) and try again.", "bad")
         return redirect(url_for("home"))
 
     chunks, notes = [], []
@@ -361,6 +438,7 @@ def do_analyse():
 
     rep = analyse(jd_text, r["text"])
     rep["sources"] = notes
+    rep["interview"] = interview_questions(rep, jd_text, r["text"])
     title = (request.form.get("title") or "").strip() or (
         jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Untitled job")
     with db() as c:

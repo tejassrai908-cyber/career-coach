@@ -29,12 +29,16 @@ Keep your full resume with contact details for the actual Naukri application.</d
 <form method="post" action="/analyse" enctype="multipart/form-data">
   <label>Job name (optional)</label>
   <input type="text" name="title" placeholder="e.g. Training Manager - HDFC Bangalore">
+  <label>Attach your resume here too (one tap &mdash; it remembers it, no re-upload needed)</label>
+  <input type="file" name="resume_inline" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg">
   <label>Screenshots from the Naukri app (you can pick several)</label>
   <input type="file" name="shots" accept="image/*" multiple>
   <label>...or paste the job description text here</label>
   <textarea name="pasted" placeholder="Paste the Naukri job description"></textarea>
   <button>Find my skill gap</button>
 </form>
+<p class="mut">Tip: attach your resume in this form once. After that it's saved &mdash; you only
+need the screenshots or text for the next job.</p>
 </div>
 
 {% if jds %}

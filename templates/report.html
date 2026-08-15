@@ -53,6 +53,19 @@
 </div>
 {% endif %}
 
+{% if r.interview %}
+<h2>Interview questions they'll ask YOU (and your answer)</h2>
+<div class="card">
+{% for it in r.interview %}
+<div class="gap" style="border-left-color:#5b8cff">
+  <b>{{it.q}}</b>
+  {% if it.tip %}<div class="mut">Why they ask: {{it.tip}}</div>{% endif %}
+  <p class="mut" style="margin-top:8px"><b>Say this:</b> {{it.a}}</p>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
 <h2>What was read</h2>
 <div class="card mut">{{ r.sources|join(' | ') }}
 <details style="margin-top:10px"><summary>Show the job text the app read</summary>

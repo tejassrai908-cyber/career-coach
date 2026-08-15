@@ -191,12 +191,21 @@ try:
     ocr_gaps = re.findall(r'gap">\s*<b>([^<]*)', b2)
     check("OCR report found gaps", len(ocr_gaps) >= 4, f"{len(ocr_gaps)} gaps")
 
-    # role switching
-    post(op, "/analyse", {"title": "RSM South", "pasted": JD_RSM})
+    # combined one-shot submit: resume + JD in a single /analyse call
+    c, _ = post_file(op, "/analyse", "resume_inline", "cv2.txt", RESUME, "text/plain",
+                     {"title": "Combined submit", "pasted": JD_TM})
+    check("combined resume+JD submit accepted", c in (200, 302))
     _, b3 = get(op, "/report/3")
-    r3 = re.search(r"Read as a <b>([^<]*)", b3)
-    check("role = Regional Sales Manager", bool(r3) and "Regional Sales" in r3.group(1),
-          r3.group(1) if r3 else "none")
+    check("combined report renders + interview section",
+          "Interview questions" in b3, "interview section" if "Interview questions" in b3 else "missing")
+    check("interview Q count >=6", b3.count("Say this:") >= 6, f"{b3.count('Say this:')} answers")
+
+    # role switching (now report id 4)
+    post(op, "/analyse", {"title": "RSM South", "pasted": JD_RSM})
+    _, b4 = get(op, "/report/4")
+    r4 = re.search(r"Read as a <b>([^<]*)", b4)
+    check("role = Regional Sales Manager", bool(r4) and "Regional Sales" in r4.group(1),
+          r4.group(1) if r4 else "none")
 
     check("plan page 200", get(op, "/plan")[0] == 200)
     check("plan ranks gaps", "appeared in" in get(op, "/plan")[1])
@@ -208,13 +217,13 @@ try:
     # backup -> wipe -> restore
     code, bak = get(op, "/backup")
     check("backup downloads", code == 200 and "jd_text" in bak)
-    for i in (1, 2, 3):
+    for i in (1, 2, 3, 4):
         post(op, f"/delete/{i}", {})
     check("jobs wiped", len(set(re.findall(r"/report/(\d+)", get(op, "/")[1]))) == 0)
     c, _ = post_file(op, "/restore", "bak", "b.json", bak, "application/json")
     check("restore accepted", c in (200, 302))
     home = get(op, "/")[1]
-    check("jobs restored", len(set(re.findall(r"/report/(\d+)", home))) == 3)
+    check("jobs restored", len(set(re.findall(r"/report/(\d+)", home))) == 4)
     check("resume survived restore", "saved" in home)
 
     # graceful handling of junk
