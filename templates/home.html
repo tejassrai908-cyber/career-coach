@@ -35,8 +35,38 @@ Keep your full resume with contact details for the actual Naukri application.</d
   <input type="file" name="shots" accept="image/*" multiple>
   <label>...or paste the job description text here</label>
   <textarea name="pasted" placeholder="Paste the Naukri job description"></textarea>
-  <button>Find my skill gap</button>
+  <button id="submitBtn" type="submit">Find my skill gap</button>
+  <div id="wait" class="mut" style="display:none;margin-top:10px">
+    ⏳ Working… this can take ~15s on the free server's first wake-up. Please don't close this.
+  </div>
 </form>
+<script>
+// Show a spinner and disable double-submits.
+document.querySelector('form[action="/analyse"]').addEventListener('submit', function(){
+  var b=document.getElementById('submitBtn');
+  b.disabled=true; b.textContent='Working…';
+  document.getElementById('wait').style.display='block';
+});
+// If the free server was asleep, the first upload POST can drop (cold start).
+// Catch a failed submit and auto-retry once so the user isn't left with "nothing happened".
+window.addEventListener('pageshow', function(){
+  var form=document.querySelector('form[action="/analyse"]');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    if(sessionStorage.getItem('cc_retried')==='1'){sessionStorage.removeItem('cc_retried');return;}
+    var data=new FormData(form);
+    e.preventDefault();
+    fetch('/analyse',{method:'POST',body:data,headers:{'X-Requested-With':'fetch'}})
+      .then(function(r){ if(r.redirected||r.ok){window.location=r.url||'/';} else{retry();} })
+      .catch(function(){retry();});
+    function retry(){
+      sessionStorage.setItem('cc_retried','1');
+      // brief pause lets the server finish waking, then plain submit (keeps file upload)
+      setTimeout(function(){ form.submit(); }, 2500);
+    }
+  }, {once:true});
+});
+</script>
 <p class="mut">Tip: attach your resume in this form once. After that it's saved &mdash; you only
 need the screenshots or text for the next job.</p>
 </div>
