@@ -599,9 +599,9 @@ def do_analyse():
 
     # Try the AI engine first (real expert analysis) if a key is configured;
     # otherwise fall back to the built-in rule-based matcher. Never breaks.
-    ai_rep = llm_analyse(jd_text, r["text"])
-    if ai_rep:
-        rep = ai_rep
+    ai_res = _llm.analyse_with_error(jd_text, r["text"])
+    if ai_res.get("ok"):
+        rep = ai_res["rep"]
         rep["sources"] = notes
         rep["ai_mode"] = True
         rep["plan"] = llm_clearance(rep)
@@ -612,6 +612,9 @@ def do_analyse():
         rep = analyse(jd_text, r["text"])
         rep["sources"] = notes
         rep["ai_mode"] = False
+        # If a key was configured but AI failed (rate-limit / bad response),
+        # flag it HONESTLY so we don't pretend the rule-based matcher is "AI".
+        rep["ai_error"] = ai_res.get("ai_error")
         rep["interview"] = interview_questions(rep, jd_text, r["text"])
         rep["plan"] = clearance_plan(rep, jd_text, r["text"])
     title = (request.form.get("title") or "").strip() or (

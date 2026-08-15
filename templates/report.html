@@ -3,11 +3,16 @@
 <p class="sub">Read as a <b>{{r.role_label}}</b> role &middot; {{r.generated}}</p>
 {% if r.ai_mode %}
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22;text-align:center">
-<b style="color:#7ef0c0;font-size:14px">&#9889; Analyzed by Gemini AI &mdash; real expert skill read</b>
+<b style="color:#7ef0c0;font-size:14px">&#9889; Analyzed by OpenRouter AI &mdash; real expert skill read</b>
 </div>
-{% else %}
+{% elif r.ai_error == 'no_key' %}
 <div class="card" style="border-left:3px solid #d3a437;background:#2e2410;text-align:center">
 <b style="color:#f0d27e;font-size:14px">&#9888; Rule-based mode (no AI)</b><div class="mut" style="margin-top:4px">Add <b>OPENROUTER_API_KEY</b> (free, sk-or- key from openrouter.ai) in Render for true AI analysis of ANY job field.</div>
+</div>
+{% else %}
+<div class="card" style="border-left:3px solid #d35a37;background:#2e1410;text-align:center">
+<b style="color:#f0b27e;font-size:14px">&#9888; AI key is set but the free model is rate-limited right now</b>
+<div class="mut" style="margin-top:4px">OpenRouter free tier allows only ~50 requests/day per key. What you see below is the built-in rule-based fallback, NOT AI. Wait for the daily quota to reset, or add $10 credit in OpenRouter (openrouter.ai &rarr; Settings &rarr; Credits) to lift the limit to 1000/day. Error: {{r.ai_error}}</div>
 </div>
 {% endif %}
 <div class="card" style="text-align:center;background:#14304a">

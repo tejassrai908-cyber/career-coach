@@ -439,3 +439,22 @@ def clearance_plan_from_ai(rep):
                 have=len(rep.get("have", [])),
                 gaps=len(rep.get("gaps", [])),
                 items=items)
+
+
+def analyse_with_error(jd_text, resume_text):
+    """Like analyse() but never silently falls back. Returns a dict:
+       {"ok": True, "rep": <normalised report>} on success, or
+       {"ok": False, "ai_error": "<human reason>} when a key is set but the
+       call failed (rate-limit / network / bad JSON). This lets the app show an
+       HONEST message instead of the rule-based matcher pretending to be AI."""
+    if not provider():
+        return {"ok": False, "ai_error": "no_key"}
+    try:
+        rep = analyse(jd_text, resume_text)
+    except Exception as e:
+        return {"ok": False, "ai_error": f"{type(e).__name__}: {e}"}
+    if not rep:
+        # call succeeded (key valid) but produced no usable analysis
+        return {"ok": False, "ai_error": "empty_or_unparseable_response"}
+    return {"ok": True, "rep": rep}
+
