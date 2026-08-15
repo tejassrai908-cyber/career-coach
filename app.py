@@ -718,7 +718,8 @@ def qr_png():
 
 @app.route("/phone")
 def phone():
-    return render_template("phone.html", ip=lan_ip(), port=5055)
+    return render_template("phone.html", ip=lan_ip(), port=5055,
+                           cloud_url="https://career-coach-fnyw.onrender.com")
 
 
 @app.route("/backup")
