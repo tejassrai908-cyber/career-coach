@@ -8,6 +8,6 @@ services:
     envVars:
       # Change this PIN on the Render dashboard after first deploy.
       - key: APP_PIN
-        value: "2468"
+        value: "8500"
       - key: SECRET_KEY
         generateValue: true
