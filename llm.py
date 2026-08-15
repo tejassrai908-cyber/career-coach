@@ -28,10 +28,15 @@ OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini").strip() or "gpt-4o-
 GROQ_KEY = os.environ.get("GROQ_API_KEY", "").strip() or os.environ.get("GROQ_KEY", "").strip() \
            or os.environ.get("AI_API_KEY", "").strip()  # AI_API_KEY = easy-to-type alias for Groq
 GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile").strip() or "llama-3.3-70b-versatile"
+PERPLEXITY_KEY = os.environ.get("PERPLEXITY_API_KEY", "").strip()
+PERPLEXITY_MODEL = os.environ.get("PERPLEXITY_MODEL", "sonar").strip() or "sonar"
 
 
 def provider():
-    """Return 'gemini', 'openai', or None in priority order."""
+    """Return which provider has a key, in priority order.
+    perplexity first (free, works in most regions), then gemini/openai/groq."""
+    if PERPLEXITY_KEY:
+        return "perplexity"
     if GEMINI_KEY:
         return "gemini"
     if OPENAI_KEY:
@@ -137,6 +142,22 @@ def _groq_call(prompt):
     return data["choices"][0]["message"]["content"]
 
 
+def _perplexity_call(prompt):
+    # Perplexity is OpenAI-compatible; free tier (sonar) works in most regions.
+    url = "https://api.perplexity.ai/chat/completions"
+    body = json.dumps({
+        "model": PERPLEXITY_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.4,
+    }).encode()
+    req = urllib.request.Request(url, data=body,
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": f"Bearer {PERPLEXITY_KEY}"})
+    with urllib.request.urlopen(req, timeout=90) as r:
+        data = json.loads(r.read().decode())
+    return data["choices"][0]["message"]["content"]
+
+
 def _call(prompt):
     """Call whichever provider has a key. Return model text or None on failure."""
     which = provider()
@@ -155,6 +176,11 @@ def _call(prompt):
             return _groq_call(prompt)
         except Exception:
             return None
+    if which == "perplexity":
+        try:
+            return _perplexity_call(prompt)
+        except Exception:
+            return None
     return None
 
 
@@ -167,26 +193,33 @@ def ai_status():
     if not which:
         return {"enabled": False, "provider": None, "key_present": False,
                 "model": "",
-                "error": "No API key set. Add GROQ_API_KEY (or AI_API_KEY) in Render — get a free key (starts with gsk_) at console.groq.com -> API Keys."}
+                "error": "No API key set. Add PERPLEXITY_API_KEY (free, perplexity.ai), GROQ_API_KEY/AI_API_KEY (groq.com), or OPENAI_API_KEY in Render."}
     # probe with a tiny call to see if the key is accepted
     try:
         if which == "gemini":
             _gemini_call("Reply with the single word: ok")
         elif which == "openai":
             _openai_call("Reply with the single word: ok")
-        else:
+        elif which == "groq":
             _groq_call("Reply with the single word: ok")
+        else:
+            _perplexity_call("Reply with the single word: ok")
         model = (GEMINI_MODEL if which == "gemini"
-                 else OPENAI_MODEL if which == "openai" else GROQ_MODEL)
+                 else OPENAI_MODEL if which == "openai"
+                 else PERPLEXITY_MODEL if which == "perplexity" else GROQ_MODEL)
         return {"enabled": True, "provider": which,
                 "key_present": True, "model": model, "error": ""}
     except urllib.error.HTTPError as e:
         msg = e.read().decode()[:200] if e.fp else str(e)
         model = (GEMINI_MODEL if which == "gemini"
-                 else OPENAI_MODEL if which == "openai" else GROQ_MODEL)
+                 else OPENAI_MODEL if which == "openai"
+                 else PERPLEXITY_MODEL if which == "perplexity" else GROQ_MODEL)
         return {"enabled": False, "provider": which, "key_present": True,
                 "model": model, "error": f"API rejected the key ({e.code}): {msg}"}
     except Exception as e:
+        model = (GEMINI_MODEL if which == "gemini"
+                 else OPENAI_MODEL if which == "openai"
+                 else PERPLEXITY_MODEL if which == "perplexity" else GROQ_MODEL)
         return {"enabled": False, "provider": which, "key_present": True,
                 "model": model,
                 "error": f"Call failed: {type(e).__name__}: {str(e)[:160]}"}
