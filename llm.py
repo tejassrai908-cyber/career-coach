@@ -25,6 +25,8 @@ GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash").strip() or "gemini-1.5-flash"
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini").strip() or "gpt-4o-mini"
+GROQ_KEY = os.environ.get("GROQ_API_KEY", "").strip()
+GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile").strip() or "llama-3.3-70b-versatile"
 
 
 def provider():
@@ -33,6 +35,8 @@ def provider():
         return "gemini"
     if OPENAI_KEY:
         return "openai"
+    if GROQ_KEY:
+        return "groq"
     return None
 
 
@@ -115,6 +119,23 @@ def _openai_call(prompt):
     return data["choices"][0]["message"]["content"]
 
 
+def _groq_call(prompt):
+    # Groq is OpenAI-compatible; just a different base URL. Free tier, no card.
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    body = json.dumps({
+        "model": GROQ_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "response_format": {"type": "json_object"},
+        "temperature": 0.4,
+    }).encode()
+    req = urllib.request.Request(url, data=body,
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": f"Bearer {GROQ_KEY}"})
+    with urllib.request.urlopen(req, timeout=90) as r:
+        data = json.loads(r.read().decode())
+    return data["choices"][0]["message"]["content"]
+
+
 def _call(prompt):
     """Call whichever provider has a key. Return model text or None on failure."""
     which = provider()
@@ -128,6 +149,11 @@ def _call(prompt):
             return _openai_call(prompt)
         except Exception:
             return None
+    if which == "groq":
+        try:
+            return _groq_call(prompt)
+        except Exception:
+            return None
     return None
 
 
@@ -139,25 +165,29 @@ def ai_status():
     which = provider()
     if not which:
         return {"enabled": False, "provider": None, "key_present": False,
-                "model": "", "error": "No API key set. Add GEMINI_API_KEY or OPENAI_API_KEY in Render."}
+                "model": "",
+                "error": "No API key set. Add GEMINI_API_KEY, OPENAI_API_KEY, or GROQ_API_KEY in Render."}
     # probe with a tiny call to see if the key is accepted
     try:
         if which == "gemini":
             _gemini_call("Reply with the single word: ok")
-        else:
+        elif which == "openai":
             _openai_call("Reply with the single word: ok")
+        else:
+            _groq_call("Reply with the single word: ok")
+        model = (GEMINI_MODEL if which == "gemini"
+                 else OPENAI_MODEL if which == "openai" else GROQ_MODEL)
         return {"enabled": True, "provider": which,
-                "key_present": True,
-                "model": GEMINI_MODEL if which == "gemini" else OPENAI_MODEL,
-                "error": ""}
+                "key_present": True, "model": model, "error": ""}
     except urllib.error.HTTPError as e:
         msg = e.read().decode()[:200] if e.fp else str(e)
+        model = (GEMINI_MODEL if which == "gemini"
+                 else OPENAI_MODEL if which == "openai" else GROQ_MODEL)
         return {"enabled": False, "provider": which, "key_present": True,
-                "model": GEMINI_MODEL if which == "gemini" else OPENAI_MODEL,
-                "error": f"API rejected the key ({e.code}): {msg}"}
+                "model": model, "error": f"API rejected the key ({e.code}): {msg}"}
     except Exception as e:
         return {"enabled": False, "provider": which, "key_present": True,
-                "model": GEMINI_MODEL if which == "gemini" else OPENAI_MODEL,
+                "model": model,
                 "error": f"Call failed: {type(e).__name__}: {str(e)[:160]}"}
 
 
