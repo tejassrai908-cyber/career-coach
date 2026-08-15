@@ -193,13 +193,15 @@ def _openrouter_call(prompt):
         "model": OPENROUTER_MODEL,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.4,
+        "max_tokens": 3000,
+        "response_format": {"type": "json_object"},
     }).encode()
     req = urllib.request.Request(url, data=body,
                                  headers={"Content-Type": "application/json",
                                           "Authorization": f"Bearer {OPENROUTER_KEY}",
                                           "HTTP-Referer": "https://career-coach-fnyw.onrender.com",
                                           "X-Title": "Career Coach"})
-    with urllib.request.urlopen(req, timeout=90) as r:
+    with urllib.request.urlopen(req, timeout=120) as r:
         data = json.loads(r.read().decode())
     return data["choices"][0]["message"]["content"]
 

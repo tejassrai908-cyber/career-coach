@@ -56,6 +56,30 @@ def ai_status_route():
     return ai_status()
 
 
+@app.route("/ai-test")
+def ai_test():
+    """Temporary diagnostic: runs the real llm.analyse() with a cross-field
+    SQL JD vs a non-technical resume and returns the actual result or error."""
+    from llm import analyse, provider, ai_status
+    jd = ("We are hiring a Database Developer. Required: strong SQL, PL/SQL, "
+          "Oracle, ETL pipelines, data modelling, performance tuning. 5+ years.")
+    res = ("I am a Training Manager with 8 years in L&D. Skills: ADDIE, "
+           "Kirkpatrick, TNI, facilitation, coaching.")
+    import traceback
+    try:
+        prov = provider()
+        st = ai_status()
+        rep = analyse(jd, res)
+        return {"provider": prov, "ai_status": st,
+                "returned": "AI dict" if rep else "None (fell back)",
+                "role": rep.get("role") if rep else None,
+                "match": rep.get("match_pct") if rep else None,
+                "gaps_sample": (rep.get("gaps")[:2] if rep else None)}
+    except Exception as e:
+        return {"provider": provider(), "error": f"{type(e).__name__}: {e}",
+                "trace": traceback.format_exc()[-800:]}
+
+
 @app.route("/env-debug")
 def env_debug():
     """Temporary: list env var NAMES containing KEY/API/AI/GROQ (values hidden)
