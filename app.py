@@ -60,23 +60,31 @@ def ai_status_route():
 def ai_test():
     """Temporary diagnostic: runs the real llm.analyse() with a cross-field
     SQL JD vs a non-technical resume and returns the actual result or error."""
-    from llm import analyse, provider, ai_status
+    import llm, traceback
     jd = ("We are hiring a Database Developer. Required: strong SQL, PL/SQL, "
           "Oracle, ETL pipelines, data modelling, performance tuning. 5+ years.")
     res = ("I am a Training Manager with 8 years in L&D. Skills: ADDIE, "
            "Kirkpatrick, TNI, facilitation, coaching.")
-    import traceback
     try:
-        prov = provider()
-        st = ai_status()
-        rep = analyse(jd, res)
+        prov = llm.provider()
+        st = llm.ai_status()
+        # 1) try the real call directly to surface the raw error
+        raw = None
+        raw_err = None
+        try:
+            raw = llm._call(llm._PROMPT.format(resume_text=res, jd_text=jd))
+        except Exception as e:
+            raw_err = f"{type(e).__name__}: {e}"
+        rep = llm.analyse(jd, res)
         return {"provider": prov, "ai_status": st,
+                "raw_call_ok": bool(raw),
+                "raw_err": raw_err,
+                "raw_head": (raw[:300] if raw else None),
                 "returned": "AI dict" if rep else "None (fell back)",
                 "role": rep.get("role") if rep else None,
-                "match": rep.get("match_pct") if rep else None,
-                "gaps_sample": (rep.get("gaps")[:2] if rep else None)}
+                "match": rep.get("match_pct") if rep else None}
     except Exception as e:
-        return {"provider": provider(), "error": f"{type(e).__name__}: {e}",
+        return {"provider": llm.provider(), "error": f"{type(e).__name__}: {e}",
                 "trace": traceback.format_exc()[-800:]}
 
 
