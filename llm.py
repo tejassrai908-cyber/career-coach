@@ -25,7 +25,8 @@ GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash").strip() or "gemini-1.5-flash"
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini").strip() or "gpt-4o-mini"
-GROQ_KEY = os.environ.get("GROQ_API_KEY", "").strip()
+GROQ_KEY = os.environ.get("GROQ_API_KEY", "").strip() or os.environ.get("GROQ_KEY", "").strip() \
+           or os.environ.get("AI_API_KEY", "").strip()  # AI_API_KEY = easy-to-type alias for Groq
 GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile").strip() or "llama-3.3-70b-versatile"
 
 
@@ -166,7 +167,7 @@ def ai_status():
     if not which:
         return {"enabled": False, "provider": None, "key_present": False,
                 "model": "",
-                "error": "No API key set. Add GEMINI_API_KEY, OPENAI_API_KEY, or GROQ_API_KEY in Render."}
+                "error": "No API key set. Add GROQ_API_KEY (or AI_API_KEY) in Render — get a free key (starts with gsk_) at console.groq.com -> API Keys."}
     # probe with a tiny call to see if the key is accepted
     try:
         if which == "gemini":

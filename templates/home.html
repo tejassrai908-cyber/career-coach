@@ -14,8 +14,8 @@ so image uploads won't be readable. Until it's installed, paste the job text int
 {% else %}
 <div class="card" style="border-left:3px solid #d3a437;background:#2e2410">
 <b style="color:#f0d27e;font-size:14px">&#9888; AI analysis OFF</b>
-<div class="mut" style="margin-top:4px">{{ai.error if ai else 'Add GEMINI_API_KEY, OPENAI_API_KEY, or GROQ_API_KEY in Render.'}}
-To turn on real AI (reads ANY job field, not just training): in Render &rarr; Environment add <b>GEMINI_API_KEY</b> (from aistudio.google.com/apikey), <b>OPENAI_API_KEY</b> (from platform.openai.com/api-keys), or <b>GROQ_API_KEY</b> (free, no card, from console.groq.com &rarr; API Keys), then redeploy.</div>
+<div class="mut" style="margin-top:4px">{{ai.error if ai else 'Add GROQ_API_KEY (or AI_API_KEY) in Render.'}}
+To turn on real AI: get a FREE key at console.groq.com &rarr; API Keys (starts with gsk_), then in Render &rarr; Environment add <b>AI_API_KEY</b> = your gsk_ key (or name it GROQ_API_KEY). No card needed. Redeploy.</div>
 </div>
 {% endif %}
 
