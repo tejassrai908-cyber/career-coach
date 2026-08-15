@@ -59,7 +59,7 @@ def ai_status_route():
 @app.route("/ai-test")
 def ai_test():
     """Temporary diagnostic: runs the real llm.analyse() with a cross-field
-    SQL JD vs a non-technical resume and returns the actual parsed result."""
+    SQL JD vs a non-technical resume and dumps the raw model response."""
     import llm, traceback
     jd = ("We are hiring a Database Developer. Required: strong SQL, PL/SQL, "
           "Oracle, ETL pipelines, data modelling, performance tuning. 5+ years.")
@@ -68,19 +68,24 @@ def ai_test():
     try:
         prov = llm.provider()
         st = llm.ai_status()
+        # raw call to see exactly what the model returns
+        raw = None
+        raw_err = None
+        try:
+            raw = llm._call(llm._PROMPT.format(resume_text=res, jd_text=jd))
+        except Exception as e:
+            raw_err = f"{type(e).__name__}: {e}"
+        parsed = llm._extract_json(raw) if raw else None
         rep = llm.analyse(jd, res)
-        if not rep:
-            return {"provider": prov, "ai_status": st,
-                    "returned": "None (fell back to rule-based)",
-                    "role": None, "match": None}
         return {"provider": prov, "ai_status": st,
-                "returned": "AI dict",
-                "role": rep.get("role_label"),
-                "match": rep.get("match_pct"),
-                "have_count": len(rep.get("have", [])),
-                "gaps_count": len(rep.get("gaps", [])),
-                "gaps_keys": [g.get("key") for g in rep.get("gaps", [])[:5]],
-                "verdict": (rep.get("verdict") or "")[:200]}
+                "raw_err": raw_err,
+                "raw_len": len(raw) if raw else 0,
+                "raw_head": (raw[:500] if raw else None),
+                "parsed_ok": bool(parsed),
+                "parsed_keys": list(parsed.keys()) if isinstance(parsed, dict) else None,
+                "returned": "AI dict" if rep else "None (fell back to rule-based)",
+                "role": rep.get("role_label") if rep else None,
+                "match": rep.get("match_pct") if rep else None}
     except Exception as e:
         return {"provider": llm.provider(), "error": f"{type(e).__name__}: {e}",
                 "trace": traceback.format_exc()[-800:]}
