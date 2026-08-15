@@ -15,6 +15,11 @@ from flask import Flask, request, redirect, url_for, render_template, flash
 
 from skills_db import SKILLS, ROLE_LABELS
 
+# Optional AI analysis layer (Gemini). Falls back to the rule-based engine if no key.
+import llm as _llm
+llm_analyse = _llm.analyse
+llm_clearance = _llm.clearance_plan_from_ai
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 # On Render the writable spot is a temp dir; locally it's the project folder.
 DATA = os.environ.get("CAREER_DATA_DIR", BASE)
@@ -525,10 +530,21 @@ def do_analyse():
               + "You can also just paste the job text.", "bad")
         return redirect(url_for("home"))
 
-    rep = analyse(jd_text, r["text"])
-    rep["sources"] = notes
-    rep["interview"] = interview_questions(rep, jd_text, r["text"])
-    rep["plan"] = clearance_plan(rep, jd_text, r["text"])
+    # Try the AI engine first (real expert analysis) if a key is configured;
+    # otherwise fall back to the built-in rule-based matcher. Never breaks.
+    ai_rep = llm_analyse(jd_text, r["text"])
+    if ai_rep:
+        rep = ai_rep
+        rep["sources"] = notes
+        rep["plan"] = llm_clearance(rep)
+        # reuse the existing interview generator only as a fallback if AI gave none
+        if not rep.get("interview"):
+            rep["interview"] = interview_questions(rep, jd_text, r["text"])
+    else:
+        rep = analyse(jd_text, r["text"])
+        rep["sources"] = notes
+        rep["interview"] = interview_questions(rep, jd_text, r["text"])
+        rep["plan"] = clearance_plan(rep, jd_text, r["text"])
     title = (request.form.get("title") or "").strip() or (
         jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Untitled job")
     with db() as c:
