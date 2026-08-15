@@ -14,8 +14,8 @@ so image uploads won't be readable. Until it's installed, paste the job text int
 {% else %}
 <div class="card" style="border-left:3px solid #d3a437;background:#2e2410">
 <b style="color:#f0d27e;font-size:14px">&#9888; AI analysis OFF</b>
-<div class="mut" style="margin-top:4px">{{ai.error if ai else 'Add HF_API_KEY in Render.'}}
-To turn on real AI for FREE (no card): go to huggingface.co &rarr; Settings &rarr; Access Tokens &rarr; New token (starts with hf_), then in Render &rarr; Environment add <b>HF_API_KEY</b> = your hf_ token. Works in most regions. (Also supports PERPLEXITY_API_KEY, OPENAI_API_KEY, GROQ_API_KEY/AI_API_KEY.) Redeploy.</div>
+<div class="mut" style="margin-top:4px">{{ai.error if ai else 'Add OPENROUTER_API_KEY in Render.'}}
+To turn on real AI for FREE: go to openrouter.ai &rarr; Keys &rarr; Create key (starts with sk-or-), then in Render &rarr; Environment add <b>OPENROUTER_API_KEY</b> = your sk-or- key. Free models need no card, works in most regions. (Also supports HF_API_KEY, PERPLEXITY_API_KEY, OPENAI_API_KEY, GROQ_API_KEY.) Redeploy.</div>
 </div>
 {% endif %}
 

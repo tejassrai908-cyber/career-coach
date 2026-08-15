@@ -32,11 +32,15 @@ PERPLEXITY_KEY = os.environ.get("PERPLEXITY_API_KEY", "").strip()
 PERPLEXITY_MODEL = os.environ.get("PERPLEXITY_MODEL", "sonar").strip() or "sonar"
 HF_KEY = os.environ.get("HF_API_KEY", "").strip() or os.environ.get("HUGGINGFACE_API_KEY", "").strip()
 HF_MODEL = os.environ.get("HF_MODEL", "meta-llama/Llama-3.3-70B-Instruct").strip() or "meta-llama/Llama-3.3-70B-Instruct"
+OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "").strip()
+OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemini-flash-1.5").strip() or "google/gemini-flash-1.5"
 
 
 def provider():
     """Return which provider has a key, in priority order.
-    perplexity first (free, works in most regions), then gemini/openai/groq."""
+    openrouter first (free tier, works in most regions), then perplexity/hf/gemini/openai/groq."""
+    if OPENROUTER_KEY:
+        return "openrouter"
     if PERPLEXITY_KEY:
         return "perplexity"
     if HF_KEY:
@@ -182,6 +186,24 @@ def _hf_call(prompt):
     return data["choices"][0]["message"]["content"]
 
 
+def _openrouter_call(prompt):
+    # OpenRouter is OpenAI-compatible; free tier works in most regions (incl. India).
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    body = json.dumps({
+        "model": OPENROUTER_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.4,
+    }).encode()
+    req = urllib.request.Request(url, data=body,
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": f"Bearer {OPENROUTER_KEY}",
+                                          "HTTP-Referer": "https://career-coach-fnyw.onrender.com",
+                                          "X-Title": "Career Coach"})
+    with urllib.request.urlopen(req, timeout=90) as r:
+        data = json.loads(r.read().decode())
+    return data["choices"][0]["message"]["content"]
+
+
 def _call(prompt):
     """Call whichever provider has a key. Return model text or None on failure."""
     which = provider()
@@ -210,6 +232,11 @@ def _call(prompt):
             return _hf_call(prompt)
         except Exception:
             return None
+    if which == "openrouter":
+        try:
+            return _openrouter_call(prompt)
+        except Exception:
+            return None
     return None
 
 
@@ -222,7 +249,7 @@ def ai_status():
     if not which:
         return {"enabled": False, "provider": None, "key_present": False,
                 "model": "",
-                "error": "No API key set. Add HF_API_KEY (free, no card, huggingface.co -> Access Tokens) or PERPLEXITY_API_KEY in Render."}
+                "error": "No API key set. Add OPENROUTER_API_KEY (free tier, openrouter.ai -> Keys) in Render — works in most regions, no card for free models."}
     # probe with a tiny call to see if the key is accepted
     try:
         if which == "gemini":
@@ -233,11 +260,14 @@ def ai_status():
             _groq_call("Reply with the single word: ok")
         elif which == "perplexity":
             _perplexity_call("Reply with the single word: ok")
-        else:
+        elif which == "hf":
             _hf_call("Reply with the single word: ok")
+        else:
+            _openrouter_call("Reply with the single word: ok")
         model = (GEMINI_MODEL if which == "gemini"
                  else OPENAI_MODEL if which == "openai"
                  else PERPLEXITY_MODEL if which == "perplexity"
+                 else OPENROUTER_MODEL if which == "openrouter"
                  else HF_MODEL if which == "hf" else GROQ_MODEL)
         return {"enabled": True, "provider": which,
                 "key_present": True, "model": model, "error": ""}
@@ -246,6 +276,7 @@ def ai_status():
         model = (GEMINI_MODEL if which == "gemini"
                  else OPENAI_MODEL if which == "openai"
                  else PERPLEXITY_MODEL if which == "perplexity"
+                 else OPENROUTER_MODEL if which == "openrouter"
                  else HF_MODEL if which == "hf" else GROQ_MODEL)
         return {"enabled": False, "provider": which, "key_present": True,
                 "model": model, "error": f"API rejected the key ({e.code}): {msg}"}
@@ -253,6 +284,7 @@ def ai_status():
         model = (GEMINI_MODEL if which == "gemini"
                  else OPENAI_MODEL if which == "openai"
                  else PERPLEXITY_MODEL if which == "perplexity"
+                 else OPENROUTER_MODEL if which == "openrouter"
                  else HF_MODEL if which == "hf" else GROQ_MODEL)
         return {"enabled": False, "provider": which, "key_present": True,
                 "model": model,
