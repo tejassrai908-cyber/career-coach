@@ -33,7 +33,7 @@ PERPLEXITY_MODEL = os.environ.get("PERPLEXITY_MODEL", "sonar").strip() or "sonar
 HF_KEY = os.environ.get("HF_API_KEY", "").strip() or os.environ.get("HUGGINGFACE_API_KEY", "").strip()
 HF_MODEL = os.environ.get("HF_MODEL", "meta-llama/Llama-3.3-70B-Instruct").strip() or "meta-llama/Llama-3.3-70B-Instruct"
 OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "").strip()
-OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemini-flash-1.5").strip() or "google/gemini-flash-1.5"
+OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "meta-llama/llama-3.3-70b-instruct:free").strip() or "meta-llama/llama-3.3-70b-instruct:free"
 
 
 def provider():
