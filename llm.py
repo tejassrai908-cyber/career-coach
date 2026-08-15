@@ -18,6 +18,11 @@ import urllib.error
 GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash").strip() or "gemini-1.5-flash"
 
+
+def ai_enabled():
+    """True only if a Gemini key is actually configured at runtime."""
+    return bool(GEMINI_KEY)
+
 ENDPOINT = ("https://generativelanguage.googleapis.com/v1beta/models/"
             "{model}:generateContent?key={key}")
 

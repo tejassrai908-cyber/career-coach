@@ -1,6 +1,15 @@
 {% extends "base.html" %}{% block body %}
 <h1>{{jd.title}}</h1>
 <p class="sub">Read as a <b>{{r.role_label}}</b> role &middot; {{r.generated}}</p>
+{% if r.ai_mode %}
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22;text-align:center">
+<b style="color:#7ef0c0;font-size:14px">&#9889; Analyzed by Gemini AI &mdash; real expert skill read</b>
+</div>
+{% else %}
+<div class="card" style="border-left:3px solid #d3a437;background:#2e2410;text-align:center">
+<b style="color:#f0d27e;font-size:14px">&#9888; Rule-based mode (no AI)</b><div class="mut" style="margin-top:4px">Add a <b>GEMINI_API_KEY</b> in Render for true AI analysis of ANY job field.</div>
+</div>
+{% endif %}
 <div class="card" style="text-align:center;background:#14304a">
 <a href="/resume-draft/{{jd.id}}" style="font-weight:600;font-size:17px">See how my resume should look for this job &rarr;</a></div>
 

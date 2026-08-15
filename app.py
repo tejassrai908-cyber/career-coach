@@ -549,6 +549,7 @@ def do_analyse():
     if ai_rep:
         rep = ai_rep
         rep["sources"] = notes
+        rep["ai_mode"] = True
         rep["plan"] = llm_clearance(rep)
         # reuse the existing interview generator only as a fallback if AI gave none
         if not rep.get("interview"):
@@ -556,6 +557,7 @@ def do_analyse():
     else:
         rep = analyse(jd_text, r["text"])
         rep["sources"] = notes
+        rep["ai_mode"] = False
         rep["interview"] = interview_questions(rep, jd_text, r["text"])
         rep["plan"] = clearance_plan(rep, jd_text, r["text"])
     title = (request.form.get("title") or "").strip() or (
