@@ -227,9 +227,18 @@ def _openrouter_call(prompt):
 
 def _openrouter_one(prompt, model):
     url = "https://openrouter.ai/api/v1/chat/completions"
+    # system message strongly constrains output so free models don't echo the
+    # prompt back (which previously broke json.loads -> silent rule-based fall-back)
+    messages = [
+        {"role": "system",
+         "content": "You are a JSON-only career analysis API. Output ONLY a single "
+                    "valid JSON object and nothing else — no prose, no markdown, "
+                    "no commentary. Start with { and end with }."},
+        {"role": "user", "content": prompt},
+    ]
     body = json.dumps({
         "model": model,
-        "messages": [{"role": "user", "content": prompt}],
+        "messages": messages,
         "temperature": 0.4,
         "max_tokens": 3000,
         "response_format": {"type": "json_object"},
@@ -242,6 +251,31 @@ def _openrouter_one(prompt, model):
     with urllib.request.urlopen(req, timeout=120) as r:
         data = json.loads(r.read().decode())
     return data["choices"][0]["message"]["content"]
+
+
+def _extract_json(raw):
+    """Pull a JSON object out of a model response that may be wrapped in prose
+    or markdown fences. Returns dict or None."""
+    if not raw:
+        return None
+    raw = raw.strip()
+    # strip ```json ... ``` fences
+    if raw.startswith("```"):
+        raw = raw.strip("`")
+        if raw.lower().startswith("json"):
+            raw = raw[4:]
+    # try direct parse
+    try:
+        return json.loads(raw)
+    except Exception:
+        pass
+    # find first { ... last } (handles 'Here is the JSON: {...}')
+    try:
+        start = raw.index("{")
+        end = raw.rindex("}")
+        return json.loads(raw[start:end + 1])
+    except Exception:
+        return None
 
 
 def _call(prompt):
@@ -340,15 +374,9 @@ def analyse(jd_text, resume_text):
     raw = _call(prompt)
     if not raw:
         return None
-    # strip ```json fences if present
-    raw = raw.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    try:
-        data = json.loads(raw)
-    except Exception:
+    # tolerate prose-wrapped or markdown-fenced JSON from free models
+    data = _extract_json(raw)
+    if not isinstance(data, dict):
         return None
 
     # Normalise into the shape app.py / templates expect.
