@@ -30,6 +30,8 @@ GROQ_KEY = os.environ.get("GROQ_API_KEY", "").strip() or os.environ.get("GROQ_KE
 GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile").strip() or "llama-3.3-70b-versatile"
 PERPLEXITY_KEY = os.environ.get("PERPLEXITY_API_KEY", "").strip()
 PERPLEXITY_MODEL = os.environ.get("PERPLEXITY_MODEL", "sonar").strip() or "sonar"
+HF_KEY = os.environ.get("HF_API_KEY", "").strip() or os.environ.get("HUGGINGFACE_API_KEY", "").strip()
+HF_MODEL = os.environ.get("HF_MODEL", "meta-llama/Llama-3.3-70B-Instruct").strip() or "meta-llama/Llama-3.3-70B-Instruct"
 
 
 def provider():
@@ -37,6 +39,8 @@ def provider():
     perplexity first (free, works in most regions), then gemini/openai/groq."""
     if PERPLEXITY_KEY:
         return "perplexity"
+    if HF_KEY:
+        return "hf"
     if GEMINI_KEY:
         return "gemini"
     if OPENAI_KEY:
@@ -158,6 +162,26 @@ def _perplexity_call(prompt):
     return data["choices"][0]["message"]["content"]
 
 
+def _hf_call(prompt):
+    # Hugging Face free Inference API (no card). Chat format on the model endpoint.
+    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
+    body = json.dumps({
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.4,
+        "max_new_tokens": 4000,
+    }).encode()
+    req = urllib.request.Request(url, data=body,
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": f"Bearer {HF_KEY}"})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        data = json.loads(r.read().decode())
+    if isinstance(data, dict) and "generated_text" in data:
+        return data["generated_text"]
+    if isinstance(data, list) and data and "generated_text" in data[0]:
+        return data[0]["generated_text"]
+    return data["choices"][0]["message"]["content"]
+
+
 def _call(prompt):
     """Call whichever provider has a key. Return model text or None on failure."""
     which = provider()
@@ -181,6 +205,11 @@ def _call(prompt):
             return _perplexity_call(prompt)
         except Exception:
             return None
+    if which == "hf":
+        try:
+            return _hf_call(prompt)
+        except Exception:
+            return None
     return None
 
 
@@ -193,7 +222,7 @@ def ai_status():
     if not which:
         return {"enabled": False, "provider": None, "key_present": False,
                 "model": "",
-                "error": "No API key set. Add PERPLEXITY_API_KEY (free, perplexity.ai), GROQ_API_KEY/AI_API_KEY (groq.com), or OPENAI_API_KEY in Render."}
+                "error": "No API key set. Add HF_API_KEY (free, no card, huggingface.co -> Access Tokens) or PERPLEXITY_API_KEY in Render."}
     # probe with a tiny call to see if the key is accepted
     try:
         if which == "gemini":
@@ -202,24 +231,29 @@ def ai_status():
             _openai_call("Reply with the single word: ok")
         elif which == "groq":
             _groq_call("Reply with the single word: ok")
-        else:
+        elif which == "perplexity":
             _perplexity_call("Reply with the single word: ok")
+        else:
+            _hf_call("Reply with the single word: ok")
         model = (GEMINI_MODEL if which == "gemini"
                  else OPENAI_MODEL if which == "openai"
-                 else PERPLEXITY_MODEL if which == "perplexity" else GROQ_MODEL)
+                 else PERPLEXITY_MODEL if which == "perplexity"
+                 else HF_MODEL if which == "hf" else GROQ_MODEL)
         return {"enabled": True, "provider": which,
                 "key_present": True, "model": model, "error": ""}
     except urllib.error.HTTPError as e:
         msg = e.read().decode()[:200] if e.fp else str(e)
         model = (GEMINI_MODEL if which == "gemini"
                  else OPENAI_MODEL if which == "openai"
-                 else PERPLEXITY_MODEL if which == "perplexity" else GROQ_MODEL)
+                 else PERPLEXITY_MODEL if which == "perplexity"
+                 else HF_MODEL if which == "hf" else GROQ_MODEL)
         return {"enabled": False, "provider": which, "key_present": True,
                 "model": model, "error": f"API rejected the key ({e.code}): {msg}"}
     except Exception as e:
         model = (GEMINI_MODEL if which == "gemini"
                  else OPENAI_MODEL if which == "openai"
-                 else PERPLEXITY_MODEL if which == "perplexity" else GROQ_MODEL)
+                 else PERPLEXITY_MODEL if which == "perplexity"
+                 else HF_MODEL if which == "hf" else GROQ_MODEL)
         return {"enabled": False, "provider": which, "key_present": True,
                 "model": model,
                 "error": f"Call failed: {type(e).__name__}: {str(e)[:160]}"}
