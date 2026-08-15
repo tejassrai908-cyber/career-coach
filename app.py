@@ -48,6 +48,14 @@ def health():
             "role_count": len(SKILLS)}
 
 
+@app.route("/ai-status")
+def ai_status_route():
+    """Reports whether the AI layer is active and, if not, exactly why.
+    Useful for debugging 'rule-based mode' without guessing."""
+    from llm import ai_status
+    return ai_status()
+
+
 @app.before_request
 def require_pin():
     """When APP_PIN is set (cloud), demand it once per browser session."""
@@ -447,7 +455,8 @@ def home():
         rows.append(dict(id=j["id"], title=j["title"], role=r["role_label"],
                          created=j["created"], pct=r["match_pct"], gaps=len(r["gaps"])))
     return render_template("home.html", resume=get_resume(), jds=rows,
-                           ocr=ocr_available())
+                           ocr=ocr_available(),
+                           ai=__import__("llm").ai_status())
 
 
 @app.route("/resume", methods=["POST"])

@@ -7,6 +7,18 @@
 so image uploads won't be readable. Until it's installed, paste the job text into the box instead — everything else works.</div>
 {% endif %}
 
+{% if ai and ai.enabled %}
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22;text-align:center">
+<b style="color:#7ef0c0;font-size:14px">&#9889; AI analysis ON &mdash; provider: {{ai.provider}} ({{ai.model}})</b>
+</div>
+{% else %}
+<div class="card" style="border-left:3px solid #d3a437;background:#2e2410">
+<b style="color:#f0d27e;font-size:14px">&#9888; AI analysis OFF</b>
+<div class="mut" style="margin-top:4px">{{ai.error if ai else 'Add GEMINI_API_KEY or OPENAI_API_KEY in Render.'}}
+To turn on real AI (reads ANY job field, not just training): in Render &rarr; Environment add <b>GEMINI_API_KEY</b> (from aistudio.google.com/apikey) or <b>OPENAI_API_KEY</b> (from platform.openai.com/api-keys), then redeploy.</div>
+</div>
+{% endif %}
+
 <div class="card">
 <h2 style="margin-top:0">Step 1 &mdash; Your resume {% if resume %}<span class="pill">saved</span>{% endif %}</h2>
 {% if resume %}
