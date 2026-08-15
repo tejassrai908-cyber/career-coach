@@ -456,11 +456,32 @@ def do_analyse():
     # ---- Accept the resume INLINE so the whole thing is one submit. ----
     # This is the real fix for the "it keeps asking me to upload my resume"
     # loop: you attach the resume together with the JD and press one button.
+    # Two input styles supported:
+    #   * multipart file upload (local / fast networks)
+    #   * base64 JSON (phone on Render free, where multipart uploads time out)
+    import base64 as _b64
+
+    def _from_b64(field):
+        raw = request.form.get(field) or (request.json.get(field) if request.is_json else "")
+        if not raw:
+            return None
+        try:
+            data = _b64.b64decode(str(raw).split(",", 1)[-1])
+        except Exception:
+            return None
+        name = (request.form.get(field + "_name") or "upload.bin").lower()
+        class _F:
+            filename = name
+            def read(self): return data
+        return _F()
+
     rf = request.files.get("resume_inline")
-    if rf and rf.filename:
+    if not (rf and rf.filename):
+        rf = _from_b64("resume_b64")
+    if rf and getattr(rf, "filename", None):
         text, note = extract_text(rf)
         if len(text.strip()) >= 50:
-            set_resume(rf.filename, text,
+            set_resume(getattr(rf, "filename", "resume"), text,
                        dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
 
     r = get_resume()
@@ -474,6 +495,23 @@ def do_analyse():
             t, n = extract_text(f)
             chunks.append(t)
             notes.append(f"{f.filename}: {n}")
+    # base64 screenshots (phone / Render free where multipart upload times out)
+    import base64 as _b64
+    for i in range(1, 12):
+        raw = request.form.get(f"shot_b64_{i}")
+        if not raw:
+            continue
+        try:
+            data = _b64.b64decode(str(raw).split(",", 1)[-1])
+        except Exception:
+            continue
+        class _F:
+            filename = "screenshot.jpg"
+            def read(self): return data
+        t, n = extract_text(_F())
+        if t.strip():
+            chunks.append(t)
+            notes.append(f"screenshot_{i}: {n}")
     pasted = (request.form.get("pasted") or "").strip()
     if pasted:
         chunks.append(pasted)

@@ -37,34 +37,45 @@ Keep your full resume with contact details for the actual Naukri application.</d
   <textarea name="pasted" placeholder="Paste the Naukri job description"></textarea>
   <button id="submitBtn" type="submit">Find my skill gap</button>
   <div id="wait" class="mut" style="display:none;margin-top:10px">
-    ⏳ Working… this can take ~15s on the free server's first wake-up. Please don't close this.
+    ⏳ Working… on the free server the first run after a break can take ~20-30s. Please keep this open.
+  </div>
+  <div id="err" class="mut" style="display:none;margin-top:10px;color:#ffb4b4">
+    ⚠️ The upload didn't go through (free server timeout). Quick fix: tap the box, pick your files again,
+    and resubmit — or just paste the job text in the box below (that always works).
   </div>
 </form>
 <script>
-// Show a spinner and disable double-submits.
-document.querySelector('form[action="/analyse"]').addEventListener('submit', function(){
-  var b=document.getElementById('submitBtn');
-  b.disabled=true; b.textContent='Working…';
-  document.getElementById('wait').style.display='block';
-});
-// If the free server was asleep, the first upload POST can drop (cold start).
-// Catch a failed submit and auto-retry once so the user isn't left with "nothing happened".
-window.addEventListener('pageshow', function(){
-  var form=document.querySelector('form[action="/analyse"]');
-  if(!form) return;
-  form.addEventListener('submit', function(e){
-    if(sessionStorage.getItem('cc_retried')==='1'){sessionStorage.removeItem('cc_retried');return;}
-    var data=new FormData(form);
-    e.preventDefault();
-    fetch('/analyse',{method:'POST',body:data,headers:{'X-Requested-With':'fetch'}})
-      .then(function(r){ if(r.redirected||r.ok){window.location=r.url||'/';} else{retry();} })
-      .catch(function(){retry();});
-    function retry(){
-      sessionStorage.setItem('cc_retried','1');
-      // brief pause lets the server finish waking, then plain submit (keeps file upload)
-      setTimeout(function(){ form.submit(); }, 2500);
-    }
-  }, {once:true});
+// Render free tier often kills multipart file uploads (the "Working..." forever bug).
+// Fix: read the chosen files in the browser, send them as base64 in a normal POST body.
+// Base64 JSON survives the free tier where raw file upload times out.
+function fileToB64(file){return new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result);};r.readAsDataURL(file);});}
+document.querySelector('form[action="/analyse"]').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form=this, b=document.getElementById('submitBtn'), wait=document.getElementById('wait'), err=document.getElementById('err');
+  b.disabled=true; b.textContent='Working…'; wait.style.display='block'; err.style.display='none';
+  var shots=form.querySelector('input[name="shots"]').files;
+  var resume=form.querySelector('input[name="resume_inline"]').files[0];
+  var pasted=form.querySelector('textarea[name="pasted"]').value;
+  var fd=new FormData();
+  fd.append('title', form.querySelector('input[name="title"]').value);
+  fd.append('pasted', pasted);
+  var jobs=[];
+  if(resume) jobs.push(fileToB64(resume).then(function(d){fd.append('resume_b64', d); fd.append('resume_b64_name', resume.name);}));
+  for(var i=0;i<shots.length && i<10;i++){ (function(i){ jobs.push(fileToB64(shots[i]).then(function(d){fd.append('shot_b64_'+(i+1), d);})); })(i); }
+  Promise.all(jobs).then(function(){
+    // submit as multipart FormData but with base64 strings (no raw file upload -> survives free tier)
+    fetch('/analyse',{method:'POST',body:fd})
+      .then(function(r){ if(r.redirected||r.ok){ window.location=r.url||'/'; } else { throw 0; } })
+      .catch(function(){
+        // one retry after the server has had time to wake
+        setTimeout(function(){
+          fetch('/analyse',{method:'POST',body:fd})
+            .then(function(r){ if(r.redirected||r.ok){window.location=r.url||'/';} else{showErr();} })
+            .catch(showErr);
+        }, 6000);
+      });
+  });
+  function showErr(){ b.disabled=false; b.textContent='Find my skill gap'; wait.style.display='none'; err.style.display='block'; }
 });
 </script>
 <p class="mut">Tip: attach your resume in this form once. After that it's saved &mdash; you only
