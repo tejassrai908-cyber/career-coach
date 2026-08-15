@@ -320,11 +320,24 @@ def analyse(jd_text, resume_text):
                                     proof=s["proof"], link=s.get("link", ""), tools=s.get("tools", []),
                                     matched=[], near=bool(adj_hit), bridge=adj_hit[:3]))
 
-    total = len(asked) or 1
+    asked_count = len(asked)
+    # Honest match %: only meaningful when the JD actually shares our skill
+    # vocabulary. If it matched NONE of the 21 known skills, the JD is from a
+    # different field entirely -> do NOT show a flattering number.
+    if asked_count == 0:
+        match_pct = 0
+        out_of_domain = True
+    else:
+        match_pct = round(100 * len(have) / asked_count)
+        # never claim a confident match on a single weak signal
+        if asked_count < 3 and match_pct >= 100:
+            match_pct = 0
+        out_of_domain = False
+    total = asked_count or 1
     rep = dict(role=role, role_label=ROLE_LABELS[role],
-               match_pct=round(100 * len(have) / total),
+               match_pct=match_pct,
                have=have, gaps=gaps, implied=implied[:6],
-               asked_count=len(asked),
+               asked_count=asked_count, out_of_domain=out_of_domain,
                generated=dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
     rep["verdict"] = build_verdict(rep, res)
     return rep

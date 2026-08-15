@@ -16,6 +16,13 @@
   <div><div class="big">{{r.have|length}}</div><div class="mut">you already have &mdash; lead with these</div></div>
 </div>
 
+{% if r.out_of_domain %}
+<div class="card" style="border-left:3px solid #ff6b6b;background:#2a1414">
+<b style="font-size:15px;color:#ffb4b4">Heads-up: this job is from a different field than your resume.</b>
+<p class="mut" style="margin:6px 0 0;line-height:1.6">The skills this JD asks for (e.g. PL/SQL, SQL, ETL, QA) are outside the 21 areas this matcher knows, so it can't give a real match score. The percentage above is not meaningful for cross-field jobs. For an accurate, expert read, the AI mode (Gemini key) must be on — it understands ANY field, not just training/L&D.</p>
+</div>
+{% endif %}
+
 {% if r.gaps %}
 <h2>Close these first (the JD literally asks for them)</h2>
 {% for g in r.gaps %}
