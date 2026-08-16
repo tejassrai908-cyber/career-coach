@@ -33,8 +33,7 @@ def free_port():
         return s.getsockname()[1]
 
 
-PORT = free_port()
-ROOT = f"http://127.0.0.1:{PORT}"
+CUR_ROOT = "http://127.0.0.1:1"  # set by boot() each time
 fails = []
 
 
@@ -52,17 +51,16 @@ def opener():
 
 def get(op, path):
     try:
-        with op.open(ROOT + path, timeout=40) as r:
+        with op.open(CUR_ROOT + path, timeout=40) as r:
             return r.getcode(), r.read().decode("utf-8", "ignore")
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode("utf-8", "ignore")
     except (ConnectionError, OSError):
-        # transient socket reset from the dying test server
         return 0, ""
 
 
 def post(op, path, data):
-    req = urllib.request.Request(ROOT + path, data=urllib.parse.urlencode(data).encode())
+    req = urllib.request.Request(CUR_ROOT + path, data=urllib.parse.urlencode(data).encode())
     try:
         with op.open(req, timeout=60) as r:
             return r.getcode(), r.read().decode("utf-8", "ignore")
@@ -78,7 +76,7 @@ def post_file(op, path, field, fname, content, ctype="text/plain", extra=None):
     parts.append(f'--{b}\r\nContent-Disposition: form-data; name="{field}"; filename="{fname}"\r\n'
                  f'Content-Type: {ctype}\r\n\r\n')
     body = "".join(parts).encode() + content.encode() + f"\r\n--{b}--\r\n".encode()
-    req = urllib.request.Request(ROOT + path, data=body)
+    req = urllib.request.Request(CUR_ROOT + path, data=body)
     req.add_header("Content-Type", f"multipart/form-data; boundary={b}")
     try:
         with op.open(req, timeout=60) as r:
@@ -91,17 +89,21 @@ def post_file(op, path, field, fname, content, ctype="text/plain", extra=None):
 def boot(pin=None):
     ddir = tempfile.mkdtemp(prefix="cc_verify_")
     os.environ["_CC_DATADIR"] = ddir  # so the test can open the same DB if needed
-    env = dict(os.environ, CAREER_DATA_DIR=ddir, PORT=str(PORT))
+    # each boot gets its OWN free port (reusing one across kills races TIME_WAIT)
+    s = socket.socket(); s.bind(("127.0.0.1", 0)); port = s.getsockname()[1]; s.close()
+    env = dict(os.environ, CAREER_DATA_DIR=ddir, PORT=str(port))
     env.pop("APP_PIN", None)
     if pin:
         env["APP_PIN"] = pin
     p = subprocess.Popen([PY, "app.py"], cwd=BASE, env=env,
                          stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
     for _ in range(120):
-        s = socket.socket(); s.settimeout(0.3)
-        if s.connect_ex(("127.0.0.1", PORT)) == 0:
+        s2 = socket.socket(); s2.settimeout(0.3)
+        if s2.connect_ex(("127.0.0.1", port)) == 0:
             break
         time.sleep(0.4)
+    global CUR_ROOT
+    CUR_ROOT = f"http://127.0.0.1:{port}"
     return p
 
 
