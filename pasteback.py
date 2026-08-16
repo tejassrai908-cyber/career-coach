@@ -71,7 +71,9 @@ Return ONLY valid JSON in this exact shape:
   "verdict":"2-3 sentence plain-English summary: what this JD needs, how the resume matches, and whether the gap is experience vs skills vs a different department. Say 'not specified' for any missing JD field."
 }}
 
-Output strictly the JSON. No markdown, no commentary."""
+If you cannot output strict JSON, that's fine — write plain text with clear headings and bullet points using exactly these section titles: "Skills you are missing", "Skills you already have", "Experience difference", "Qualification difference", "How to learn these skills" (with book / YouTube / tool / course / link lines and URLs), and "Overall verdict". The app reads both formats.
+
+Output strictly the JSON when possible. No commentary outside the answer."""
 
 
 def build_prompt(resume_text, jd_text):
@@ -124,16 +126,171 @@ def _coerce(data):
     return raw
 
 
+import re
+
+# Headings ChatGPT commonly writes (plain text, not JSON). Used to split a
+# prose reply into labelled sections so we can still build the report.
+_SECTION_HINTS = [
+    ("skills_missing", ("skill", "gap", "missing", "required", "what you need", "to learn", "not have", "lacking")),
+    ("skills_have", ("strength", "already", "have", "current", "possess", "match")),
+    ("exp_diff", ("experience", "exp ", "years")),
+    ("dept_diff", ("department", "function", "domain")),
+    ("qualification", ("qualif", "education", "degree", "certif", "academic")),
+    ("how_to_learn", ("how to", "learn", "resource", "close", "bridge", "develop", "improve", "course", "study")),
+    ("verdict", ("verdict", "summary", "recommend", "overall", "conclusion")),
+]
+
+
+def _sectionize(text):
+    """Split prose into (title, body) chunks using markdown/labeled headings."""
+    lines = text.splitlines()
+    chunks = []
+    cur_title = None
+    cur_body = []
+    heading_re = re.compile(r'^\s*(#{1,6}\s+(.+?)|\*\*(.+?)\*\*|(.+?):)\s*$')
+    for ln in lines:
+        m = heading_re.match(ln)
+        title = None
+        if m:
+            title = (m.group(2) or m.group(3) or m.group(4) or "").strip()
+        # also treat a short Title-Case / ALLCAPS line as a heading
+        if not title and 3 <= len(ln.strip()) <= 55 and ln.strip().istitle():
+            title = ln.strip()
+        if title:
+            if cur_title is not None or cur_body:
+                chunks.append((cur_title or "intro", "\n".join(cur_body).strip()))
+            cur_title = title
+            cur_body = []
+        else:
+            cur_body.append(ln)
+    if cur_title is not None or cur_body:
+        chunks.append((cur_title or "intro", "\n".join(cur_body).strip()))
+    return chunks
+
+
+def _classify(title):
+    t = (title or "").lower()
+    for key, hints in _SECTION_HINTS:
+        if any(h in t for h in hints):
+            return key
+    return None
+
+
+def _bullets(body):
+    out = []
+    for ln in body.splitlines():
+        s = ln.strip().lstrip("-*•▪◦‣·").strip()
+        if not s:
+            continue
+        if s.lower().startswith("todo"):
+            continue
+        out.append(s)
+    return out
+
+
+def _urls(body):
+    return re.findall(r'https?://[^\s)\]\">]+', body)
+
+
+def _qual_field(body, *keys):
+    for ln in body.splitlines():
+        low = ln.lower()
+        for k in keys:
+            if low.startswith(k + ":") or (k in low and ":" in ln and low.index(k) < 12):
+                return ln.split(":", 1)[1].strip()
+    return ""
+
+
+def from_prose(reply):
+    """Best-effort parse of a FREE-TEXT ChatGPT reply into the report shape.
+
+    Used when the reply isn't valid JSON (free ChatGPT often writes prose with
+    headings). Heuristic but robust: split by headings, map to fields, extract
+    resources (URLs + labelled Book/YouTube/Tool lines)."""
+    chunks = _sectionize(reply)
+    # first unclassified chunk often holds the role + match %
+    raw = {"match_pct": 0, "have": [], "gaps": [], "required_skills": [],
+           "exp_diff": "", "dept_diff": "", "qualification": {},
+           "interview": [], "verdict": ""}
+    pct = re.search(r'(\d{1,3})\s*%', reply)
+    if pct:
+        raw["match_pct"] = max(0, min(100, int(pct.group(1))))
+    # role label: first heading that isn't generic, else first line
+    for title, _ in chunks:
+        if title and title.lower() not in ("intro", "summary", "analysis"):
+            raw["role_label"] = title[:60]
+            break
+    full_resources = []
+    how_to = []
+    for title, body in chunks:
+        kind = _classify(title)
+        if kind == "skills_missing":
+            for b in _bullets(body):
+                raw["gaps"].append({"key": b, "category": "explicitly_required",
+                                    "on_resume": False, "near": False, "why": "",
+                                    "proof": "", "learn": [], "link": "",
+                                    "books": "", "youtube": "", "free_tool": "",
+                                    "more": [], "chances": "", "jd_quote": ""})
+                raw["required_skills"].append(b)
+        elif kind == "skills_have":
+            for b in _bullets(body):
+                raw["have"].append({"key": b, "why": "", "jd_quote": ""})
+        elif kind == "exp_diff":
+            raw["exp_diff"] = body
+        elif kind == "dept_diff":
+            raw["dept_diff"] = body
+        elif kind == "qualification":
+            q = {"jd_wants": _qual_field(body, "jd wants", "jd asks", "required education", "education required"),
+                 "resume_has": _qual_field(body, "resume", "you have", "candidate has"),
+                 "gap": _qual_field(body, "gap", "missing", "difference"),
+                 "learn": []}
+            if not q["jd_wants"] and not q["gap"]:
+                q["gap"] = body  # whole section is the comparison text
+            learn = _bullets(body)
+            q["learn"] = [l for l in learn if not l.startswith(("jd wants", "resume", "gap"))]
+            raw["qualification"] = q
+        elif kind == "how_to_learn":
+            how_to.extend(_bullets(body))
+            full_resources.extend(_urls(body))
+            # labelled resource lines
+            for ln in body.splitlines():
+                low = ln.lower()
+                if any(t in low for t in ("book", "youtube", "tool", "course", "link", "certif")):
+                    full_resources.append(ln.strip())
+        elif kind == "verdict":
+            raw["verdict"] = body
+    # distribute shared resources / how-to across every missing skill
+    for g in raw["gaps"]:
+        g["learn"] = how_to[:5] if how_to else g["learn"]
+        g["more"] = full_resources[:4]
+        if full_resources:
+            g["link"] = g["link"] or full_resources[0]
+    if not raw.get("role_label"):
+        raw["role_label"] = (reply.strip().splitlines()[0][:60] if reply.strip() else "Analysis")
+    return raw
+
+
 def from_paste(resume_text, jd_text, reply):
     """Glue a pasted AI reply into a normalised report dict (same shape as the
-    live OpenRouter path). Returns (report_dict, error_string_or_None)."""
+    live OpenRouter path). Returns (report_dict, error_string_or_None).
+
+    Accepts BOTH a strict JSON answer AND free-form prose from ChatGPT: if the
+    reply isn't parseable JSON, it falls back to from_prose() which splits the
+    text by the headings ChatGPT naturally writes.
+    """
     import llm  # local import keeps startup clean
     raw = _coerce(reply)
     if raw is None:
-        return None, "Could not find a valid JSON object in the reply. Make sure you pasted the AI's full answer (including the { and })."
+        # Free ChatGPT often answers in prose instead of JSON -> parse that.
+        raw = from_prose(reply)
+    if not raw or (not raw.get("gaps") and not raw.get("have")
+                   and not raw.get("exp_diff") and not raw.get("qualification")):
+        return None, ("Couldn't read the analysis. Paste ChatGPT's FULL reply "
+                      "(the headings + bullet points it wrote). If it gave JSON, "
+                      "include the { and }.")
     rep = llm.normalise_ai_data(raw)
     if rep is None:
-        return None, "The reply didn't contain the expected analysis fields. Paste the AI's full JSON answer."
+        return None, "The reply didn't contain a readable analysis. Paste ChatGPT's full answer."
     rep["ai_mode"] = True
     rep["ai_engine"] = "paste-back (ChatGPT / any AI via copy-paste, no API key)"
     rep["sources"] = ["paste-back from ChatGPT/any AI"]

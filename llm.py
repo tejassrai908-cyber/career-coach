@@ -132,7 +132,9 @@ Return ONLY valid JSON in this exact shape:
   "verdict":"2-3 sentence plain-English summary: what this JD needs, how the resume matches, and whether the gap is experience vs skills vs a different department. Say 'not specified' for any missing JD field."
 }
 
-Output strictly the JSON. No markdown, no commentary."""
+If you cannot output strict JSON, that's fine — write plain text with clear headings and bullet points using exactly these section titles: "Skills you are missing", "Skills you already have", "Experience difference", "Qualification difference", "How to learn these skills" (with book / YouTube / tool / course / link lines and URLs), and "Overall verdict". The app reads both formats.
+
+Output strictly the JSON when possible. No commentary outside the answer."""
 
 
 def _gemini_call(prompt):

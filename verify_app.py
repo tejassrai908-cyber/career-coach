@@ -367,6 +367,42 @@ try:
               ("qual comparison shown" if ("JD wants" in rb and "Your resume has" in rb) else "qual comparison missing"))
         check("paste-back flagged as paste-back engine", "paste-back" in rb.lower(),
               ("engine tagged" if "paste-back" in rb.lower() else "engine not tagged"))
+
+    # --- prose reply (free ChatGPT often answers in plain text, not JSON) ---
+    PROSE = (
+        "Civil Structural Engineer\n\n"
+        "Match: 5%\n\n"
+        "### Skills you are missing\n"
+        "- STAAD.Pro\n"
+        "- Structural analysis\n\n"
+        "### Skills you already have\n"
+        "- Training design\n\n"
+        "### Experience difference\n"
+        "You have 15+ years in Training & L&D; the JD wants 3+ years in civil engineering. This is a function gap.\n\n"
+        "### Qualification difference\n"
+        "JD wants: Bachelor in Civil Engineering\n"
+        "Resume has: Bachelor in Training & Development\n"
+        "Gap: the JD requires a civil degree; your degree is in training.\n\n"
+        "### How to learn these skills\n"
+        "- Book: Reinforced Concrete Design by Pillai & Menon\n"
+        "- YouTube: STAAD.Pro tutorial for beginners\n"
+        "- Tool: Bentley free learning edition\n"
+        "- Course: https://www.bentley.com/software/staad/\n\n"
+        "### Overall verdict\n"
+        "Different field; civil tools are absent but learnable."
+    )
+    c, _ = post(op, "/paste-back",
+                {"title": "Civil Eng prose", "jd_text": JD_DB, "reply": PROSE})
+    check("prose paste-back accepted", c in (200, 302))
+    ids2 = sorted(set(int(x) for x in re.findall(r"/report/(\d+)", get(op, "/")[1])), reverse=True)
+    check("prose paste-back report stored", len(ids2) >= 1)
+    if ids2:
+        rb2 = get(op, "/report/" + str(ids2[0]))[1]
+        check("prose report has SKILLS heading", "1 &mdash; SKILLS" in rb2 or "1 — SKILLS" in rb2)
+        check("prose report lists a missing skill (STAAD.Pro)", "STAAD.Pro" in rb2)
+        check("prose report has EXPERIENCE heading", "2 &mdash; EXPERIENCE" in rb2 or "2 — EXPERIENCE" in rb2)
+        check("prose report has QUALIFICATION heading", "3 &mdash; QUALIFICATION" in rb2 or "3 — QUALIFICATION" in rb2)
+        check("prose report shows a resource (book/youtube/url)", "Reinforced Concrete Design" in rb2 or "STAAD.Pro tutorial" in rb2 or "bentley.com" in rb2)
 finally:
     proc.kill()
 
