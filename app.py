@@ -137,40 +137,56 @@ def db():
 
 def init_db():
     with db() as c:
-        c.execute("""CREATE TABLE IF NOT EXISTS resume(
-            id INTEGER PRIMARY KEY CHECK (id = 1),
-            filename TEXT, text TEXT, uploaded TEXT)""")
+        c.execute("""CREATE TABLE IF NOT EXISTS resumes(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT, filename TEXT, text TEXT, uploaded TEXT)""")
         c.execute("""CREATE TABLE IF NOT EXISTS jd(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT, role TEXT, source TEXT, jd_text TEXT,
             report TEXT, created TEXT)""")
-    # Re-seed the resume from the mirror so a Render restart never asks the
-    # user to upload their resume again.
+    # Re-seed the most recent resume from the mirror so a Render restart never
+    # asks the user to upload again.
     if not get_resume() and os.path.exists(RESUME_MIRROR):
         try:
             payload = json.loads(open(RESUME_MIRROR, encoding="utf-8").read())
             with db() as c:
-                c.execute("INSERT OR REPLACE INTO resume(id,filename,text,uploaded) VALUES(1,?,?,?)",
-                          (payload.get("filename"), payload.get("text"), payload.get("uploaded")))
+                c.execute("INSERT INTO resumes(name,filename,text,uploaded) VALUES(?,?,?,?)",
+                          ("My resume", payload.get("filename"), payload.get("text"),
+                           payload.get("uploaded")))
         except Exception:
             pass
 
 
-def set_resume(filename, text, uploaded):
-    """Persist the resume in BOTH the DB and the mirror file."""
+def set_resume(name, filename, text, uploaded):
+    """Persist a resume (named) in BOTH the DB and the mirror file."""
     with db() as c:
-        c.execute("INSERT OR REPLACE INTO resume(id,filename,text,uploaded) VALUES(1,?,?,?)",
-                  (filename, text, uploaded))
+        c.execute("INSERT INTO resumes(name,filename,text,uploaded) VALUES(?,?,?,?)",
+                  (name, filename, text, uploaded))
     try:
         with open(RESUME_MIRROR, "w", encoding="utf-8") as f:
-            f.write(json.dumps({"filename": filename, "text": text, "uploaded": uploaded}))
+            f.write(json.dumps({"name": name, "filename": filename,
+                                "text": text, "uploaded": uploaded}))
     except Exception:
         pass
 
 
-def get_resume():
+def get_resumes():
     with db() as c:
-        return c.execute("SELECT * FROM resume WHERE id=1").fetchone()
+        return c.execute("SELECT id,name,filename,uploaded FROM resumes ORDER BY id DESC").fetchall()
+
+
+def get_resume(resume_id=None):
+    with db() as c:
+        if resume_id:
+            row = c.execute("SELECT * FROM resumes WHERE id=?", (resume_id,)).fetchone()
+            if row:
+                return row
+        return c.execute("SELECT * FROM resumes ORDER BY id DESC LIMIT 1").fetchone()
+
+
+def delete_resume(resume_id):
+    with db() as c:
+        c.execute("DELETE FROM resumes WHERE id=?", (resume_id,))
 
 
 # Create tables at import time so the app works under gunicorn/Render too
@@ -499,7 +515,7 @@ def home():
         r = json.loads(j["report"])
         rows.append(dict(id=j["id"], title=j["title"], role=r["role_label"],
                          created=j["created"], pct=r["match_pct"], gaps=len(r["gaps"])))
-    return render_template("home.html", resume=get_resume(), jds=rows,
+    return render_template("home.html", resume=get_resume(), resumes=get_resumes(), jds=rows,
                            ocr=ocr_available(),
                            ai=__import__("llm").ai_status())
 
@@ -510,6 +526,7 @@ def upload_resume():
     if not f or not f.filename:
         flash("Pick your resume file first.", "bad")
         return redirect(url_for("home"))
+    name = (request.form.get("name") or "My resume").strip()[:40] or "My resume"
     text, note = extract_text(f)
     if len(text.strip()) < 50:
         flash(f"Could not read that resume ({note}). Try a PDF or DOCX.", "bad")
@@ -518,8 +535,15 @@ def upload_resume():
     f.seek(0)
     with open(path, "wb") as out:
         out.write(f.read())
-    set_resume(f.filename, text, dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
-    flash(f"Resume saved ({note}, {len(text.split())} words). It stays saved - no need to upload again.", "good")
+    set_resume(name, f.filename, text, dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
+    flash(f"Resume '{name}' saved ({note}, {len(text.split())} words). It stays saved - no need to upload again.", "good")
+    return redirect(url_for("home"))
+
+
+@app.route("/delete-resume/<int:rid>", methods=["POST"])
+def remove_resume(rid):
+    delete_resume(rid)
+    flash("Resume cleared.", "good")
     return redirect(url_for("home"))
 
 
@@ -553,7 +577,7 @@ def do_analyse():
     if rf and getattr(rf, "filename", None):
         text, note = extract_text(rf)
         if len(text.strip()) >= 50:
-            set_resume(getattr(rf, "filename", "resume"), text,
+            set_resume(getattr(rf, "filename", "resume"), getattr(rf, "filename", "resume"), text,
                        dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
 
     r = get_resume()
@@ -651,13 +675,28 @@ def report(jd_id):
 @app.route("/paste")
 def paste_page():
     """Zero-API AI path, step 1: build the full prompt (resume + JD + Tejas's
-    exact method) so it can be copied into any free AI (ChatGPT etc)."""
+    exact method) so it can be copied into any free AI (ChatGPT etc).
+
+    ?resume=<id> picks which saved resume to use; ?jd=<id> pre-fills the JD
+    box from an earlier report so the prompt already embeds that job.
+    """
     import pasteback
-    r = get_resume()
+    rid = request.args.get("resume", type=int)
+    r = get_resume(rid)
     if not r:
         flash("Save your resume first (Step 1 on the home page), then come back here.", "bad")
         return redirect(url_for("home"))
-    return render_template("paste.html", resume=r, prompt=pasteback.build_prompt(r["text"], ""))
+    jd_prefill = ""
+    jd_id = request.args.get("jd", type=int)
+    if jd_id:
+        with db() as c:
+            jrow = c.execute("SELECT jd_text FROM jd WHERE id=?", (jd_id,)).fetchone()
+        if jrow:
+            jd_prefill = jrow["jd_text"] or ""
+    resume_list = get_resumes()
+    return render_template("paste.html", resume=r, resumes=resume_list, cur_rid=r["id"],
+                           prompt=pasteback.build_prompt(r["text"], jd_prefill),
+                           jd_prefill=jd_prefill)
 
 
 @app.route("/paste-back", methods=["POST"])
@@ -666,7 +705,8 @@ def paste_back():
     Needs a saved resume. The JD is whatever was in the prompt you copied — we
     take it from the hidden field so the stored report has the real JD text."""
     import pasteback
-    r = get_resume()
+    rid = request.form.get("resume_id", type=int)
+    r = get_resume(rid)
     if not r:
         flash("Save your resume first (Step 1 on the home page), then come back.", "bad")
         return redirect(url_for("home"))
@@ -880,16 +920,16 @@ def phone():
 
 @app.route("/backup")
 def backup():
-    """Download everything (resume text + all reports) as one JSON file.
+    """Download everything (all saved resumes + all reports) as one JSON file.
 
     Needed because Render's free plan erases files when the app redeploys or
     restarts. Keep the downloaded file; restore it below in one click.
     """
     from flask import Response
     with db() as c:
-        r = c.execute("SELECT filename,text,uploaded FROM resume WHERE id=1").fetchone()
+        rrows = c.execute("SELECT name,filename,text,uploaded FROM resumes").fetchall()
         jds = c.execute("SELECT title,role,source,jd_text,report,created FROM jd").fetchall()
-    blob = dict(resume=(dict(r) if r else None), jobs=[dict(x) for x in jds],
+    blob = dict(resumes=[dict(x) for x in rrows], jobs=[dict(x) for x in jds],
                 saved=dt.datetime.now().isoformat())
     return Response(json.dumps(blob, indent=1),
                     mimetype="application/json",
@@ -909,15 +949,20 @@ def restore():
         flash("That file isn't a valid backup.", "bad")
         return redirect(url_for("home"))
     with db() as c:
+        for b in blob.get("resumes") or []:
+            c.execute("INSERT INTO resumes(name,filename,text,uploaded) VALUES(?,?,?,?)",
+                      (b.get("name", "My resume"), b.get("filename"), b.get("text"),
+                       b.get("uploaded")))
+        # legacy single-resume backup shape
         if blob.get("resume"):
             b = blob["resume"]
-            c.execute("INSERT OR REPLACE INTO resume(id,filename,text,uploaded) VALUES(1,?,?,?)",
-                      (b.get("filename"), b.get("text"), b.get("uploaded")))
+            c.execute("INSERT INTO resumes(name,filename,text,uploaded) VALUES(?,?,?,?)",
+                      ("My resume", b.get("filename"), b.get("text"), b.get("uploaded")))
         for j in blob.get("jobs", []):
             c.execute("INSERT INTO jd(title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?)",
                       (j.get("title"), j.get("role"), j.get("source"), j.get("jd_text"),
                        j.get("report"), j.get("created")))
-    flash(f"Restored your resume and {len(blob.get('jobs', []))} job(s).", "good")
+    flash(f"Restored {len(blob.get('resumes') or ([] if blob.get('resume') else []))} resume(s) and {len(blob.get('jobs', []))} job(s).", "good")
     return redirect(url_for("home"))
 
 
