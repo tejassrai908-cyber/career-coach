@@ -1,6 +1,6 @@
 {% extends "base.html" %}{% block body %}
 <h1>Career Coach</h1>
-<p class="sub">Upload your resume once. The app gives you a ready prompt (your resume is already inside). Copy it to your free ChatGPT with the job description, paste the reply back, and the app highlights the skill gap, qualification &amp; experience difference, how to learn, and where to learn.</p>
+<p class="sub">Upload your resume once. The app gives you a ready message (your resume is already inside). You copy it to your free ChatGPT, add the job description, get the reply, paste it back &mdash; and the app highlights the skill gap, qualification &amp; experience difference, how to learn, and where to learn.</p>
 
 <div class="card">
 <h2 style="margin-top:0">Step 1 &mdash; Your resume {% if resume %}<span class="pill">saved</span>{% endif %}</h2>
@@ -18,15 +18,25 @@
 
 {% if resume and prompt %}
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
-<h2 style="margin-top:0">Step 2 &mdash; Copy this prompt</h2>
-<p class="mut">Your resume is already inside. <b>In ChatGPT, replace the line
-<b>[PASTE THE JOB DESCRIPTION HERE]</b> with the real job description, then send it.</b></p>
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px">
-  <button type="button" onclick="copyPrompt()" style="width:auto">Copy prompt</button>
-  <a href="/paste" class="learnbtn">Next: paste ChatGPT's reply &rarr;</a>
+<h2 style="margin-top:0">Step 2 &mdash; Copy your ready message</h2>
+<p class="mut">This message already contains your resume. Just copy it.</p>
+<textarea id="promptBox" readonly rows="16" style="width:100%;font-family:monospace;font-size:13px">{{prompt}}</textarea>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+  <button type="button" onclick="copyPrompt()" style="width:auto">1. Copy this message</button>
   <span id="copied" class="mut" style="align-self:center"></span>
 </div>
-<textarea id="promptBox" readonly rows="16" style="width:100%;font-family:monospace;font-size:13px">{{prompt}}</textarea>
+
+<div class="warn" style="margin-top:14px">
+<b>What to do next (on your phone, in the free ChatGPT app):</b>
+<ol style="margin:8px 0 0;padding-left:20px">
+  <li>Open ChatGPT and paste the message you just copied.</li>
+  <li>Inside it you'll see a line: <b>[PASTE THE JOB DESCRIPTION TEXT HERE]</b>. Delete that line and paste the real job description there instead.</li>
+  <li>Send it. ChatGPT will reply, comparing your resume with the job.</li>
+  <li>Copy ChatGPT's <b>full reply</b>.</li>
+</ol>
+</div>
+
+<a href="/paste" class="learnbtn" style="margin-top:14px;display:inline-block">2. Come back here &amp; paste ChatGPT's reply &rarr;</a>
 </div>
 {% elif resume %}
 <div class="card"><p class="mut">Your resume is saved. Reload the page to get your prompt.</p></div>

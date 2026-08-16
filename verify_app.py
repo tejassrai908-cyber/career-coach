@@ -127,10 +127,10 @@ try:
     check("resume shows as saved", "saved" in home)
 
     # after upload, home shows the copy-ready prompt (resume inside)
-    check("home shows copy-prompt step", "Copy this prompt" in home)
+    check("home shows copy step", "Copy this message" in home)
     check("prompt contains the method", "Read the COMPLETE job description" in home)
     check("prompt contains the resume text", "ADDIE" in home and "Tejas" in home)
-    check("prompt tells where to paste the JD", "PASTE THE JOB DESCRIPTION HERE" in home)
+    check("prompt tells where to paste the JD", "PASTE THE JOB DESCRIPTION TEXT HERE" in home)
     check("home links to paste-reply page", '/paste' in home)
 
     # /paste (step 3) loads and has the reply box
