@@ -270,7 +270,21 @@ try:
     _, pbody = get(op, "/paste")
     check("prompt builds resume + method",
           "Read the COMPLETE job description" in pbody and "Tejas" in pbody)
-    # simulate a pasted ChatGPT reply (the same contract the live AI path uses)
+
+    # --- training JD should NOT use paste-back (rule engine is the right fit) ---
+    c, _ = post(op, "/paste-back",
+                {"title": "TM via paste-back (should skip)",
+                 "jd_text": JD_TM,
+                 "reply": "ignored for training roles"})
+    check("training JD skips paste-back, uses rule engine", c in (200, 302))
+
+    # --- cross-field JD SHOULD use the pasted reply ---
+    JD_DB = ("Database Developer / Engineer\n"
+             "Designs, develops, implements and maintains custom Oracle applications "
+             "written in PL/SQL and supports back-end data processing in PL/SQL.\n"
+             "Develops and customizes Oracle reports. Supports existing applications "
+             "using PL/SQL Developer. QA process.\n"
+             "Preferred: PLSQL, SQL Development, Unix Shell Scripting, ETL, Informatica.")
     SAMPLE = ('{"role_label":"Database Developer","match_pct":10,'
               '"have":[{"key":"SQL (Basic)","why":"data work","jd_quote":""}],'
               '"gaps":[{"key":"PL/SQL","category":"explicitly_required",'
@@ -281,9 +295,9 @@ try:
               '"interview":[{"q":"How do you handle PL/SQL?","a":"I am building it via Oracle LiveSQL."}],'
               '"verdict":"Different field; core PL/SQL stack absent."}')
     c, _ = post(op, "/paste-back",
-                {"title": "DB Dev via paste-back", "jd_text": JD_TM + "\nExtra duties: PL/SQL, Oracle reports",
+                {"title": "DB Dev via paste-back", "jd_text": JD_DB,
                  "reply": SAMPLE})
-    check("paste-back accepted", c in (200, 302))
+    check("paste-back accepted (cross-field JD)", c in (200, 302))
     # find the new report id
     home = get(op, "/")[1]
     ids = sorted(set(int(x) for x in re.findall(r"/report/(\d+)", home)), reverse=True)

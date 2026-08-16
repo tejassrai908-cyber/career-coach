@@ -597,26 +597,36 @@ def do_analyse():
               + "You can also just paste the job text.", "bad")
         return redirect(url_for("home"))
 
-    # Try the AI engine first (real expert analysis) if a key is configured;
-    # otherwise fall back to the built-in rule-based matcher. Never breaks.
-    ai_res = _llm.analyse_with_error(jd_text, r["text"])
-    if ai_res.get("ok"):
-        rep = ai_res["rep"]
-        rep["sources"] = notes
-        rep["ai_mode"] = True
-        rep["plan"] = llm_clearance(rep)
-        # reuse the existing interview generator only as a fallback if AI gave none
-        if not rep.get("interview"):
-            rep["interview"] = interview_questions(rep, jd_text, r["text"])
-    else:
-        rep = analyse(jd_text, r["text"])
+    # Domain-aware engine selection (your preference, 2026-08-17):
+    #   * Training / L&D / RSM / Trainer JDs  -> the built-in rule-based engine.
+    #     This is the ADDIE / Kirkpatrick / TNA / TNI + resources read you liked,
+    #     and we do NOT run AI on these (AI only made them thinner).
+    #   * Cross-field JDs (e.g. Database Developer) where the 21-skill matcher
+    #     finds NOTHING -> escalate to the AI rigorous path for an accurate read.
+    #     If no key / rate-limited, honestly fall back to rule-based.
+    rb = analyse(jd_text, r["text"])
+    if not rb.get("out_of_domain"):
+        rep = rb
         rep["sources"] = notes
         rep["ai_mode"] = False
-        # If a key was configured but AI failed (rate-limit / bad response),
-        # flag it HONESTLY so we don't pretend the rule-based matcher is "AI".
-        rep["ai_error"] = ai_res.get("ai_error")
         rep["interview"] = interview_questions(rep, jd_text, r["text"])
         rep["plan"] = clearance_plan(rep, jd_text, r["text"])
+    else:
+        ai_res = _llm.analyse_with_error(jd_text, r["text"])
+        if ai_res.get("ok"):
+            rep = ai_res["rep"]
+            rep["sources"] = notes
+            rep["ai_mode"] = True
+            rep["plan"] = llm_clearance(rep)
+            if not rep.get("interview"):
+                rep["interview"] = interview_questions(rep, jd_text, r["text"])
+        else:
+            rep = rb
+            rep["sources"] = notes
+            rep["ai_mode"] = False
+            rep["ai_error"] = ai_res.get("ai_error")
+            rep["interview"] = interview_questions(rep, jd_text, r["text"])
+            rep["plan"] = clearance_plan(rep, jd_text, r["text"])
     title = (request.form.get("title") or "").strip() or (
         jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Untitled job")
     with db() as c:
@@ -666,13 +676,26 @@ def paste_back():
     if len(jd_text) < 60:
         flash("Paste the job description text in the 'Job description' box before pasting the AI reply.", "bad")
         return redirect(url_for("paste"))
-    if len(reply) < 40:
-        flash("Paste the AI's full reply (the JSON answer) in the box.", "bad")
-        return redirect(url_for("paste"))
-    rep, err = pasteback.from_paste(r["text"], jd_text, reply)
-    if err:
-        flash(err, "bad")
-        return redirect(url_for("paste"))
+    rb = analyse(jd_text, r["text"])
+    if not rb.get("out_of_domain"):
+        # Training / L&D / RSM / Trainer JD -> keep the liked rule-based read,
+        # the pasted-AI path is only for out-of-domain jobs.
+        flash("This looks like a training/L&D role — the app's built-in analysis "
+              "(ADDIE, Kirkpatrick, TNA, TNI + resources) is already the right fit, "
+              "so the paste-back step was skipped. Just use the normal 'Find my skill gap'.", "good")
+        # still save the rule-based read so it appears in history
+        rep = rb
+        rep["sources"] = ["rule-based (training role)"]
+        rep["ai_mode"] = False
+        rep["ai_engine"] = "rule-based (training)"
+    else:
+        if len(reply) < 40:
+            flash("Paste the AI's full reply (the JSON answer) in the box.", "bad")
+            return redirect(url_for("paste"))
+        rep, err = pasteback.from_paste(r["text"], jd_text, reply)
+        if err:
+            flash(err, "bad")
+            return redirect(url_for("paste"))
     # reuse the live-AI saving path so it shows in history with the same shape
     title = title or (jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Pasted AI analysis")
     with db() as c:
