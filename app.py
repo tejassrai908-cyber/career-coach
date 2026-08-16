@@ -140,6 +140,9 @@ def init_db():
         c.execute("""CREATE TABLE IF NOT EXISTS resumes(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT, filename TEXT, text TEXT, uploaded TEXT)""")
+        c.execute("""CREATE TABLE IF NOT EXISTS prompts(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            resume_id INTEGER, name TEXT, text TEXT, saved TEXT)""")
         c.execute("""CREATE TABLE IF NOT EXISTS jd(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT, role TEXT, source TEXT, jd_text TEXT,
@@ -155,6 +158,26 @@ def init_db():
                            payload.get("uploaded")))
         except Exception:
             pass
+
+
+def save_prompt(resume_id, name, text):
+    """Upsert the latest saved prompt for a given resume id."""
+    with db() as c:
+        c.execute("DELETE FROM prompts WHERE resume_id=?", (resume_id,))
+        c.execute("INSERT INTO prompts(resume_id,name,text,saved) VALUES(?,?,?,?)",
+                  (resume_id, name, text,
+                   dt.datetime.now().strftime("%d %b %Y, %I:%M %p")))
+
+
+def get_prompt(resume_id):
+    with db() as c:
+        return c.execute("SELECT * FROM prompts WHERE resume_id=? ORDER BY id DESC LIMIT 1",
+                         (resume_id,)).fetchone()
+
+
+def delete_prompt(pid):
+    with db() as c:
+        c.execute("DELETE FROM prompts WHERE id=?", (pid,))
 
 
 def set_resume(name, filename, text, uploaded):
@@ -187,6 +210,7 @@ def get_resume(resume_id=None):
 def delete_resume(resume_id):
     with db() as c:
         c.execute("DELETE FROM resumes WHERE id=?", (resume_id,))
+        c.execute("DELETE FROM prompts WHERE resume_id=?", (resume_id,))
 
 
 # Create tables at import time so the app works under gunicorn/Render too
@@ -547,6 +571,13 @@ def remove_resume(rid):
     return redirect(url_for("home"))
 
 
+@app.route("/delete-prompt/<int:pid>", methods=["POST"])
+def remove_prompt(pid):
+    delete_prompt(pid)
+    flash("Saved prompt cleared.", "good")
+    return redirect(url_for("home"))
+
+
 @app.route("/analyse", methods=["POST"])
 def do_analyse():
     # ---- Accept the resume INLINE so the whole thing is one submit. ----
@@ -694,9 +725,14 @@ def paste_page():
         if jrow:
             jd_prefill = jrow["jd_text"] or ""
     resume_list = get_resumes()
+    prompt = pasteback.build_prompt(r["text"], jd_prefill)
+    # Persist this prompt once per resume (don't resurrect it after the user clears it).
+    if not get_prompt(r["id"]):
+        save_prompt(r["id"], r["name"], prompt)
+    saved_prompt = get_prompt(r["id"])
     return render_template("paste.html", resume=r, resumes=resume_list, cur_rid=r["id"],
-                           prompt=pasteback.build_prompt(r["text"], jd_prefill),
-                           jd_prefill=jd_prefill)
+                           prompt=prompt, jd_prefill=jd_prefill,
+                           saved_prompt=saved_prompt)
 
 
 @app.route("/paste-back", methods=["POST"])

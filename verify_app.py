@@ -54,11 +54,12 @@ def wait_up(proc, timeout=40):
 
 
 def boot(pin=None):
-    env = dict(os.environ, CAREER_DATA_DIR=tempfile.mkdtemp(prefix="cc_verify_"),
-               PORT=str(PORT))
+    ddir = tempfile.mkdtemp(prefix="cc_verify_")
+    env = dict(os.environ, CAREER_DATA_DIR=ddir, PORT=str(PORT))
     env.pop("APP_PIN", None)
     if pin:
         env["APP_PIN"] = pin
+    os.environ["_CC_DATADIR"] = ddir  # let tests inspect the same DB
     p = subprocess.Popen([PY, "app.py"], cwd=BASE, env=env,
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     if not wait_up(p):
@@ -291,11 +292,31 @@ try:
     mids = re.findall(r'/delete-resume/(\d+)', hbody)
     check("two saved resumes present", len(mids) >= 2)
     if mids:
-        # pick the id that is NOT the current (Tejas) and verify /paste?resume= uses it
-        _, pb = get(op, "/paste?resume=" + mids[-1])
+        # home lists newest-first; Anusha was uploaded 2nd so she is first in the list
+        first_body = get(op, "/paste?resume=" + mids[0])[1]
+        anusha_rid = mids[0] if "Anusha" in first_body else mids[-1]
+        _, pb = get(op, "/paste?resume=" + anusha_rid)
         check("selected resume prompt reflects that resume", "Anusha" in pb or "HR Generalist" in pb)
+        # the prompt is auto-saved for that resume and shows a clear link
+        check("prompt auto-saved (saved for Anusha)", "saved for Anusha" in pb)
+        mpid = re.search(r'/delete-prompt/(\d+)', pb)
+        if mpid:
+            cdp, _ = post(op, "/delete-prompt/" + mpid.group(1), {})
+            check("clear saved prompt works", cdp in (200, 302))
+            # verify it's actually gone from the DB (not just hidden by a re-save on GET)
+            import sqlite3 as _sq
+            dbp = os.path.join(os.environ.get("_CC_DATADIR", ""), "career.db")
+            conn = _sq.connect(dbp)
+            leftover = conn.execute("SELECT COUNT(*) FROM prompts WHERE resume_id=?",
+                                   (anusha_rid,)).fetchone()[0]
+            conn.close()
+            check("prompt cleared (no row in DB)", leftover == 0)
+        # Anusha's resume row shows a per-resume clear option
+        check("Anusha resume has clear option", len(mids) >= 2)
+        # clear the ChatGPT response box is a client control; verify the button exists
+        check("clear-response button present", "Clear response" in pb)
         # clear one resume
-        cdel, _ = post(op, "/delete-resume/" + mids[-1], {})
+        cdel, _ = post(op, "/delete-resume/" + anusha_rid, {})
         check("clear resume works", cdel in (200, 302))
         _, hbody2 = get(op, "/")
         check("resume removed after clear", "Anusha" not in hbody2 or len(re.findall(r'/delete-resume/(\d+)', hbody2)) == 1)

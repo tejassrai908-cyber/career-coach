@@ -7,28 +7,38 @@
 <p class="mut">Pick the saved resume whose skills the JD should be compared against.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap">
 {% for rs in resumes %}
-  <a href="/paste?resume={{rs.id}}" style="text-decoration:none">
-    <span style="display:inline-block;padding:8px 14px;border-radius:8px;border:1px solid {{ '#37d39b' if rs.id==cur_rid else '#34507a' }};background:{{ '#0f2e22' if rs.id==cur_rid else '#16263c' }};font-weight:{{ '700' if rs.id==cur_rid else '400' }}">{{rs.name}}</span>
-  </a>
+  <span style="display:inline-flex;align-items:center;gap:8px">
+    <a href="/paste?resume={{rs.id}}" style="text-decoration:none">
+      <span style="display:inline-block;padding:8px 14px;border-radius:8px;border:1px solid {{ '#37d39b' if rs.id==cur_rid else '#34507a' }};background:{{ '#0f2e22' if rs.id==cur_rid else '#16263c' }};font-weight:{{ '700' if rs.id==cur_rid else '400' }}">{{rs.name}}</span>
+    </a>
+    <form method="post" action="/delete-resume/{{rs.id}}" onsubmit="return confirm('Clear {{rs.name}} resume?');" style="margin:0">
+      <button type="submit" style="width:auto;padding:4px 8px;margin:0;background:#3d1616;font-size:11px">clear</button>
+    </form>
+  </span>
 {% endfor %}
 </div>
-<p class="mut" style="margin-top:8px">Using: <b>{{resume.name}}</b> ({{resume.filename}}). To add or clear a resume, go back to the <a href="/">home page</a>.</p>
+<p class="mut" style="margin-top:8px">Using: <b>{{resume.name}}</b> ({{resume.filename}}). Add more on the <a href="/">home page</a>.</p>
 </div>
 
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
 <b style="color:#7ef0c0;font-size:14px">How it works (3 steps)</b>
 <ol style="margin:8px 0 0 18px;line-height:1.7">
-<li><b>Copy the prompt</b> below (your chosen resume is already built in).</li>
+<li><b>Copy the prompt</b> below (your chosen resume is already built in). It is auto-saved for this resume.</li>
 <li><b>Paste it into ChatGPT</b> on your phone/laptop. Copy the AI's full reply (the JSON answer).</li>
 <li>Paste the reply into the box at the bottom + the job text, then <b>Save analysis</b>. The app structures it into the same report as a paid key: experience difference, department difference, required skills, skill gaps with exact JD quotes, and resources to learn each.</li>
 </ol>
 </div>
 
 <div class="card">
-<h2 style="margin-top:0">Step 1 — Copy this prompt</h2>
-<p class="mut">Your resume ({{resume.name}}) is already inserted. Just tap <b>Copy</b>, then send it to ChatGPT.</p>
+<h2 style="margin-top:0">Step 1 — Copy this prompt {% if saved_prompt %}<span class="pill">saved for {{saved_prompt.name}}</span>{% endif %}</h2>
+<p class="mut">Your resume ({{resume.name}}) is already inserted. Tap <b>Copy</b>, send it to ChatGPT. The prompt is saved automatically — you can come back to it later.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px">
   <button type="button" onclick="copyPrompt()" style="width:auto">Copy prompt</button>
+  {% if saved_prompt %}
+  <form method="post" action="/delete-prompt/{{saved_prompt.id}}" style="margin:0">
+    <button type="submit" style="width:auto;padding:6px 12px;margin:0;background:#3d1616;font-size:12px">Clear saved prompt</button>
+  </form>
+  {% endif %}
   <span id="copied" class="mut" style="align-self:center"></span>
 </div>
 <textarea id="promptBox" readonly rows="18" style="width:100%;font-family:monospace;font-size:13px">{{prompt}}</textarea>
@@ -44,7 +54,11 @@
   <label>Job description text</label>
   <textarea name="jd_text" rows="7" placeholder="Paste the full job description here">{{jd_prefill}}</textarea>
   <label>ChatGPT's reply (paste the AI's full JSON answer)</label>
-  <textarea name="reply" rows="9" placeholder="Paste the AI's full reply here — include the { and }"></textarea>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+    <span class="mut">Paste the AI's full reply here — include the { and }</span>
+    <button type="button" onclick="document.getElementById('replyBox').value=''" style="width:auto;padding:4px 10px;margin:0;background:#3d1616;font-size:11px">Clear response</button>
+  </div>
+  <textarea id="replyBox" name="reply" rows="9" placeholder="Paste the AI's full reply here — include the { and }"></textarea>
   <button type="submit">Save analysis</button>
 </form>
 </div>
