@@ -42,6 +42,8 @@
 {% for g in r.gaps %}
 <div class="card gap">
   <b>{{g.key}}</b>
+  {% if g.category %}<span class="tag" style="background:#2e2410;color:#f0d27e;font-size:11px;padding:2px 6px;border-radius:4px;margin-left:6px">{{ 'PREFERRED' if g.category == 'preferred' else 'REQUIRED' }}</span>{% endif %}
+  {% if g.jd_quote %}<div class="mut" style="margin-top:4px">JD says: &ldquo;{{g.jd_quote}}&rdquo;</div>{% endif %}
   {% if g.matched %}<div class="mut">JD wording: {{g.matched|join(', ')}}</div>{% endif %}
   {% if g.near %}<div class="hav" style="margin:8px 0 0"><b>You already do this.</b> Your resume shows: {{g.bridge|join(', ')}}.
     You just need the framework name + proof — fastest gap to close.</div>{% endif %}
@@ -70,7 +72,7 @@
 {% if r.have %}
 <h2>Your strengths for this job</h2>
 <div class="card">
-{% for h in r.have %}<div class="hav"><b>{{h.key}}</b><div class="mut">{{h.proof}}</div></div>{% endfor %}
+{% for h in r.have %}<div class="hav"><b>{{h.key}}</b>{% if h.jd_quote %} <span class="mut">&mdash; matches JD: &ldquo;{{h.jd_quote}}&rdquo;</span>{% endif %}<div class="mut">{{h.proof}}</div></div>{% endfor %}
 </div>
 {% endif %}
 

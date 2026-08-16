@@ -73,14 +73,21 @@ def ai_enabled():
     return provider() is not None
 
 
-_PROMPT = """You are a world-class career-skills analyst and interview coach for Indian job markets (Naukri, LinkedIn). A candidate pasted their RESUME and a JOB DESCRIPTION. Do a precise, expert skill-gap analysis.
+_PROMPT = """You are a meticulous, evidence-based career analyst and interview coach for Indian job markets (Naukri, LinkedIn). A candidate pasted their RESUME and a full JOB DESCRIPTION. Produce a rigorous, audit-able skill-gap analysis that follows the candidate's own method EXACTLY.
 
-RULES:
-- Identify the REAL skills the job needs — not generic buzzwords. Think like a hiring manager + L&D expert. Cover: domain skills, frameworks/models (e.g. ADDIE, Kirkpatrick, OKRs, KPIs, competency models), tools (Excel, Power BI, LMS, CRM, ATS), behaviours (stakeholder management, influencing, coaching), and industry knowledge.
-- For each gap, judge whether the candidate ALREADY does adjacent work on their resume (so it's a vocabulary/proof gap, not from-zero) or it's a genuine new skill.
-- Be specific to THIS resume and THIS JD. Do not recycle the same fixed list for every job.
-- Chinese-whisper-free: only claim a gap if it is genuinely in the JD or strongly implied by the role.
-- ALSO explain WHY the candidate's profile does not match: is it lack of experience, missing skills, or a totally different department/domain? If there is some overlap, say what specific skills would take them to a strong match.
+THE CANDIDATE'S REQUIRED METHOD (follow every step):
+1. Read the COMPLETE job description. Do not summarise early.
+2. Extract EVERY skill, qualification, tool, certification, and responsibility that is EXPLICITLY mentioned in the JD.
+3. Do NOT add any skill that is not present in the JD. If it is only implied by the role, tag it category "implied" and label it clearly — never mix it with explicitly stated requirements.
+4. For each extracted item, QUOTE the exact wording from the JD (copy the phrase verbatim) in the "jd_quote" field.
+5. Compare those requirements against the RESUME.
+6. Classify every requirement into exactly one of:
+   - "explicitly_required": stated as a requirement ("must have", "required", "should have", duty phrasing).
+   - "preferred": stated as "preferred", "nice to have", "good to have", "plus".
+   - "not_mentioned": a skill the candidate has on the resume but the JD does NOT ask for (record in "have", not "gaps").
+   - "implied": genuinely required by the role but not literally worded in the JD.
+7. If the JD omits experience years, salary, notice period, or any field, write "not specified" — NEVER guess or invent a number.
+8. For each gap, say whether the resume already shows adjacent work ("near": true) or it is a genuine new skill ("near": false), and give an interview-ready "proof" line built from the candidate's own resume.
 
 RESUME:
 \"\"\"{resume_text}\"\"\"
@@ -89,29 +96,32 @@ JOB DESCRIPTION:
 \"\"\"{jd_text}\"\"\"
 
 Return ONLY valid JSON in this exact shape:
-{{
+{
   "role_label": "exact job title/role this JD is for, short",
-  "match_pct": <integer 0-100: how much of what the JD asks for is already on the resume>,
-  "have": [ {{"key":"skill the resume clearly shows","why":"why it matters for this JD"}} ],
+  "match_pct": <integer 0-100: how much of what the JD EXPLICITLY asks for is already on the resume>,
+  "have": [ {"key":"skill explicitly on the resume","why":"why it matters for this JD","jd_quote":"exact JD wording that matches it, or empty string"} ],
   "gaps": [
-    {{
-      "key":"missing/weak skill the JD needs",
+    {
+      "key":"requirement extracted from the JD",
+      "category":"explicitly_required | preferred | implied",
+      "jd_quote":"VERBATIM phrase from the JD that states this requirement (or '' if implied)",
+      "on_resume": <true if the resume shows this skill, false if missing>,
       "near": <true if resume shows adjacent work, false if genuine new skill>,
       "why":"why the JD wants it",
-      "proof":"one line the candidate can say in interview to show they have/are close to it",
+      "proof":"one interview-ready line from the candidate's own resume showing they have/are close to it (or '' if genuinely missing)",
       "learn":["free-first step 1","step 2","step 3"],
       "link":"one official/credible URL to start learning (or empty string)",
-      "books":"recommended book or authoritative article name (or empty string)",
-      "youtube":"a YouTube search/topic that teaches it (or empty string)",
+      "books":"recommended book or authoritative article (or empty string)",
+      "youtube":"a YouTube topic that teaches it (or empty string)",
       "free_tool":"a free tool to practise it (or empty string)",
-      "chances":"Short verdict: 'High' if near/reframe, 'Medium' if new but learnable, 'Low' if a big stretch"
-    }}
+      "chances":"High if near/reframe, Medium if new but learnable, Low if a big stretch"
+    }
   ],
   "interview": [
-    {{"q":"a specific question THIS employer will ask given these gaps","a":"a tailored answer built from the candidate's own resume + the bridge skill"}}
+    {"q":"a specific question THIS employer will ask given the gaps","a":"a tailored answer built from the candidate's own resume + the bridge skill"}
   ],
-  "verdict":"2-3 sentence plain-English summary of what this JD means for THIS candidate, including why the profile does/doesn't match (experience vs skills vs different department)"
-}}
+  "verdict":"2-3 sentence plain-English summary: what this JD needs, how the resume matches, and whether the gap is experience vs skills vs a different department. Say 'not specified' for any missing JD field."
+}
 
 Output strictly the JSON. No markdown, no commentary."""
 
@@ -408,23 +418,32 @@ def analyse(jd_text, resume_text):
         g.setdefault("youtube", g.get("youtube", "") or "")
         g.setdefault("free_tool", g.get("free_tool", "") or "")
         g.setdefault("chances", "")
+        g.setdefault("category", "explicitly_required")
+        g.setdefault("jd_quote", g.get("jd_quote", "") or "")
+        g.setdefault("on_resume", bool(g.get("on_resume", False)))
         g.setdefault("bridge", [])
         g.setdefault("tools", [t for t in [g.get("books"), g.get("youtube"), g.get("free_tool")] if t])
     have = data.get("have", []) or []
     for h in have:
         h.setdefault("why", "")
+        h.setdefault("jd_quote", h.get("jd_quote", "") or "")
     interview = []
     for it in data.get("interview", []) or []:
         interview.append({"q": it.get("q", ""), "a": it.get("a", ""), "tip": ""})
+
+    # Split implied-category requirements into their own list (report renders
+    # them separately), keeping only explicitly_required/preferred as "gaps".
+    explicit_gaps = [g for g in gaps if g.get("category") != "implied"]
+    implied = [g for g in gaps if g.get("category") == "implied"]
 
     rep = dict(
         role=data.get("role_label", "Role"),
         role_label=data.get("role_label", "Role"),
         match_pct=int(data.get("match_pct", 0) or 0),
         have=have,
-        gaps=gaps,
-        implied=[],
-        asked_count=len(have) + len(gaps),
+        gaps=explicit_gaps,
+        implied=implied,
+        asked_count=len(have) + len(explicit_gaps),
         generated=_dt.datetime.now().strftime("%d %b %Y, %I:%M %p"),
         verdict=data.get("verdict", ""),
         interview=interview,
