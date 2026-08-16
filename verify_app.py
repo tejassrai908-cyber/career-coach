@@ -272,33 +272,33 @@ try:
           "Read the COMPLETE job description" in pbody and "Tejas" in pbody)
 
     # --- multi-resume: add a second (wife) resume, both show with names ---
-    WIFE = ("Priya S - HR Generalist\n"
+    WIFE = ("Anusha S - HR Generalist\n"
             "Recruitment, onboarding, payroll processing, employee engagement\n"
             "HRIS, statutory compliance, grievance handling, T&D coordination\n")
-    c2, _ = post_file(op, "/resume", "file", "priya.txt", WIFE, extra={"name": "Priya"})
+    c2, _ = post_file(op, "/resume", "file", "anusha.txt", WIFE, extra={"name": "Anusha"})
     check("second resume (wife) upload accepted", c2 in (200, 302))
     _, hbody = get(op, "/")
-    check("both resumes listed with names", "Tejas" in hbody and "Priya" in hbody)
+    check("both resumes listed with names", "Tejas" in hbody and "Anusha" in hbody)
     # paste helper shows the resume picker with both names
     _, pbody2 = get(op, "/paste")
-    check("paste helper shows both resume names", "Tejas" in pbody2 and "Priya" in pbody2)
-    # selecting Priya's resume builds the prompt from her text
+    check("paste helper shows both resume names", "Tejas" in pbody2 and "Anusha" in pbody2)
+    # selecting Anusha's resume builds the prompt from her text
     m = re.search(r'/paste\?resume=(\d+)', pbody2)
-    priya_id = None
+    anusha_id = None
     if m:
-        priya_id = m.group(1)
-    # find Priya's id via home links to delete-resume/<id>
+        anusha_id = m.group(1)
+    # find Anusha's id via home links to delete-resume/<id>
     mids = re.findall(r'/delete-resume/(\d+)', hbody)
     check("two saved resumes present", len(mids) >= 2)
     if mids:
         # pick the id that is NOT the current (Tejas) and verify /paste?resume= uses it
         _, pb = get(op, "/paste?resume=" + mids[-1])
-        check("selected resume prompt reflects that resume", "Priya" in pb or "HR Generalist" in pb)
+        check("selected resume prompt reflects that resume", "Anusha" in pb or "HR Generalist" in pb)
         # clear one resume
         cdel, _ = post(op, "/delete-resume/" + mids[-1], {})
         check("clear resume works", cdel in (200, 302))
         _, hbody2 = get(op, "/")
-        check("resume removed after clear", "Priya" not in hbody2 or len(re.findall(r'/delete-resume/(\d+)', hbody2)) == 1)
+        check("resume removed after clear", "Anusha" not in hbody2 or len(re.findall(r'/delete-resume/(\d+)', hbody2)) == 1)
 
     # --- training JD should NOT use paste-back (rule engine is the right fit) ---
     c, _ = post(op, "/paste-back",
