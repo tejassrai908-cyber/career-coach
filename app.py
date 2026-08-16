@@ -675,7 +675,7 @@ def paste_back():
     title = (request.form.get("title") or "").strip()
     if len(jd_text) < 60:
         flash("Paste the job description text in the 'Job description' box before pasting the AI reply.", "bad")
-        return redirect(url_for("paste"))
+        return redirect(url_for("paste_page"))
     rb = analyse(jd_text, r["text"])
     if not rb.get("out_of_domain"):
         # Training / L&D / RSM / Trainer JD -> keep the liked rule-based read,
@@ -691,11 +691,11 @@ def paste_back():
     else:
         if len(reply) < 40:
             flash("Paste the AI's full reply (the JSON answer) in the box.", "bad")
-            return redirect(url_for("paste"))
+            return redirect(url_for("paste_page"))
         rep, err = pasteback.from_paste(r["text"], jd_text, reply)
         if err:
             flash(err, "bad")
-            return redirect(url_for("paste"))
+            return redirect(url_for("paste_page"))
     # reuse the live-AI saving path so it shows in history with the same shape
     title = title or (jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Pasted AI analysis")
     with db() as c:

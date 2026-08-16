@@ -27,6 +27,8 @@ THE CANDIDATE'S REQUIRED METHOD (follow every step):
    - "implied": genuinely required by the role but not literally worded in the JD.
 7. If the JD omits experience years, salary, notice period, or any field, write "not specified" — NEVER guess or invent a number.
 8. For each gap, say whether the resume already shows adjacent work ("near": true) or it is a genuine new skill ("near": false), and give an interview-ready "proof" line built from the candidate's own resume.
+9. After the gaps, give THREE overall comparison blocks: (a) "exp_diff" — the EXPERIENCE difference: years the candidate has vs years the JD wants, their current domain/function vs the JD's domain/function, and whether this is a level or a function gap. (b) "dept_diff" — the DEPARTMENT difference: what department/function the JD belongs to (e.g. Software Engineering & QA, Sales) versus the candidate's current department/function (e.g. Training & L&D), in plain English. (c) "required_skills" — a plain list of the core skills this JD requires, pulled only from the JD.
+10. For every gap, fill "link" (one official learning URL), "books" (a recommended book/authoritative article), "youtube" (a concrete YouTube topic/channel that teaches it), "free_tool" (a free tool to practise), and "more" (a list of 2-4 EXTRA credible resource links — docs, courses, communities — when available). If a resource truly doesn't exist, use empty string / empty list, never invent a fake URL.
 
 RESUME:
 \"\"\"{resume_text}\"\"\"
@@ -53,9 +55,13 @@ Return ONLY valid JSON in this exact shape:
       "books":"recommended book or authoritative article (or empty string)",
       "youtube":"a YouTube topic that teaches it (or empty string)",
       "free_tool":"a free tool to practise it (or empty string)",
+      "more":["extra credible resource link 1","extra link 2"],
       "chances":"High if near/reframe, Medium if new but learnable, Low if a big stretch"
     }}
   ],
+  "exp_diff":"plain-English experience difference: years you have vs years wanted, your domain/function vs the JD's domain/function, level vs function gap",
+  "dept_diff":"plain-English department difference: the JD's department/function vs your current department/function",
+  "required_skills":["core skill 1 from the JD","core skill 2","core skill 3"],
   "interview": [
     {{"q":"a specific question THIS employer will ask given the gaps","a":"a tailored answer built from the candidate's own resume + the bridge skill"}}
   ],

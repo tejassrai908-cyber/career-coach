@@ -30,6 +30,27 @@
   <div><div class="big">{{r.have|length}}</div><div class="mut">you already have &mdash; lead with these</div></div>
 </div>
 
+{% if r.required_skills %}
+<div class="card" style="border-left:3px solid #5b8cff;background:#10243a">
+<b style="font-size:16px">Required skills for this job</b>
+<ul style="margin:8px 0 0 18px;line-height:1.7">{% for s in r.required_skills %}<li>{{s}}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+{% if r.exp_diff %}
+<div class="card" style="border-left:3px solid #5b8cff;background:#10243a">
+<b style="font-size:16px">Experience difference</b>
+<p class="mut" style="margin:8px 0 0;line-height:1.6">{{r.exp_diff}}</p>
+</div>
+{% endif %}
+
+{% if r.dept_diff %}
+<div class="card" style="border-left:3px solid #ff6b6b;background:#2a1414">
+<b style="font-size:16px;color:#ffb4b4">Department difference</b>
+<p class="mut" style="margin:6px 0 0;line-height:1.6">{{r.dept_diff}}</p>
+</div>
+{% endif %}
+
 {% if r.out_of_domain %}
 <div class="card" style="border-left:3px solid #ff6b6b;background:#2a1414">
 <b style="font-size:15px;color:#ffb4b4">Heads-up: this job is from a different field than your resume.</b>
@@ -49,6 +70,16 @@
   <p class="mut" style="margin:8px 0 4px">Why they ask: {{g.why}}</p>
   <div><b style="font-size:14px">How to learn it</b><ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul></div>
   {% if g.link %}<a class="learnbtn" href="{{g.link.strip()}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}
+  {% if g.books or g.youtube or g.free_tool or g.more %}
+  <div style="margin-top:10px"><b style="font-size:14px">Resources to acquire it</b>
+    <ul style="margin:6px 0 0 18px;line-height:1.6">
+      {% if g.books %}<li>&#128218; Book / article: {{g.books}}</li>{% endif %}
+      {% if g.youtube %}<li>&#127909; YouTube: <a href="https://www.youtube.com/results?search_query={{ g.youtube.replace(' ', '+') }}" target="_blank" rel="noopener">{{g.youtube}}</a></li>{% endif %}
+      {% if g.free_tool %}<li>&#128187; Free tool: {{g.free_tool}}</li>{% endif %}
+      {% for m in g.more %}<li>&#128279; <a href="{{m.strip()}}" target="_blank" rel="noopener">{{m}}</a></li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
   {% if g.tools %}<div style="margin-top:10px"><b style="font-size:14px">Tools &amp; AI to use</b><ul>{% for t in g.tools %}<li>{{t}}</li>{% endfor %}</ul></div>{% endif %}
   <p class="mut" style="margin-top:10px"><b>Say this in the interview:</b> {{g.proof}}</p>
 </div>

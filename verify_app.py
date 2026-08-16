@@ -279,23 +279,30 @@ try:
     check("training JD skips paste-back, uses rule engine", c in (200, 302))
 
     # --- cross-field JD SHOULD use the pasted reply ---
-    JD_DB = ("Database Developer / Engineer\n"
-             "Designs, develops, implements and maintains custom Oracle applications "
-             "written in PL/SQL and supports back-end data processing in PL/SQL.\n"
-             "Develops and customizes Oracle reports. Supports existing applications "
-             "using PL/SQL Developer. QA process.\n"
-             "Preferred: PLSQL, SQL Development, Unix Shell Scripting, ETL, Informatica.")
-    SAMPLE = ('{"role_label":"Database Developer","match_pct":10,'
-              '"have":[{"key":"SQL (Basic)","why":"data work","jd_quote":""}],'
-              '"gaps":[{"key":"PL/SQL","category":"explicitly_required",'
-              '"jd_quote":"Designs, develops, implements and maintains custom Oracle applications written in PL/SQL",'
-              '"on_resume":false,"near":false,"why":"core requirement",'
-              '"proof":"","learn":["Learn PL/SQL on Oracle LiveSQL"],"link":"",'
-              '"books":"","youtube":"","free_tool":"","chances":"Low"}],'
-              '"interview":[{"q":"How do you handle PL/SQL?","a":"I am building it via Oracle LiveSQL."}],'
-              '"verdict":"Different field; core PL/SQL stack absent."}')
+    # Use a JD with NO overlap with the 21 training skills so the matcher
+    # flags it out-of-domain and the paste-back (AI) path is taken.
+    JD_DB = ("Civil Structural Engineer\n"
+             "Design and analyse bridges, buildings and flyovers using STAAD.Pro and AutoCAD.\n"
+             "Prepare bar-bending schedules and coordinate with site execution teams.\n"
+             "Bachelor's in Civil Engineering, 3+ years in structural design.")
+    SAMPLE = ('{"role_label":"Civil Structural Engineer","match_pct":5,'
+              '"have":[],'
+              '"gaps":[{"key":"STAAD.Pro","category":"explicitly_required",'
+              '"jd_quote":"Design and analyse bridges using STAAD.Pro",'
+              '"on_resume":false,"near":false,"why":"core design tool",'
+              '"proof":"","learn":["Learn STAAD.Pro basics"],'
+              '"link":"https://www.bentley.com/software/staad/",'
+              '"books":"Reinforced Concrete Design by Pillai & Menon",'
+              '"youtube":"STAAD.Pro tutorial for beginners",'
+              '"free_tool":"Bentley free learning edition",'
+              '"more":["https://www.bentley.com/software/staad/","https://www.youtube.com/c/STAAD"],"chances":"Low"}],'
+              '"exp_diff":"You have 15+ yrs in Training/L&D; the JD wants 3+ yrs but in a different function (civil engineering). This is a FUNCTION gap, not a level gap.",'
+              '"dept_diff":"The JD is in Civil Engineering / Design. Your current function is Training & L&D. Different department.",'
+              '"required_skills":["STAAD.Pro","AutoCAD","Structural analysis","Bar-bending schedules"],'
+              '"interview":[{"q":"How do you analyse a beam?","a":"I would use STAAD.Pro to model loads and check deflection."}],'
+              '"verdict":"Different field; civil engineering tools absent."}')
     c, _ = post(op, "/paste-back",
-                {"title": "DB Dev via paste-back", "jd_text": JD_DB,
+                {"title": "Civil Eng via paste-back", "jd_text": JD_DB,
                  "reply": SAMPLE})
     check("paste-back accepted (cross-field JD)", c in (200, 302))
     # find the new report id
@@ -304,10 +311,18 @@ try:
     check("paste-back report stored", len(ids) >= 1, f"{len(ids)} reports")
     if ids:
         _, rb = get(op, f"/report/{ids[0]}")
-        check("paste-back report renders role", "Database Developer" in rb,
-              ("role found" if "Database Developer" in rb else "role missing"))
-        check("paste-back shows JD quote", "Designs, develops, implements" in rb,
-              ("quote shown" if "Designs, develops, implements" in rb else "quote missing"))
+        check("paste-back report renders role", "Civil Structural Engineer" in rb,
+              ("role found" if "Civil Structural Engineer" in rb else "role missing"))
+        check("paste-back shows JD quote", "Design and analyse bridges" in rb,
+              ("quote shown" if "Design and analyse bridges" in rb else "quote missing"))
+        check("paste-back shows experience difference", "FUNCTION gap" in rb,
+              ("exp_diff shown" if "FUNCTION gap" in rb else "exp_diff missing"))
+        check("paste-back shows department difference", "Training &amp; L&amp;D" in rb or "Training & L&D" in rb,
+              ("dept_diff shown" if ("Training &amp; L&amp;D" in rb or "Training & L&D" in rb) else "dept_diff missing"))
+        check("paste-back shows required skills list", "Required skills for this job" in rb,
+              ("required-skills shown" if "Required skills for this job" in rb else "required-skills missing"))
+        check("paste-back shows resources (book/youtube/link)", "Reinforced Concrete Design" in rb and "Resources to acquire it" in rb,
+              ("resources shown" if "Reinforced Concrete Design" in rb else "resources missing"))
         check("paste-back flagged as paste-back engine", "paste-back" in rb.lower(),
               ("engine tagged" if "paste-back" in rb.lower() else "engine not tagged"))
 finally:
