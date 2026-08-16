@@ -30,6 +30,22 @@
   <div><div class="big">{{r.have|length}}</div><div class="mut">you already have &mdash; lead with these</div></div>
 </div>
 
+{% set chips = [] %}
+{% for s in r.required_skills or [] %}{% set _ = chips.append(('req', s)) %}{% endfor %}
+{% for g in r.gaps or [] %}{% set _ = chips.append(('gap', g.key)) %}{% endfor %}
+{% for h in r.have or [] %}{% set _ = chips.append(('have', h.key)) %}{% endfor %}
+{% if chips %}
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
+<b style="font-size:16px">Skills ChatGPT highlighted</b>
+<div class="chips">
+  {% for kind, label in chips %}
+  <span class="chip {{kind}}">{{label}}{% if kind=='have' %}<span class="sub2">you have</span>{% elif kind=='gap' %}<span class="sub2">to learn</span>{% else %}<span class="sub2">required</span>{% endif %}</span>
+  {% endfor %}
+</div>
+<p class="mut" style="margin:6px 0 0">Green = already on your resume &middot; Amber = the JD asks for it, you need to build it &middot; Blue = required by the job.</p>
+</div>
+{% endif %}
+
 {% if r.required_skills %}
 <div class="card" style="border-left:3px solid #5b8cff;background:#10243a">
 <b style="font-size:16px">Required skills for this job</b>
@@ -54,7 +70,7 @@
 {% if r.out_of_domain %}
 <div class="card" style="border-left:3px solid #ff6b6b;background:#2a1414">
 <b style="font-size:15px;color:#ffb4b4">Heads-up: this job is from a different field than your resume.</b>
-<p class="mut" style="margin:6px 0 0;line-height:1.6">The skills this JD asks for (e.g. PL/SQL, SQL, ETL, QA) are outside the 21 areas this matcher knows, so it can't give a real match score. The percentage above is not meaningful for cross-field jobs. For an accurate, expert read, the AI mode (OpenRouter key) must be on — it understands ANY field, not just training/L&D.</p>
+<p class="mut" style="margin:6px 0 0;line-height:1.6">The skills this JD asks for are outside the 21 areas this matcher knows, so it can't give a real match score. The percentage above is not meaningful for cross-field jobs. For an accurate, expert read, the AI mode (OpenRouter key) must be on — it understands ANY field, not just training/L&D.</p>
 </div>
 {% endif %}
 
@@ -62,16 +78,15 @@
 <h2>Close these first (the JD literally asks for them)</h2>
 {% for g in r.gaps %}
 <div class="card gap">
-  <b>{{g.key}}</b>
-  {% if g.category %}<span class="tag" style="background:#2e2410;color:#f0d27e;font-size:11px;padding:2px 6px;border-radius:4px;margin-left:6px">{{ 'PREFERRED' if g.category == 'preferred' else 'REQUIRED' }}</span>{% endif %}
+  <div class="chips" style="margin:0 0 8px"><span class="chip gap">{{g.key}}{% if g.category %}<span class="sub2">{{ 'PREFERRED' if g.category == 'preferred' else 'REQUIRED' }}</span>{% endif %}</span></div>
   {% if g.jd_quote %}<div class="mut" style="margin-top:4px">JD says: &ldquo;{{g.jd_quote}}&rdquo;</div>{% endif %}
   {% if g.near %}<div class="hav" style="margin:8px 0 0"><b>You already do this.</b> Your resume shows: {{g.bridge|join(', ')}}.
     You just need the framework name + proof — fastest gap to close.</div>{% endif %}
   <p class="mut" style="margin:8px 0 4px">Why they ask: {{g.why}}</p>
-  <div><b style="font-size:14px">How to learn it</b><ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul></div>
+  <div><b style="font-size:14px">How to acquire this skill</b><ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul></div>
   {% if g.link %}<a class="learnbtn" href="{{g.link.strip()}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}
   {% if g.books or g.youtube or g.free_tool or g.more %}
-  <div style="margin-top:10px"><b style="font-size:14px">Resources to acquire it</b>
+  <div style="margin-top:10px"><b style="font-size:14px">Resources to learn from</b>
     <ul style="margin:6px 0 0 18px;line-height:1.6">
       {% if g.books %}<li>&#128218; Book / article: {{g.books}}</li>{% endif %}
       {% if g.youtube %}<li>&#127909; YouTube: <a href="https://www.youtube.com/results?search_query={{ g.youtube.replace(' ', '+') }}" target="_blank" rel="noopener">{{g.youtube}}</a></li>{% endif %}
@@ -91,7 +106,7 @@
 {% if r.implied %}
 <h2>Also expected at this level (not worded in the JD, but they'll probe it)</h2>
 {% for g in r.implied %}
-<div class="card imp"><b>{{g.key}}</b>
+<div class="card imp"><div class="chips" style="margin:0 0 6px"><span class="chip gap">{{g.key}}</span></div>
 <p class="mut" style="margin:8px 0 4px">{{g.why}}</p>
 <ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
 {% if g.link %}<a class="learnbtn" href="{{g.link.strip()}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}
@@ -102,7 +117,7 @@
 {% if r.have %}
 <h2>Your strengths for this job</h2>
 <div class="card">
-{% for h in r.have %}<div class="hav"><b>{{h.key}}</b>{% if h.jd_quote %} <span class="mut">&mdash; <b>explicitly asked in JD:</b> &ldquo;{{h.jd_quote}}&rdquo;</span>{% else %} <span class="mut">&mdash; <b>not mentioned in this JD</b> (your strength, but don't lead with it)</span>{% endif %}<div class="mut">{{h.proof}}</div></div>{% endfor %}
+{% for h in r.have %}<div class="hav"><div class="chips" style="margin:0 0 4px"><span class="chip have">{{h.key}}</span></div>{% if h.jd_quote %} <span class="mut">&mdash; <b>explicitly asked in JD:</b> &ldquo;{{h.jd_quote}}&rdquo;</span>{% else %} <span class="mut">&mdash; <b>not mentioned in this JD</b> (your strength, but don't lead with it)</span>{% endif %}<div class="mut">{{h.proof}}</div></div>{% endfor %}
 </div>
 {% endif %}
 
@@ -129,7 +144,7 @@
 
 {% for g in r.plan['items'] %}
 <div class="card gap">
-  <h3 style="margin:0 0 6px;color:#ffd479">{{loop.index}}. {{g.key}}</h3>
+  <div class="chips" style="margin:0 0 6px"><span class="chip gap">{{loop.index}}. {{g.key}}</span></div>
   {% if g.near %}<div class="hav" style="margin-bottom:8px"><b>You already do this.</b> Resume shows: {{g.bridge|join(', ')}}. Just learn the framework name + proof.</div>{% endif %}
   <p class="mut" style="margin:4px 0"><b>Why the JD wants it:</b> {{g.why}}</p>
   <p style="margin:4px 0"><b>Skills required to clear the interview:</b> {{g.key}} — {{g.proof}}</p>

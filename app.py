@@ -708,12 +708,11 @@ def paste_page():
     """Zero-API AI path, step 1: build the full prompt (resume + JD + Tejas's
     exact method) so it can be copied into any free AI (ChatGPT etc).
 
-    ?resume=<id> picks which saved resume to use; ?jd=<id> pre-fills the JD
-    box from an earlier report so the prompt already embeds that job.
+    ?jd=<id> pre-fills the JD box from an earlier report so the prompt
+    already embeds that job.
     """
     import pasteback
-    rid = request.args.get("resume", type=int)
-    r = get_resume(rid)
+    r = get_resume()
     if not r:
         flash("Save your resume first (Step 1 on the home page), then come back here.", "bad")
         return redirect(url_for("home"))
@@ -724,13 +723,12 @@ def paste_page():
             jrow = c.execute("SELECT jd_text FROM jd WHERE id=?", (jd_id,)).fetchone()
         if jrow:
             jd_prefill = jrow["jd_text"] or ""
-    resume_list = get_resumes()
     prompt = pasteback.build_prompt(r["text"], jd_prefill)
-    # Persist this prompt once per resume (don't resurrect it after the user clears it).
+    # Persist this prompt (don't resurrect it after the user clears it).
     if not get_prompt(r["id"]):
         save_prompt(r["id"], r["name"], prompt)
     saved_prompt = get_prompt(r["id"])
-    return render_template("paste.html", resume=r, resumes=resume_list, cur_rid=r["id"],
+    return render_template("paste.html", resume=r,
                            prompt=prompt, jd_prefill=jd_prefill,
                            saved_prompt=saved_prompt)
 

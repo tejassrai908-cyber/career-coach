@@ -170,7 +170,7 @@ try:
     check("role = Training Manager", bool(role) and "Training Manager" in role.group(1),
           role.group(1) if role else "none")
     check("match % present", bool(pct), (pct.group(1) + "%") if pct else "none")
-    gaps = re.findall(r'gap">\s*<b>([^<]*)', body)
+    gaps = re.findall(r'chip gap">([^<]*)', body)
     check("gaps detected", len(gaps) >= 5, f"{len(gaps)} gaps")
     for must in ("ADDIE", "Kirkpatrick", "LMS"):
         check(f"gap includes {must}", any(must in g for g in gaps))
@@ -189,7 +189,7 @@ try:
     check("screenshot analyse accepted", c in (200, 302))
     _, b2 = get(op, "/report/2")
     check("OCR read the screenshot", "screenshot via OCR" in b2)
-    ocr_gaps = re.findall(r'gap">\s*<b>([^<]*)', b2)
+    ocr_gaps = re.findall(r'chip gap">([^<]*)', b2)
     check("OCR report found gaps", len(ocr_gaps) >= 4, f"{len(ocr_gaps)} gaps")
 
     # combined one-shot submit: resume + JD in a single /analyse call
@@ -271,55 +271,30 @@ try:
     _, pbody = get(op, "/paste")
     check("prompt builds resume + method",
           "Read the COMPLETE job description" in pbody and "Tejas" in pbody)
+    # prompt is auto-saved and shows a clear option
+    check("prompt auto-saved (saved badge)", "saved" in pbody)
+    mpid = re.search(r'/delete-prompt/(\d+)', pbody)
+    if mpid:
+        cdp, _ = post(op, "/delete-prompt/" + mpid.group(1), {})
+        check("clear saved prompt works", cdp in (200, 302))
+        # verify it's actually gone from the DB (not just hidden by a re-save on GET)
+        import sqlite3 as _sq
+        dbp = os.path.join(os.environ.get("_CC_DATADIR", ""), "career.db")
+        conn = _sq.connect(dbp)
+        leftover = conn.execute("SELECT COUNT(*) FROM prompts").fetchone()[0]
+        conn.close()
+        check("prompt cleared (no row in DB)", leftover == 0)
+    # the ChatGPT response box has a clear button
+    check("clear-response button present", "Clear response" in pbody)
 
-    # --- multi-resume: add a second (wife) resume, both show with names ---
-    WIFE = ("Anusha S - HR Generalist\n"
-            "Recruitment, onboarding, payroll processing, employee engagement\n"
-            "HRIS, statutory compliance, grievance handling, T&D coordination\n")
-    c2, _ = post_file(op, "/resume", "file", "anusha.txt", WIFE, extra={"name": "Anusha"})
-    check("second resume (wife) upload accepted", c2 in (200, 302))
+    # --- clear the saved resume ---
     _, hbody = get(op, "/")
-    check("both resumes listed with names", "Tejas" in hbody and "Anusha" in hbody)
-    # paste helper shows the resume picker with both names
-    _, pbody2 = get(op, "/paste")
-    check("paste helper shows both resume names", "Tejas" in pbody2 and "Anusha" in pbody2)
-    # selecting Anusha's resume builds the prompt from her text
-    m = re.search(r'/paste\?resume=(\d+)', pbody2)
-    anusha_id = None
-    if m:
-        anusha_id = m.group(1)
-    # find Anusha's id via home links to delete-resume/<id>
     mids = re.findall(r'/delete-resume/(\d+)', hbody)
-    check("two saved resumes present", len(mids) >= 2)
     if mids:
-        # home lists newest-first; Anusha was uploaded 2nd so she is first in the list
-        first_body = get(op, "/paste?resume=" + mids[0])[1]
-        anusha_rid = mids[0] if "Anusha" in first_body else mids[-1]
-        _, pb = get(op, "/paste?resume=" + anusha_rid)
-        check("selected resume prompt reflects that resume", "Anusha" in pb or "HR Generalist" in pb)
-        # the prompt is auto-saved for that resume and shows a clear link
-        check("prompt auto-saved (saved for Anusha)", "saved for Anusha" in pb)
-        mpid = re.search(r'/delete-prompt/(\d+)', pb)
-        if mpid:
-            cdp, _ = post(op, "/delete-prompt/" + mpid.group(1), {})
-            check("clear saved prompt works", cdp in (200, 302))
-            # verify it's actually gone from the DB (not just hidden by a re-save on GET)
-            import sqlite3 as _sq
-            dbp = os.path.join(os.environ.get("_CC_DATADIR", ""), "career.db")
-            conn = _sq.connect(dbp)
-            leftover = conn.execute("SELECT COUNT(*) FROM prompts WHERE resume_id=?",
-                                   (anusha_rid,)).fetchone()[0]
-            conn.close()
-            check("prompt cleared (no row in DB)", leftover == 0)
-        # Anusha's resume row shows a per-resume clear option
-        check("Anusha resume has clear option", len(mids) >= 2)
-        # clear the ChatGPT response box is a client control; verify the button exists
-        check("clear-response button present", "Clear response" in pb)
-        # clear one resume
-        cdel, _ = post(op, "/delete-resume/" + anusha_rid, {})
+        cdel, _ = post(op, "/delete-resume/" + mids[0], {})
         check("clear resume works", cdel in (200, 302))
         _, hbody2 = get(op, "/")
-        check("resume removed after clear", "Anusha" not in hbody2 or len(re.findall(r'/delete-resume/(\d+)', hbody2)) == 1)
+        check("resume removed after clear", len(re.findall(r'/delete-resume/(\d+)', hbody2)) == 0)
 
     # --- training JD should NOT use paste-back (rule engine is the right fit) ---
     c, _ = post(op, "/paste-back",
@@ -327,6 +302,10 @@ try:
                  "jd_text": JD_TM,
                  "reply": "ignored for training roles"})
     check("training JD skips paste-back, uses rule engine", c in (200, 302))
+
+    # re-save a resume for the cross-field paste-back check below
+    c, _ = post_file(op, "/resume", "file", "cv.txt", RESUME)
+    check("resume re-uploaded for cross-field check", c in (200, 302))
 
     # --- cross-field JD SHOULD use the pasted reply ---
     # Use a JD with NO overlap with the 21 training skills so the matcher
@@ -371,8 +350,12 @@ try:
               ("dept_diff shown" if ("Training &amp; L&amp;D" in rb or "Training & L&D" in rb) else "dept_diff missing"))
         check("paste-back shows required skills list", "Required skills for this job" in rb,
               ("required-skills shown" if "Required skills for this job" in rb else "required-skills missing"))
-        check("paste-back shows resources (book/youtube/link)", "Reinforced Concrete Design" in rb and "Resources to acquire it" in rb,
+        check("paste-back shows resources (book/youtube/link)", "Reinforced Concrete Design" in rb and "Resources to learn from" in rb,
               ("resources shown" if "Reinforced Concrete Design" in rb else "resources missing"))
+        check("paste-back highlights skills as chips", "chip gap" in rb and "STAAD.Pro" in rb,
+              ("skill chips shown" if ("chip gap" in rb and "STAAD.Pro" in rb) else "chips missing"))
+        check("paste-back flags skill as 'to learn'", "to learn" in rb,
+              ("to-learn tag shown" if "to learn" in rb else "to-learn missing"))
         check("paste-back flagged as paste-back engine", "paste-back" in rb.lower(),
               ("engine tagged" if "paste-back" in rb.lower() else "engine not tagged"))
 finally:

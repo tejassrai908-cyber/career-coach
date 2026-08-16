@@ -46,6 +46,14 @@ ul{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
 .mut{color:var(--mut);font-size:13px}
 .row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:150px}
 nav{margin-bottom:14px;font-size:14px}nav a{margin-right:16px}
+/* highlighted skill chips (ADDIE, LMS, etc.) */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.chip{display:inline-block;padding:7px 13px;border-radius:99px;font-weight:700;font-size:14px;
+ border:1px solid var(--line)}
+.chip.have{background:#0f3d2c;border-color:#2f7d5a;color:#7ef0c0}
+.chip.gap{background:#3d2410;border-color:#a8762f;color:#f0c27e}
+.chip.req{background:#10243a;border-color:#3a5a8a;color:#a9c4ff}
+.chip .sub2{font-weight:400;font-size:11px;opacity:.8;margin-left:6px}
 </style></head><body>
 <nav><a href="/">Home</a><a href="/plan">My learning plan</a><a href="/phone">Use on my phone</a></nav>
 {% with m = get_flashed_messages(with_categories=true) %}{% for c,t in m %}
