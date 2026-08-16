@@ -20,6 +20,10 @@ import llm as _llm
 llm_analyse = _llm.analyse
 llm_clearance = _llm.clearance_plan_from_ai
 
+# Durable store: mirrors reports + resume into the app's GitHub repo so they
+# survive Render's free-plan disk wipes. Fail-safe: no-op if GH_TOKEN unset.
+import reports_store
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 # On Render the writable spot is a temp dir; locally it's the project folder.
 DATA = os.environ.get("CAREER_DATA_DIR", BASE)
@@ -159,6 +163,45 @@ def init_db():
         except Exception:
             pass
 
+    # COLD-BOOT RECOVERY: Render's free disk is wiped on restart, so if the DB
+    # has no reports after a restart, re-seed from GitHub (the durable copy).
+    # This is what keeps your past reports alive after the app is closed.
+    with db() as c:
+        jd_count = c.execute("SELECT COUNT(*) FROM jd").fetchone()[0]
+        res_count = c.execute("SELECT COUNT(*) FROM resumes").fetchone()[0]
+    if reports_store.enabled():
+        if jd_count == 0:
+            for doc in reports_store.load_all_reports():
+                try:
+                    rep = doc.get("report")
+                    if not rep:
+                        continue
+                    with db() as c:
+                        c.execute(
+                            "INSERT INTO jd(id,title,role,source,jd_text,report,created) "
+                            "VALUES(?,?,?,?,?,?,?)",
+                            (doc.get("id"),
+                             doc.get("title", "Pasted ChatGPT analysis"),
+                             doc.get("role", rep.get("role", "")),
+                             "restored-from-github",
+                             doc.get("jd_text", "") or "",
+                             json.dumps(rep),
+                             doc.get("created", "")))
+                    print(f"[init] re-seeded report #{doc.get('id')} from GitHub")
+                except Exception as e:
+                    print(f"[init] re-seed report failed: {e}")
+        if res_count == 0:
+            r = reports_store.load_resume()
+            if r:
+                try:
+                    with db() as c:
+                        c.execute("INSERT INTO resumes(name,filename,text,uploaded) VALUES(?,?,?,?)",
+                                  (r.get("name", "My resume"), r.get("filename"),
+                                   r.get("text"), r.get("uploaded")))
+                    print("[init] re-seeded resume from GitHub")
+                except Exception as e:
+                    print(f"[init] re-seed resume failed: {e}")
+
 
 def save_prompt(resume_id, name, text):
     """Upsert the latest saved prompt for a given resume id."""
@@ -191,6 +234,9 @@ def set_resume(name, filename, text, uploaded):
                                 "text": text, "uploaded": uploaded}))
     except Exception:
         pass
+    # Durable copy in GitHub so it survives Render restarts.
+    if reports_store.enabled():
+        reports_store.save_resume(name, filename, text, uploaded)
 
 
 def get_resumes():
@@ -550,7 +596,8 @@ def home():
             continue
         rows.append(dict(id=j["id"], title=j["title"], role=rr.get("role_label", ""),
                          created=j["created"], pct=rr.get("match_pct", 0), gaps=len(rr.get("gaps", []))))
-    return render_template("home.html", resume=r, prompt=prompt, jds=rows)
+    return render_template("home.html", resume=r, prompt=prompt, jds=rows,
+                           gh_backup=reports_store.enabled())
 
 
 @app.route("/resume", methods=["POST"])
@@ -639,11 +686,22 @@ def paste_back():
     if err:
         flash(err, "bad")
         return redirect(url_for("paste_page"))
+    # STABLE ID: allocate a number that's > both the local DB max and the
+    # GitHub max, so cold-boot re-seeds reuse the same ids and GitHub filenames
+    # stay in sync with the DB. (If GitHub is off, this just falls back to the
+    # local max + 1, identical to the old AUTOINCREMENT behaviour.)
     with db() as c:
-        cur = c.execute("INSERT INTO jd(title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?)",
-                        (title, rep["role"], "paste-back (no API key)", jd_text, json.dumps(rep),
-                         dt.datetime.now().strftime("%d %b %Y, %I:%M %p")))
-        new_id = cur.lastrowid
+        local_max = c.execute("SELECT COALESCE(MAX(id),0) FROM jd").fetchone()[0]
+    new_id = max(local_max, reports_store.max_report_id()) + 1
+    with db() as c:
+        c.execute("INSERT INTO jd(id,title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?,?)",
+                  (new_id, title, rep["role"], "paste-back (no API key)", jd_text, json.dumps(rep),
+                   dt.datetime.now().strftime("%d %b %Y, %I:%M %p")))
+    # Mirror to GitHub so this report survives Render's disk wipe on restart.
+    if reports_store.enabled():
+        reports_store.save_report(new_id, title, rep.get("role", ""),
+                                 rep, jd_text,
+                                 dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
     return redirect(url_for("report", jd_id=new_id))
 
 
@@ -651,6 +709,9 @@ def paste_back():
 def delete(jd_id):
     with db() as c:
         c.execute("DELETE FROM jd WHERE id=?", (jd_id,))
+    # Best-effort remove the durable copy too.
+    if reports_store.enabled():
+        reports_store.delete_report(jd_id)
     return redirect(url_for("home"))
 
 
@@ -845,21 +906,37 @@ def restore():
     except Exception:
         flash("That file isn't a valid backup.", "bad")
         return redirect(url_for("home"))
+    resumes = list(blob.get("resumes") or [])
+    if blob.get("resume"):  # legacy single-resume backup shape
+        resumes.append(blob["resume"])
+    jobs = blob.get("jobs", [])
     with db() as c:
-        for b in blob.get("resumes") or []:
+        for b in resumes:
             c.execute("INSERT INTO resumes(name,filename,text,uploaded) VALUES(?,?,?,?)",
                       (b.get("name", "My resume"), b.get("filename"), b.get("text"),
                        b.get("uploaded")))
-        # legacy single-resume backup shape
-        if blob.get("resume"):
-            b = blob["resume"]
-            c.execute("INSERT INTO resumes(name,filename,text,uploaded) VALUES(?,?,?,?)",
-                      ("My resume", b.get("filename"), b.get("text"), b.get("uploaded")))
-        for j in blob.get("jobs", []):
-            c.execute("INSERT INTO jd(title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?)",
-                      (j.get("title"), j.get("role"), j.get("source"), j.get("jd_text"),
-                       j.get("report"), j.get("created")))
-    flash(f"Restored {len(blob.get('resumes') or ([] if blob.get('resume') else []))} resume(s) and {len(blob.get('jobs', []))} job(s).", "good")
+        # Mirror restored resume to GitHub too (so it survives future restarts).
+        if resumes and reports_store.enabled():
+            b = resumes[-1]
+            reports_store.save_resume(b.get("name", "My resume"), b.get("filename"),
+                                      b.get("text"), b.get("uploaded"))
+        # Allocate stable ids aligned with any GitHub copies already present.
+        base = max(reports_store.max_report_id(),
+                   c.execute("SELECT COALESCE(MAX(id),0) FROM jd").fetchone()[0])
+        for n, j in enumerate(jobs, start=1):
+            jid = base + n
+            rep = None
+            try:
+                rep = json.loads(j.get("report")) if isinstance(j.get("report"), str) else j.get("report")
+            except Exception:
+                rep = j.get("report")
+            c.execute("INSERT INTO jd(id,title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?,?)",
+                      (jid, j.get("title"), j.get("role"), j.get("source"), j.get("jd_text"),
+                       json.dumps(rep) if rep is not None else "{}", j.get("created")))
+            if reports_store.enabled() and rep is not None:
+                reports_store.save_report(jid, j.get("title"), j.get("role"), rep,
+                                          j.get("jd_text", "") or "", j.get("created", ""))
+    flash(f"Restored {len(resumes)} resume(s) and {len(jobs)} job(s).", "good")
     return redirect(url_for("home"))
 
 

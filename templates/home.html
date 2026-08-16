@@ -44,6 +44,9 @@
 
 {% if jds %}
 <h2>Your past analyses</h2>
+{% if gh_backup %}
+<p class="mut" style="margin:-4px 0 12px">Reports are auto-saved to your GitHub repo, so they stay here even after the app closes or restarts.</p>
+{% endif %}
 <div class="card"><table>
 <tr><th>Job</th><th>Role</th><th>Match</th><th>Report</th></tr>
 {% for j in jds %}

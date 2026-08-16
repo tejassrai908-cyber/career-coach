@@ -11,3 +11,10 @@ services:
         value: "8500"
       - key: SECRET_KEY
         generateValue: true
+      # --- Durable reports (survive Render restarts) ---
+      # GitHub PAT that can WRITE to the career-coach repo. Without these two,
+      # the app still works but reports live only on Render's wipeable disk.
+      - key: GH_TOKEN
+        sync: false
+      - key: GH_REPO
+        value: tejassrai908-cyber/career-coach
