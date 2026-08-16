@@ -532,16 +532,25 @@ def interview_questions(rep, jd_text, resume_text):
 # --------------------------------------------------------------- routes
 @app.route("/")
 def home():
+    import pasteback
+    r = get_resume()
+    prompt = ""
+    if r:
+        # Build the copy-ready prompt: resume already inside + the method.
+        # JD is left as a placeholder the user fills in ChatGPT.
+        prompt = pasteback.build_prompt(
+            r["text"], "[PASTE THE JOB DESCRIPTION TEXT HERE — replace this whole line with the real job description before sending to ChatGPT]")
     with db() as c:
-        jds = c.execute("SELECT id,title,role,created,report FROM jd ORDER BY id DESC LIMIT 25").fetchall()
+        jds = c.execute("SELECT id,title,role,created,report FROM jd ORDER BY id DESC LIMIT 15").fetchall()
     rows = []
     for j in jds:
-        r = json.loads(j["report"])
-        rows.append(dict(id=j["id"], title=j["title"], role=r["role_label"],
-                         created=j["created"], pct=r["match_pct"], gaps=len(r["gaps"])))
-    return render_template("home.html", resume=get_resume(), resumes=get_resumes(), jds=rows,
-                           ocr=ocr_available(),
-                           ai=__import__("llm").ai_status())
+        try:
+            rr = json.loads(j["report"])
+        except Exception:
+            continue
+        rows.append(dict(id=j["id"], title=j["title"], role=rr.get("role_label", ""),
+                         created=j["created"], pct=rr.get("match_pct", 0), gaps=len(rr.get("gaps", []))))
+    return render_template("home.html", resume=r, prompt=prompt, jds=rows)
 
 
 @app.route("/resume", methods=["POST"])
@@ -577,121 +586,6 @@ def remove_prompt(pid):
     flash("Saved prompt cleared.", "good")
     return redirect(url_for("home"))
 
-
-@app.route("/analyse", methods=["POST"])
-def do_analyse():
-    # ---- Accept the resume INLINE so the whole thing is one submit. ----
-    # This is the real fix for the "it keeps asking me to upload my resume"
-    # loop: you attach the resume together with the JD and press one button.
-    # Two input styles supported:
-    #   * multipart file upload (local / fast networks)
-    #   * base64 JSON (phone on Render free, where multipart uploads time out)
-    import base64 as _b64
-
-    def _from_b64(field):
-        raw = request.form.get(field) or (request.json.get(field) if request.is_json else "")
-        if not raw:
-            return None
-        try:
-            data = _b64.b64decode(str(raw).split(",", 1)[-1])
-        except Exception:
-            return None
-        name = (request.form.get(field + "_name") or "upload.bin").lower()
-        class _F:
-            filename = name
-            def read(self): return data
-        return _F()
-
-    rf = request.files.get("resume_inline")
-    if not (rf and rf.filename):
-        rf = _from_b64("resume_b64")
-    if rf and getattr(rf, "filename", None):
-        text, note = extract_text(rf)
-        if len(text.strip()) >= 50:
-            set_resume(getattr(rf, "filename", "resume"), getattr(rf, "filename", "resume"), text,
-                       dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
-
-    r = get_resume()
-    if not r:
-        flash("Attach your resume (or use Step 1 to save it once) and try again.", "bad")
-        return redirect(url_for("home"))
-
-    chunks, notes = [], []
-    for f in request.files.getlist("shots"):
-        if f and f.filename:
-            t, n = extract_text(f)
-            chunks.append(t)
-            notes.append(f"{f.filename}: {n}")
-    # base64 screenshots (phone / Render free where multipart upload times out)
-    import base64 as _b64
-    for i in range(1, 12):
-        raw = request.form.get(f"shot_b64_{i}")
-        if not raw:
-            continue
-        try:
-            data = _b64.b64decode(str(raw).split(",", 1)[-1])
-        except Exception:
-            continue
-        class _F:
-            filename = "screenshot.jpg"
-            def read(self): return data
-        t, n = extract_text(_F())
-        if t.strip():
-            chunks.append(t)
-            notes.append(f"screenshot_{i}: {n}")
-    pasted = (request.form.get("pasted") or "").strip()
-    if pasted:
-        chunks.append(pasted)
-        notes.append("pasted text")
-
-    jd_text = "\n\n".join(x for x in chunks if x).strip()
-    if len(jd_text) < 60:
-        flash("I couldn't read enough job-description text from what you gave me. "
-              + (" | ".join(notes) if notes else "Upload a screenshot or paste the text.")
-              + " Tip: if it's a phone screenshot, make sure it's JPG/PNG (not HEIC), and the text is clear. "
-              + "You can also just paste the job text.", "bad")
-        return redirect(url_for("home"))
-
-    # Domain-aware engine selection (your preference, 2026-08-17):
-    #   * Training / L&D / RSM / Trainer JDs  -> the built-in rule-based engine.
-    #     This is the ADDIE / Kirkpatrick / TNA / TNI + resources read you liked,
-    #     and we do NOT run AI on these (AI only made them thinner).
-    #   * Cross-field JDs (e.g. Database Developer) where the 21-skill matcher
-    #     finds NOTHING -> escalate to the AI rigorous path for an accurate read.
-    #     If no key / rate-limited, honestly fall back to rule-based.
-    rb = analyse(jd_text, r["text"])
-    if not rb.get("out_of_domain"):
-        rep = rb
-        rep["sources"] = notes
-        rep["ai_mode"] = False
-        rep["interview"] = interview_questions(rep, jd_text, r["text"])
-        rep["plan"] = clearance_plan(rep, jd_text, r["text"])
-    else:
-        ai_res = _llm.analyse_with_error(jd_text, r["text"])
-        if ai_res.get("ok"):
-            rep = ai_res["rep"]
-            rep["sources"] = notes
-            rep["ai_mode"] = True
-            rep["plan"] = llm_clearance(rep)
-            if not rep.get("interview"):
-                rep["interview"] = interview_questions(rep, jd_text, r["text"])
-        else:
-            rep = rb
-            rep["sources"] = notes
-            rep["ai_mode"] = False
-            rep["ai_error"] = ai_res.get("ai_error")
-            rep["interview"] = interview_questions(rep, jd_text, r["text"])
-            rep["plan"] = clearance_plan(rep, jd_text, r["text"])
-    title = (request.form.get("title") or "").strip() or (
-        jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Untitled job")
-    with db() as c:
-        cur = c.execute("INSERT INTO jd(title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?)",
-                        (title, rep["role"], " | ".join(notes), jd_text, json.dumps(rep),
-                         dt.datetime.now().strftime("%d %b %Y, %I:%M %p")))
-        new_id = cur.lastrowid
-    return redirect(url_for("report", jd_id=new_id))
-
-
 @app.route("/report/<int:jd_id>")
 def report(jd_id):
     with db() as c:
@@ -705,13 +599,8 @@ def report(jd_id):
 
 @app.route("/paste")
 def paste_page():
-    """Zero-API AI path, step 1: build the full prompt (resume + JD + Tejas's
-    exact method) so it can be copied into any free AI (ChatGPT etc).
-
-    ?jd=<id> pre-fills the JD box from an earlier report so the prompt
-    already embeds that job.
-    """
-    import pasteback
+    """Step 3: paste ChatGPT's reply back. The prompt lives on the home page
+    (built with the resume already inside)."""
     r = get_resume()
     if not r:
         flash("Save your resume first (Step 1 on the home page), then come back here.", "bad")
@@ -723,14 +612,7 @@ def paste_page():
             jrow = c.execute("SELECT jd_text FROM jd WHERE id=?", (jd_id,)).fetchone()
         if jrow:
             jd_prefill = jrow["jd_text"] or ""
-    prompt = pasteback.build_prompt(r["text"], jd_prefill)
-    # Persist this prompt (don't resurrect it after the user clears it).
-    if not get_prompt(r["id"]):
-        save_prompt(r["id"], r["name"], prompt)
-    saved_prompt = get_prompt(r["id"])
-    return render_template("paste.html", resume=r,
-                           prompt=prompt, jd_prefill=jd_prefill,
-                           saved_prompt=saved_prompt)
+    return render_template("paste.html", jd_prefill=jd_prefill)
 
 
 @app.route("/paste-back", methods=["POST"])
@@ -946,10 +828,6 @@ def qr_png():
     return Response(buf.getvalue(), mimetype="image/png")
 
 
-@app.route("/phone")
-def phone():
-    return render_template("phone.html", ip=lan_ip(), port=5055,
-                           cloud_url="https://career-coach-fnyw.onrender.com")
 
 
 @app.route("/backup")
@@ -1000,19 +878,6 @@ def restore():
     return redirect(url_for("home"))
 
 
-@app.route("/plan")
-def plan():
-    """Combined learning plan across every job analysed so far."""
-    with db() as c:
-        rows = c.execute("SELECT report FROM jd").fetchall()
-    freq = {}
-    for row in rows:
-        rep = json.loads(row["report"])
-        for g in rep["gaps"] + rep["implied"]:
-            e = freq.setdefault(g["key"], dict(g, n=0))
-            e["n"] += 1
-    ranked = sorted(freq.values(), key=lambda x: -x["n"])
-    return render_template("plan.html", ranked=ranked, jobs=len(rows))
 
 
 if __name__ == "__main__":

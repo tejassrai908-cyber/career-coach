@@ -1,58 +1,26 @@
 {% extends "base.html" %}{% block body %}
-<h1>Copy-paste AI helper (no API key, no limit)</h1>
-<p class="sub">Use your own free ChatGPT (or any AI) to get the same rigorous analysis — the app writes the prompt, you paste the reply back, it saves the full report.</p>
-
-<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
-<b style="color:#7ef0c0;font-size:14px">How it works (3 steps)</b>
-<ol style="margin:8px 0 0 18px;line-height:1.7">
-<li><b>Copy the prompt</b> below (your resume is already built in). It is auto-saved.</li>
-<li><b>Paste it into ChatGPT</b> on your phone/laptop. Copy the AI's full reply (the JSON answer).</li>
-<li>Paste the reply into the box at the bottom + the job text, then <b>Save analysis</b>. The app structures it into a report that highlights every skill ChatGPT found — and shows how to learn each one.</li>
-</ol>
-</div>
+<h1>Step 3 &mdash; Paste ChatGPT's reply</h1>
+<p class="sub">You copied the prompt, sent it to ChatGPT with the job description, and got a reply.
+Paste that reply below. The app reads it (plain text or JSON) and highlights the skill gap,
+qualification &amp; experience difference, how to learn, and where to learn.</p>
 
 <div class="card">
-<h2 style="margin-top:0">Step 1 — Copy this prompt {% if saved_prompt %}<span class="pill">saved</span>{% endif %}</h2>
-<p class="mut">Your resume ({{resume.name}}) is already inserted. Tap <b>Copy</b>, send it to ChatGPT. The prompt is saved automatically — you can come back to it later.</p>
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px">
-  <button type="button" onclick="copyPrompt()" style="width:auto">Copy prompt</button>
-  {% if saved_prompt %}
-  <form method="post" action="/delete-prompt/{{saved_prompt.id}}" style="margin:0">
-    <button type="submit" style="width:auto;padding:6px 12px;margin:0;background:#3d1616;font-size:12px">Clear saved prompt</button>
-  </form>
-  {% endif %}
-  <span id="copied" class="mut" style="align-self:center"></span>
-</div>
-<textarea id="promptBox" readonly rows="18" style="width:100%;font-family:monospace;font-size:13px">{{prompt}}</textarea>
-</div>
-
-<div class="card">
-<h2 style="margin-top:0">Step 2 — Paste the job description here</h2>
-<p class="mut">This is so the saved report keeps the real JD text. (It's the same JD you sent to ChatGPT.)</p>
+<h2 style="margin-top:0">Paste the job description (optional)</h2>
+<p class="mut">This just keeps the JD text with the report. Use the same JD you sent to ChatGPT.</p>
 <form id="pb" method="post" action="/paste-back">
-  <input type="hidden" name="resume_id" value="{{resume.id}}">
   <label>Job name (optional)</label>
   <input type="text" name="title" placeholder="e.g. Database Developer - Hyderabad">
   <label>Job description text</label>
-  <textarea name="jd_text" rows="7" placeholder="Paste the full job description here">{{jd_prefill}}</textarea>
-  <label>ChatGPT's reply (paste the AI's full JSON answer)</label>
+  <textarea name="jd_text" rows="6" placeholder="Paste the full job description here">{{jd_prefill}}</textarea>
+
+  <label>ChatGPT's reply</label>
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-    <span class="mut">Paste the AI's full reply here — include the { and }</span>
+    <span class="mut">Paste ChatGPT's full reply here (plain text or JSON both work)</span>
     <button type="button" onclick="document.getElementById('replyBox').value=''" style="width:auto;padding:4px 10px;margin:0;background:#3d1616;font-size:11px">Clear response</button>
   </div>
-  <textarea id="replyBox" name="reply" rows="9" placeholder="Paste the AI's full reply here — include the { and }"></textarea>
+  <textarea id="replyBox" name="reply" rows="12" placeholder="Paste ChatGPT's full reply here"></textarea>
   <button type="submit">Save analysis</button>
 </form>
 </div>
-
-<script>
-function copyPrompt(){
-  var t=document.getElementById('promptBox');
-  t.select(); t.setSelectionRange(0, 99999);
-  try{ document.execCommand('copy'); document.getElementById('copied').textContent='✓ Copied!'; }
-  catch(e){ document.getElementById('copied').textContent='Select all and copy manually.'; }
-  window.getSelection().removeAllRanges();
-}
-</script>
-<p><a href="/">&larr; Back</a></p>
+<p><a href="/">&larr; Back to resume</a></p>
 {% endblock %}
