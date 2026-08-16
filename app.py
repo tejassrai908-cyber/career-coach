@@ -618,42 +618,27 @@ def paste_page():
 @app.route("/paste-back", methods=["POST"])
 def paste_back():
     """Zero-API AI path, step 2: glue the AI's reply back into a full report.
-    Needs a saved resume. The JD is whatever was in the prompt you copied — we
-    take it from the hidden field so the stored report has the real JD text."""
+
+    The JD is NOT sent to the app -- the user pastes it into ChatGPT alongside
+    the app-generated prompt (resume + method). So here we only take the
+    ChatGPT reply and let pasteback parse it into the structured report.
+    Works for ANY role (the resume is already inside the prompt the user sent)."""
     import pasteback
     rid = request.form.get("resume_id", type=int)
     r = get_resume(rid)
     if not r:
         flash("Save your resume first (Step 1 on the home page), then come back.", "bad")
         return redirect(url_for("home"))
-    jd_text = (request.form.get("jd_text") or "").strip()
     reply = (request.form.get("reply") or "").strip()
-    title = (request.form.get("title") or "").strip()
-    if len(jd_text) < 60:
-        flash("Paste the job description text in the 'Job description' box before pasting the AI reply.", "bad")
+    jd_text = (request.form.get("jd_text") or "").strip()  # optional, kept only for record
+    title = (request.form.get("title") or "").strip() or "Pasted ChatGPT analysis"
+    if len(reply) < 40:
+        flash("Paste ChatGPT's full reply in the box before saving.", "bad")
         return redirect(url_for("paste_page"))
-    rb = analyse(jd_text, r["text"])
-    if not rb.get("out_of_domain"):
-        # Training / L&D / RSM / Trainer JD -> keep the liked rule-based read,
-        # the pasted-AI path is only for out-of-domain jobs.
-        flash("This looks like a training/L&D role — the app's built-in analysis "
-              "(ADDIE, Kirkpatrick, TNA, TNI + resources) is already the right fit, "
-              "so the paste-back step was skipped. Just use the normal 'Find my skill gap'.", "good")
-        # still save the rule-based read so it appears in history
-        rep = rb
-        rep["sources"] = ["rule-based (training role)"]
-        rep["ai_mode"] = False
-        rep["ai_engine"] = "rule-based (training)"
-    else:
-        if len(reply) < 40:
-            flash("Paste the AI's full reply (the JSON answer) in the box.", "bad")
-            return redirect(url_for("paste_page"))
-        rep, err = pasteback.from_paste(r["text"], jd_text, reply)
-        if err:
-            flash(err, "bad")
-            return redirect(url_for("paste_page"))
-    # reuse the live-AI saving path so it shows in history with the same shape
-    title = title or (jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Pasted AI analysis")
+    rep, err = pasteback.from_paste(r["text"], jd_text, reply)
+    if err:
+        flash(err, "bad")
+        return redirect(url_for("paste_page"))
     with db() as c:
         cur = c.execute("INSERT INTO jd(title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?)",
                         (title, rep["role"], "paste-back (no API key)", jd_text, json.dumps(rep),

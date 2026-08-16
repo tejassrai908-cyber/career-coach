@@ -1,24 +1,17 @@
 {% extends "base.html" %}{% block body %}
-<h1>Step 3 &mdash; Paste ChatGPT's reply</h1>
-<p class="sub">You copied the prompt, sent it to ChatGPT with the job description, and got a reply.
-Paste that reply below. The app reads it (plain text or JSON) and highlights the skill gap,
-qualification &amp; experience difference, how to learn, and where to learn.</p>
+<h1>Step 2 &mdash; Paste ChatGPT's reply</h1>
+<p class="sub">You copied the prompt (your resume is inside), pasted it into ChatGPT together with the job description, and got a reply.
+Paste that reply below. The app reads it (plain text or JSON) and lays out everything in order:
+the differences, the missing skills, how to learn them, and where to learn &mdash; honestly, including if you have no relevant skills for the job.</p>
 
 <div class="card">
-<h2 style="margin-top:0">Paste the job description (optional)</h2>
-<p class="mut">This just keeps the JD text with the report. Use the same JD you sent to ChatGPT.</p>
 <form id="pb" method="post" action="/paste-back">
-  <label>Job name (optional)</label>
-  <input type="text" name="title" placeholder="e.g. Database Developer - Hyderabad">
-  <label>Job description text</label>
-  <textarea name="jd_text" rows="6" placeholder="Paste the full job description here">{{jd_prefill}}</textarea>
-
   <label>ChatGPT's reply</label>
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
     <span class="mut">Paste ChatGPT's full reply here (plain text or JSON both work)</span>
     <button type="button" onclick="document.getElementById('replyBox').value=''" style="width:auto;padding:4px 10px;margin:0;background:#3d1616;font-size:11px">Clear response</button>
   </div>
-  <textarea id="replyBox" name="reply" rows="12" placeholder="Paste ChatGPT's full reply here"></textarea>
+  <textarea id="replyBox" name="reply" rows="14" placeholder="Paste ChatGPT's full reply here"></textarea>
   <button type="submit">Save analysis</button>
 </form>
 </div>

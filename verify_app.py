@@ -154,7 +154,7 @@ try:
               '"books":"Reinforced Concrete Design by Pillai & Menon",'
               '"youtube":"STAAD.Pro tutorial for beginners",'
               '"free_tool":"Bentley free learning edition",'
-              '"more":["https://www.bentley.com/software/staad/","https://www.youtube.com/c/STAAD"],"chances":"Low"}],'
+              '"free_tool":"Bentley free learning edition","platforms":["Coursera - STAAD.Pro essentials","NPTEL structural design"],"more":["https://www.bentley.com/software/staad/","https://www.youtube.com/c/STAAD"],"chances":"Low"}],'
               '"exp_diff":"You have 15+ yrs in Training/L&D; the JD wants 3+ yrs but in a different function (civil engineering). This is a FUNCTION gap, not a level gap.",'
               '"dept_diff":"The JD is in Civil Engineering / Design. Your current function is Training & L&D. Different department.",'
               '"required_skills":["STAAD.Pro","AutoCAD","Structural analysis","Bar-bending schedules"],'
@@ -164,6 +164,14 @@ try:
     c, _ = post(op, "/paste-back",
                 {"title": "Civil Eng via paste-back", "jd_text": JD_DB, "reply": SAMPLE})
     check("paste-back accepted (cross-field JD)", c in (200, 302))
+    # NEW FLOW: paste-back MUST work WITHOUT jd_text (JD goes to ChatGPT, not the app)
+    c2, _ = post(op, "/paste-back", {"title": "No-JD paste-back", "reply": SAMPLE})
+    check("paste-back works with NO jd_text (new flow)", c2 in (200, 302))
+    # platforms field renders in the report
+    ids_p = sorted(set(int(x) for x in re.findall(r"/report/(\d+)", get(op, "/")[1])), reverse=True)
+    if ids_p:
+        _, rbp = get(op, f"/report/{ids_p[0]}")
+        check("report shows learning platforms / courses", "Platforms / courses" in rbp)
     ids = sorted(set(int(x) for x in re.findall(r"/report/(\d+)", get(op, "/")[1])), reverse=True)
     check("paste-back report stored", len(ids) >= 1, f"{len(ids)} reports")
     if ids:

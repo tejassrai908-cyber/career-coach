@@ -89,7 +89,7 @@ THE CANDIDATE'S REQUIRED METHOD (follow every step):
 7. If the JD omits experience years, salary, notice period, or any field, write "not specified" — NEVER guess or invent a number.
 8. For each gap, say whether the resume already shows adjacent work ("near": true) or it is a genuine new skill ("near": false), and give an interview-ready "proof" line built from the candidate's own resume.
 9. After the gaps, give THREE overall comparison blocks: (a) "exp_diff" — the EXPERIENCE difference: years the candidate has vs years the JD wants, their current domain/function vs the JD's domain/function, and whether this is a level or a function gap. (b) "dept_diff" — the DEPARTMENT difference: what department/function the JD belongs to (e.g. Software Engineering & QA, Sales) versus the candidate's current department/function (e.g. Training & L&D), in plain English. (c) "required_skills" — a plain list of the core skills this JD requires, pulled only from the JD.
-10. For every gap, fill "link" (one official learning URL), "books" (a recommended book/authoritative article), "youtube" (a concrete YouTube topic/channel that teaches it), "free_tool" (a free tool to practise), and "more" (a list of 2-4 EXTRA credible resource links — docs, courses, communities — when available). If a resource truly doesn't exist, use empty string / empty list, never invent a fake URL.
+10. For every gap, give the FULL learning path so the candidate can actually close it. Fill EVERY one of: "link" (one official learning URL), "books" (a recommended book/authoritative article), "youtube" (a concrete YouTube topic/channel that teaches it), "free_tool" (a free tool to practise), "platforms" (named learning PLATFORMS/courses to learn it — e.g. Coursera, Udemy, NPTEL, LinkedIn Learning, freeCodeCamp, official vendor docs), and "more" (a list of 2-4 EXTRA credible resource links — docs, courses, communities — when available). If a resource truly doesn't exist, use empty string / empty list, never invent a fake URL. Be generous: the goal is to grab MAXIMUM useful learning information for every skill.
 11. Add a "qualification" block that compares EDUCATION / CERTIFICATIONS / DEGREE the JD asks for versus what the RESUME shows. Use this exact shape:
    "qualification": {{ "jd_wants": "verbatim: the degree/certification/education the JD states (or 'not specified' if the JD does not mention education)", "resume_has": "what the resume actually shows for education/certifications (or 'not specified' if not on the resume)", "gap": "what is MISSING from the resume versus the JD's requirement", "learn": ["how to close this qualification gap — e.g. a course, certification, or credential to pursue", "..."] }}
 
@@ -118,6 +118,7 @@ Return ONLY valid JSON in this exact shape:
       "books":"recommended book or authoritative article (or empty string)",
       "youtube":"a YouTube topic that teaches it (or empty string)",
       "free_tool":"a free tool to practise it (or empty string)",
+      "platforms":["named learning platform/course 1 (e.g. Coursera, Udemy, NPTEL)","platform 2"],
       "more":["extra credible resource link 1","extra link 2"],
       "chances":"High if near/reframe, Medium if new but learnable, Low if a big stretch"
     }
@@ -129,7 +130,7 @@ Return ONLY valid JSON in this exact shape:
   "interview": [
     {"q":"a specific question THIS employer will ask given the gaps","a":"a tailored answer built from the candidate's own resume + the bridge skill"}
   ],
-  "verdict":"2-3 sentence plain-English summary: what this JD needs, how the resume matches, and whether the gap is experience vs skills vs a different department. Say 'not specified' for any missing JD field."
+  "verdict":"2-3 sentence plain-English summary: what this JD needs, how the resume matches, and whether the gap is experience vs skills vs a different department. Be HONEST: if the resume has NO relevant skills, experience, or qualification for this JD, say so plainly (e.g. 'You do not currently have the relevant skills or experience for this role'). Say 'not specified' for any missing JD field."
 }
 
 If you cannot output strict JSON, that's fine — write plain text with clear headings and bullet points using exactly these section titles: "Skills you are missing", "Skills you already have", "Experience difference", "Qualification difference", "How to learn these skills" (with book / YouTube / tool / course / link lines and URLs), and "Overall verdict". The app reads both formats.
@@ -424,6 +425,7 @@ def normalise_ai_data(data):
         g.setdefault("books", g.get("books", "") or "")
         g.setdefault("youtube", g.get("youtube", "") or "")
         g.setdefault("free_tool", g.get("free_tool", "") or "")
+        g.setdefault("platforms", g.get("platforms", []) or [])
         g.setdefault("more", g.get("more", []) or [])  # extra resource links
         g.setdefault("chances", "")
         g.setdefault("category", "explicitly_required")
