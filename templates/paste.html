@@ -1,0 +1,48 @@
+{% extends "base.html" %}{% block body %}
+<h1>Copy-paste AI helper (no API key, no limit)</h1>
+<p class="sub">Use your own free ChatGPT (or any AI) to get the same rigorous analysis — the app writes the prompt, you paste the reply back, it saves the full report.</p>
+
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
+<b style="color:#7ef0c0;font-size:14px">How it works (3 steps)</b>
+<ol style="margin:8px 0 0 18px;line-height:1.7">
+<li><b>Copy the prompt</b> below (your resume is already built in).</li>
+<li><b>Paste it into ChatGPT</b> on your phone/laptop. Copy the AI's full reply (the JSON answer).</li>
+<li><b>Paste the reply</b> into the box at the bottom + paste the job text, then <b>Save analysis</b>. The app structures it into the same report you get with a paid key.</li>
+</ol>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">Step 1 — Copy this prompt</h2>
+<p class="mut">Your resume is already inserted. Just tap <b>Copy</b>, then send it to ChatGPT.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px">
+  <button type="button" onclick="copyPrompt()" style="width:auto">Copy prompt</button>
+  <span id="copied" class="mut" style="align-self:center"></span>
+</div>
+<textarea id="promptBox" readonly rows="18" style="width:100%;font-family:monospace;font-size:13px">{{prompt}}</textarea>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">Step 2 — Paste the job description here</h2>
+<p class="mut">This is so the saved report keeps the real JD text. (It's the same JD you sent to ChatGPT.)</p>
+<form id="pb" method="post" action="/paste-back">
+  <label>Job name (optional)</label>
+  <input type="text" name="title" placeholder="e.g. Database Developer - Hyderabad">
+  <label>Job description text</label>
+  <textarea name="jd_text" placeholder="Paste the full job description here"></textarea>
+  <label>ChatGPT's reply (paste the AI's full JSON answer)</label>
+  <textarea name="reply" placeholder="Paste the AI's full reply here — include the { and }"></textarea>
+  <button type="submit">Save analysis</button>
+</form>
+</div>
+
+<script>
+function copyPrompt(){
+  var t=document.getElementById('promptBox');
+  t.select(); t.setSelectionRange(0, 99999);
+  try{ document.execCommand('copy'); document.getElementById('copied').textContent='✓ Copied!'; }
+  catch(e){ document.getElementById('copied').textContent='Select all and copy manually.'; }
+  window.getSelection().removeAllRanges();
+}
+</script>
+<p><a href="/">&larr; Back</a></p>
+{% endblock %}

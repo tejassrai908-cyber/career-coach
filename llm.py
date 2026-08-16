@@ -392,17 +392,13 @@ def ai_status():
                 "error": f"Call failed: {type(e).__name__}: {str(e)[:160]}"}
 
 
-def analyse(jd_text, resume_text):
-    """AI analysis. Returns a dict shaped like app.analyse()'s rep, or None."""
-    if not provider():
-        return None
+def normalise_ai_data(data):
+    """Normalise a raw model JSON dict into the shape app.py / templates expect.
 
-    prompt = _PROMPT.format(resume_text=resume_text, jd_text=jd_text)
-    raw = _call(prompt)
-    if not raw:
-        return None
-    # tolerate prose-wrapped or markdown-fenced JSON from free models
-    data = _extract_json(raw)
+    Shared by the live OpenRouter path (analyse) AND the zero-API paste-back
+    path (app.py calls this with a JSON you pasted back from ChatGPT). Returns
+    the report dict, or None if ``data`` is not a usable dict.
+    """
     if not isinstance(data, dict):
         return None
 
@@ -436,7 +432,7 @@ def analyse(jd_text, resume_text):
     explicit_gaps = [g for g in gaps if g.get("category") != "implied"]
     implied = [g for g in gaps if g.get("category") == "implied"]
 
-    rep = dict(
+    return dict(
         role=data.get("role_label", "Role"),
         role_label=data.get("role_label", "Role"),
         match_pct=int(data.get("match_pct", 0) or 0),
@@ -449,7 +445,20 @@ def analyse(jd_text, resume_text):
         interview=interview,
         ai=True,
     )
-    return rep
+
+
+def analyse(jd_text, resume_text):
+    """AI analysis. Returns a dict shaped like app.analyse()'s rep, or None."""
+    if not provider():
+        return None
+
+    prompt = _PROMPT.format(resume_text=resume_text, jd_text=jd_text)
+    raw = _call(prompt)
+    if not raw:
+        return None
+    # tolerate prose-wrapped or markdown-fenced JSON from free models
+    data = _extract_json(raw)
+    return normalise_ai_data(data)
 
 
 def clearance_plan_from_ai(rep):

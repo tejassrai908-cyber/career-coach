@@ -638,6 +638,51 @@ def report(jd_id):
                            ROLE_EXPERIENCE=ROLE_EXPERIENCE)
 
 
+@app.route("/paste")
+def paste_page():
+    """Zero-API AI path, step 1: build the full prompt (resume + JD + Tejas's
+    exact method) so it can be copied into any free AI (ChatGPT etc)."""
+    import pasteback
+    r = get_resume()
+    if not r:
+        flash("Save your resume first (Step 1 on the home page), then come back here.", "bad")
+        return redirect(url_for("home"))
+    return render_template("paste.html", resume=r, prompt=pasteback.build_prompt(r["text"], ""))
+
+
+@app.route("/paste-back", methods=["POST"])
+def paste_back():
+    """Zero-API AI path, step 2: glue the AI's reply back into a full report.
+    Needs a saved resume. The JD is whatever was in the prompt you copied — we
+    take it from the hidden field so the stored report has the real JD text."""
+    import pasteback
+    r = get_resume()
+    if not r:
+        flash("Save your resume first (Step 1 on the home page), then come back.", "bad")
+        return redirect(url_for("home"))
+    jd_text = (request.form.get("jd_text") or "").strip()
+    reply = (request.form.get("reply") or "").strip()
+    title = (request.form.get("title") or "").strip()
+    if len(jd_text) < 60:
+        flash("Paste the job description text in the 'Job description' box before pasting the AI reply.", "bad")
+        return redirect(url_for("paste"))
+    if len(reply) < 40:
+        flash("Paste the AI's full reply (the JSON answer) in the box.", "bad")
+        return redirect(url_for("paste"))
+    rep, err = pasteback.from_paste(r["text"], jd_text, reply)
+    if err:
+        flash(err, "bad")
+        return redirect(url_for("paste"))
+    # reuse the live-AI saving path so it shows in history with the same shape
+    title = title or (jd_text.strip().splitlines()[0][:70] if jd_text.strip() else "Pasted AI analysis")
+    with db() as c:
+        cur = c.execute("INSERT INTO jd(title,role,source,jd_text,report,created) VALUES(?,?,?,?,?,?)",
+                        (title, rep["role"], "paste-back (no API key)", jd_text, json.dumps(rep),
+                         dt.datetime.now().strftime("%d %b %Y, %I:%M %p")))
+        new_id = cur.lastrowid
+    return redirect(url_for("report", jd_id=new_id))
+
+
 @app.route("/delete/<int:jd_id>", methods=["POST"])
 def delete(jd_id):
     with db() as c:

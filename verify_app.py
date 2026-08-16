@@ -259,6 +259,46 @@ try:
 finally:
     proc.kill()
 
+print("\n[3] paste-back (zero-API ChatGPT path)")
+proc = boot()
+try:
+    op = opener()
+    c, _ = post_file(op, "/resume", "file", "cv.txt", RESUME)
+    check("resume upload accepted (paste-back mode)", c in (200, 302))
+    check("paste page 200", get(op, "/paste")[0] == 200)
+    # the prompt page should contain the method keywords + the resume
+    _, pbody = get(op, "/paste")
+    check("prompt builds resume + method",
+          "Read the COMPLETE job description" in pbody and "Tejas" in pbody)
+    # simulate a pasted ChatGPT reply (the same contract the live AI path uses)
+    SAMPLE = ('{"role_label":"Database Developer","match_pct":10,'
+              '"have":[{"key":"SQL (Basic)","why":"data work","jd_quote":""}],'
+              '"gaps":[{"key":"PL/SQL","category":"explicitly_required",'
+              '"jd_quote":"Designs, develops, implements and maintains custom Oracle applications written in PL/SQL",'
+              '"on_resume":false,"near":false,"why":"core requirement",'
+              '"proof":"","learn":["Learn PL/SQL on Oracle LiveSQL"],"link":"",'
+              '"books":"","youtube":"","free_tool":"","chances":"Low"}],'
+              '"interview":[{"q":"How do you handle PL/SQL?","a":"I am building it via Oracle LiveSQL."}],'
+              '"verdict":"Different field; core PL/SQL stack absent."}')
+    c, _ = post(op, "/paste-back",
+                {"title": "DB Dev via paste-back", "jd_text": JD_TM + "\nExtra duties: PL/SQL, Oracle reports",
+                 "reply": SAMPLE})
+    check("paste-back accepted", c in (200, 302))
+    # find the new report id
+    home = get(op, "/")[1]
+    ids = sorted(set(int(x) for x in re.findall(r"/report/(\d+)", home)), reverse=True)
+    check("paste-back report stored", len(ids) >= 1, f"{len(ids)} reports")
+    if ids:
+        _, rb = get(op, f"/report/{ids[0]}")
+        check("paste-back report renders role", "Database Developer" in rb,
+              ("role found" if "Database Developer" in rb else "role missing"))
+        check("paste-back shows JD quote", "Designs, develops, implements" in rb,
+              ("quote shown" if "Designs, develops, implements" in rb else "quote missing"))
+        check("paste-back flagged as paste-back engine", "paste-back" in rb.lower(),
+              ("engine tagged" if "paste-back" in rb.lower() else "engine not tagged"))
+finally:
+    proc.kill()
+
 print("\n" + ("ALL CHECKS PASSED" if not fails
               else f"{len(fails)} FAILED: {fails}"))
 sys.exit(1 if fails else 0)
