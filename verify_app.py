@@ -328,6 +328,7 @@ try:
               '"exp_diff":"You have 15+ yrs in Training/L&D; the JD wants 3+ yrs but in a different function (civil engineering). This is a FUNCTION gap, not a level gap.",'
               '"dept_diff":"The JD is in Civil Engineering / Design. Your current function is Training & L&D. Different department.",'
               '"required_skills":["STAAD.Pro","AutoCAD","Structural analysis","Bar-bending schedules"],'
+              '"qualification":{"jd_wants":"Bachelor in Civil Engineering","resume_has":"Bachelor in Training and Development","gap":"JD wants a Civil Engineering degree; your degree is in Training and Development","learn":["Consider a civil engineering diploma or STAAD.Pro certification"]},'
               '"interview":[{"q":"How do you analyse a beam?","a":"I would use STAAD.Pro to model loads and check deflection."}],'
               '"verdict":"Different field; civil engineering tools absent."}')
     c, _ = post(op, "/paste-back",
@@ -356,6 +357,14 @@ try:
               ("skill chips shown" if ("chip gap" in rb and "STAAD.Pro" in rb) else "chips missing"))
         check("paste-back flags skill as 'to learn'", "to learn" in rb,
               ("to-learn tag shown" if "to learn" in rb else "to-learn missing"))
+        check("report has SKILLS heading", "1 &mdash; SKILLS" in rb or "1 — SKILLS" in rb,
+              ("skills heading shown" if ("1 &mdash; SKILLS" in rb or "1 — SKILLS" in rb) else "skills heading missing"))
+        check("report has EXPERIENCE heading", "2 &mdash; EXPERIENCE" in rb or "2 — EXPERIENCE" in rb,
+              ("exp heading shown" if ("2 &mdash; EXPERIENCE" in rb or "2 — EXPERIENCE" in rb) else "exp heading missing"))
+        check("report has QUALIFICATION heading", "3 &mdash; QUALIFICATION" in rb or "3 — QUALIFICATION" in rb,
+              ("qual heading shown" if ("3 &mdash; QUALIFICATION" in rb or "3 — QUALIFICATION" in rb) else "qual heading missing"))
+        check("report shows qualification comparison", "JD wants" in rb and "Your resume has" in rb and "Civil Engineering" in rb,
+              ("qual comparison shown" if ("JD wants" in rb and "Your resume has" in rb) else "qual comparison missing"))
         check("paste-back flagged as paste-back engine", "paste-back" in rb.lower(),
               ("engine tagged" if "paste-back" in rb.lower() else "engine not tagged"))
 finally:

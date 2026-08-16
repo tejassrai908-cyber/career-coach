@@ -90,6 +90,8 @@ THE CANDIDATE'S REQUIRED METHOD (follow every step):
 8. For each gap, say whether the resume already shows adjacent work ("near": true) or it is a genuine new skill ("near": false), and give an interview-ready "proof" line built from the candidate's own resume.
 9. After the gaps, give THREE overall comparison blocks: (a) "exp_diff" — the EXPERIENCE difference: years the candidate has vs years the JD wants, their current domain/function vs the JD's domain/function, and whether this is a level or a function gap. (b) "dept_diff" — the DEPARTMENT difference: what department/function the JD belongs to (e.g. Software Engineering & QA, Sales) versus the candidate's current department/function (e.g. Training & L&D), in plain English. (c) "required_skills" — a plain list of the core skills this JD requires, pulled only from the JD.
 10. For every gap, fill "link" (one official learning URL), "books" (a recommended book/authoritative article), "youtube" (a concrete YouTube topic/channel that teaches it), "free_tool" (a free tool to practise), and "more" (a list of 2-4 EXTRA credible resource links — docs, courses, communities — when available). If a resource truly doesn't exist, use empty string / empty list, never invent a fake URL.
+11. Add a "qualification" block that compares EDUCATION / CERTIFICATIONS / DEGREE the JD asks for versus what the RESUME shows. Use this exact shape:
+   "qualification": {{ "jd_wants": "verbatim: the degree/certification/education the JD states (or 'not specified' if the JD does not mention education)", "resume_has": "what the resume actually shows for education/certifications (or 'not specified' if not on the resume)", "gap": "what is MISSING from the resume versus the JD's requirement", "learn": ["how to close this qualification gap — e.g. a course, certification, or credential to pursue", "..."] }}
 
 RESUME:
 \"\"\"{resume_text}\"\"\"
@@ -123,6 +125,7 @@ Return ONLY valid JSON in this exact shape:
   "exp_diff":"plain-English experience difference: years you have vs years wanted, your domain/function vs the JD's domain/function, level vs function gap",
   "dept_diff":"plain-English department difference: the JD's department/function vs your current department/function",
   "required_skills":["core skill 1 from the JD","core skill 2","core skill 3"],
+  "qualification":{{"jd_wants":"degree/certification the JD states (or 'not specified')","resume_has":"what the resume shows for education/certs (or 'not specified')","gap":"what is missing from the resume vs the JD","learn":["how to close the qualification gap"]}},
   "interview": [
     {"q":"a specific question THIS employer will ask given the gaps","a":"a tailored answer built from the candidate's own resume + the bridge skill"}
   ],
@@ -443,6 +446,7 @@ def normalise_ai_data(data):
     exp_diff = data.get("exp_diff", "") or ""
     dept_diff = data.get("dept_diff", "") or ""
     required_skills = [s for s in (data.get("required_skills", []) or []) if s]
+    qualification = data.get("qualification") or {}
 
     return dict(
         role=data.get("role_label", "Role"),
@@ -454,6 +458,7 @@ def normalise_ai_data(data):
         exp_diff=exp_diff,
         dept_diff=dept_diff,
         required_skills=required_skills,
+        qualification=qualification,
         asked_count=len(have) + len(explicit_gaps),
         generated=_dt.datetime.now().strftime("%d %b %Y, %I:%M %p"),
         verdict=data.get("verdict", ""),

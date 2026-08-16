@@ -34,9 +34,11 @@
 {% for s in r.required_skills or [] %}{% set _ = chips.append(('req', s)) %}{% endfor %}
 {% for g in r.gaps or [] %}{% set _ = chips.append(('gap', g.key)) %}{% endfor %}
 {% for h in r.have or [] %}{% set _ = chips.append(('have', h.key)) %}{% endfor %}
+
+<h2 style="color:#37d39b">1 &mdash; SKILLS</h2>
 {% if chips %}
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
-<b style="font-size:16px">Skills ChatGPT highlighted</b>
+<b style="font-size:16px">Skills the job needs &mdash; highlighted from what ChatGPT found</b>
 <div class="chips">
   {% for kind, label in chips %}
   <span class="chip {{kind}}">{{label}}{% if kind=='have' %}<span class="sub2">you have</span>{% elif kind=='gap' %}<span class="sub2">to learn</span>{% else %}<span class="sub2">required</span>{% endif %}</span>
@@ -54,9 +56,23 @@
 {% endif %}
 
 {% if r.exp_diff %}
+<h2 style="color:#5b8cff">2 &mdash; EXPERIENCE</h2>
 <div class="card" style="border-left:3px solid #5b8cff;background:#10243a">
-<b style="font-size:16px">Experience difference</b>
+<b style="font-size:16px">Experience difference (what's missing vs the JD)</b>
 <p class="mut" style="margin:8px 0 0;line-height:1.6">{{r.exp_diff}}</p>
+</div>
+{% endif %}
+
+{% if r.qualification and r.qualification.jd_wants %}
+<h2 style="color:#d3a437">3 &mdash; QUALIFICATION</h2>
+<div class="card" style="border-left:3px solid #d3a437;background:#2e2410">
+<b style="font-size:16px">Education / certification the JD wants vs your resume</b>
+<table style="width:100%;margin-top:8px">
+<tr><td style="width:42%;vertical-align:top"><b>JD wants</b><div class="mut">{{r.qualification.jd_wants}}</div></td>
+<td style="width:42%;vertical-align:top"><b>Your resume has</b><div class="mut">{{r.qualification.resume_has or 'not specified'}}</div></td></tr>
+</table>
+{% if r.qualification.gap %}<p class="mut" style="margin:10px 0 0;color:#f0c27e"><b>What's missing:</b> {{r.qualification.gap}}</p>{% endif %}
+{% if r.qualification.learn %}<div style="margin-top:10px"><b style="font-size:14px">How to close the qualification gap</b><ul>{% for l in r.qualification.learn %}<li>{{l}}</li>{% endfor %}</ul></div>{% endif %}
 </div>
 {% endif %}
 
