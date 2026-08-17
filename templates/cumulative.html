@@ -43,6 +43,20 @@ The full per-skill picture is in section 2; the grouped 12-category "Core Career
 </table>
 </div>
 
+<!-- 2B. NEW SKILLS LEARNED FROM THE JDs -->
+{% if c.new_skills %}
+<h2 style="color:#c08bff">2b &mdash; Skills the JDs introduced (not in my standard list)</h2>
+<div class="card" style="border-left:3px solid #c08bff;background:#1e1430">
+<p class="mut" style="margin:0 0 10px;line-height:1.6">These are skills that your pasted
+job descriptions asked for but which are <b>not</b> in the app's built-in 22-skill list.
+The app learned them automatically from the JDs you added &mdash; no manual edit needed.
+They are counted from the "core skills this JD requires" each analysis returned.</p>
+<div class="chips">
+{% for ns in c.new_skills %}<span class="chip req">{{ns.name}}<span class="sub2">{{ns.n_jd}} JD{{'' if ns.n_jd==1 else 's'}} &middot; {{ns.pct}}%</span></span>{% endfor %}
+</div>
+</div>
+{% endif %}
+
 <!-- 3. PRIORITIZE -->
 <h2>3 &mdash; Prioritized skills (4 tiers)</h2>
 {% for t in [1,2,3,4] %}

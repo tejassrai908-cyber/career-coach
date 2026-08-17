@@ -114,6 +114,7 @@ def _coerce(data):
     raw.setdefault("have", [])
     raw.setdefault("gaps", [])
     raw.setdefault("interview", [])
+    raw.setdefault("required_skills", [])
     for g in raw["gaps"]:
         if not isinstance(g, dict):
             continue

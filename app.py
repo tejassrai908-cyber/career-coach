@@ -790,6 +790,53 @@ def cumulative_analysis():
             not_add.append(sk["key"])
     keywords = sorted(keyword_freq.items(), key=lambda x: -x[1])[:15]
 
+    # --- NEW SKILLS LEARNED FROM THE JDs (not in the standard 22-skill list) ---
+    # Each saved report carries "required_skills": the core skills ChatGPT pulled
+    # straight from that JD. Any of those that is NOT one of our 22 known skills is
+    # a genuinely NEW requirement the JDs introduced -> learned automatically, with
+    # no manual editing of the skill list.
+    known_norm = {}
+    for s in SKILLS:
+        known_norm[norm(s["key"])] = s["key"]
+        for a in s.get("aliases", []):
+            known_norm[norm(a)] = s["key"]
+    _GENERIC = {"degree", "bachelors", "bachelor", "master", "mba", "phd",
+                "experience", "years", "education", "certification",
+                "certifications", "qualification", "qualifications", "skills",
+                "ability", "knowledge", "responsibilities", "requirements"}
+
+    def is_known_skill(name):
+        # Exact match against known skill keys/aliases only. We deliberately do
+        # NOT do substring matching here: a name like "Salesforce CPQ" must NOT
+        # be swallowed by the "salesforce" alias. Exact equality keeps genuinely
+        # new requirements (e.g. "GenAI prompting", "Salesforce CPQ") as new.
+        n = norm(name)
+        if not n or n in _GENERIC:
+            return True
+        return n in known_norm
+
+    new_counts = {}                   # norm_key -> {"name": original, "jids": set}
+    for row in rows:
+        try:
+            _rep = (json.loads(row["report"]) if isinstance(row["report"], str)
+                    else row["report"]) or {}
+        except Exception:
+            _rep = {}
+        for name in (_rep.get("required_skills") or []):
+            if not isinstance(name, str):
+                continue
+            nm = name.strip().rstrip(".").strip()
+            if len(nm) < 3 or len(nm) > 60 or is_known_skill(nm):
+                continue
+            key = norm(nm)
+            if key not in new_counts:
+                new_counts[key] = {"name": nm, "jids": set()}
+            new_counts[key]["jids"].add(row["id"])
+    new_skills = [dict(name=i["name"], n_jd=len(i["jids"]),
+                       pct=round(100 * len(i["jids"]) / jd_count) if jd_count else 0)
+                  for i in new_counts.values()]
+    new_skills.sort(key=lambda x: (-x["n_jd"], x["name"].lower()))
+
     # Career direction — fit from the dominant JD role family + resume anchors.
     dom_role = max(roles, key=roles.get) if roles else "training manager"
     direction_spec = [
@@ -842,8 +889,9 @@ def cumulative_analysis():
         jd_count=jd_count, small=small, roles=roles, dom_role=dom_role,
         skills=skills_out, tiers=tiers, tier_label=TIER_LABEL,
         level_label=LEVEL_LABEL, core_stack=core_stack, top15=top15,
-        roadmap=roadmap, underrepresented=underrepresented,
+        underrepresented=underrepresented,
         stronger_bullets=stronger_bullets, not_add=not_add, keywords=keywords,
+        new_skills=new_skills,
         career_direction=career_direction,
         final=dict(focus=focus, market_more=market_more, top_gap=top_gap,
                    ai_skill=ai_skill, best_dir=best_dir, trend=trend),
