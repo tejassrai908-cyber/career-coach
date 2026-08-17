@@ -889,7 +889,7 @@ def cumulative_analysis():
         jd_count=jd_count, small=small, roles=roles, dom_role=dom_role,
         skills=skills_out, tiers=tiers, tier_label=TIER_LABEL,
         level_label=LEVEL_LABEL, core_stack=core_stack, top15=top15,
-        underrepresented=underrepresented,
+        roadmap=roadmap, underrepresented=underrepresented,
         stronger_bullets=stronger_bullets, not_add=not_add, keywords=keywords,
         new_skills=new_skills,
         career_direction=career_direction,
