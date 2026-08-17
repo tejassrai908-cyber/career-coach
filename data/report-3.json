@@ -1,0 +1,799 @@
+{
+ "id": 3,
+ "title": "Pasted ChatGPT analysis",
+ "role": "L&D Team Lead & Team Manager",
+ "created": "17 Aug 2026, 07:10 PM",
+ "jd_text": "",
+ "report": {
+  "role": "L&D Team Lead & Team Manager",
+  "role_label": "L&D Team Lead & Team Manager",
+  "match_pct": 56,
+  "have": [
+   {
+    "key": "L&D experience",
+    "why": "The candidate has substantially more L&D experience than the stated 3-5 year requirement.",
+    "jd_quote": "3-5 years L&D"
+   },
+   {
+    "key": "Team leadership",
+    "why": "The candidate is currently a Team Leader in Training and has led and mentored a team of 20 training professionals.",
+    "jd_quote": "Role Brief - Team leadership & programme delivery governance"
+   },
+   {
+    "key": "Programme delivery governance",
+    "why": "The resume shows ownership of learning programs, training objectives, quality standards, TNA/TNI and production-readiness initiatives.",
+    "jd_quote": "Role Brief - Team leadership & programme delivery governance"
+   },
+   {
+    "key": "Team coordination and performance management",
+    "why": "The resume explicitly lists Team Leadership & Coaching and Performance Management and states that the candidate monitors team and trainee performance against KRAs.",
+    "jd_quote": "Team coordination and performance management"
+   },
+   {
+    "key": "LMS experience",
+    "why": "The resume explicitly lists Learning Management System and shows experience accessing LMS and project-supported tools.",
+    "jd_quote": "Monitor LMS data quality, SLA adherence, and learner satisfaction scores"
+   },
+   {
+    "key": "Performance check-ins and team development",
+    "why": "The candidate provides coaching, feedback and development support and has led and mentored 20 training professionals.",
+    "jd_quote": "Conduct performance check-ins and support team development"
+   },
+   {
+    "key": "Cross-functional coordination",
+    "why": "The candidate collaborates with Operations, HRBP and Business Leaders and explicitly lists Cross-functional Collaboration.",
+    "jd_quote": "Coordinate cross-functional dependencies with TA and HR Admin teams"
+   },
+   {
+    "key": "LMS analytics/reporting foundation",
+    "why": "The candidate has LMS experience plus Advanced Excel, dashboards, Power Query, data analysis and business reporting.",
+    "jd_quote": "LMS analytics monitoring"
+   },
+   {
+    "key": "Stakeholder communication",
+    "why": "The resume explicitly lists Stakeholder Management and describes collaboration with Operations, HRBP and Business Leaders.",
+    "jd_quote": "Strong communication with Client HR and CoE stakeholders"
+   },
+   {
+    "key": "Bachelor's degree",
+    "why": "The resume shows a B.Sc. MPC completed in 2013, satisfying the stated bachelor's-level education requirement.",
+    "jd_quote": "Graduate any discipline (Bachelor's or equivalent)."
+   },
+   {
+    "key": "Microsoft Excel",
+    "why": "Advanced Excel, dashboards, Power Query, data analysis and reporting are explicitly listed.",
+    "jd_quote": "MS Excel / Power BI: team performance dashboards and workload tracking."
+   },
+   {
+    "key": "Team performance dashboards",
+    "why": "The resume explicitly lists dashboards and data visualization/business reporting and uses performance metrics in the current role.",
+    "jd_quote": "MS Excel / Power BI: team performance dashboards and workload tracking."
+   },
+   {
+    "key": "Reporting",
+    "why": "Advanced Excel, Power Query, Data Analysis & Reporting and Data Visualization & Business Reporting are explicitly listed.",
+    "jd_quote": "team-level quality oversight, exception handling, reporting."
+   }
+  ],
+  "gaps": [
+   {
+    "key": "2 years of Team Lead experience",
+    "category": "explicitly_required",
+    "jd_quote": "on paper 2 year exp as a Team lead mandatory",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume shows Team Leader in Training from 2024 to the current role, but exact joining month is not provided, so the precise two-year threshold cannot be independently verified from the resume.",
+    "proof": "I am currently a Team Leader in Training and have led and mentored a team of 20 training professionals while driving capability development initiatives.",
+    "learn": [
+     "Document the exact start date and scope of Team Lead responsibilities on the resume.",
+     "Quantify team size, performance-management responsibility, governance and decision-making responsibilities.",
+     "Prepare a two-year Team Lead evidence story covering people management, delivery governance and escalations."
+    ],
+    "link": "[Workday Learning documentation](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/introduction-to-workday-learning.html?utm_source=chatgpt.com)",
+    "books": "The First-Time Manager — Loren B. Belker, Gary S. Topchik and Jim McCormick",
+    "youtube": "YouTube topic: Team Lead responsibilities, people management and performance check-ins",
+    "free_tool": "Google Sheets for team-performance and capacity tracking",
+    "platforms": [
+     "Coursera — People Management",
+     "LinkedIn Learning — New Manager Foundations"
+    ],
+    "more": [
+     "[Microsoft Excel Help & Learning](https://support.microsoft.com/en-us/excel/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The First-Time Manager — Loren B. Belker, Gary S. Topchik and Jim McCormick",
+     "YouTube topic: Team Lead responsibilities, people management and performance check-ins",
+     "Google Sheets for team-performance and capacity tracking"
+    ]
+   },
+   {
+    "key": "Team capacity planning",
+    "category": "explicitly_required",
+    "jd_quote": "Own programme delivery calendar and team capacity planning",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has team leadership, training-program ownership and time-management experience, but the resume does not explicitly show capacity planning.",
+    "proof": "I have led and mentored 20 training professionals and managed training delivery against business requirements; I can extend this into formal capacity planning by mapping trainer availability, workload, learner volume and program demand.",
+    "learn": [
+     "Build a trainer-capacity matrix covering available hours, planned sessions, learner volume and utilization.",
+     "Learn workload forecasting and resource allocation.",
+     "Create a monthly capacity-versus-demand dashboard and use it to identify shortages and excess capacity."
+    ],
+    "link": "[Microsoft Excel Help & Learning](https://support.microsoft.com/en-us/excel/?utm_source=chatgpt.com)",
+    "books": "The Fast Forward MBA in Project Management — Eric Verzuh",
+    "youtube": "YouTube topic: workforce capacity planning and resource capacity planning in Excel",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Coursera — Workforce Planning",
+     "Udemy — Resource and Capacity Planning"
+    ],
+    "more": [
+     "[Microsoft Power Query and Power Pivot in Excel](https://support.microsoft.com/en-US/Excel/learn-to-use-power-query-and-power-pivot-in-excel?utm_source=chatgpt.com)",
+     "[Microsoft Power BI learning path](https://learn.microsoft.com/en-us/training/paths/prepare-visualize-data-power-bi/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Fast Forward MBA in Project Management — Eric Verzuh",
+     "YouTube topic: workforce capacity planning and resource capacity planning in Excel",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "LMS data quality",
+    "category": "explicitly_required",
+    "jd_quote": "Monitor LMS data quality, SLA adherence, and learner satisfaction scores",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has LMS experience and reporting skills but does not explicitly demonstrate LMS data-quality monitoring.",
+    "proof": "I have worked with LMS and project-supported tools and have strong experience in Excel, dashboards, data analysis and reporting, which gives me a strong foundation for monitoring LMS data quality.",
+    "learn": [
+     "Learn common LMS data-quality checks such as duplicate learners, missing completion status, incorrect enrollments and inconsistent course records.",
+     "Create validation rules and exception reports.",
+     "Build a weekly LMS data-quality dashboard showing errors, owners and closure status."
+    ],
+    "link": "[Workday Learning documentation](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/introduction-to-workday-learning.html?utm_source=chatgpt.com)",
+    "books": "Data Quality Fundamentals — David Loshin",
+    "youtube": "YouTube topic: LMS data quality checks, learning analytics and LMS reporting",
+    "free_tool": "Moodle",
+    "platforms": [
+     "Moodle Academy",
+     "Coursera — Learning Analytics"
+    ],
+    "more": [
+     "[Workday Learning Components](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/workday-learning-components.html?utm_source=chatgpt.com)",
+     "[Workday Learning administration documentation](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/administer-learning.html?toc=9&utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Data Quality Fundamentals — David Loshin",
+     "YouTube topic: LMS data quality checks, learning analytics and LMS reporting",
+     "Moodle"
+    ]
+   },
+   {
+    "key": "SLA adherence",
+    "category": "explicitly_required",
+    "jd_quote": "Monitor LMS data quality, SLA adherence, and learner satisfaction scores",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows operational performance management but does not explicitly mention service-level agreements or SLA tracking.",
+    "proof": "I monitor team and trainee performance against KRAs and drive productivity and operational excellence; I can apply the same KPI discipline to SLA monitoring.",
+    "learn": [
+     "Learn SLA, KPI, response time, resolution time and breach concepts.",
+     "Create an SLA tracker with target, actual, breach status, owner and corrective action.",
+     "Practice escalation rules for approaching and breached SLAs."
+    ],
+    "link": "[ITIL 4 Foundation — PeopleCert](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-foundation-2565?utm_source=chatgpt.com)",
+    "books": "ITIL 4 Foundation: IT Service Management — AXELOS",
+    "youtube": "YouTube topic: SLA management, SLA compliance and SLA breach management",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "PeopleCert — ITIL 4 Foundation",
+     "Coursera — IT Service Management"
+    ],
+    "more": [
+     "[ITIL 4 Service Level Management](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-practitioner-service-level-management-3867?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "ITIL 4 Foundation: IT Service Management — AXELOS",
+     "YouTube topic: SLA management, SLA compliance and SLA breach management",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Learner satisfaction scores",
+    "category": "explicitly_required",
+    "jd_quote": "Monitor LMS data quality, SLA adherence, and learner satisfaction scores",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume mentions learner engagement and knowledge retention but does not explicitly show ownership of learner satisfaction scores.",
+    "proof": "I identified performance gaps through Peer Learning Programs, Dip Checks and WhatsApp-based learning communities, resulting in improved learner engagement and knowledge retention.",
+    "learn": [
+     "Learn survey design and learner-satisfaction measurement.",
+     "Create post-training surveys covering relevance, trainer effectiveness, confidence and overall satisfaction.",
+     "Build a dashboard showing satisfaction trends by trainer, program and learner group."
+    ],
+    "link": "[Microsoft Forms and Microsoft 365 learning resources](https://support.microsoft.com/en-us/excel/?utm_source=chatgpt.com)",
+    "books": "Kirkpatrick's Four Levels of Training Evaluation — James D. Kirkpatrick and Wendy Kayser Kirkpatrick",
+    "youtube": "YouTube topic: learner satisfaction survey and Kirkpatrick Level 1 evaluation",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera — Instructional Design",
+     "LinkedIn Learning — Measuring Learning Effectiveness"
+    ],
+    "more": [
+     "[Workday Learning documentation](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/manage-learner-enrollment.html?toc=8&utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Kirkpatrick's Four Levels of Training Evaluation — James D. Kirkpatrick and Wendy Kayser Kirkpatrick",
+     "YouTube topic: learner satisfaction survey and Kirkpatrick Level 1 evaluation",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Escalation point for complex learner or content issues",
+    "category": "explicitly_required",
+    "jd_quote": "Act as escalation point for complex learner or content issues",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate already handles training issues, performance gaps and cross-functional coordination, but the resume does not explicitly state formal escalation ownership.",
+    "proof": "I have collaborated with Operations, HRBP and Business Leaders to address training and business-performance requirements and have monitored team and trainee performance while providing coaching and feedback.",
+    "learn": [
+     "Create an escalation matrix covering severity, owner, SLA, escalation level and resolution.",
+     "Practice diagnosing learner/content issues before escalating.",
+     "Build a root-cause/action tracker for recurring learner and content issues."
+    ],
+    "link": "[Salesforce Trailhead — Automate Case Management](https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_case_manage?utm_source=chatgpt.com)",
+    "books": "The Practice of Adaptive Leadership — Ronald Heifetz, Marty Linsky and Alexander Grashow",
+    "youtube": "YouTube topic: escalation management, incident escalation and root-cause analysis",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Salesforce Trailhead",
+     "ServiceNow Now Learning"
+    ],
+    "more": [
+     "[ServiceNow HRSD training resources](https://www.servicenow.com/community/hrsd-articles/recommended-training-for-hrsd/ta-p/2614379?utm_source=chatgpt.com)",
+     "[Salesforce case escalation tutorial](https://trailhead.salesforce.com/content/learn/projects/create-a-process-for-managing-support-cases/create-an-escalation-rule?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Practice of Adaptive Leadership — Ronald Heifetz, Marty Linsky and Alexander Grashow",
+     "YouTube topic: escalation management, incident escalation and root-cause analysis",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "TA and HR Admin cross-functional dependencies",
+    "category": "explicitly_required",
+    "jd_quote": "Coordinate cross-functional dependencies with TA and HR Admin teams",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has strong cross-functional collaboration with Operations, HRBP and Business Leaders, but TA and HR Admin collaboration is not explicitly shown.",
+    "proof": "I have collaborated with cross-functional stakeholders including Operations, HRBP and Business Leaders to align training initiatives with organizational goals and support business performance requirements.",
+    "learn": [
+     "Learn the basic workflow between Talent Acquisition, HR Administration and L&D.",
+     "Map dependencies such as onboarding data, learner creation, employee movement and training assignment.",
+     "Create a RACI matrix for TA, HR Admin, L&D and business stakeholders."
+    ],
+    "link": "[Workday Learn with Workday](https://www.workday.com/en-us/services/learn-with-workday.html?utm_source=chatgpt.com)",
+    "books": "Human Resource Management — Gary Dessler",
+    "youtube": "YouTube topic: HR operations, talent acquisition and L&D cross-functional workflow",
+    "free_tool": "Miro",
+    "platforms": [
+     "Coursera — Human Resource Management",
+     "LinkedIn Learning — HR Operations"
+    ],
+    "more": [
+     "[Workday in Action and HCM learning resources](https://www.workday.com/en-gb/services/learn-with-workday.html?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Human Resource Management — Gary Dessler",
+     "YouTube topic: HR operations, talent acquisition and L&D cross-functional workflow",
+     "Miro"
+    ]
+   },
+   {
+    "key": "Workday Learning operational depth",
+    "category": "explicitly_required",
+    "jd_quote": "Workday Learning operational depth",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows LMS experience, but Workday Learning is not named. The JD specifically wants operational depth in Workday Learning.",
+    "proof": "I already have Learning Management System experience and have worked with LMS and project-supported tools. I would build on that LMS foundation by developing Workday Learning operational knowledge.",
+    "learn": [
+     "Start with Workday Basics and Workday Learning terminology.",
+     "Study Workday Learning content, enrollments, completions, dashboards, reports and security.",
+     "Build a Workday-focused practice portfolio using screenshots, process maps and mock learner-operations scenarios; obtain hands-on access where possible."
+    ],
+    "link": "[Introduction to Workday Learning](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/introduction-to-workday-learning.html?utm_source=chatgpt.com)",
+    "books": "Workday Learning official documentation and course manuals",
+    "youtube": "YouTube topic: Workday Learning fundamentals, Workday Learning administrator and Workday HCM learning",
+    "free_tool": "Workday public Learn with Workday resources",
+    "platforms": [
+     "Workday Learn with Workday",
+     "Coursera — Workday Basics Series"
+    ],
+    "more": [
+     "[Workday Learn with Workday](https://www.workday.com/en-us/services/learn-with-workday.html?utm_source=chatgpt.com)",
+     "[Workday Learning Components](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/workday-learning-components.html?utm_source=chatgpt.com)",
+     "[Workday Learning Trainer documentation](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/the-learning-trainer.html?toc=10&utm_source=chatgpt.com)",
+     "[Workday Learning webinars](https://www.workday.com/en-in/company/latest/events-webinars/webinars.html?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "Workday Learning official documentation and course manuals",
+     "YouTube topic: Workday Learning fundamentals, Workday Learning administrator and Workday HCM learning",
+     "Workday public Learn with Workday resources"
+    ]
+   },
+   {
+    "key": "Workday Learning hands-on experience",
+    "category": "explicitly_required",
+    "jd_quote": "Workday Learning hands-on mandatory.",
+    "on_resume": false,
+    "near": true,
+    "why": "This is a mandatory technology requirement. The resume proves LMS experience but not hands-on Workday Learning experience.",
+    "proof": "My resume shows LMS experience, training operations and learning-program delivery. The technology-specific gap is Workday Learning hands-on exposure rather than a lack of L&D capability.",
+    "learn": [
+     "Complete the publicly available Workday Basics and Workday Learning material.",
+     "Study learning administration workflows including content, enrollment, completion, trainer and reporting workflows.",
+     "Seek real Workday customer/partner access or an employer-provided sandbox because public material alone cannot honestly be represented as production hands-on experience."
+    ],
+    "link": "[Workday training and certification resources](https://www.workday.com/en-us/services/training-certifications.html?utm_source=chatgpt.com)",
+    "books": "Workday official Learning for Administrators course manuals",
+    "youtube": "YouTube topic: Workday Learning hands-on administrator walkthrough",
+    "free_tool": "Workday public Learn with Workday",
+    "platforms": [
+     "Workday Learn with Workday",
+     "Coursera — Workday Basics Series"
+    ],
+    "more": [
+     "[Workday public documentation](https://doc.workday.com/?utm_source=chatgpt.com)",
+     "[Workday Learning administration](https://doc.workday.com/workday-education/en-us/course-manuals/learning-for-administrators/administer-learning.html?toc=9&utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "Workday official Learning for Administrators course manuals",
+     "YouTube topic: Workday Learning hands-on administrator walkthrough",
+     "Workday public Learn with Workday"
+    ]
+   },
+   {
+    "key": "HCM platform proficiency",
+    "category": "explicitly_required",
+    "jd_quote": "Technology Requirements (Workday / ServiceNow)-HCM platform (proficient any leading platform)",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume does not list Workday HCM, ServiceNow HCM or another HCM platform. Existing LMS experience provides an adjacent foundation.",
+    "proof": "I have worked with LMS and project-supported tools and have experience coordinating with Operations, HRBP and L&D; I would extend this systems experience into an HCM platform.",
+    "learn": [
+     "Learn HCM fundamentals: worker data, organizations, business processes, security and reporting.",
+     "Start with Workday Basics and HCM terminology.",
+     "Practice mapping common HR/L&D workflows to HCM system objects and processes."
+    ],
+    "link": "[Workday Learn with Workday](https://www.workday.com/en-us/services/learn-with-workday.html?utm_source=chatgpt.com)",
+    "books": "Human Resource Management — Gary Dessler",
+    "youtube": "YouTube topic: Workday HCM fundamentals for beginners",
+    "free_tool": "Workday public learning resources",
+    "platforms": [
+     "Workday Learn with Workday",
+     "Coursera — Human Resources Management"
+    ],
+    "more": [
+     "[Workday in Action Series](https://www.workday.com/en-us/services/learn-with-workday.html?utm_source=chatgpt.com)",
+     "[Workday public documentation](https://doc.workday.com/?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "Human Resource Management — Gary Dessler",
+     "YouTube topic: Workday HCM fundamentals for beginners",
+     "Workday public learning resources"
+    ]
+   },
+   {
+    "key": "Team-level quality oversight and exception handling",
+    "category": "explicitly_required",
+    "jd_quote": "team-level quality oversight, exception handling, reporting.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has quality standards, performance monitoring and reporting experience but does not explicitly demonstrate exception-management ownership.",
+    "proof": "I led the training team to ensure effective delivery, achievement of training objectives and adherence to quality standards, and monitored team and trainee performance against KRAs.",
+    "learn": [
+     "Define quality KPIs and thresholds for an L&D operations team.",
+     "Create an exception log for missed training, data errors, SLA breaches and learner complaints.",
+     "Establish review cadence, root-cause analysis and corrective-action ownership."
+    ],
+    "link": "[Microsoft Power BI learning path](https://learn.microsoft.com/en-us/training/paths/prepare-visualize-data-power-bi/?utm_source=chatgpt.com)",
+    "books": "The Goal — Eliyahu M. Goldratt",
+    "youtube": "YouTube topic: exception management, quality dashboards and operational KPI management",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Microsoft Learn",
+     "Coursera — Operations Management"
+    ],
+    "more": [
+     "[Power BI data analytics learning path](https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft/?utm_source=chatgpt.com)",
+     "[Power BI data preparation and visualization](https://learn.microsoft.com/en-us/training/paths/prepare-visualize-data-power-bi/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Goal — Eliyahu M. Goldratt",
+     "YouTube topic: exception management, quality dashboards and operational KPI management",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Case management tool proficiency",
+    "category": "explicitly_required",
+    "jd_quote": "Case management tool (proficient e.g. ServiceNow HRSD, Salesforce, Zendesk or equivalent)",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume lists LMS, Excel, Google Sheets and workflow automation but no case-management platform.",
+    "proof": "I have worked with LMS and project-supported tools and have experience handling operational issues with Operations and HRBP stakeholders. I can transfer that operational mindset to a case-management platform.",
+    "learn": [
+     "Learn case lifecycle concepts: intake, categorization, assignment, queue, escalation, resolution and closure.",
+     "Use Salesforce Trailhead to practise case queues and escalation rules.",
+     "Learn ServiceNow HRSD concepts to understand how HR cases are managed in an enterprise environment."
+    ],
+    "link": "[Salesforce Trailhead — Automate Case Management](https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_case_manage?utm_source=chatgpt.com)",
+    "books": "ITIL 4 Foundation — AXELOS",
+    "youtube": "YouTube: Salesforce Service Cloud case management, queues and escalation rules",
+    "free_tool": "Salesforce Trailhead",
+    "platforms": [
+     "Salesforce Trailhead",
+     "ServiceNow Now Learning"
+    ],
+    "more": [
+     "[ServiceNow HRSD training resources](https://www.servicenow.com/community/hrsd-articles/recommended-training-for-hrsd/ta-p/2614379?utm_source=chatgpt.com)",
+     "[ServiceNow HRSD documentation](https://www.servicenow.com/docs/r/employee-service-management/now-assist-for-hrsd/now-assist-hrsd.html?utm_source=chatgpt.com)",
+     "[Salesforce Service Cloud case management](https://trailhead.salesforce.com/users/sfgretelgivens/trailmixes/service-cloud-and-lightning?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "ITIL 4 Foundation — AXELOS",
+     "YouTube: Salesforce Service Cloud case management, queues and escalation rules",
+     "Salesforce Trailhead"
+    ]
+   },
+   {
+    "key": "Queue monitoring",
+    "category": "explicitly_required",
+    "jd_quote": "queue monitoring, escalation management, SLA compliance.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows operational performance monitoring but not case queues.",
+    "proof": "I monitor team and trainee performance against KRAs and support operational excellence; I can apply this monitoring discipline to case queues and workload backlogs.",
+    "learn": [
+     "Learn queue concepts, aging, backlog, priority, ownership and workload distribution.",
+     "Build a mock case queue in Salesforce Trailhead.",
+     "Track open cases, aging, SLA risk and escalation status in a dashboard."
+    ],
+    "link": "[Salesforce Trailhead case management](https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_case_manage?utm_source=chatgpt.com)",
+    "books": "ITIL 4 Foundation — AXELOS",
+    "youtube": "[YouTube case-management tutorial](https://www.youtube.com/watch?v=nmBdEI-Ey54&utm_source=chatgpt.com)",
+    "free_tool": "Salesforce Trailhead",
+    "platforms": [
+     "Salesforce Trailhead",
+     "ServiceNow Now Learning"
+    ],
+    "more": [
+     "[Salesforce case escalation tutorial](https://trailhead.salesforce.com/content/learn/projects/create-a-process-for-managing-support-cases/create-an-escalation-rule?utm_source=chatgpt.com)",
+     "[Salesforce Service Cloud Trailmix](https://trailhead.salesforce.com/users/sfgretelgivens/trailmixes/service-cloud-and-lightning?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "ITIL 4 Foundation — AXELOS",
+     "[YouTube case-management tutorial](https://www.youtube.com/watch?v=nmBdEI-Ey54&utm_source=chatgpt.com)",
+     "Salesforce Trailhead"
+    ]
+   },
+   {
+    "key": "Escalation management",
+    "category": "explicitly_required",
+    "jd_quote": "queue monitoring, escalation management, SLA compliance.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has stakeholder management and operational issue-handling experience, but formal case escalation management is not stated.",
+    "proof": "I have collaborated with Operations, HRBP and Business Leaders to address performance and training requirements and have coached teams to improve operational performance.",
+    "learn": [
+     "Learn severity, priority, escalation thresholds and escalation ownership.",
+     "Practise creating escalation rules for overdue cases.",
+     "Learn to distinguish operational escalation from learner/content escalation."
+    ],
+    "link": "[Salesforce case escalation tutorial](https://trailhead.salesforce.com/content/learn/projects/create-a-process-for-managing-support-cases/create-an-escalation-rule?utm_source=chatgpt.com)",
+    "books": "ITIL 4 Foundation — AXELOS",
+    "youtube": "[YouTube — Automate Case Management in Salesforce](https://www.youtube.com/watch?v=nmBdEI-Ey54&utm_source=chatgpt.com)",
+    "free_tool": "Salesforce Trailhead",
+    "platforms": [
+     "Salesforce Trailhead",
+     "ServiceNow Now Learning"
+    ],
+    "more": [
+     "[ServiceNow HRSD recommended training](https://www.servicenow.com/community/hrsd-articles/recommended-training-for-hrsd/ta-p/2614379?utm_source=chatgpt.com)",
+     "[Salesforce case management](https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_case_manage?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "ITIL 4 Foundation — AXELOS",
+     "[YouTube — Automate Case Management in Salesforce](https://www.youtube.com/watch?v=nmBdEI-Ey54&utm_source=chatgpt.com)",
+     "Salesforce Trailhead"
+    ]
+   },
+   {
+    "key": "SLA compliance in case management",
+    "category": "explicitly_required",
+    "jd_quote": "queue monitoring, escalation management, SLA compliance.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has KPI/performance-management experience but no explicit SLA compliance or case-management experience.",
+    "proof": "I monitor team and trainee performance against KRAs and drive productivity and operational excellence; this provides a strong foundation for learning SLA-based service monitoring.",
+    "learn": [
+     "Learn SLA targets, milestones, breach prediction and compliance reporting.",
+     "Build a case dashboard showing SLA-at-risk and SLA-breached cases.",
+     "Learn ITIL service-level concepts and practise them in a case-management scenario."
+    ],
+    "link": "[ITIL 4 Service Level Management](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-practitioner-service-level-management-3867?utm_source=chatgpt.com)",
+    "books": "ITIL 4 Foundation — AXELOS",
+    "youtube": "YouTube topic: SLA compliance dashboard and SLA breach management",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "PeopleCert — ITIL 4 Foundation",
+     "Salesforce Trailhead"
+    ],
+    "more": [
+     "[Salesforce SLA policy training](https://trailhead.salesforce.com/content/learn/modules/sla-and-entitlements-setup/create-your-first-sla-policy?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "ITIL 4 Foundation — AXELOS",
+     "YouTube topic: SLA compliance dashboard and SLA breach management",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Power BI",
+    "category": "explicitly_required",
+    "jd_quote": "MS Excel / Power BI: team performance dashboards and workload tracking.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume has advanced Excel dashboards and data visualization but does not list Power BI.",
+    "proof": "I have Advanced Excel experience including dashboards, Power Query, data analysis and reporting, along with data visualization and business reporting. Power BI is the next logical extension of this existing analytics skill set.",
+    "learn": [
+     "Complete Microsoft's beginner Power BI learning path.",
+     "Learn Power Query, data modeling, DAX basics, visuals, filters and dashboard design.",
+     "Build an L&D team dashboard covering productivity, workload, attendance, completion and learner metrics."
+    ],
+    "link": "[Microsoft Learn — Prepare and visualize data with Power BI](https://learn.microsoft.com/en-us/training/paths/prepare-visualize-data-power-bi/?utm_source=chatgpt.com)",
+    "books": "Storytelling with Data — Cole Nussbaumer Knaflic",
+    "youtube": "YouTube topic: Power BI full course for beginners, dashboard and DAX basics",
+    "free_tool": "Power BI Desktop",
+    "platforms": [
+     "Microsoft Learn — Power BI",
+     "Coursera — Microsoft Power BI"
+    ],
+    "more": [
+     "[Download Power BI Desktop for free](https://learn.microsoft.com/en-ie/power-bi/fundamentals/desktop-get-the-desktop?utm_source=chatgpt.com)",
+     "[Microsoft Learn — Model data with Power BI](https://learn.microsoft.com/en-us/training/paths/model-data-power-bi/?utm_source=chatgpt.com)",
+     "[Microsoft Learn — Get started with data analytics](https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Storytelling with Data — Cole Nussbaumer Knaflic",
+     "YouTube topic: Power BI full course for beginners, dashboard and DAX basics",
+     "Power BI Desktop"
+    ]
+   },
+   {
+    "key": "Workload tracking",
+    "category": "explicitly_required",
+    "jd_quote": "MS Excel / Power BI: team performance dashboards and workload tracking.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has performance dashboards and reporting but does not explicitly mention workload tracking.",
+    "proof": "I monitor team and trainee performance against KRAs and have advanced Excel dashboard and reporting skills, which can be directly applied to workload tracking.",
+    "learn": [
+     "Create a workload tracker by employee, activity, volume, effort and due date.",
+     "Calculate utilization, capacity, backlog and workload variance.",
+     "Visualize workload distribution and identify over/under-utilization."
+    ],
+    "link": "[Microsoft Learn — Prepare and visualize data with Power BI](https://learn.microsoft.com/en-us/training/paths/prepare-visualize-data-power-bi/?utm_source=chatgpt.com)",
+    "books": "The Fast Forward MBA in Project Management — Eric Verzuh",
+    "youtube": "YouTube topic: workload management dashboard in Excel and Power BI",
+    "free_tool": "Power BI Desktop",
+    "platforms": [
+     "Microsoft Learn",
+     "Coursera — Power BI"
+    ],
+    "more": [
+     "[Microsoft Power BI learning](https://learn.microsoft.com/en-gb/training/powerplatform/power-bi?utm_source=chatgpt.com)",
+     "[Microsoft Excel Power Query resources](https://support.microsoft.com/en-US/Excel/learn-to-use-power-query-and-power-pivot-in-excel?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Fast Forward MBA in Project Management — Eric Verzuh",
+     "YouTube topic: workload management dashboard in Excel and Power BI",
+     "Power BI Desktop"
+    ]
+   },
+   {
+    "key": "12 years in a lead or supervisor role",
+    "category": "explicitly_required",
+    "jd_quote": "12 years in a lead or supervisor role.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates leadership, coordination and the current Team Leader role, but it does not demonstrate 12 years in a lead or supervisor position.",
+    "proof": "I currently lead and mentor a team of 20 training professionals and have extensive L&D experience across BFSI, BPO, Education and MNC environments. However, my resume does not document 12 years of formal lead/supervisor designation.",
+    "learn": [
+     "This is an experience-duration requirement, not a skill that a course can create.",
+     "Document every previous formal or informal supervisory responsibility, including team size, delegation, performance management and operational ownership, if factually supported.",
+     "For future applications, maintain a leadership portfolio showing progressively increasing team scope, governance, capacity planning and performance-management ownership."
+    ],
+    "link": "[Coursera — People Management courses](https://www.coursera.org/courses?query=people+management&utm_source=chatgpt.com)",
+    "books": "The Making of a Manager — Julie Zhuo",
+    "youtube": "YouTube topic: L&D team management, supervisor responsibilities and people management",
+    "free_tool": "Google Sheets for leadership KPI and team-capacity evidence",
+    "platforms": [
+     "Coursera — People Management",
+     "LinkedIn Learning — Management Foundations"
+    ],
+    "more": [
+     "[Microsoft Learn management and collaboration resources](https://learn.microsoft.com/training/browse/?products=power-platform&wt.mc_id=developermscom&utm_source=chatgpt.com)"
+    ],
+    "chances": "Low if the employer enforces the 12-year requirement literally",
+    "bridge": [],
+    "tools": [
+     "The Making of a Manager — Julie Zhuo",
+     "YouTube topic: L&D team management, supervisor responsibilities and people management",
+     "Google Sheets for leadership KPI and team-capacity evidence"
+    ]
+   },
+   {
+    "key": "Valid PAN Number",
+    "category": "explicitly_required",
+    "jd_quote": "Valid PAN Number - ____________________(Why PAN Required > Mandatory to Process Candidature & Find Duplicity in Internal PAN Validation Process and also to initiate a screening call.",
+    "on_resume": false,
+    "near": false,
+    "why": "This is an application-processing requirement, not a professional skill. The resume does not contain a PAN field.",
+    "proof": "",
+    "learn": [
+     "No learning course is required for this administrative requirement.",
+     "Provide the PAN only through the employer's legitimate application process if you choose to apply.",
+     "Do not place the full PAN number on a public resume unless the employer specifically requires it through a secure application channel."
+    ],
+    "link": "[Income Tax Department — PAN](https://www.incometax.gov.in/iec/foportal/help/all-topics/pan?utm_source=chatgpt.com)",
+    "books": "",
+    "youtube": "YouTube topic: PAN application and verification — Income Tax Department",
+    "free_tool": "",
+    "platforms": [
+     "Income Tax Department e-Filing portal"
+    ],
+    "more": [],
+    "chances": "High if you already have a valid PAN",
+    "bridge": [],
+    "tools": [
+     "YouTube topic: PAN application and verification — Income Tax Department"
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The JD asks for 4-10 years of experience, 3-5 years of L&D, 'on paper 2 year exp as a Team lead mandatory', and '12 years in a lead or supervisor role.' The resume states 15+ years of L&D/Sales Enablement/Corporate Training and shows a Team Leader role from 2024 to the current role, but it does not demonstrate 12 years of formal lead/supervisor experience. Therefore, the candidate is highly experienced in L&D and likely fits the Team Lead level, but the 12-year supervisory requirement is not evidenced and the 15+ years total experience is above the stated 4-10 year range. The major gap is technology/operations depth rather than basic L&D experience.",
+  "dept_diff": "The JD belongs to L&D operations/programme governance with a strong HR technology and shared-services operations component: Workday Learning, HCM, case management, LMS analytics, SLA and queue monitoring. The candidate's current department/function is Training/L&D and Sales Enablement in an insurance brokerage. The department is broadly the same L&D family, but the operating model is different: this role is more HR-tech/LMS operations and service-governance oriented, while the candidate's current work is more training delivery, sales enablement, coaching and people leadership.",
+  "required_skills": [
+   "Team leadership",
+   "Programme delivery governance",
+   "L&D programme delivery calendar ownership",
+   "Team capacity planning",
+   "LMS data quality monitoring",
+   "SLA adherence",
+   "Learner satisfaction score monitoring",
+   "Performance check-ins",
+   "Team development",
+   "Escalation management",
+   "Complex learner or content issue handling",
+   "Cross-functional coordination with TA and HR Admin",
+   "Workday Learning operational depth",
+   "Team coordination",
+   "Performance management",
+   "LMS analytics monitoring",
+   "Communication with Client HR and CoE stakeholders",
+   "Workday Learning hands-on experience",
+   "HCM platform proficiency",
+   "Team-level quality oversight",
+   "Exception handling",
+   "Reporting",
+   "Case management",
+   "Queue monitoring",
+   "SLA compliance",
+   "MS Excel",
+   "Power BI",
+   "Team performance dashboards",
+   "Workload tracking"
+  ],
+  "qualification": {
+   "jd_wants": "Graduate any discipline (Bachelor's or equivalent).",
+   "resume_has": "B.Sc. MPC completed in 2013 and Master Degree in English completed in 2016.",
+   "gap": "No education gap. The resume shows a bachelor's degree and therefore meets the stated graduate/bachelor's requirement. The JD does not state a required certification.",
+   "learn": [
+    "No qualification needs to be added to satisfy the stated education requirement.",
+    "Workday Learning hands-on training is a technology requirement rather than an academic qualification and should be treated as a separate skill gap."
+   ]
+  },
+  "asked_count": 32,
+  "generated": "17 Aug 2026, 07:10 PM",
+  "verdict": "This is a much better functional match for you than a role requiring a completely different career function: the JD is still L&D, and your L&D, team leadership, LMS, performance-management, stakeholder-management and Excel/reporting background are strong matches. The biggest gaps are mandatory hands-on Workday Learning, HCM/case-management technology, SLA/queue operations and Power BI; additionally, the JD asks for 12 years in a lead/supervisor role, which your resume does not currently prove. You should consider applying, but position yourself as an experienced L&D Team Lead transitioning into HR-tech/LMS operations rather than claiming Workday or case-management experience you do not have.",
+  "interview": [
+   {
+    "q": "You have 15+ years of L&D experience, but this role asks for 4-10 years and specifically 12 years in a lead or supervisor role. How do you see your fit?",
+    "a": "My overall L&D experience is 15+ years, so I bring substantial depth to the function. My current role is Team Leader in Training, where I lead and mentor 20 training professionals and manage learning delivery, performance and stakeholder alignment. I would be transparent that my resume does not show 12 years of formal lead/supervisor designation, but my L&D leadership responsibilities are strong and directly relevant to this Team Lead role.",
+    "tip": ""
+   },
+   {
+    "q": "You have LMS experience, but we require mandatory hands-on Workday Learning. Have you used Workday Learning?",
+    "a": "My resume currently shows LMS experience but does not claim Workday Learning hands-on experience. I would not overstate that. However, I already understand learning operations, training delivery, LMS usage, TNA/TNI, reporting and learner performance. I am specifically building Workday Learning knowledge around content, enrollment, completion, dashboards and reporting so that I can bridge my existing LMS expertise into the Workday environment.",
+    "tip": ""
+   },
+   {
+    "q": "How would you monitor LMS data quality?",
+    "a": "I would create validation checks for learner records, enrollment status, completion status, attendance and reporting consistency. My Advanced Excel, Power Query, dashboards and reporting experience would allow me to create an exception tracker and identify errors by type, owner and closure status.",
+    "tip": ""
+   },
+   {
+    "q": "This role involves SLA adherence and case queues. What experience do you have?",
+    "a": "My resume does not show direct case-management or SLA ownership, so I would not claim it as existing experience. My closest experience is monitoring KRAs, trainee and team performance and driving operational excellence. I am building the bridge through case-management concepts, queue monitoring, escalation rules and SLA tracking using Salesforce Trailhead and ITIL concepts.",
+    "tip": ""
+   },
+   {
+    "q": "How would you handle a complex learner or content issue escalated to you?",
+    "a": "I would first identify whether the issue is learner-related, content-related, process-related or system-related. In my current role I already identify performance gaps through TNA/TNI, coaching, Dip Checks and field observations, then work with Operations, HRBP and Business Leaders to resolve them. I would use the same root-cause approach while adding a formal severity, owner and escalation matrix.",
+    "tip": ""
+   },
+   {
+    "q": "How would you plan the capacity of an L&D team?",
+    "a": "I would start with learner volume, programme calendar, trainer availability, session duration, required preparation time and non-delivery activities. I would calculate available capacity versus demand and use an Excel or Power BI dashboard to identify overload, under-utilization and upcoming capacity risks. My experience leading 20 training professionals gives me a strong base for this.",
+    "tip": ""
+   },
+   {
+    "q": "How would you work with TA and HR Admin teams?",
+    "a": "I already collaborate with Operations, HRBP and Business Leaders to align training with business requirements. I would extend that stakeholder model to TA and HR Admin by defining dependencies such as employee data, onboarding, learner creation, movement, training assignment and completion reporting, with clear owners and timelines.",
+    "tip": ""
+   },
+   {
+    "q": "What is your experience with Power BI?",
+    "a": "Power BI is not currently listed on my resume, so I would not claim production experience. My existing Advanced Excel, Power Query, dashboards, data analysis and reporting skills provide the foundation. I am building Power BI capability by creating team-performance and workload dashboards using Power Query, data modeling and DAX.",
+    "tip": ""
+   },
+   {
+    "q": "How would you communicate with Client HR and CoE stakeholders?",
+    "a": "Stakeholder Management and Cross-functional Collaboration are already core competencies for me. In my current role I collaborate with Operations, HRBP and Business Leaders to align learning initiatives with organizational goals. I would use the same approach with Client HR and CoE stakeholders, focusing on data, risks, learner outcomes and agreed actions.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
