@@ -1,0 +1,719 @@
+{
+ "id": 2,
+ "title": "Pasted ChatGPT analysis",
+ "role": "L&D function in the region",
+ "created": "17 Aug 2026, 07:04 PM",
+ "jd_text": "",
+ "report": {
+  "role": "L&D function in the region",
+  "role_label": "L&D function in the region",
+  "match_pct": 58,
+  "have": [
+   {
+    "key": "On-site, off-site and on-the-job training",
+    "why": "This is a core delivery responsibility and the resume directly shows extensive classroom, field coaching and OJT experience.",
+    "jd_quote": "To conduct On Site, Off site & On the Job Trainings."
+   },
+   {
+    "key": "Training needs identification and development",
+    "why": "The resume directly demonstrates TNA/TNI and designing targeted interventions.",
+    "jd_quote": "Identify, develop and update the training needs for all services in the SFS/ FMS/Hard FM division in consultation with Regional HR Head."
+   },
+   {
+    "key": "Training strategy",
+    "why": "The candidate has designed onboarding, refresher, process-improvement and learning-intervention programs.",
+    "jd_quote": "Implement overall training strategy and calendar as evolved in the region."
+   },
+   {
+    "key": "Training content development",
+    "why": "The resume explicitly states development of training content, facilitator guides, assessments and learning materials.",
+    "jd_quote": "Plan and direct all training courses in terms of content, systems and policies in consultation with Regional HR Head"
+   },
+   {
+    "key": "Cross-functional coordination with Operations and HR",
+    "why": "The candidate already works with Operations, HRBP and Business Leaders, closely matching the regional coordination requirement.",
+    "jd_quote": "Interact and coordinate with the personnel on-site as well as regional Operations to address all training related issues"
+   },
+   {
+    "key": "Stakeholder and manager collaboration",
+    "why": "Stakeholder Management and cross-functional collaboration are explicit resume competencies.",
+    "jd_quote": "Work closely with the support of all Segment/SO/Transversal Managers to complete training programs successfully"
+   },
+   {
+    "key": "Training effectiveness follow-up",
+    "why": "The candidate monitors trainee/team performance and has conducted interventions to improve training effectiveness and engagement.",
+    "jd_quote": "Implement and follow-up of the training process and effectiveness"
+   },
+   {
+    "key": "Data analysis and reporting",
+    "why": "Advanced Excel, dashboards, Power Query, data analysis and business reporting directly support the JD's data and reporting requirements.",
+    "jd_quote": "Analyze trends and data to ensure operationally sound training systems"
+   },
+   {
+    "key": "Research and application of training methods",
+    "why": "Instructional Design, Storyboarding, classroom training, OJT and multiple learning interventions show adjacent capability.",
+    "jd_quote": "Research different methods of training and development strategies pertaining to different levels and groups of employees at sites and Office."
+   },
+   {
+    "key": "Collaborative working",
+    "why": "Cross-functional collaboration, stakeholder management and team leadership are explicitly present in the resume.",
+    "jd_quote": "Ability to work collaboratively"
+   },
+   {
+    "key": "Customer-centric perspective",
+    "why": "The candidate has customer-facing sales experience and has improved customer engagement through field coaching.",
+    "jd_quote": "High customer centric perspective"
+   },
+   {
+    "key": "Spoken and written communication",
+    "why": "Communication Skills Training, English coaching, presentations and corporate training directly demonstrate this requirement.",
+    "jd_quote": "Excellent spoken and written communication skills"
+   },
+   {
+    "key": "Presentation skills",
+    "why": "Microsoft PowerPoint, executive presentations and training-content development are explicitly listed.",
+    "jd_quote": "Excellent negotiation and presentation skills"
+   },
+   {
+    "key": "Out-of-the-box thinking",
+    "why": "The resume explicitly mentions innovative ideas, Peer Learning Programs, Dip Checks and WhatsApp-based learning communities.",
+    "jd_quote": "Ability to think out of the box”"
+   },
+   {
+    "key": "Proactive/self-improvement mindset",
+    "why": "The resume explicitly states 'Upskilling myself as per the project requirements' and continuous improvement initiatives.",
+    "jd_quote": "A Proactive attitude"
+   },
+   {
+    "key": "Self-improvement",
+    "why": "The resume directly states continuous upskilling and learning according to project requirements.",
+    "jd_quote": "Attitude of self-improvement"
+   }
+  ],
+  "gaps": [
+   {
+    "key": "Quarterly and monthly training calendar planning and coordination",
+    "category": "explicitly_required",
+    "jd_quote": "To Prepare and coordinate for Quarterly & Monthly Training Calendar",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate clearly manages training programs, but the resume does not explicitly demonstrate ownership of a formal quarterly/monthly regional training calendar.",
+    "proof": "I have designed and implemented onboarding, refresher and learning-intervention programs and managed training delivery; I am now extending that experience into structured monthly and quarterly regional training-calendar ownership.",
+    "learn": [
+     "Build a sample 12-month L&D calendar in Excel covering audience, program, trainer, location, frequency and status.",
+     "Learn capacity planning, training-calendar dependencies and monthly governance reviews.",
+     "Create a quarterly calendar and practice presenting it to HR and Operations stakeholders."
+    ],
+    "link": "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "YouTube: L&D training calendar planning, annual training calendar and learning governance",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Coursera — Learning and Development",
+     "NPTEL — Human Resource Development"
+    ],
+    "more": [
+     "[NPTEL — Human Resource Development](https://onlinecourses-archive.nptel.ac.in/noc17_hs32/preview?utm_source=chatgpt.com)",
+     "[Coursera — Training Needs Assessment](https://www-cloudfront-alias.coursera.org/articles/training-needs-assessment?trk_ref=relatedArticlesCard&utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "YouTube: L&D training calendar planning, annual training calendar and learning governance",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "E-learning coordination",
+    "category": "explicitly_required",
+    "jd_quote": "To drive and co-ordinate e-learning for target audience in the region",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume has LMS, AI-assisted content creation, instructional design and storyboarding, but does not explicitly show ownership of regional e-learning coordination.",
+    "proof": "I already work with LMS platforms, instructional design, storyboarding and AI-assisted content creation, so I can extend this foundation into coordinating e-learning programs and learner completion.",
+    "learn": [
+     "Learn LMS administration, learner enrollment, completion tracking and reporting.",
+     "Learn SCORM basics and how e-learning packages interact with an LMS.",
+     "Build and publish a small sample e-learning module and track completion."
+    ],
+    "link": "[Moodle — Get Started](https://download.moodle.org/?utm_source=chatgpt.com)",
+    "books": "The Accidental Instructional Designer — Cammy Bean",
+    "youtube": "YouTube: SCORM and LMS administration for beginners — Moodle/SCORM tutorials",
+    "free_tool": "Moodle self-hosted",
+    "platforms": [
+     "Moodle Academy",
+     "Coursera — Learning Experience Design"
+    ],
+    "more": [
+     "[SCORM.com — SCORM overview](https://scorm.com/?utm_source=chatgpt.com)",
+     "[MoodleDocs — Creating a course](https://docs.moodle.org/500/en/Create_a_course?utm_source=chatgpt.com)",
+     "[Articulate — Course authoring](https://www.articulate.com/lp/360/tr-o-course-authoring/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Accidental Instructional Designer — Cammy Bean",
+     "YouTube: SCORM and LMS administration for beginners — Moodle/SCORM tutorials",
+     "Moodle self-hosted"
+    ]
+   },
+   {
+    "key": "Training calendar compliance and training execution compliance tracking",
+    "category": "explicitly_required",
+    "jd_quote": "To coordinate and update Training Calendar compliance Tracker & Training Execution Compliance tracker every month",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has Excel, Google Sheets, dashboards and reporting skills, but the resume does not explicitly show L&D compliance-tracker ownership.",
+    "proof": "I use Advanced Excel, Google Sheets, dashboards and business reporting to monitor performance, so I can apply the same data-management discipline to monthly training compliance tracking.",
+    "learn": [
+     "Create a training tracker with planned versus completed sessions.",
+     "Add attendance, completion, overdue, trainer and business-unit compliance metrics.",
+     "Build an automated monthly compliance dashboard using Excel or Google Sheets."
+    ],
+    "link": "[Microsoft Learn — Power BI data analytics](https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft/?utm_source=chatgpt.com)",
+    "books": "The Training and Development Handbook — Robert L. Craig",
+    "youtube": "YouTube: L&D compliance tracker and training dashboard in Excel",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Microsoft Learn",
+     "Coursera"
+    ],
+    "more": [
+     "[Microsoft Learn — Power BI reports](https://learn.microsoft.com/en-us/training/modules/power-bi-effective-reports/?utm_source=chatgpt.com)",
+     "[Microsoft Learn — Power BI dashboards](https://learn.microsoft.com/lb-lu/training/modules/create-dashboards-power-bi/7-configure-data-classification?ns-enrollment-id=learn-bizapps.manage-secure-power-bi&ns-enrollment-type=learningpath&utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Training and Development Handbook — Robert L. Craig",
+     "YouTube: L&D compliance tracker and training dashboard in Excel",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Role Certification Training Programs",
+    "category": "explicitly_required",
+    "jd_quote": "Implement and drive Role Certification Training Programs at sites.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows onboarding, product/process training, assessments and production-readiness programs, which are closely related, but formal role-certification ownership is not stated.",
+    "proof": "I have developed assessments, onboarding programs and production-readiness initiatives and have experience identifying competency gaps; I can apply this foundation to formal role certification programs.",
+    "learn": [
+     "Learn competency-based certification design.",
+     "Create role competency matrices and certification assessments.",
+     "Build a pilot certification pathway with prerequisite training, assessment, remediation and recertification."
+    ],
+    "link": "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)",
+    "books": "Competency-Based Education and Training — John Raven",
+    "youtube": "YouTube: competency-based training and employee certification program design",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera",
+     "NPTEL — Human Resource Development"
+    ],
+    "more": [
+     "[NPTEL — Human Resource Development](https://onlinecourses-archive.nptel.ac.in/noc17_hs32/preview?utm_source=chatgpt.com)",
+     "[Coursera — Learning Experience Design](https://www.coursera.org/learn/learning-experience-design-development-and-evaluation?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Competency-Based Education and Training — John Raven",
+     "YouTube: competency-based training and employee certification program design",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Monthly reporting ownership",
+    "category": "explicitly_required",
+    "jd_quote": "Maintain, coordinate and update all reports on Monthly Basis",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate has advanced Excel, dashboards, data analysis and reporting, but recurring monthly ownership of all regional L&D reports is not explicitly demonstrated.",
+    "proof": "I have advanced Excel, dashboards, Power Query, data analysis and business reporting experience and regularly monitor team and trainee performance against KRAs.",
+    "learn": [
+     "Create a monthly L&D MIS structure.",
+     "Automate data consolidation and KPI calculations using Power Query.",
+     "Build a management dashboard showing training plan, completion, attendance, effectiveness and compliance."
+    ],
+    "link": "[Microsoft Learn — Get started with data analytics](https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft/?utm_source=chatgpt.com)",
+    "books": "Storytelling with Data — Cole Nussbaumer Knaflic",
+    "youtube": "YouTube: L&D MIS dashboard and monthly training report in Excel",
+    "free_tool": "Microsoft Power BI Desktop",
+    "platforms": [
+     "Microsoft Learn",
+     "Coursera"
+    ],
+    "more": [
+     "[Microsoft Learn — Prepare and visualize data with Power BI](https://learn.microsoft.com/en-us/training/paths/prepare-visualize-data-power-bi/?utm_source=chatgpt.com)",
+     "[NPTEL — HR Analytics](https://www.nptel.ac.in/courses/110107492?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Storytelling with Data — Cole Nussbaumer Knaflic",
+     "YouTube: L&D MIS dashboard and monthly training report in Excel",
+     "Microsoft Power BI Desktop"
+    ]
+   },
+   {
+    "key": "CSTP Training and Managerial Training Programs",
+    "category": "explicitly_required",
+    "jd_quote": "Coordination and follow up of L & D Trainings / CSTP Trainings and Managerial training programs",
+    "on_resume": true,
+    "near": true,
+    "why": "L&D training is a major strength, but the resume does not explicitly mention CSTP or managerial-development programs.",
+    "proof": "I have led and mentored training professionals, conducted capability-development initiatives and delivered training across multiple employee groups; I can transfer that experience to managerial-development programs.",
+    "learn": [
+     "Learn the principles of management development, coaching and leadership capability building.",
+     "Design a manager-development curriculum with modules, practice, assessment and follow-up.",
+     "Research the employer's exact meaning of CSTP during interview preparation because the JD does not define the acronym."
+    ],
+    "link": "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)",
+    "books": "The Coaching Habit — Michael Bungay Stanier",
+    "youtube": "YouTube: managerial development training program design and leadership training",
+    "free_tool": "Google Slides",
+    "platforms": [
+     "Coursera",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "[NPTEL — Human Resource Management I](https://www.nptel.ac.in/courses/122105020?utm_source=chatgpt.com)",
+     "[Coursera — Training and Performance courses](https://www.coursera.org/courses?query=training+and+development&utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Coaching Habit — Michael Bungay Stanier",
+     "YouTube: managerial development training program design and leadership training",
+     "Google Slides"
+    ]
+   },
+   {
+    "key": "SFS/FMS/Hard FM domain knowledge",
+    "category": "explicitly_required",
+    "jd_quote": "Identify, develop and update the training needs for all services in the SFS/ FMS/Hard FM division in consultation with Regional HR Head.",
+    "on_resume": false,
+    "near": false,
+    "why": "This is the clearest function/domain gap. The candidate has strong L&D experience but the resume does not show Facilities Management, Soft FM, FMS or Hard FM experience.",
+    "proof": "",
+    "learn": [
+     "Start with facility-management terminology and the distinction between workplace/soft services and technical/hard services.",
+     "Learn operations and maintenance, building systems, contractor management, safety and customer-service concepts.",
+     "Study the business context sufficiently to conduct training-needs discussions with FM operations teams."
+    ],
+    "link": "[IFMA — Essentials of Facility Management](https://www.ifma.org/professional-development/essentials-of-facility-management?utm_source=chatgpt.com)",
+    "books": "Facilities Management — David G. Cotts, Kathy Roper and Richard P. Payant",
+    "youtube": "YouTube: facility management basics, hard FM vs soft FM and building services",
+    "free_tool": "Google Docs for creating an FM terminology and process workbook",
+    "platforms": [
+     "IFMA Essentials of Facility Management",
+     "IWFM Academy"
+    ],
+    "more": [
+     "[IFMA — Introduction to Facility Management](https://pages.ifma.org/exclusive-introduction-to-fm?utm_source=chatgpt.com)",
+     "[IWFM — Managing Building Services](https://www.iwfm.org.uk/professional-development/popular-courses/managing-building-services.html?utm_source=chatgpt.com)",
+     "[IFMA — Online Facility Management Training](https://www.ifma.org/professional-development/online-learning/?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "Facilities Management — David G. Cotts, Kathy Roper and Richard P. Payant",
+     "YouTube: facility management basics, hard FM vs soft FM and building services",
+     "Google Docs for creating an FM terminology and process workbook"
+    ]
+   },
+   {
+    "key": "Training courses involving systems and policies",
+    "category": "explicitly_required",
+    "jd_quote": "Plan and direct all training courses in terms of content, systems and policies in consultation with Regional HR Head",
+    "on_resume": true,
+    "near": true,
+    "why": "Content development is strong, but the resume does not explicitly show responsibility for training on organizational systems and policies.",
+    "proof": "I have developed training content, facilitator guides, assessments and learning materials for business, process and product requirements, and I have worked with LMS and project-supported tools.",
+    "learn": [
+     "Learn how to convert SOPs and policies into training objectives, scenarios, assessments and job aids.",
+     "Practice mapping system workflows to learner tasks.",
+     "Build a sample policy/system training module and assessment."
+    ],
+    "link": "[MoodleDocs — Create a course](https://docs.moodle.org/500/en/Create_a_course?utm_source=chatgpt.com)",
+    "books": "Map It — Cathy Moore",
+    "youtube": "YouTube: SOP and policy training design for corporate L&D",
+    "free_tool": "Moodle",
+    "platforms": [
+     "Moodle Academy",
+     "Coursera — Learning Experience Design"
+    ],
+    "more": [
+     "[Coursera — Learning Experience Design](https://www.coursera.org/learn/learning-experience-design-development-and-evaluation?utm_source=chatgpt.com)",
+     "[MoodleDocs — Courses](https://docs.moodle.org/502/en/Courses?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Map It — Cathy Moore",
+     "YouTube: SOP and policy training design for corporate L&D",
+     "Moodle"
+    ]
+   },
+   {
+    "key": "Regional training strategy and calendar execution",
+    "category": "explicitly_required",
+    "jd_quote": "Implement overall training strategy and calendar as evolved in the region.",
+    "on_resume": true,
+    "near": true,
+    "why": "Training strategy and learning interventions are present, but regional calendar governance is not explicit.",
+    "proof": "I have designed and implemented targeted training interventions based on TNA/TNI and led training teams while aligning learning initiatives with business performance requirements.",
+    "learn": [
+     "Learn regional L&D governance and annual/quarterly planning.",
+     "Build a strategy-to-calendar framework linking business goals, learner groups, programs and metrics.",
+     "Create a monthly governance dashboard for execution against the strategy."
+    ],
+    "link": "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)",
+    "books": "The Six Disciplines of Breakthrough Learning — Wick, Pollock and Jefferson",
+    "youtube": "YouTube: L&D strategy and annual training plan",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Coursera",
+     "NPTEL"
+    ],
+    "more": [
+     "[NPTEL — Human Resource Development](https://onlinecourses-archive.nptel.ac.in/noc17_hs32/preview?utm_source=chatgpt.com)",
+     "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Six Disciplines of Breakthrough Learning — Wick, Pollock and Jefferson",
+     "YouTube: L&D strategy and annual training plan",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Periodic client feedback on employee performance",
+    "category": "explicitly_required",
+    "jd_quote": "Interact with clients periodically as defined for their feedback on the performance of Sodexo employees",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate has stakeholder management and customer engagement experience, but direct client-review governance and structured client feedback are not explicit.",
+    "proof": "I have collaborated with Operations, HRBP and Business Leaders and have strong customer-facing sales and customer-engagement experience; I can apply those stakeholder skills to structured client performance reviews.",
+    "learn": [
+     "Learn client-review meeting structure, stakeholder mapping and feedback collection.",
+     "Practice turning client feedback into training needs and action plans.",
+     "Build a quarterly client feedback dashboard linked to training interventions."
+    ],
+    "link": "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)",
+    "books": "The Trusted Advisor — David H. Maister, Charles H. Green and Robert M. Galford",
+    "youtube": "YouTube: client review meetings, stakeholder management and collecting client feedback",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "[Coursera — Training Needs Analysis](https://www.coursera.org/enterprise/articles/training-needs-analysis?utm_source=chatgpt.com)",
+     "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Trusted Advisor — David H. Maister, Charles H. Green and Robert M. Galford",
+     "YouTube: client review meetings, stakeholder management and collecting client feedback",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Training projects within approved budget and established timeframe",
+    "category": "explicitly_required",
+    "jd_quote": "Complete and maintain training programs and projects within the approved budget and established time frame",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate has training leadership, prioritization and program delivery experience, but explicit training-budget and project-schedule ownership is not shown.",
+    "proof": "I have led training teams, supported multiple training programs and driven capability-development initiatives; I can extend this experience by formally managing training budgets, milestones and delivery timelines.",
+    "learn": [
+     "Learn project scope, WBS, milestones, resource planning, budget estimation and variance tracking.",
+     "Build a sample L&D project plan with budget and timeline.",
+     "Practice monthly budget-versus-actual and planned-versus-completed reviews."
+    ],
+    "link": "[Coursera — Budgeting and Scheduling Projects](https://www.coursera.org/learn/schedule-projects/?utm_source=chatgpt.com)",
+    "books": "Project Management for the Unofficial Project Manager — Kory Kogon, Suzette Blakemore and James Wood",
+    "youtube": "YouTube: project budgeting and scheduling for beginners — PMI",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Coursera — Project Management Principles and Practices",
+     "Microsoft Learn"
+    ],
+    "more": [
+     "[Coursera — Project Planning: Schedule, Budget, Deliver](https://www.coursera.org/learn/project-planning-schedule-budget-deliver?utm_source=chatgpt.com)",
+     "[Coursera — Project Management Principles and Practices](https://www.coursera.org/specializations/project-management/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Project Management for the Unofficial Project Manager — Kory Kogon, Suzette Blakemore and James Wood",
+     "YouTube: project budgeting and scheduling for beginners — PMI",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Confidentiality of training material",
+    "category": "explicitly_required",
+    "jd_quote": "Maintain confidentiality regarding all training material developed and used",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates work with training materials and LMS, but does not explicitly state confidentiality controls.",
+    "proof": "I develop facilitator guides, assessments and learning materials and work with LMS and project-supported tools; I can apply formal access-control and information-handling practices to these materials.",
+    "learn": [
+     "Learn confidentiality, access control, data classification and secure document sharing.",
+     "Understand least privilege and basic information-security principles.",
+     "Create a sample L&D document-classification and access matrix."
+    ],
+    "link": "[Microsoft Learn — Security hub](https://learn.microsoft.com/en-us/security/?utm_source=chatgpt.com)",
+    "books": "Information Security Policies Made Easy — Information Security Forum",
+    "youtube": "YouTube: data confidentiality, access control and information security for business users",
+    "free_tool": "Microsoft Security learning modules",
+    "platforms": [
+     "Microsoft Learn",
+     "Coursera"
+    ],
+    "more": [
+     "[Microsoft Learn — Security and compliance concepts](https://learn.microsoft.com/en-us/training/modules/describe-security-concepts-methodologies/?utm_source=chatgpt.com)",
+     "[Microsoft Learn — Protect and govern Microsoft 365 data](https://learn.microsoft.com/en-us/training/modules/protect-govern-data-microsoft-365/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Information Security Policies Made Easy — Information Security Forum",
+     "YouTube: data confidentiality, access control and information security for business users",
+     "Microsoft Security learning modules"
+    ]
+   },
+   {
+    "key": "Professional appearance and participation in scheduled meetings/calls",
+    "category": "explicitly_required",
+    "jd_quote": "Always maintain a well-groomed and professional appearance and participate in scheduled meetings / Con calls",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume does not document appearance or meeting etiquette, although 15+ years of corporate training and stakeholder interaction make this a low-risk interview requirement.",
+    "proof": "I have 15+ years of classroom and corporate training experience and regularly collaborate with Operations, HRBP and Business Leaders, including cross-functional communication for business requirements.",
+    "learn": [
+     "Practice concise professional meeting introductions, updates and action summaries.",
+     "Use structured meeting notes with decisions, owners and deadlines.",
+     "Prepare a professional video-call setup and meeting etiquette checklist."
+    ],
+    "link": "[Microsoft Support — Teams meetings and calls](https://support.microsoft.com/en-us/teams?utm_source=chatgpt.com)",
+    "books": "The Essentials of Business Etiquette — Barbara Pachter",
+    "youtube": "YouTube: professional meeting etiquette and executive communication",
+    "free_tool": "Google Meet",
+    "platforms": [
+     "LinkedIn Learning",
+     "Coursera"
+    ],
+    "more": [
+     "[Coursera — Developing Interpersonal Skills](https://www.coursera.org/courses?query=training+and+development&utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Essentials of Business Etiquette — Barbara Pachter",
+     "YouTube: professional meeting etiquette and executive communication",
+     "Google Meet"
+    ]
+   },
+   {
+    "key": "Discreet and professional interaction",
+    "category": "explicitly_required",
+    "jd_quote": "Ability to interact effectively in a discreet and professional manner",
+    "on_resume": true,
+    "near": true,
+    "why": "Communication and stakeholder management are strong, but discretion/confidential handling is not explicitly evidenced.",
+    "proof": "I collaborate with cross-functional stakeholders including Operations, HRBP and Business Leaders and have extensive experience communicating across corporate and MNC environments.",
+    "learn": [
+     "Learn professional stakeholder communication and confidentiality boundaries.",
+     "Practice difficult conversations using neutral, factual language.",
+     "Use a stakeholder communication matrix for sensitive training issues."
+    ],
+    "link": "[Coursera — Developing Interpersonal Skills](https://www.coursera.org/courses?query=training+and+development&utm_source=chatgpt.com)",
+    "books": "Crucial Conversations — Kerry Patterson, Joseph Grenny, Ron McMillan and Al Switzler",
+    "youtube": "YouTube: professional communication and handling confidential workplace conversations",
+    "free_tool": "Google Docs",
+    "platforms": [
+     "Coursera",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "[Harvard Program on Negotiation — Negotiation skills](https://www.pon.harvard.edu/daily/negotiation-skills-daily/what-is-negotiation/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Crucial Conversations — Kerry Patterson, Joseph Grenny, Ron McMillan and Al Switzler",
+     "YouTube: professional communication and handling confidential workplace conversations",
+     "Google Docs"
+    ]
+   },
+   {
+    "key": "Negotiation skills",
+    "category": "explicitly_required",
+    "jd_quote": "Excellent negotiation and presentation skills",
+    "on_resume": true,
+    "near": true,
+    "why": "Presentation is strongly demonstrated, but negotiation is not explicitly listed in the resume.",
+    "proof": "My resume demonstrates presentation, stakeholder management, consultative selling and customer-facing sales experience; I am strengthening the formal negotiation component through structured negotiation practice.",
+    "learn": [
+     "Learn preparation, interests, BATNA, ZOPA, objective criteria and closing.",
+     "Practice negotiation role-plays involving stakeholders, training budgets and conflicting priorities.",
+     "Translate existing consultative-selling experience into business negotiation examples."
+    ],
+    "link": "[Harvard Program on Negotiation — Getting to Yes guidelines](https://www.pon.harvard.edu/daily/negotiation-skills-daily/six-guidelines-for-getting-to-yes/?utm_source=chatgpt.com)",
+    "books": "Getting to Yes — Roger Fisher, William Ury and Bruce Patton",
+    "youtube": "YouTube: Harvard Program on Negotiation — BATNA and principled negotiation",
+    "free_tool": "Google Docs for negotiation preparation templates",
+    "platforms": [
+     "Coursera — Successful Negotiation",
+     "Harvard Program on Negotiation"
+    ],
+    "more": [
+     "[Coursera — Successful Negotiation: Essential Strategies and Skills](https://www.coursera.org/learn/negotiation-skills?utm_source=chatgpt.com)",
+     "[Harvard Program on Negotiation — What Is Negotiation?](https://www.pon.harvard.edu/daily/negotiation-skills-daily/what-is-negotiation/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Getting to Yes — Roger Fisher, William Ury and Bruce Patton",
+     "YouTube: Harvard Program on Negotiation — BATNA and principled negotiation",
+     "Google Docs for negotiation preparation templates"
+    ]
+   },
+   {
+    "key": "Good comprehension skills",
+    "category": "explicitly_required",
+    "jd_quote": "Good comprehension skills",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has extensive English coaching, communication training and content-writing experience, which is strong adjacent evidence, but comprehension itself is not stated.",
+    "proof": "I have worked as an English Coordinator, English Coach and Communication Skills Trainer and have developed training content and facilitator guides for business requirements.",
+    "learn": [
+     "Practice extracting requirements from SOPs, policies and lengthy business documents.",
+     "Summarize complex requirements into training objectives and learner actions.",
+     "Use case studies to practice identifying assumptions, risks and key instructions."
+    ],
+    "link": "[Coursera — Developing Interpersonal Skills](https://www.coursera.org/courses?query=training+and+development&utm_source=chatgpt.com)",
+    "books": "The Pyramid Principle — Barbara Minto",
+    "youtube": "YouTube: business reading comprehension and summarizing complex documents",
+    "free_tool": "Google Docs",
+    "platforms": [
+     "Coursera",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "[Coursera — Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Pyramid Principle — Barbara Minto",
+     "YouTube: business reading comprehension and summarizing complex documents",
+     "Google Docs"
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The resume states 15+ years of Learning & Development, Sales Enablement and Corporate Training experience. The JD does not specify required years of experience, so the experience-year requirement is not specified. The candidate's current function is Training/L&D with strong sales-training and BFSI/BPO exposure, while this role is regional L&D supporting SFS/FMS/Hard FM operations. Therefore the main gap is function/domain rather than seniority: the L&D capability is highly transferable, but Facilities Management domain experience is not shown.",
+  "dept_diff": "The JD belongs to Regional Learning & Development supporting Facilities Management/Operations, specifically SFS/FMS/Hard FM. The candidate currently works in Training/L&D and Sales Enablement within an insurance brokerage environment. In plain English: the department/function is similar, but the business domain and operational stakeholders are different.",
+  "required_skills": [
+   "On-site, off-site and on-the-job training",
+   "Quarterly and monthly training-calendar coordination",
+   "E-learning coordination",
+   "Training-calendar compliance tracking",
+   "Training-execution compliance tracking",
+   "Role certification training programs",
+   "Monthly training reporting",
+   "L&D training coordination",
+   "CSTP training coordination",
+   "Managerial training programs",
+   "Training needs identification and development",
+   "Training course planning and direction",
+   "Training content, systems and policies",
+   "Regional training strategy",
+   "Client feedback and stakeholder interaction",
+   "Training and project budget/timeframe management",
+   "Training-method research",
+   "Regional Operations coordination",
+   "Training-program effectiveness follow-up",
+   "Training-material confidentiality",
+   "Professional communication",
+   "Collaboration",
+   "Customer-centric perspective",
+   "Spoken and written communication",
+   "Data and information security",
+   "Negotiation",
+   "Presentation",
+   "Comprehension",
+   "Out-of-the-box thinking",
+   "Proactive attitude",
+   "Self-improvement"
+  ],
+  "qualification": {
+   "jd_wants": "not specified",
+   "resume_has": "B.Sc. MPC completed in 2013 and Master Degree in English completed in 2016. The resume does not list professional L&D or Facilities Management certifications.",
+   "gap": "No education or certification gap can be established because the visible JD does not specify a degree, certification or educational qualification.",
+   "learn": [
+    "No qualification is required to close based on the visible JD.",
+    "If targeting Facilities Management L&D roles, consider IFMA Essentials of Facility Management or the IFMA FMP pathway as a domain-strengthening credential, but this is not stated as a JD requirement."
+   ]
+  },
+  "asked_count": 32,
+  "generated": "17 Aug 2026, 07:04 PM",
+  "verdict": "This is a strong L&D-transfer opportunity rather than a completely different career path. The resume already covers the core training, TNA/TNI, OJT, stakeholder management, communication, data/reporting and training-effectiveness requirements, but it does not demonstrate formal regional training-calendar/compliance ownership, e-learning coordination, role certification, client-review governance, training-budget management or Facilities Management domain knowledge. The biggest gap is domain/function knowledge in SFS/FMS/Hard FM, while most of the remaining gaps are learnable or can be reframed from existing L&D experience.",
+  "interview": [
+   {
+    "q": "Your experience is mainly in insurance, BFSI, BPO and sales training. How would you handle L&D for SFS/FMS/Hard FM employees?",
+    "a": "My core strength is L&D rather than a single industry. I have conducted TNA/TNI, designed targeted learning interventions, led trainers, delivered OJT and field coaching, and partnered with Operations and HRBP. I would first learn the FM operating processes, role competencies, safety requirements and service standards, then use my existing TNA and instructional-design approach to build role-specific training.",
+    "tip": ""
+   },
+   {
+    "q": "Have you managed a quarterly or monthly regional training calendar?",
+    "a": "My resume does not currently show formal ownership of a regional quarterly/monthly calendar. However, I have managed multiple training programs, led a training team and aligned learning initiatives with business requirements. I am comfortable translating that experience into a structured calendar with planned sessions, audiences, trainers, locations, completion status and monthly governance.",
+    "tip": ""
+   },
+   {
+    "q": "How would you measure training compliance across multiple sites?",
+    "a": "I would create a centralized tracker covering planned versus completed programs, attendance, mandatory-training completion, overdue actions, trainer ownership and site-wise compliance. My Advanced Excel, Google Sheets, dashboards, Power Query and reporting experience would allow me to automate the reporting and present exceptions to Regional HR and Operations.",
+    "tip": ""
+   },
+   {
+    "q": "Tell us about your experience with e-learning.",
+    "a": "My resume already includes LMS, instructional design, storyboarding and AI-assisted content creation. My direct experience is stronger in blended and instructor-led learning, so I would bridge that into e-learning by learning SCORM, LMS completion tracking and digital-course coordination and then applying those skills to the organization's target audience.",
+    "tip": ""
+   },
+   {
+    "q": "You have not worked in Facilities Management. How will you understand the training needs of Hard FM employees?",
+    "a": "I would not claim prior Hard FM experience. My approach would be to learn the domain first through Operations & Maintenance, building systems, safety, contractor management and service processes, then conduct structured interviews and observations with subject-matter experts and Operations leaders. My existing TNA/TNI experience would allow me to convert those findings into training interventions.",
+    "tip": ""
+   },
+   {
+    "q": "How would you manage a training program when the business gives you a fixed budget and deadline?",
+    "a": "I have extensive experience managing training delivery and teams, although formal training-budget ownership is not explicitly shown on my resume. I would translate the requirement into scope, activities, resources, milestones and costs, maintain a planned-versus-actual tracker, and escalate variances early.",
+    "tip": ""
+   },
+   {
+    "q": "How do you handle confidential training material?",
+    "a": "I develop facilitator guides, assessments and learning materials and work with LMS and project-supported tools. For confidential material, I would apply role-based access, controlled sharing, approved storage and clear version ownership, while ensuring that sensitive information is not distributed beyond the intended audience.",
+    "tip": ""
+   },
+   {
+    "q": "Give an example of negotiation with a stakeholder.",
+    "a": "My background includes consultative selling, stakeholder management and cross-functional collaboration with Operations, HRBP and Business Leaders. I would structure the example around understanding the stakeholder's objective, presenting the business impact of the training requirement, identifying constraints and agreeing on a practical solution rather than treating negotiation as a win-lose discussion.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
