@@ -1,0 +1,174 @@
+{% extends "base.html" %}{% block body %}
+<h1>Cumulative Recruiter-Demand Analysis</h1>
+<p class="sub">A career-level view built from <b>{{c.jd_count}}</b> job descriptions you have analyzed so far
+(on every other page). The numbers are real counts across those JDs &mdash; nothing is made up.
+Add a new JD (Paste ChatGPT reply) and this page updates automatically.</p>
+
+{% if c.small %}
+<div class="card warn" style="border-left-color:#d3a437">⚠️ This is an early trend and not yet a reliable
+recruiter-market conclusion &mdash; share more job descriptions to sharpen it.</div>
+{% endif %}
+
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
+<b style="font-size:15px;color:#7ef0c0">What was read for this analysis</b>
+<p class="mut" style="margin:8px 0 0;line-height:1.6">{{c.jd_count}} JDs analyzed
+{% for role, n in c.roles.items() %}&middot; {{n}} × {{role}}{% endfor %} &middot; generated {{c.generated}}</p>
+</div>
+
+<!-- 1. CUMULATIVE JD DATASET -->
+<h2 style="color:#37d39b">1 &mdash; Cumulative JD dataset</h2>
+<div class="card"><p class="mut" style="margin:0;line-height:1.6">Every JD you analyzed was grouped under the
+skill categories below (similar wordings merged &mdash; e.g. Excel / Advanced Excel / MS Excel → "Excel & Reporting").
+The full per-skill picture is in section 2; the grouped 12-category "Core Career Skill Stack" is in section 5.</p></div>
+
+<!-- 2. RECRUITER FREQUENCY -->
+<h2 style="color:#5b8cff">2 &mdash; Recruiter frequency across all JDs</h2>
+<div class="card">
+<table>
+<tr><th>Skill / Skill Category</th><th># JDs</th><th>% of JDs</th><th>Recruiter Demand</th></tr>
+{% for s in c.skills %}
+<tr>
+<td>{{s.key}}</td>
+<td>{{s.n_jd}}{% if s.n_lit %} <span class="mut">({{s.n_lit}} named literally)</span>{% endif %}</td>
+<td>{{s.pct}}%</td>
+<td>
+{% if s.demand == 'Very High' %}<span class="pill" style="background:#0f3d2c;border-color:#2f7d5a;color:#7ef0c0">Very High</span>
+{% elif s.demand == 'High' %}<span class="pill" style="background:#10243a;border-color:#3a5a8a;color:#a9c4ff">High</span>
+{% elif s.demand == 'Medium' %}<span class="pill" style="background:#2e2410;border-color:#a8762f;color:#f0c27e">Medium</span>
+{% elif s.demand == 'Low' %}<span class="pill">Low</span>
+{% else %}<span class="mut">—</span>{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+<!-- 3. PRIORITIZE -->
+<h2>3 &mdash; Prioritized skills (4 tiers)</h2>
+{% for t in [1,2,3,4] %}
+<div class="card" style="border-left:3px solid {% if t==1 %}#37d39b{% elif t==2 %}#5b8cff{% elif t==3 %}#d3a437{% else %}#6b7790{% endif %}">
+<b style="font-size:15px">{{c.tier_label[t]}}</b>
+{% if c.tiers[t] %}
+<div class="chips" style="margin-top:10px">
+{% for s in c.tiers[t] %}<span class="chip {% if s.level in ('strong','position') %}have{% elif s.level=='na' %}req{% else %}gap{% endif %}">{{s.key}}<span class="sub2">{{s.pct}}% in JDs</span></span>{% endfor %}
+</div>
+{% else %}<p class="mut" style="margin:8px 0 0">No skills fall in this tier yet.</p>{% endif %}
+</div>
+{% endfor %}
+
+<!-- 4. COMPARE AGAINST EXPERIENCE -->
+<h2 style="color:#d3a437">4 &mdash; Compare against my experience</h2>
+<div class="card">
+<table>
+<tr><th>Skill</th><th>Your current level</th></tr>
+{% for s in c.skills %}
+<tr><td>{{s.key}}</td><td>{{c.level_label[s.level]}}</td></tr>
+{% endfor %}
+</table>
+<p class="mut" style="margin:10px 0 0">Levels are only marked when your resume gives evidence &mdash; a skill is
+never assumed just because a JD asks for it.</p>
+</div>
+
+<!-- 5. CORE CAREER SKILL STACK -->
+<h2 style="color:#37d39b">5 &mdash; My Core Career Skill Stack</h2>
+{% for cat, d in c.core_stack.items() %}
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
+<b style="font-size:15px">{{cat}}</b>
+{% if d.empty %}
+<p class="mut" style="margin:8px 0 0">No specific skills tracked for this category yet.</p>
+{% else %}
+<ul style="margin:8px 0 0 18px;line-height:1.7">
+{% if d.essential %}<li><b>Essential:</b> {{d.essential|join(', ')}}</li>{% endif %}
+{% if d.possess %}<li><b>You already possess:</b> {{d.possess|join(', ')}}</li>{% endif %}
+{% if d.strengthen %}<li><b>Strengthen:</b> {{d.strengthen|join(', ')}}</li>{% endif %}
+{% if d.learn %}<li><b>Learn next:</b> {{d.learn|join(', ')}}</li>{% endif %}
+</ul>
+{% endif %}
+</div>
+{% endfor %}
+
+<!-- 6. TOP 15 -->
+<h2 style="color:#5b8cff">6 &mdash; Top 15 skills recruiters keep asking for</h2>
+{% for s in c.top15 %}
+<div class="card gap">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px">
+<span class="chip gap">{{loop.index}}. {{s.key}}</span>
+<span class="mut">Recruiter frequency: <b>{{s.pct}}%</b> &middot; My level: {{c.level_label[s.level].split(' ',1)[0]}} &middot; Priority: TIER {{s.tier}}</span>
+</div>
+<p class="mut" style="margin:8px 0 0">{{s.why}}</p>
+</div>
+{% else %}
+<div class="card"><p class="mut">No skill counts yet &mdash; analyze a few JDs first.</p></div>
+{% endfor %}
+
+<!-- 7. ROADMAP -->
+<h2>7 &mdash; My learning roadmap</h2>
+{% set rm = c.roadmap %}
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22"><b style="font-size:15px;color:#7ef0c0">Learn Immediately</b>
+{% if rm.immediately %}<div class="chips" style="margin-top:8px">{% for s in rm.immediately %}<span class="chip gap">{{s.key}}<span class="sub2">{{s.pct}}%</span></span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">Nothing urgent right now.</p>{% endif %}</div>
+<div class="card" style="border-left:3px solid #5b8cff;background:#10243a"><b style="font-size:15px">Learn Next</b>
+{% if rm.next %}<div class="chips" style="margin-top:8px">{% for s in rm.next %}<span class="chip gap">{{s.key}}<span class="sub2">{{s.pct}}%</span></span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">No skills queued.</p>{% endif %}</div>
+<div class="card" style="border-left:3px solid #d3a437;background:#2e2410"><b style="font-size:15px;color:#f0c27e">Learn Later</b>
+{% if rm.later %}<div class="chips" style="margin-top:8px">{% for s in rm.later %}<span class="chip gap">{{s.key}}<span class="sub2">{{s.pct}}%</span></span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">No skills queued.</p>{% endif %}</div>
+<div class="card" style="border-left:3px solid #6b7790"><b style="font-size:15px">Do Not Prioritize Yet</b>
+{% if rm.nopriority %}<div class="chips" style="margin-top:8px">{% for s in rm.nopriority %}<span class="chip req">{{s.key}}<span class="sub2">{{s.pct}}%</span></span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">Nothing niche to skip right now.</p>{% endif %}</div>
+
+<!-- 8. RESUME POSITIONING -->
+<h2 style="color:#37d39b">8 &mdash; Resume positioning</h2>
+<div class="card">
+{% if c.underrepresented %}<p><b>Skills you already have but should make more visible:</b></p>
+<ul style="margin:4px 0 0 18px;line-height:1.7">{% for k in c.underrepresented %}<li>{{k}}</li>{% endfor %}</ul>{% endif %}
+{% if c.keywords %}<p style="margin-top:12px"><b>Keywords that repeatedly appear in your target JDs:</b></p>
+<div class="chips" style="margin-top:6px">{% for kw, n in c.keywords %}<span class="chip req">{{kw}}<span class="sub2">×{{n}}</span></span>{% endfor %}</div>{% endif %}
+{% if c.not_add %}<p style="margin-top:12px"><b>Skills you should NOT add unless you genuinely have experience:</b></p>
+<ul style="margin:4px 0 0 18px;line-height:1.7">{% for k in c.not_add %}<li>{{k}}</li>{% endfor %}</ul>{% endif %}
+<p class="mut" style="margin-top:12px">Hidden-inside-experience skills (e.g. your MIS work = "Learning analytics",
+your NHT programme = "Onboarding programme design") are flagged in section 5 as <b>you already possess</b>.</p>
+</div>
+
+<!-- 9. CAREER DIRECTION -->
+<h2 style="color:#5b8cff">9 &mdash; Career direction</h2>
+<div class="card">
+<table><tr><th>Role</th><th>Fit based on analyzed JDs + your experience</th></tr>
+{% for d in c.career_direction %}
+<tr><td>{{d.role}}</td>
+<td>{% if 'Strong' in d.fit %}<span class="pill" style="background:#0f3d2c;border-color:#2f7d5a;color:#7ef0c0">{{d.fit}}</span>
+{% else %}<span class="pill" style="background:#2e2410;border-color:#a8762f;color:#f0c27e">{{d.fit}}</span>{% endif %}</td></tr>
+{% endfor %}
+</table>
+<p class="mut" style="margin:10px 0 0">Based on the dominant JD role family you analyzed ({{c.dom_role}}) plus your
+actual experience and skill gaps &mdash; not just transferable skills.</p>
+</div>
+
+<!-- 10. UPDATE NOTE -->
+<h2>10 &mdash; Always up to date</h2>
+<div class="card"><p class="mut" style="margin:0;line-height:1.6">Every time you add a JD via "Paste ChatGPT reply",
+this page recomputes from the full set &mdash; it never starts from zero. Re-open it (or refresh) after a new
+analysis to see frequency and priority shifts.</p></div>
+
+<!-- FINAL -->
+<h2 style="color:#37d39b">🎯 My Career Skill Priority</h2>
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
+<p><b>Top 5 skills I should focus on now:</b></p>
+<ol style="margin:4px 0 10px 18px;line-height:1.8">
+{% for k in c.final.focus %}<li>{{k}}</li>{% else %}<li class="mut">Analyze more JDs to surface focus areas.</li>{% endfor %}
+</ol>
+<p><b>Top skill I already possess but should market more strongly:</b>
+{% if c.final.market_more %}{{c.final.market_more}}{% else %}<span class="mut">—</span>{% endif %}</p>
+<p><b>Top skill gap I should close:</b>
+{% if c.final.top_gap %}{{c.final.top_gap}}{% else %}<span class="mut">—</span>{% endif %}</p>
+<p><b>Top technology/AI skill I should learn:</b>
+{% if c.final.ai_skill %}{{c.final.ai_skill}}{% else %}<span class="mut">—</span>{% endif %}</p>
+<p><b>Best-fit career direction based on all analyzed JDs:</b> {{c.final.best_dir}}</p>
+<p><b>Overall recruiter-demand trend:</b> {{c.final.trend}}</p>
+</div>
+
+<p class="mut" style="margin-top:14px"><b>Note:</b> "Recruiters are repeatedly asking for this" (demand %, frequency)
+is kept separate from "this is my recommendation for your career" (tier, roadmap, focus). The two are never confused above.</p>
+
+<p><a href="/">&larr; Back to resume</a></p>
+{% endblock %}

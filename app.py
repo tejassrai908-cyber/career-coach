@@ -575,7 +575,295 @@ def interview_questions(rep, jd_text, resume_text):
     return items
 
 
+# --------------------------------------------------------------- cumulative
+# Maps each skill in the KB to one of the 12 "Core Career Skill Stack"
+# categories from the user's cumulative-recruiter-demand spec.
+CATEGORY_MAP = {
+    "BPO / Operations": [],
+    "Customer Service": [],
+    "Sales": ["Sales target ownership & pipeline management",
+              "Channel / distributor management",
+              "CRM tools (Salesforce / Zoho / LeadSquared)"],
+    "Training & Facilitation": ["Train-the-Trainer / facilitation certification",
+                                "Communication & business English / presentation",
+                                "Onboarding / new hire training programme design"],
+    "Learning & Development": ["ADDIE instructional design",
+                               "Kirkpatrick training evaluation (L1-L4)",
+                               "TNI / TNA (Training Needs Identification)",
+                               "LMS administration",
+                               "e-learning authoring (Articulate / Rise / Captivate)",
+                               "Coaching & feedback models (GROW, SBI)",
+                               "Content / SOP documentation"],
+    "Sales Training": [],
+    "Leadership & People Management": ["Team leadership & performance management",
+                                        "Stakeholder / business partnering"],
+    "Performance Management": ["Team leadership & performance management"],
+    "Data / Reporting / Analytics": ["Excel advanced (pivots, lookups, dashboards)",
+                                     "Power BI / data visualisation",
+                                     "Learning analytics / MIS reporting"],
+    "Digital / AI / Technology": ["AI tools for L&D (ChatGPT/Gemini for content)"],
+    "Communication & Stakeholder Management": ["Communication & business English / presentation",
+                                               "Stakeholder / business partnering"],
+    "Learning Technology / LMS": ["LMS administration",
+                                  "e-learning authoring (Articulate / Rise / Captivate)"],
+}
+
+TIER_LABEL = {1: "TIER 1 — ESSENTIAL / MUST-HAVE",
+              2: "TIER 2 — HIGH-VALUE SKILLS",
+              3: "TIER 3 — DIFFERENTIATING SKILLS",
+              4: "TIER 4 — LOW PRIORITY / ROLE-SPECIFIC"}
+
+LEVEL_LABEL = {
+    "strong": "✅ Strong evidence in my experience",
+    "position": "🔶 Have experience — position stronger on resume",
+    "partial": "🟡 Partially aligned / need development",
+    "gap": "🔴 Major skill gap",
+    "na": "⚪ Not relevant to my target career",
+    "unknown": "❔ Resume not saved — level unknown",
+}
+
+
+def cumulative_analysis():
+    """Cross-JD 'Cumulative Recruiter-Demand Analysis'.
+
+    Built from EVERY job the user has analyzed (the real stored reports), so
+    the numbers are actual counts across JDs — never fabricated — and the
+    picture auto-updates every time a new JD is added (spec point #10).
+    """
+    r = get_resume()
+    resume_text = (r["text"] if r else "") or ""
+    res = norm(resume_text)
+    has_resume = bool(resume_text.strip())
+
+    with db() as c:
+        rows = c.execute(
+            "SELECT id,title,role,created,jd_text,report FROM jd ORDER BY id").fetchall()
+
+    jd_count = len(rows)
+    small = jd_count < 5  # spec: warn when dataset is still small
+
+    asked_in, have_in, gap_in, impl_in, literal_in = {}, {}, {}, {}, {}
+    roles = {}
+    for row in rows:
+        jid = row["id"]
+        role = row["role"] or "training manager"
+        roles[role] = roles.get(role, 0) + 1
+        jd_norm = norm(row["jd_text"] or "")
+        try:
+            rep = (json.loads(row["report"]) if isinstance(row["report"], str)
+                   else row["report"]) or {}
+        except Exception:
+            rep = {}
+        have_keys = [h.get("key") for h in (rep.get("have") or [])]
+        gap_keys = [g.get("key") for g in (rep.get("gaps") or [])]
+        impl_keys = [g.get("key") for g in (rep.get("implied") or [])]
+        for k in have_keys + gap_keys + impl_keys:
+            asked_in.setdefault(k, set()).add(jid)
+        for k in have_keys:
+            have_in.setdefault(k, set()).add(jid)
+        for k in gap_keys:
+            gap_in.setdefault(k, set()).add(jid)
+        for k in impl_keys:
+            impl_in.setdefault(k, set()).add(jid)
+        for s in SKILLS:
+            if any(hits(a, jd_norm) for a in s["aliases"]):
+                literal_in.setdefault(s["key"], set()).add(jid)
+
+    def resume_has(s):
+        return any(hits(a, res) for a in s["aliases"]) or hits(s["key"], res)
+
+    skills_out = []
+    for s in SKILLS:
+        k = s["key"]
+        n_jd = len(asked_in.get(k, set()))
+        n_have = len(have_in.get(k, set()))
+        n_gap = len(gap_in.get(k, set()))
+        n_lit = len(literal_in.get(k, set()))
+        pct = round(100 * n_jd / jd_count) if jd_count else 0
+        lit_pct = round(100 * n_lit / jd_count) if jd_count else 0
+
+        # Recruiter demand from how often the JD literally names the skill.
+        if n_lit == 0 and n_jd == 0:
+            demand = "—"
+        elif lit_pct >= 60:
+            demand = "Very High"
+        elif lit_pct >= 40:
+            demand = "High"
+        elif lit_pct >= 20:
+            demand = "Medium"
+        else:
+            demand = "Low"
+
+        # My current level (resume evidence always wins; never assumed from a JD).
+        if not has_resume:
+            level = "unknown"
+        elif resume_has(s):
+            level = "strong" if (n_have > 0 or n_jd > 0 or pct >= 50) else "position"
+        elif n_gap > 0:
+            level = "gap" if pct >= 40 else "partial"
+        elif n_jd > 0:
+            level = "partial"
+        else:
+            level = "na"
+
+        # Priority tier.
+        if pct >= 50 and resume_has(s):
+            tier = 1          # you have it AND recruiters want it -> lead with it
+        elif pct >= 80 and not resume_has(s):
+            tier = 1          # 80%+ of JDs demand it and you lack it -> essential to learn
+        elif pct >= 40:
+            tier = 2
+        elif resume_has(s):
+            tier = 3          # your strength even if JDs rarely name it -> differentiating
+        elif pct >= 20 or (n_gap > 0 and lit_pct >= 15):
+            tier = 3
+        else:
+            tier = 4
+
+        skills_out.append(dict(
+            key=k, n_jd=n_jd, pct=pct, n_lit=n_lit, lit_pct=lit_pct,
+            n_have=n_have, n_gap=n_gap, demand=demand, level=level,
+            tier=tier, why=s.get("why", "")))
+
+    skills_out.sort(key=lambda x: (-x["n_jd"], -x["lit_pct"], x["key"]))
+
+    tiers = {1: [], 2: [], 3: [], 4: []}
+    for sk in skills_out:
+        tiers[sk["tier"]].append(sk)
+
+    # Core Career Skill Stack (12 categories).
+    core_stack = {}
+    for cat, keys in CATEGORY_MAP.items():
+        essential, possess, strengthen, learn = [], [], [], []
+        if not keys:
+            core_stack[cat] = dict(empty=True, essential=essential, possess=possess,
+                                   strengthen=strengthen, learn=learn)
+            continue
+        for sk in skills_out:
+            if sk["key"] not in keys:
+                continue
+            if sk["pct"] >= 40:
+                essential.append(sk["key"])
+            if sk["level"] in ("strong", "position"):
+                possess.append(sk["key"])
+            elif sk["level"] in ("partial",):
+                strengthen.append(sk["key"])
+            if sk["level"] in ("gap", "partial") and sk["pct"] > 0:
+                learn.append(sk["key"])
+        core_stack[cat] = dict(empty=False, essential=essential, possess=possess,
+                               strengthen=strengthen, learn=learn)
+
+    # Top 15 by recruiter frequency.
+    top15 = [sk for sk in skills_out if sk["n_jd"] > 0][:15]
+
+    # Learning roadmap.
+    roadmap = dict(immediately=[], next=[], later=[], nopriority=[])
+    for sk in skills_out:
+        if sk["level"] in ("gap", "partial") and sk["pct"] > 0:
+            if sk["tier"] in (1, 2):
+                roadmap["immediately"].append(sk)
+            elif sk["tier"] == 3:
+                roadmap["next"].append(sk)
+                roadmap["later"].append(sk)
+            else:
+                roadmap["nopriority"].append(sk)
+    roadmap["immediately"].sort(key=lambda x: -x["pct"])
+    roadmap["next"].sort(key=lambda x: -x["pct"])
+    roadmap["later"].sort(key=lambda x: -x["pct"])
+    roadmap["nopriority"].sort(key=lambda x: -x["pct"])
+
+    # Resume positioning.
+    underrepresented, stronger_bullets, hidden, not_add, = [], [], [], []
+    keyword_freq = {}
+    for row in rows:
+        jd_norm = norm(row["jd_text"] or "")
+        for s in SKILLS:
+            for a in s["aliases"]:
+                if hits(a, jd_norm):
+                    keyword_freq[a] = keyword_freq.get(a, 0) + 1
+                    break
+    for sk in skills_out:
+        if sk["level"] in ("strong", "position") and sk["pct"] >= 40:
+            underrepresented.append(sk["key"])
+            stronger_bullets.append(sk["key"])
+        elif sk["level"] == "na" and sk["pct"] < 20:
+            not_add.append(sk["key"])
+    keywords = sorted(keyword_freq.items(), key=lambda x: -x[1])[:15]
+
+    # Career direction — fit from the dominant JD role family + resume anchors.
+    dom_role = max(roles, key=roles.get) if roles else "training manager"
+    direction_spec = [
+        ("Training Team Lead", "Strong match"),
+        ("Assistant Manager – Training", "Strong match"),
+        ("Assistant Manager – L&D", "Strong match"),
+        ("Learning & Development Specialist", "Strong match"),
+        ("Training Manager", "Strong match"),
+        ("Sales Training Manager", "Possible — needs sales-proof"),
+        "Sales Enablement", "Possible — leverages training + enablement",
+        ("Customer Experience / Customer Service Manager", "Possible — if you show CS ownership"),
+        ("BPO Operations / Team Lead", "Possible — if you show ops ownership"),
+        ("Performance & Training roles", "Strong match"),
+    ]
+    career_direction = []
+    for item in direction_spec:
+        if isinstance(item, tuple):
+            role_name, fit = item
+        else:
+            role_name, fit = item, "Possible"
+        # Promote training-family roles when the dominant JD role is training.
+        if dom_role in ("training manager", "l&d", "trainer") and \
+                ("Training" in role_name or "L&D" in role_name or "Learning" in role_name
+                 or "Performance" in role_name):
+            fit = "Strong match"
+        career_direction.append(dict(role=role_name, fit=fit))
+
+    # FINAL priority block.
+    focus_gaps = [sk for sk in skills_out
+                  if sk["level"] in ("gap", "partial") and sk["pct"] >= 40][:5]
+    focus = [sk["key"] for sk in focus_gaps]
+    market_more = next((sk["key"] for sk in skills_out
+                        if sk["level"] in ("strong", "position") and sk["pct"] >= 40), None)
+    top_gap = focus_gaps[0]["key"] if focus_gaps else None
+    ai_skill = next((sk["key"] for sk in skills_out
+                     if "AI" in sk["key"] and sk["level"] in ("gap", "partial")), None) \
+        or next((sk["key"] for sk in skills_out
+                 if sk["tier"] in (1, 2) and sk["level"] in ("gap", "partial")), None)
+    best_dir = next((d["role"] for d in career_direction if d["fit"] == "Strong match"),
+                    career_direction[0]["role"] if career_direction else "")
+    if small:
+        trend = ("This is an early trend and not yet a reliable recruiter-market "
+                 "conclusion — share more job descriptions to sharpen it.")
+    else:
+        top_demands = [sk["key"].split(" (")[0] for sk in top15[:3]]
+        trend = (f"Across {jd_count} analyzed JDs, recruiters repeatedly ask for: "
+                 + ", ".join(top_demands) + ". This is a developing, evidence-based trend.")
+
+    return dict(
+        jd_count=jd_count, small=small, roles=roles, dom_role=dom_role,
+        skills=skills_out, tiers=tiers, tier_label=TIER_LABEL,
+        level_label=LEVEL_LABEL, core_stack=core_stack, top15=top15,
+        roadmap=roadmap, underrepresented=underrepresented,
+        stronger_bullets=stronger_bullets, not_add=not_add, keywords=keywords,
+        career_direction=career_direction,
+        final=dict(focus=focus, market_more=market_more, top_gap=top_gap,
+                   ai_skill=ai_skill, best_dir=best_dir, trend=trend),
+        generated=dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
+
+
 # --------------------------------------------------------------- routes
+@app.route("/cumulative")
+def cumulative_page():
+    """Read-only Career-level view: 'Cumulative Recruiter-Demand Analysis'.
+    Computed from EVERY JD the user has analyzed, so it is real data and
+    auto-updates whenever a new JD is added."""
+    r = get_resume()
+    if not r:
+        flash("Save your resume first (Step 1 on the home page), then come back.", "bad")
+        return redirect(url_for("home"))
+    data = cumulative_analysis()
+    return render_template("cumulative.html", c=data)
+
+
 @app.route("/")
 def home():
     import pasteback
