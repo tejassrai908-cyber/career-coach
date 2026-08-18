@@ -56,6 +56,61 @@
 </table></div>
 {% endif %}
 
+{% if cum and cum.jd_count > 0 %}
+<h2 style="color:#37d39b">📊 Cumulative Career Dashboard</h2>
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
+<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+<div><div class="big" style="color:#7ef0c0">{{cum.jd_count}}</div><div class="mut">TOTAL JDs ANALYZED</div></div>
+<div><div class="big" style="color:#f0c27e">{{cum.confidence.split(' ')[0]}}</div><div class="mut">SAMPLE / CONFIDENCE</div></div>
+</div>
+</div>
+
+<div class="card">
+<b style="font-size:15px">Top 15 recruiter-demand skills</b>
+<div class="chips" style="margin-top:10px">
+{% for s in cum.top15 %}<span class="chip gap">{{loop.index}}. {{s.name}}<span class="sub2">{{s.n_jd}}/{{cum.jd_count}} ({{s.pct}}%)</span></span>{% endfor %}
+</div>
+</div>
+
+<div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
+<b style="font-size:15px;color:#7ef0c0">Top skills I already have</b>
+{% if cum.market_more %}
+<div class="chips" style="margin-top:8px">{% for k in cum.market_more %}<span class="chip have">{{k}}</span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">Add more JDs to surface them.</p>{% endif %}
+</div>
+
+<div class="card" style="border-left:3px solid #d3a437;background:#2e2410">
+<b style="font-size:15px;color:#f0c27e">Top skills I should market more strongly</b>
+{% if cum.market_more %}
+<div class="chips" style="margin-top:8px">{% for k in cum.market_more %}<span class="chip have">{{k}}</span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">None surfaced yet.</p>{% endif %}
+</div>
+
+<div class="card" style="border-left:3px solid #ff6b6b;background:#2a1414">
+<b style="font-size:15px;color:#ffb4b4">Top genuine skill gaps</b>
+{% if cum.genuine_gaps %}
+<div class="chips" style="margin-top:8px">{% for k in cum.genuine_gaps %}<span class="chip gap">{{k}}</span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">No clear genuine gaps yet.</p>{% endif %}
+</div>
+
+<div class="card" style="border-left:3px solid #ff6b6b;background:#2a1414">
+<b style="font-size:15px;color:#ffb4b4">Top technology / AI skills to learn</b>
+{% if cum.tech_ai_gaps %}
+<div class="chips" style="margin-top:8px">{% for k in cum.tech_ai_gaps %}<span class="chip gap">{{k}}</span>{% endfor %}</div>
+{% else %}<p class="mut" style="margin:6px 0 0">None flagged yet.</p>{% endif %}
+</div>
+
+<div class="card" style="border-left:3px solid #5b8cff;background:#10243a">
+<b style="font-size:15px;color:#a9c4ff">Best-fit career directions</b>
+<div class="chips" style="margin-top:8px">
+{% for d in cum.career_direction if 'Strong' in d.fit %}<span class="chip have">{{d.role}}</span>{% else %}<span class="mut">Add more JDs for direction confidence.</span>{% endfor %}
+</div>
+</div>
+
+<p class="mut" style="margin-top:6px">This dashboard updates automatically as you add job descriptions.
+<a href="/cumulative">Open the full Cumulative Recruiter-Demand Analysis &rarr;</a></p>
+{% endif %}
+
 <script>
 function copyPrompt(){
   var t=document.getElementById('promptBox');

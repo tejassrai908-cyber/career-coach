@@ -614,26 +614,86 @@ TIER_LABEL = {1: "TIER 1 — ESSENTIAL / MUST-HAVE",
               4: "TIER 4 — LOW PRIORITY / ROLE-SPECIFIC"}
 
 LEVEL_LABEL = {
-    "strong": "✅ Strong evidence in my experience",
-    "position": "🔶 Have experience — position stronger on resume",
-    "partial": "🟡 Partially aligned / need development",
-    "gap": "🔴 Major skill gap",
+    "demonstrated": "✅ DEMONSTRATED — clear evidence in my resume",
+    "transferable": "🔶 TRANSFERABLE / ADJACENT — experience overlaps, keyword may differ",
+    "partial": "🟡 PARTIAL GAP — related experience, missing part of the capability",
+    "gap": "🔴 GENUINE GAP — no meaningful resume or transferable evidence",
     "na": "⚪ Not relevant to my target career",
     "unknown": "❔ Resume not saved — level unknown",
 }
 
+ACTION_LABEL = {
+    "MARKET MORE STRONGLY": "YOU ALREADY HAVE THIS — MARKET IT MORE STRONGLY",
+    "STRENGTHEN / FORMALIZE": "STRENGTHEN / FORMALIZE (you have adjacent experience)",
+    "STRENGTHEN / LEARN": "STRENGTHEN / LEARN (partial — close the missing part)",
+    "LEARN": "LEARN (genuine gap — recruiters want it, you lack it)",
+    "NOT PRIORITY": "DO NOT PRIORITIZE YET (low demand / niche)",
+}
 
-def cumulative_analysis(exclude_id=None):
-    """Cross-JD 'Cumulative Recruiter-Demand Analysis'.
+# Canonical skill -> one of the 7 target career categories (spec #12). Maps the
+# 22 KB skills; learned skills fall back to "Other".
+CANON_CATEGORY = {
+    "ADDIE instructional design": "Learning & Development",
+    "Kirkpatrick training evaluation (L1-L4)": "Learning & Development",
+    "TNI / TNA (Training Needs Identification)": "Learning & Development",
+    "LMS administration": "Learning Technology / LMS",
+    "e-learning authoring (Articulate / Rise / Captivate)": "Learning Technology / LMS",
+    "Train-the-Trainer / facilitation certification": "Training & Facilitation",
+    "Coaching & feedback models (GROW, SBI)": "Training & Facilitation",
+    "Content / SOP documentation": "Training & Facilitation",
+    "Excel advanced (pivots, lookups, dashboards)": "Data / Reporting / Analytics",
+    "Power BI / data visualisation": "Data / Reporting / Analytics",
+    "Learning analytics / MIS reporting": "Data / Reporting / Analytics",
+    "Sales target ownership & pipeline management": "Sales",
+    "Channel / distributor management": "Sales",
+    "CRM tools (Salesforce / Zoho / LeadSquared)": "Sales",
+    "Team leadership & performance management": "Leadership & People Management",
+    "Stakeholder / business partnering": "Communication & Stakeholder Management",
+    "Onboarding / new hire training programme design": "Training & Facilitation",
+    "Compliance / audit readiness of training records": "Learning & Development",
+    "Communication & business English / presentation": "Communication & Stakeholder Management",
+    "AI tools for L&D (ChatGPT/Gemini for content)": "Digital / AI / Technology",
+    "Vendor & training budget management": "Leadership & People Management",
+    "BPO / Operations": "BPO / Operations",
+    "Customer Service": "Customer Service",
+    "Sales Training": "Sales Training",
+}
 
-    Built from EVERY job the user has analyzed (the real stored reports), so
-    the numbers are actual counts across JDs — never fabricated — and the
-    picture auto-updates every time a new JD is added (spec point #10).
+# Inverted view: category -> list of canonical skill names (used by the Core
+# Career Skill Stack). Built once from CANON_CATEGORY.
+CATEGORY_MEMBERS = {}
+for _sk, _cat in CANON_CATEGORY.items():
+    CATEGORY_MEMBERS.setdefault(_cat, []).append(_sk)
+
+
+# ============================================================== CUMULATIVE
+# TRUE cumulative recruiter-demand engine.
+#
+# Design rules (spec 2026-08 upgrade):
+#  * ONE underlying JD dataset feeds Top15, tiers, roadmap, career direction,
+#    and the final block (RULE 6/7). No separate "learned skills" silo.
+#  * A canonical skill's demand = (# of unique JDs that demand it / total
+#    unique JDs analyzed) * 100, with the numerator and denominator ALWAYS
+#    shown (RULE 5).
+#  * A JD "demands" a skill if EITHER the pasted ChatGPT analysis flagged it
+#    (have/gaps/implied — provenance from the JD) OR the JD text literally
+#    names a canonical alias. Counted ONCE per JD (no double credit).
+#  * Synonym phrases map to one canonical skill; original JD wording is kept
+#    as audit evidence (RULE 4, spec #19).
+#  * Resume evidence never assumed from a JD alone (RULE 10); four levels:
+#    demonstrated / transferable / partial / genuine gap (spec #8/10).
+def cumulative_analysis(exclude_id=None, resume_override=None):
+    """Cumulative Recruiter-Demand Analysis over ALL saved JDs.
+
+    resume_override lets a caller (validation harness) pass a resume text
+    without touching the stored one. Returns one dict consumed by both the
+    /cumulative page and the per-report block.
     """
     r = get_resume()
-    resume_text = (r["text"] if r else "") or ""
+    resume_text = (resume_override if resume_override is not None
+                   else (r["text"] if r else "")) or ""
     res = norm(resume_text)
-    has_resume = bool(resume_text.strip())
+    has_resume = bool(res.strip())
 
     with db() as c:
         rows = c.execute(
@@ -642,260 +702,332 @@ def cumulative_analysis(exclude_id=None):
         rows = [row for row in rows if row["id"] != exclude_id]
 
     jd_count = len(rows)
-    small = jd_count < 5  # spec: warn when dataset is still small
+    small = jd_count < 5
 
-    asked_in, have_in, gap_in, impl_in, literal_in = {}, {}, {}, {}, {}
-    roles = {}
+    # ---- 1. Build the canonical universe: KB skills + "learned" new skills -
+    # Each canonical entry: name, aliases, category, kind.
+    canon = []  # list of dict(name, aliases, category, kind, why, key)
+    kb_by_norm = {}
+    for s in SKILLS:
+        name = s["key"]
+        aliases = [name] + list(s.get("aliases", []))
+        canon.append(dict(name=name, aliases=aliases,
+                          category=CANON_CATEGORY.get(name, "Other"),
+                          kind="kb", why=s.get("why", ""),
+                          adjacent=list(s.get("adjacent", []))))
+        for a in aliases:
+            kb_by_norm.setdefault(norm(a), name)
+
+    # Discover "learned" canonical skills: requirement names ChatGPT pulled
+    # from JDs that are NOT one of the 22 KB skills/aliases. Exact match only
+    # (no substring) so "Salesforce CPQ" is never swallowed by "salesforce".
+    _GENERIC = {"degree","bachelors","bachelor","master","mba","phd","experience",
+                "years","education","certification","certifications","qualification",
+                "qualifications","skills","ability","knowledge","responsibilities",
+                "requirements","communication","presentation","training","learning"}
+    learned_names = {}
+    for row in rows:
+        try:
+            rep = (json.loads(row["report"]) if isinstance(row["report"], str)
+                   else row["report"]) or {}
+        except Exception:
+            rep = {}
+        for nm in (rep.get("required_skills") or []):
+            nm = (nm or "").strip().rstrip(".").strip()
+            if len(nm) < 3 or len(nm) > 60 or norm(nm) in _GENERIC:
+                continue
+            if norm(nm) in kb_by_norm:
+                continue  # already a KB skill
+            learned_names.setdefault(nm, 0)
+            learned_names[nm] += 1
+    for nm, n in sorted(learned_names.items(), key=lambda x: -x[1]):
+        name = nm
+        canon.append(dict(name=name, aliases=[name],
+                          category=CANON_CATEGORY.get(name, "Other"),
+                          kind="learned", why="", adjacent=[]))
+
+    # ---- 2. Per-JD demand scan (provenance + required/preferred + phrases) -
+    # demand[name] = dict(jids=set, required=set, preferred=set,
+    #                      phrases=set, titles=list, jd_ids=list)
+    demand = {c["name"]: dict(jids=set(), required=set(), preferred=set(),
+                              phrases=set(), titles=[], jd_ids=[])
+              for c in canon}
+
+    def _classify_req(cat):
+        if cat == "preferred":
+            return "preferred"
+        return "required"  # explicitly_required or implied -> counted as required demand
+
     for row in rows:
         jid = row["id"]
-        role = row["role"] or "training manager"
-        roles[role] = roles.get(role, 0) + 1
         jd_norm = norm(row["jd_text"] or "")
         try:
             rep = (json.loads(row["report"]) if isinstance(row["report"], str)
                    else row["report"]) or {}
         except Exception:
             rep = {}
-        have_keys = [h.get("key") for h in (rep.get("have") or [])]
-        gap_keys = [g.get("key") for g in (rep.get("gaps") or [])]
-        impl_keys = [g.get("key") for g in (rep.get("implied") or [])]
-        for k in have_keys + gap_keys + impl_keys:
-            asked_in.setdefault(k, set()).add(jid)
-        for k in have_keys:
-            have_in.setdefault(k, set()).add(jid)
-        for k in gap_keys:
-            gap_in.setdefault(k, set()).add(jid)
-        for k in impl_keys:
-            impl_in.setdefault(k, set()).add(jid)
-        for s in SKILLS:
-            if any(hits(a, jd_norm) for a in s["aliases"]):
-                literal_in.setdefault(s["key"], set()).add(jid)
+        title = (row["title"] or "JD %d" % jid)
+        # (a) provenance from the pasted ChatGPT analysis
+        for g in (rep.get("gaps") or []):
+            k = (g.get("key") or "").strip()
+            if k in demand:
+                d = demand[k]
+                if jid not in d["jids"]:
+                    d["jids"].add(jid); d["titles"].append(title); d["jd_ids"].append(jid)
+                rc = _classify_req(g.get("category"))
+                d[rc].add(jid)
+                q = (g.get("jd_quote") or "").strip()
+                if q:
+                    d["phrases"].add(q)
+        for h in (rep.get("have") or []):
+            k = (h.get("key") or "").strip()
+            if k in demand:
+                d = demand[k]
+                if jid not in d["jids"]:
+                    d["jids"].add(jid); d["titles"].append(title); d["jd_ids"].append(jid)
+        for im in (rep.get("implied") or []):
+            k = (im.get("key") or "").strip()
+            if k in demand:
+                d = demand[k]
+                if jid not in d["jids"]:
+                    d["jids"].add(jid); d["titles"].append(title); d["jd_ids"].append(jid)
+                d["required"].add(jid)
+        # (b) literal alias scan — catches skills the ChatGPT analysis may have
+        #     missed; credited once per JD.
+        for c in canon:
+            if jid in demand[c["name"]]["jids"]:
+                continue
+            for a in c["aliases"]:
+                if hits(a, jd_norm):
+                    d = demand[c["name"]]
+                    d["jids"].add(jid); d["titles"].append(title); d["jd_ids"].append(jid)
+                    d["required"].add(jid)  # explicitly named in JD = required demand
+                    d["phrases"].add(a)
+                    break
 
-    def resume_has(s):
-        return any(hits(a, res) for a in s["aliases"]) or hits(s["key"], res)
+    # ---- 3. Resume evidence per canonical skill (four levels) ----------------
+    def resume_has_any(c):
+        if has_resume and (any(hits(a, res) for a in c["aliases"]) or hits(c["name"], res)):
+            return "direct"
+        if has_resume and any(hits(a, res) for a in c.get("adjacent", [])):
+            return "adjacent"
+        return None
 
+    # Historical proof: a skill the pasted analyses repeatedly said you "have"
+    # is real resume evidence even when the live mirror is a stub.
+    hist_have = {}  # name -> set(jids where you had it)
+    for row in rows:
+        try:
+            rep = (json.loads(row["report"]) if isinstance(row["report"], str)
+                   else row["report"]) or {}
+        except Exception:
+            rep = {}
+        for h in (rep.get("have") or []):
+            k = (h.get("key") or "").strip()
+            if k in demand:
+                hist_have.setdefault(k, set()).add(row["id"])
+
+    # ---- 4. Assemble the unified skill list --------------------------------
     skills_out = []
-    for s in SKILLS:
-        k = s["key"]
-        n_jd = len(asked_in.get(k, set()))
-        n_have = len(have_in.get(k, set()))
-        n_gap = len(gap_in.get(k, set()))
-        n_lit = len(literal_in.get(k, set()))
+    for c in canon:
+        name = c["name"]
+        d = demand[name]
+        n_jd = len(d["jids"])
+        n_req = len(d["required"])
+        n_pref = len(d["preferred"])
         pct = round(100 * n_jd / jd_count) if jd_count else 0
-        lit_pct = round(100 * n_lit / jd_count) if jd_count else 0
 
-        # Recruiter demand from how often the JD literally names the skill.
-        if n_lit == 0 and n_jd == 0:
-            demand = "—"
-        elif lit_pct >= 60:
-            demand = "Very High"
-        elif lit_pct >= 40:
-            demand = "High"
-        elif lit_pct >= 20:
-            demand = "Medium"
+        # Recruiter demand band from literal demand frequency.
+        if n_jd == 0:
+            demand_band = "—"
+        elif pct >= 60:
+            demand_band = "Very High"
+        elif pct >= 40:
+            demand_band = "High"
+        elif pct >= 20:
+            demand_band = "Medium"
         else:
-            demand = "Low"
+            demand_band = "Low"
 
-        # My current level (resume evidence always wins; never assumed from a JD).
-        if not has_resume:
-            level = "unknown"
-        elif resume_has(s):
-            level = "strong" if (n_have > 0 or n_jd > 0 or pct >= 50) else "position"
-        elif n_gap > 0:
-            level = "gap" if pct >= 40 else "partial"
+        # Resume evidence level (four levels, spec #8/#10).
+        rh = resume_has_any(c)
+        hist = hist_have.get(name, set())
+        if rh == "direct" or (hist and len(hist) >= 2):
+            # direct resume wording OR 2+ pasted analyses flagged it as
+            # something you have -> demonstrated.
+            level = "demonstrated"
+        elif rh == "adjacent" or (hist and len(hist) == 1):
+            # resume shows overlapping experience, or only weak historical
+            # signal -> transferable/adjacent (never call it a gap just because
+            # the exact keyword is absent, RULE 3).
+            level = "transferable"
         elif n_jd > 0:
-            level = "partial"
+            # partial vs genuine gap: genuine gap only when demand is high AND
+            # there is truly no resume or adjacent signal at all.
+            level = "gap" if pct >= 40 else "partial"
         else:
             level = "na"
 
-        # Priority tier.
-        if pct >= 50 and resume_has(s):
-            tier = 1          # you have it AND recruiters want it -> lead with it
-        elif pct >= 80 and not resume_has(s):
-            tier = 1          # 80%+ of JDs demand it and you lack it -> essential to learn
+        # Market-vs-Learn action (spec #14).
+        if level == "demonstrated":
+            action = "MARKET MORE STRONGLY"
+        elif level == "transferable":
+            action = "STRENGTHEN / FORMALIZE"
+        elif level == "partial":
+            action = "STRENGTHEN / LEARN"
+        elif level == "gap":
+            action = "LEARN"
+        else:
+            action = "NOT PRIORITY"
+
+        # Tier (spec #11, evidence-based; never Tier4 just for "not in resume").
+        if pct >= 50 and (level == "demonstrated" or level == "transferable"):
+            tier = 1
+        elif pct >= 80 and level in ("gap", "partial"):
+            tier = 1
         elif pct >= 40:
             tier = 2
-        elif resume_has(s):
-            tier = 3          # your strength even if JDs rarely name it -> differentiating
-        elif pct >= 20 or (n_gap > 0 and lit_pct >= 15):
+        elif pct >= 20 or (n_jd > 0 and level in ("gap", "partial")):
             tier = 3
         else:
             tier = 4
 
         skills_out.append(dict(
-            key=k, n_jd=n_jd, pct=pct, n_lit=n_lit, lit_pct=lit_pct,
-            n_have=n_have, n_gap=n_gap, demand=demand, level=level,
-            tier=tier, why=s.get("why", "")))
+            name=name, n_jd=n_jd, n_req=n_req, n_pref=n_pref, pct=pct,
+            demand=demand_band, level=level, action=action, tier=tier,
+            kind=c["kind"], category=c["category"], why=c["why"],
+            titles=d["titles"], jd_ids=sorted(d["jd_ids"]),
+            phrases=sorted(d["phrases"])[:6],
+            hist_jds=sorted(hist)))
 
-    skills_out.sort(key=lambda x: (-x["n_jd"], -x["lit_pct"], x["key"]))
+    # Sort: most-demanded first, then by name.
+    skills_out.sort(key=lambda x: (-x["n_jd"], -x["pct"], x["name"]))
 
+    # ---- 5. Tiers, Top 15, Core stack, Roadmap, etc. -----------------------
     tiers = {1: [], 2: [], 3: [], 4: []}
     for sk in skills_out:
         tiers[sk["tier"]].append(sk)
 
-    # Core Career Skill Stack (12 categories).
-    core_stack = {}
-    for cat, keys in CATEGORY_MAP.items():
-        essential, possess, strengthen, learn = [], [], [], []
-        if not keys:
-            core_stack[cat] = dict(empty=True, essential=essential, possess=possess,
-                                   strengthen=strengthen, learn=learn)
-            continue
-        for sk in skills_out:
-            if sk["key"] not in keys:
-                continue
-            if sk["pct"] >= 40:
-                essential.append(sk["key"])
-            if sk["level"] in ("strong", "position"):
-                possess.append(sk["key"])
-            elif sk["level"] in ("partial",):
-                strengthen.append(sk["key"])
-            if sk["level"] in ("gap", "partial") and sk["pct"] > 0:
-                learn.append(sk["key"])
-        core_stack[cat] = dict(empty=False, essential=essential, possess=possess,
-                               strengthen=strengthen, learn=learn)
-
-    # Top 15 by recruiter frequency.
     top15 = [sk for sk in skills_out if sk["n_jd"] > 0][:15]
 
-    # Learning roadmap.
+    # Core Career Skill Stack (spec #12) — populate only categories with demand.
+    core_stack = {}
+    for cat, member_names in CATEGORY_MEMBERS.items():
+        demonstrated, transferable, needs = [], [], []
+        members = [sk for sk in skills_out if sk["name"] in set(member_names)]
+        if not members:
+            continue
+        for sk in members:
+            if sk["level"] == "demonstrated":
+                demonstrated.append(sk["name"])
+            elif sk["level"] == "transferable":
+                transferable.append(sk["name"])
+            elif sk["level"] in ("partial", "gap") and sk["n_jd"] > 0:
+                needs.append(sk["name"])
+        if demonstrated or transferable or needs:
+            core_stack[cat] = dict(demonstrated=demonstrated,
+                                   transferable=transferable, needs=needs)
+
+    # Learning roadmap (spec #13): demand x evidence x career relevance x gap.
     roadmap = dict(immediately=[], next=[], later=[], nopriority=[])
     for sk in skills_out:
-        if sk["level"] in ("gap", "partial") and sk["pct"] > 0:
-            if sk["tier"] in (1, 2):
-                roadmap["immediately"].append(sk)
-            elif sk["tier"] == 3:
-                roadmap["next"].append(sk)
-                roadmap["later"].append(sk)
-            else:
-                roadmap["nopriority"].append(sk)
-    roadmap["immediately"].sort(key=lambda x: -x["pct"])
-    roadmap["next"].sort(key=lambda x: -x["pct"])
-    roadmap["later"].sort(key=lambda x: -x["pct"])
-    roadmap["nopriority"].sort(key=lambda x: -x["pct"])
+        if sk["n_jd"] == 0:
+            continue
+        if sk["action"] in ("LEARN",) and sk["tier"] in (1, 2):
+            roadmap["immediately"].append(sk)
+        elif sk["action"] in ("LEARN", "STRENGTHEN / LEARN") and sk["tier"] == 3:
+            roadmap["next"].append(sk)
+        elif sk["action"] == "STRENGTHEN / FORMALIZE":
+            roadmap["later"].append(sk)
+        else:
+            roadmap["nopriority"].append(sk)
+    for k in roadmap:
+        roadmap[k].sort(key=lambda x: -x["pct"])
 
-    # Resume positioning.
-    underrepresented, stronger_bullets, hidden, not_add, = [], [], [], []
-    keyword_freq = {}
+    # Resume positioning (spec #16).
+    market_more = [sk for sk in skills_out
+                   if sk["level"] == "demonstrated" and sk["pct"] >= 40]
+    genuine_gaps = [sk for sk in skills_out
+                    if sk["level"] == "gap" and sk["n_jd"] > 0]
+    tech_ai_gaps = [sk for sk in genuine_gaps
+                    if any(w in sk["name"] for w in ("AI", "LMS", "Power BI",
+                                                     "Excel", "CRM", "e-learning",
+                                                     "analytics", "data"))]
+    not_add = [sk for sk in skills_out
+               if sk["level"] == "na" and sk["pct"] < 20]
+    keywords = sorted(
+        {(p, len([1 for row in rows if hits(p, norm(row["jd_text"] or ""))]))
+         for sk in skills_out for p in sk["phrases"]},
+        key=lambda x: -x[1])[:15]
+
+    # Career direction (spec #15) — confidence scales with sample size.
+    roles = {}
     for row in rows:
-        jd_norm = norm(row["jd_text"] or "")
-        for s in SKILLS:
-            for a in s["aliases"]:
-                if hits(a, jd_norm):
-                    keyword_freq[a] = keyword_freq.get(a, 0) + 1
-                    break
-    for sk in skills_out:
-        if sk["level"] in ("strong", "position") and sk["pct"] >= 40:
-            underrepresented.append(sk["key"])
-            stronger_bullets.append(sk["key"])
-        elif sk["level"] == "na" and sk["pct"] < 20:
-            not_add.append(sk["key"])
-    keywords = sorted(keyword_freq.items(), key=lambda x: -x[1])[:15]
-
-    # --- NEW SKILLS LEARNED FROM THE JDs (not in the standard 22-skill list) ---
-    # Each saved report carries "required_skills": the core skills ChatGPT pulled
-    # straight from that JD. Any of those that is NOT one of our 22 known skills is
-    # a genuinely NEW requirement the JDs introduced -> learned automatically, with
-    # no manual editing of the skill list.
-    known_norm = {}
-    for s in SKILLS:
-        known_norm[norm(s["key"])] = s["key"]
-        for a in s.get("aliases", []):
-            known_norm[norm(a)] = s["key"]
-    _GENERIC = {"degree", "bachelors", "bachelor", "master", "mba", "phd",
-                "experience", "years", "education", "certification",
-                "certifications", "qualification", "qualifications", "skills",
-                "ability", "knowledge", "responsibilities", "requirements"}
-
-    def is_known_skill(name):
-        # Exact match against known skill keys/aliases only. We deliberately do
-        # NOT do substring matching here: a name like "Salesforce CPQ" must NOT
-        # be swallowed by the "salesforce" alias. Exact equality keeps genuinely
-        # new requirements (e.g. "GenAI prompting", "Salesforce CPQ") as new.
-        n = norm(name)
-        if not n or n in _GENERIC:
-            return True
-        return n in known_norm
-
-    new_counts = {}                   # norm_key -> {"name": original, "jids": set}
-    for row in rows:
-        try:
-            _rep = (json.loads(row["report"]) if isinstance(row["report"], str)
-                    else row["report"]) or {}
-        except Exception:
-            _rep = {}
-        for name in (_rep.get("required_skills") or []):
-            if not isinstance(name, str):
-                continue
-            nm = name.strip().rstrip(".").strip()
-            if len(nm) < 3 or len(nm) > 60 or is_known_skill(nm):
-                continue
-            key = norm(nm)
-            if key not in new_counts:
-                new_counts[key] = {"name": nm, "jids": set()}
-            new_counts[key]["jids"].add(row["id"])
-    new_skills = [dict(name=i["name"], n_jd=len(i["jids"]),
-                       pct=round(100 * len(i["jids"]) / jd_count) if jd_count else 0)
-                  for i in new_counts.values()]
-    new_skills.sort(key=lambda x: (-x["n_jd"], x["name"].lower()))
-
-    # Career direction — fit from the dominant JD role family + resume anchors.
+        role = row["role"] or "training manager"
+        roles[role] = roles.get(role, 0) + 1
     dom_role = max(roles, key=roles.get) if roles else "training manager"
+    confidence = ("PRELIMINARY — sample size too small for reliable conclusions"
+                  if jd_count < 5 else
+                  "EARLY TREND" if jd_count < 10 else
+                  "EMERGING MARKET SIGNAL" if jd_count < 20 else
+                  "MEANINGFUL CUMULATIVE SIGNAL")
     direction_spec = [
-        ("Training Team Lead", "Strong match"),
-        ("Assistant Manager – Training", "Strong match"),
-        ("Assistant Manager – L&D", "Strong match"),
-        ("Learning & Development Specialist", "Strong match"),
-        ("Training Manager", "Strong match"),
-        ("Sales Training Manager", "Possible — needs sales-proof"),
-        "Sales Enablement", "Possible — leverages training + enablement",
-        ("Customer Experience / Customer Service Manager", "Possible — if you show CS ownership"),
-        ("BPO Operations / Team Lead", "Possible — if you show ops ownership"),
-        ("Performance & Training roles", "Strong match"),
+        ("Training Team Lead", "training manager"),
+        ("Assistant Manager – Training", "training manager"),
+        ("Assistant Manager – L&D", "l&d"),
+        ("Training Manager", "training manager"),
+        ("L&D Specialist", "l&d"),
+        ("Sales Training Manager", "rsm"),
+        ("Sales Enablement", "rsm"),
+        ("Customer Experience / Customer Service Manager", "customer"),
     ]
     career_direction = []
-    for item in direction_spec:
-        if isinstance(item, tuple):
-            role_name, fit = item
-        else:
-            role_name, fit = item, "Possible"
-        # Promote training-family roles when the dominant JD role is training.
-        if dom_role in ("training manager", "l&d", "trainer") and \
-                ("Training" in role_name or "L&D" in role_name or "Learning" in role_name
-                 or "Performance" in role_name):
+    for role_name, fam in direction_spec:
+        # Fit is driven by how many analyzed JDs are in that role family
+        # (cumulative evidence) plus your demonstrated resume strength.
+        fam_jds = sum(1 for row in rows if (row["role"] or "") == fam)
+        if fam_jds >= 3:
             fit = "Strong match"
-        career_direction.append(dict(role=role_name, fit=fit))
+        elif fam_jds >= 1 and dom_role in (fam, "training manager", "l&d"):
+            fit = "Possible — supported by cumulative JDs"
+        else:
+            fit = "Possible — limited JD evidence"
+        career_direction.append(dict(role=role_name, fit=fit, fam_jds=fam_jds))
 
-    # FINAL priority block.
-    focus_gaps = [sk for sk in skills_out
-                  if sk["level"] in ("gap", "partial") and sk["pct"] >= 40][:5]
-    focus = [sk["key"] for sk in focus_gaps]
-    market_more = next((sk["key"] for sk in skills_out
-                        if sk["level"] in ("strong", "position") and sk["pct"] >= 40), None)
-    top_gap = focus_gaps[0]["key"] if focus_gaps else None
-    ai_skill = next((sk["key"] for sk in skills_out
-                     if "AI" in sk["key"] and sk["level"] in ("gap", "partial")), None) \
-        or next((sk["key"] for sk in skills_out
-                 if sk["tier"] in (1, 2) and sk["level"] in ("gap", "partial")), None)
-    best_dir = next((d["role"] for d in career_direction if d["fit"] == "Strong match"),
+    # Final priority (spec #20).
+    focus = [sk for sk in skills_out
+             if sk["tier"] in (1, 2) and sk["n_jd"] > 0
+             and sk["action"] in ("LEARN", "STRENGTHEN / LEARN",
+                                  "STRENGTHEN / FORMALIZE")][:5]
+    market_more_top = market_more[0]["name"] if market_more else None
+    top_gap = (genuine_gaps[0]["name"] if genuine_gaps
+               else next((sk["name"] for sk in skills_out
+                          if sk["level"] in ("partial", "gap") and sk["n_jd"] > 0), None))
+    ai_skill = (tech_ai_gaps[0]["name"] if tech_ai_gaps
+                else next((sk["name"] for sk in skills_out
+                           if "AI" in sk["name"] and sk["level"] in ("gap", "partial")), None))
+    best_dir = next((d["role"] for d in career_direction if "Strong" in d["fit"]),
                     career_direction[0]["role"] if career_direction else "")
-    if small:
-        trend = ("This is an early trend and not yet a reliable recruiter-market "
-                 "conclusion — share more job descriptions to sharpen it.")
+
+    if jd_count == 0:
+        trend = "No job descriptions analyzed yet — paste a ChatGPT reply to begin."
     else:
-        top_demands = [sk["key"].split(" (")[0] for sk in top15[:3]]
-        trend = (f"Across {jd_count} analyzed JDs, recruiters repeatedly ask for: "
-                 + ", ".join(top_demands) + ". This is a developing, evidence-based trend.")
+        top_names = [sk["name"] for sk in top15[:3]]
+        trend = (f"Across {jd_count} analyzed JDs, recruiters most repeatedly ask for: "
+                 + ", ".join(top_names) + f". {confidence}.")
 
     return dict(
         jd_count=jd_count, small=small, roles=roles, dom_role=dom_role,
         skills=skills_out, tiers=tiers, tier_label=TIER_LABEL,
-        level_label=LEVEL_LABEL, core_stack=core_stack, top15=top15,
-        roadmap=roadmap, underrepresented=underrepresented,
-        stronger_bullets=stronger_bullets, not_add=not_add, keywords=keywords,
-        new_skills=new_skills,
-        career_direction=career_direction,
-        final=dict(focus=focus, market_more=market_more, top_gap=top_gap,
+        level_label=LEVEL_LABEL, action_label=ACTION_LABEL,
+        core_stack=core_stack, top15=top15, roadmap=roadmap,
+        market_more=[sk["name"] for sk in market_more],
+        genuine_gaps=[sk["name"] for sk in genuine_gaps],
+        tech_ai_gaps=[sk["name"] for sk in tech_ai_gaps],
+        not_add=not_add, keywords=keywords,
+        career_direction=career_direction, confidence=confidence,
+        final=dict(focus=[sk["name"] for sk in focus],
+                   market_more=market_more_top, top_gap=top_gap,
                    ai_skill=ai_skill, best_dir=best_dir, trend=trend),
         generated=dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))
 
@@ -935,7 +1067,8 @@ def home():
         rows.append(dict(id=j["id"], title=j["title"], role=rr.get("role_label", ""),
                          created=j["created"], pct=rr.get("match_pct", 0), gaps=len(rr.get("gaps", []))))
     return render_template("home.html", resume=r, prompt=prompt, jds=rows,
-                           gh_backup=reports_store.enabled())
+                           gh_backup=reports_store.enabled(),
+                           cum=cumulative_analysis())
 
 
 @app.route("/resume", methods=["POST"])
@@ -987,10 +1120,10 @@ def report(jd_id):
     rank_shift = []
     before = cumulative_analysis(exclude_id=jd_id)
     if before["jd_count"] >= 1:
-        prev_rank = {sk["key"]: i + 1 for i, sk in enumerate(cum["top15"])}
-        before_rank = {sk["key"]: i + 1 for i, sk in enumerate(before["top15"])}
+        prev_rank = {sk["name"]: i + 1 for i, sk in enumerate(cum["top15"])}
+        before_rank = {sk["name"]: i + 1 for i, sk in enumerate(before["top15"])}
         for sk in cum["top15"]:
-            k = sk["key"]
+            k = sk["name"]
             old = before_rank.get(k)
             if old and old != prev_rank[k]:
                 rank_shift.append(dict(
