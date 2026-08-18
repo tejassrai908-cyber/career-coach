@@ -1,0 +1,441 @@
+{
+ "id": 6,
+ "title": "Pasted ChatGPT analysis",
+ "role": "Head Trainer",
+ "created": "18 Aug 2026, 04:18 PM",
+ "jd_text": "",
+ "report": {
+  "role": "Head Trainer",
+  "role_label": "Head Trainer",
+  "match_pct": 71,
+  "have": [
+   {
+    "key": "Training needs analysis",
+    "why": "The JD explicitly requires identifying employee skill and knowledge gaps, and the resume directly demonstrates TNA/TNI work.",
+    "jd_quote": "Identifying training needs: Assessment of employee skills and knowledge gaps to determine the type of training required"
+   },
+   {
+    "key": "Assessment of employee skills and knowledge gaps",
+    "why": "The resume states that the candidate identified product, process and sales competency gaps and used assessments.",
+    "jd_quote": "Assessment of employee skills and knowledge gaps to determine the type of training required"
+   },
+   {
+    "key": "Training program design",
+    "why": "The candidate has designed onboarding, refresher, process-improvement and targeted learning interventions.",
+    "jd_quote": "Designing training programs: Creating customized training programs that meet the specific needs of the organization and its employees"
+   },
+   {
+    "key": "Training delivery and facilitation",
+    "why": "The resume shows 15+ years of classroom and corporate training, new-hire training, product/process/soft-skills training and field coaching.",
+    "jd_quote": "Delivering training sessions: Leading classroom-based or online training sessions"
+   },
+   {
+    "key": "Training effectiveness and performance monitoring",
+    "why": "The candidate monitors trainee and team performance against KRAs and has worked on improving business and sales performance.",
+    "jd_quote": "Evaluating training effectiveness: Monitoring and evaluating the impact of training programs on employee performance and business outcomes"
+   },
+   {
+    "key": "Employee engagement",
+    "why": "The resume demonstrates learner engagement initiatives including Peer Learning Programs, Dip Checks and WhatsApp-based learning communities.",
+    "jd_quote": "employee engagement"
+   },
+   {
+    "key": "Induction / new-hire training",
+    "why": "The resume explicitly shows new-hire training, NHT batches and production-readiness initiatives.",
+    "jd_quote": "induction"
+   },
+   {
+    "key": "Training programs",
+    "why": "Training programs are a major part of the candidate's current and previous responsibilities.",
+    "jd_quote": "training programs"
+   },
+   {
+    "key": "Assessment",
+    "why": "The resume explicitly states that the candidate develops assessments and identifies competency gaps.",
+    "jd_quote": "assessment"
+   },
+   {
+    "key": "Training need analysis",
+    "why": "The resume explicitly states Training Needs Analysis (TNA) and Training Needs Identification (TNI).",
+    "jd_quote": "training need analysis"
+   },
+   {
+    "key": "Classroom training",
+    "why": "The resume explicitly describes 15+ years of classroom and corporate training experience.",
+    "jd_quote": "Leading classroom-based or online training sessions"
+   },
+   {
+    "key": "Continuous improvement in training",
+    "why": "The candidate has contributed innovative ideas and continuous-improvement initiatives to improve training effectiveness and learner engagement.",
+    "jd_quote": "to ensure the organization's training programs remain relevant and effective"
+   },
+   {
+    "key": "Sales and performance-oriented training",
+    "why": "Although the JD does not specifically request sales training, the resume demonstrates substantial training-performance linkage.",
+    "jd_quote": ""
+   },
+   {
+    "key": "LMS",
+    "why": "The resume lists Learning Management System experience, although the JD screenshot does not explicitly request an LMS.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Instructional Design & Storyboarding",
+    "why": "The resume explicitly lists Instructional Design & Storyboarding, although the JD does not name these terms.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Training content development",
+    "why": "The resume shows PowerPoint, training content development, facilitator guides, assessments and learning materials.",
+    "jd_quote": ""
+   }
+  ],
+  "gaps": [
+   {
+    "key": "Online training delivery",
+    "category": "explicitly_required",
+    "jd_quote": "Leading classroom-based or online training sessions",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume strongly proves classroom training and LMS exposure, but it does not explicitly state that the candidate has independently led online/virtual training sessions.",
+    "proof": "I have 15+ years of classroom and corporate training experience and have worked with LMS and project-supported tools; I am now extending that facilitation experience into structured virtual training delivery.",
+    "learn": [
+     "Learn virtual classroom fundamentals: session structure, learner interaction, polls, breakout activities, screen sharing and virtual facilitation.",
+     "Practise delivering a 30-minute training session using Microsoft Teams with a small group.",
+     "Record yourself, review learner engagement and create a virtual facilitator guide.",
+     "Build evidence by conducting at least 3 online sessions and documenting attendance, feedback and learning outcomes."
+    ],
+    "link": "[Microsoft Learn — Microsoft Teams training](https://learn.microsoft.com/en-us/training/teams/?utm_source=chatgpt.com)",
+    "books": "Next Level Virtual Training: Advance Your Facilitation by Diana Howles",
+    "youtube": "YouTube topic: Virtual Training Facilitation Techniques for Trainers — ATD / Learning & Development channels",
+    "free_tool": "Microsoft Teams or Google Meet for practice sessions",
+    "platforms": [
+     "Microsoft Learn",
+     "ATD Virtual Training & Facilitation",
+     "LinkedIn Learning — Virtual Training and Online Facilitation"
+    ],
+    "more": [
+     "[Microsoft Learn — Assemble learners and staff with Teams meetings](https://learn.microsoft.com/en-us/training/courses/assemble-learners-staff-microsoft-teams-meetings?utm_source=chatgpt.com)",
+     "[ATD Training Delivery Courses](https://www.td.org/atd-resources/training-delivery/courses?utm_source=chatgpt.com)",
+     "[Learning Guild — Proven Practices for Engaging Learners in Virtual Environments](https://www.learningguild.com/publications/proven-practices-for-engaging-learners-in-virtual-environments?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Next Level Virtual Training: Advance Your Facilitation by Diana Howles",
+     "YouTube topic: Virtual Training Facilitation Techniques for Trainers — ATD / Learning & Development channels",
+     "Microsoft Teams or Google Meet for practice sessions"
+    ]
+   },
+   {
+    "key": "Variety of teaching methods for learner engagement",
+    "category": "explicitly_required",
+    "jd_quote": "using a variety of teaching methods to engage participants and enhance learning",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume shows peer learning, Dip Checks, WhatsApp learning communities, quizzes, coaching, OJT and field sessions, but it does not explicitly frame these as a formal range of instructional methodologies.",
+    "proof": "I have used Peer Learning Programs, Dip Checks, WhatsApp-based learning communities, quizzes, OJT and field coaching to improve learner engagement, knowledge retention and sales effectiveness.",
+    "learn": [
+     "Map your existing methods to formal instructional approaches such as discussion, demonstration, practice, case study, role play, simulation and assessment.",
+     "Learn adult-learning principles and when to use each method.",
+     "Create a lesson plan containing at least five different learner-engagement techniques.",
+     "Document learner feedback and assessment results to demonstrate that the methods improved learning."
+    ],
+    "link": "[ATD Instructional Design Certificate](https://www.td.org/education-courses/instructional-design-certificate?utm_source=chatgpt.com)",
+    "books": "Design for How People Learn by Julie Dirksen",
+    "youtube": "YouTube topic: Adult Learning Principles and Training Facilitation Techniques — ATD",
+    "free_tool": "Google Forms for learner polls, quizzes and feedback",
+    "platforms": [
+     "ATD",
+     "Coursera — Instructional Design",
+     "LinkedIn Learning — Train-the-Trainer and Facilitation"
+    ],
+    "more": [
+     "[ATD Instructional Design Courses](https://www.td.org/education/courses-by-role/instructional-designer?utm_source=chatgpt.com)",
+     "[ATD Training & Facilitation Courses](https://www.td.org/education/training-facilitation-courses?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn by Julie Dirksen",
+     "YouTube topic: Adult Learning Principles and Training Facilitation Techniques — ATD",
+     "Google Forms for learner polls, quizzes and feedback"
+    ]
+   },
+   {
+    "key": "Formal evaluation of training impact on business outcomes",
+    "category": "explicitly_required",
+    "jd_quote": "Monitoring and evaluating the impact of training programs on employee performance and business outcomes",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate already monitors KRAs, trainee performance and productivity, but the resume does not explicitly show a formal training-evaluation framework connecting learning to business results.",
+    "proof": "I monitored team and trainee performance against KRAs and designed targeted interventions to bridge product, process and sales competency gaps, with the objective of improving productivity and operational performance.",
+    "learn": [
+     "Learn the Kirkpatrick four-level evaluation model: Reaction, Learning, Behavior and Results.",
+     "Build pre-training and post-training assessments.",
+     "Create a training-to-business KPI mapping sheet connecting training outcomes to metrics such as productivity, conversion, quality or sales.",
+     "Prepare one case study showing baseline, intervention, post-training result and business impact."
+    ],
+    "link": "[Kirkpatrick Partners — The Kirkpatrick Model](https://www.kirkpatrickpartners.com/about-us/?utm_source=chatgpt.com)",
+    "books": "Evaluating Training Programs: The Four Levels by Donald L. Kirkpatrick and James D. Kirkpatrick",
+    "youtube": "YouTube topic: Kirkpatrick Four Levels of Training Evaluation — ATD / Kirkpatrick Partners",
+    "free_tool": "Google Forms + Google Sheets for pre/post assessments and KPI tracking",
+    "platforms": [
+     "Kirkpatrick Partners",
+     "Coursera — Measuring Training Effectiveness",
+     "LinkedIn Learning — Measuring Learning Effectiveness"
+    ],
+    "more": [
+     "[ATD Instructional Design Certificate](https://www.td.org/education-courses/instructional-design-certificate?utm_source=chatgpt.com)",
+     "[ATD Training Design and Delivery Certificate](https://www.td.org/education-courses/training-design-and-delivery-certificate?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Evaluating Training Programs: The Four Levels by Donald L. Kirkpatrick and James D. Kirkpatrick",
+     "YouTube topic: Kirkpatrick Four Levels of Training Evaluation — ATD / Kirkpatrick Partners",
+     "Google Forms + Google Sheets for pre/post assessments and KPI tracking"
+    ]
+   },
+   {
+    "key": "Keeping up with industry developments and new training trends",
+    "category": "explicitly_required",
+    "jd_quote": "Staying informed of new trends and developments in the training field to ensure the organization's training programs remain relevant and effective",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows continuous improvement and AI productivity-tool adoption, but it does not explicitly demonstrate a structured practice of tracking L&D industry developments.",
+    "proof": "I have contributed innovative ideas and continuous improvement initiatives to enhance training effectiveness, learner engagement and overall team performance, and I have adopted AI productivity tools and AI-assisted content creation.",
+    "learn": [
+     "Follow ATD, CIPD and Learning Guild research on learning technology, facilitation and talent-development trends.",
+     "Create a monthly L&D trend tracker covering AI in L&D, virtual learning, learner analytics, skills-based learning and assessment.",
+     "Experiment with one relevant trend each quarter in an actual training intervention.",
+     "Record the business or learner impact of each experiment for interview evidence."
+    ],
+    "link": "[ATD 2026 State of the Industry: Talent Development Benchmarks and Trends](https://www.td.org/product/research-report--2026-state-of-the-industry/792605?utm_source=chatgpt.com)",
+    "books": "The Modern Learning Ecosystem by JD Dillon",
+    "youtube": "YouTube topic: Future of Learning and Development / L&D Trends 2026 — ATD",
+    "free_tool": "Google Sheets to maintain an L&D trends tracker",
+    "platforms": [
+     "ATD",
+     "CIPD",
+     "Learning Guild",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "[ATD 2026 State of the Industry](https://www.td.org/product/research-report--2026-state-of-the-industry/792605?utm_source=chatgpt.com)",
+     "[ATD 2025 State of the Industry](https://www.td.org/content/atd-blog/apc/2025-stateof-the-industry-talent-development-benchmarks-and-trends?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Modern Learning Ecosystem by JD Dillon",
+     "YouTube topic: Future of Learning and Development / L&D Trends 2026 — ATD",
+     "Google Sheets to maintain an L&D trends tracker"
+    ]
+   },
+   {
+    "key": "Resource management",
+    "category": "explicitly_required",
+    "jd_quote": "resource management",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates leadership of 20 training professionals and coordination with Operations, HRBP and business leaders, but it does not explicitly state responsibility for training-resource management.",
+    "proof": "I led and mentored a team of 20 training professionals while driving capability-development initiatives for Relationship Managers and coordinating with Operations, HRBP and business leaders.",
+    "learn": [
+     "Learn resource planning for training teams: trainer capacity, batch allocation, calendars, learning materials and stakeholder dependencies.",
+     "Build a trainer-capacity and batch-planning dashboard in Excel or Google Sheets.",
+     "Track trainer utilization, batch throughput, learner volume and delivery capacity.",
+     "Use the dashboard as evidence of resource-management capability."
+    ],
+    "link": "[ATD Talent Development resources](https://www.td.org/atd-resources/instructional-design?utm_source=chatgpt.com)",
+    "books": "The Training Manager's Handbook by Bodimer and Brown",
+    "youtube": "YouTube topic: Training Resource Planning and L&D Capacity Planning",
+    "free_tool": "Google Sheets or Microsoft Excel",
+    "platforms": [
+     "ATD",
+     "Coursera — Project Management",
+     "LinkedIn Learning — Resource Management"
+    ],
+    "more": [
+     "[ATD Training Delivery Courses](https://www.td.org/atd-resources/training-delivery/courses?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Training Manager's Handbook by Bodimer and Brown",
+     "YouTube topic: Training Resource Planning and L&D Capacity Planning",
+     "Google Sheets or Microsoft Excel"
+    ]
+   },
+   {
+    "key": "Employee engagement",
+    "category": "explicitly_required",
+    "jd_quote": "employee engagement",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate has learner-engagement experience, but the JD wording is broader and may expect employee-engagement practices beyond training participation.",
+    "proof": "I identified performance gaps through Peer Learning Programs, Dip Checks and WhatsApp-based learning communities, resulting in improved learner engagement and knowledge retention.",
+    "learn": [
+     "Learn the difference between learner engagement and broader employee engagement.",
+     "Study engagement drivers, employee voice, motivation and manager involvement.",
+     "Practise designing a short employee-engagement pulse survey.",
+     "Learn how to analyse engagement results and convert them into interventions."
+    ],
+    "link": "[CIPD Employee Engagement resources](https://www.cipd.org/en/topics/employee-engagement/?utm_source=chatgpt.com)",
+    "books": "Employee Engagement: A Practical Introduction by Emma Bridger",
+    "youtube": "YouTube topic: Employee Engagement Strategies and Measurement — CIPD",
+    "free_tool": "Google Forms + Google Sheets for engagement surveys",
+    "platforms": [
+     "CIPD",
+     "Coursera — Employee Engagement",
+     "LinkedIn Learning — Employee Engagement"
+    ],
+    "more": [
+     "[CIPD Employee Engagement and Motivation factsheet](https://www.cipd.org/uk/knowledge/factsheets/engagement-factsheet/?utm_source=chatgpt.com)",
+     "[CIPD Employee Voice factsheet](https://www.cipd.org/en/knowledge/factsheets/voice-factsheet/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Employee Engagement: A Practical Introduction by Emma Bridger",
+     "YouTube topic: Employee Engagement Strategies and Measurement — CIPD",
+     "Google Forms + Google Sheets for engagement surveys"
+    ]
+   },
+   {
+    "key": "Induction",
+    "category": "explicitly_required",
+    "jd_quote": "induction",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume demonstrates new-hire training and NHT batches, which are closely adjacent to induction, but the exact word induction is not used.",
+    "proof": "I have supported new-hire training, NHT batches and production-readiness initiatives to ensure smooth transitions from training to business operations.",
+    "learn": [
+     "Map the candidate's existing NHT process to a formal employee-induction framework.",
+     "Learn induction design covering organization, role, process, culture, compliance and productivity readiness.",
+     "Create a 30-60-90-day induction roadmap.",
+     "Measure induction effectiveness using completion, assessment, time-to-productivity and new-hire feedback."
+    ],
+    "link": "[OpenLearn Human Resources: Recruitment and Selection](https://www.open.edu/openlearn/money-business/human-resources/human-resources-recruitment-and-selection/?utm_source=chatgpt.com)",
+    "books": "The First 90 Days by Michael D. Watkins",
+    "youtube": "YouTube topic: Employee Induction and Onboarding Program Design — L&D",
+    "free_tool": "Google Forms + Google Sheets for induction checklists and feedback",
+    "platforms": [
+     "OpenLearn",
+     "Coursera — Onboarding and Employee Experience",
+     "LinkedIn Learning — Employee Onboarding"
+    ],
+    "more": [
+     "[OpenLearn recruitment and selection course content](https://www.open.edu/openlearn/money-business/human-resources/human-resources-recruitment-and-selection/content-section-?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The First 90 Days by Michael D. Watkins",
+     "YouTube topic: Employee Induction and Onboarding Program Design — L&D",
+     "Google Forms + Google Sheets for induction checklists and feedback"
+    ]
+   },
+   {
+    "key": "Recruitment",
+    "category": "explicitly_required",
+    "jd_quote": "recruitment",
+    "on_resume": false,
+    "near": false,
+    "why": "The resume shows training, onboarding and employee development but does not demonstrate recruitment or candidate-selection responsibility.",
+    "proof": "",
+    "learn": [
+     "Complete a structured recruitment-and-selection course covering job analysis, sourcing, screening, interviewing, selection and onboarding.",
+     "Practise writing job descriptions and competency-based interview questions.",
+     "Learn structured interviewing and evidence-based candidate evaluation.",
+     "If possible, support one real hiring activity internally to obtain practical experience."
+    ],
+    "link": "[OpenLearn — Human resources: recruitment and selection](https://www.open.edu/openlearn/money-business/human-resources/human-resources-recruitment-and-selection/?utm_source=chatgpt.com)",
+    "books": "Human Resource Management by Gary Dessler",
+    "youtube": "YouTube topic: Recruitment and Selection Process / Structured Interviewing — SHRM",
+    "free_tool": "Google Forms for candidate screening and interview-scorecard practice",
+    "platforms": [
+     "OpenLearn",
+     "Coursera — Recruiting, Hiring and Onboarding Employees",
+     "LinkedIn Learning — Recruiting Foundations"
+    ],
+    "more": [
+     "[OpenLearn recruitment learning outcomes](https://www.open.edu/openlearn/money-business/human-resources/human-resources-recruitment-and-selection/content-section---learningoutcomes?utm_source=chatgpt.com)",
+     "[OpenLearn recruitment overview](https://www.open.edu/openlearn/money-business/human-resources/human-resources-recruitment-and-selection/content-section-1?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "Human Resource Management by Gary Dessler",
+     "YouTube topic: Recruitment and Selection Process / Structured Interviewing — SHRM",
+     "Google Forms for candidate screening and interview-scorecard practice"
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The candidate has 15+ years of Learning & Development, training and sales-enablement experience. The JD does not specify a required number of years, so the experience-year gap is not specified. Functionally, the candidate is already in the same broad Training/L&D function and is currently a Training Team Lead; the move to Head Trainer is primarily a scope/title progression rather than a major career-function change. The main experience gaps are formal evidence of online training, recruitment, resource management and structured training-impact evaluation.",
+  "dept_diff": "There is little department difference. The JD belongs to Training/Learning & Development, while the candidate currently works in Training/Sales Enablement within an insurance-brokerage environment. The candidate is moving from a business-specific Sales Training/L&D function into a broader Head Trainer role, so the main change is breadth of training responsibility rather than a change of department.",
+  "required_skills": [
+   "Training needs identification and analysis",
+   "Assessment of employee skills and knowledge gaps",
+   "Customized training-program design",
+   "Classroom-based training delivery",
+   "Online training delivery",
+   "Use of a variety of teaching methods",
+   "Learner engagement",
+   "Training effectiveness evaluation",
+   "Monitoring employee performance",
+   "Connecting training to business outcomes",
+   "Keeping up with training-industry trends and developments",
+   "Resource management",
+   "Employee engagement",
+   "Induction",
+   "Recruitment"
+  ],
+  "qualification": {
+   "jd_wants": "not specified",
+   "resume_has": "BSc MPC, completed in 2013; Master Degree in English, completed in 2016; no professional training certification is listed.",
+   "gap": "No qualification gap can be established because the supplied JD does not specify a degree, certification or educational qualification.",
+   "learn": [
+    "No qualification is required by the visible JD, so no credential is necessary to close a documented qualification gap.",
+    "For career strengthening rather than JD compliance, consider ATD or another recognized Learning & Development credential after confirming the employer's expectations."
+   ]
+  },
+  "asked_count": 24,
+  "generated": "18 Aug 2026, 04:18 PM",
+  "verdict": "This is a strong-fit Head Trainer opportunity because the candidate already has the core Training/L&D foundation the JD asks for: TNA, training-program design, classroom delivery, assessments, learner engagement, new-hire training, coaching and performance improvement. The main gaps are not fundamental trainer capability; they are breadth and explicit evidence—especially online training, formal measurement of training impact, resource management, industry-trend tracking and recruitment. The candidate has 15+ years of relevant experience versus a JD that does not specify required years, so the biggest issue is demonstrating broader Head Trainer scope rather than acquiring an entirely new career function.",
+  "interview": [
+   {
+    "q": "How do you identify training needs before designing a program?",
+    "a": "I use Training Needs Analysis and Training Needs Identification to identify product, process and sales competency gaps. In my current role, I also use performance data, Dip Checks, field coaching, OJT observations and sales-call monitoring to understand the actual performance problem before designing a targeted learning intervention.",
+    "tip": ""
+   },
+   {
+    "q": "This role requires classroom or online training. How much virtual-training experience do you have?",
+    "a": "My strongest documented experience is classroom and corporate training, with 15+ years of training delivery and LMS exposure. I have also worked with digital learning communities and AI-assisted content creation. I would apply the same facilitation principles virtually and have been strengthening my capability around structured online delivery, learner interaction and virtual-session measurement.",
+    "tip": ""
+   },
+   {
+    "q": "How would you prove that a training program actually improved business performance?",
+    "a": "I would establish a baseline before training, define the performance metric the intervention is intended to influence, measure learning immediately after training and then track behavior and business results. In my current role I already monitor trainee and team performance against KRAs and connect interventions to productivity and sales effectiveness. I am strengthening this further using a formal Kirkpatrick-style evaluation approach.",
+    "tip": ""
+   },
+   {
+    "q": "The JD mentions recruitment. What recruitment experience do you have?",
+    "a": "Recruitment is not a core responsibility shown in my resume, so I would not overstate it. My adjacent experience is new-hire training, NHT batches, production readiness and employee development. I understand that recruitment is a separate competency, and I am building knowledge in structured recruitment, job analysis, screening and selection so I can work effectively with the recruitment function.",
+    "tip": ""
+   },
+   {
+    "q": "How do you keep your training programs relevant to changing industry requirements?",
+    "a": "I use continuous improvement and introduce new approaches based on learner and business needs. I have also adopted AI productivity tools, AI prompt engineering and AI-assisted content creation. Going forward, I would make this more systematic by tracking L&D research and trends and testing relevant approaches through measurable pilot interventions.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
