@@ -182,5 +182,11 @@
 <div class="card mut">{{ r.sources|join(' | ') }}
 <details style="margin-top:10px"><summary>Show the job text the app read</summary>
 <pre style="white-space:pre-wrap;font-size:12px">{{jd.jd_text}}</pre></details></div>
+
+<hr style="border:0;border-top:1px solid var(--line);margin:32px 0 4px">
+<p class="sub" style="margin-bottom:4px">Below: the career-level view across <b>all</b> the job descriptions you have
+analyzed so far (not only the one above). The numbers are real counts from every saved JD.</p>
+{% include "_cumulative_block.html" %}
+
 <p><a href="/">&larr; Back</a> &middot; <a href="/plan">See my combined learning plan</a></p>
 {% endblock %}

@@ -623,7 +623,7 @@ LEVEL_LABEL = {
 }
 
 
-def cumulative_analysis():
+def cumulative_analysis(exclude_id=None):
     """Cross-JD 'Cumulative Recruiter-Demand Analysis'.
 
     Built from EVERY job the user has analyzed (the real stored reports), so
@@ -638,6 +638,8 @@ def cumulative_analysis():
     with db() as c:
         rows = c.execute(
             "SELECT id,title,role,created,jd_text,report FROM jd ORDER BY id").fetchall()
+    if exclude_id is not None:
+        rows = [row for row in rows if row["id"] != exclude_id]
 
     jd_count = len(rows)
     small = jd_count < 5  # spec: warn when dataset is still small
@@ -976,8 +978,28 @@ def report(jd_id):
     if not row:
         flash("That report is gone.", "bad")
         return redirect(url_for("home"))
+    # The Cumulative Recruiter-Demand Analysis is appended after every JD's
+    # skill-gap report. It is computed server-side from ALL saved JDs so the
+    # cross-JD frequencies are real (ChatGPT only sees the current JD).
+    # We also compute the "before this JD" picture to report rank movements
+    # (spec #10: tell the user when a new JD changed a skill's importance).
+    cum = cumulative_analysis()
+    rank_shift = []
+    before = cumulative_analysis(exclude_id=jd_id)
+    if before["jd_count"] >= 1:
+        prev_rank = {sk["key"]: i + 1 for i, sk in enumerate(cum["top15"])}
+        before_rank = {sk["key"]: i + 1 for i, sk in enumerate(before["top15"])}
+        for sk in cum["top15"]:
+            k = sk["key"]
+            old = before_rank.get(k)
+            if old and old != prev_rank[k]:
+                rank_shift.append(dict(
+                    key=k, old=old, new=prev_rank[k],
+                    direction="up" if prev_rank[k] < old else "down",
+                    pct=sk["pct"]))
+    cum["rank_shift"] = rank_shift
     return render_template("report.html", jd=row, r=json.loads(row["report"]),
-                           ROLE_EXPERIENCE=ROLE_EXPERIENCE)
+                           ROLE_EXPERIENCE=ROLE_EXPERIENCE, c=cum)
 
 
 @app.route("/paste")
