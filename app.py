@@ -666,7 +666,47 @@ for _sk, _cat in CANON_CATEGORY.items():
     CATEGORY_MEMBERS.setdefault(_cat, []).append(_sk)
 
 
-# ============================================================== CUMULATIVE
+# ---- Recruiter-demand SIGNAL label (dynamic, not hard-coded to 4 JDs) -------
+# A skill's signal is a function of HOW MANY distinct JDs mention it vs the
+# total JDs analyzed. Thresholds are expressed as fractions of the sample so
+# they scale correctly (1/4, 10/20, 15/20 all behave as the spec intends).
+def signal_label(n_jd, jd_count):
+    """Recruiter-demand signal from frequency across all analyzed JDs.
+
+    Dynamic thresholds (fractions of jd_count), so they stay correct as the
+    dataset grows:
+      >= 75% of JDs  -> VERY STRONG RECURRING SIGNAL
+      >= 50%        -> STRONG RECURRING SIGNAL
+      >= 25%        -> EMERGING RECURRING SIGNAL
+      exactly 1 JD  -> SINGLE-JD SIGNAL
+      0 JDs         -> NOT PRESENT
+    """
+    if n_jd == 0:
+        return "NOT PRESENT"
+    if n_jd == 1:
+        return "SINGLE-JD SIGNAL"
+    frac = n_jd / jd_count if jd_count else 0
+    if frac >= 0.75:
+        return "VERY STRONG RECURRING SIGNAL"
+    if frac >= 0.50:
+        return "STRONG RECURRING SIGNAL"
+    if frac >= 0.25:
+        return "EMERGING RECURRING SIGNAL"
+    return "SINGLE-JD SIGNAL"
+
+
+# A skill counts as a true recurring recruiter-demand skill only when it reaches
+# at least the EMERGING threshold (>=25% of JDs, and more than one JD).
+def is_recurring(n_jd, jd_count):
+    return n_jd >= 2 and (n_jd / jd_count) >= 0.25 if jd_count else False
+
+
+# Evidence sufficiency: how many JDs before we may claim a "no gap" conclusion.
+# Below this we must say "insufficient evidence", never "no genuine gaps".
+GAP_EVIDENCE_MIN = 5
+
+
+# =================================================================== CUMULATIVE
 # TRUE cumulative recruiter-demand engine.
 #
 # Design rules (spec 2026-08 upgrade):
@@ -837,17 +877,14 @@ def cumulative_analysis(exclude_id=None, resume_override=None):
         n_pref = len(d["preferred"])
         pct = round(100 * n_jd / jd_count) if jd_count else 0
 
-        # Recruiter demand band from literal demand frequency.
+        # Recruiter-demand SIGNAL label (dynamic fraction of total JDs, NOT a
+        # fixed "Medium" just because one JD named it). See signal_label().
         if n_jd == 0:
             demand_band = "—"
-        elif pct >= 60:
-            demand_band = "Very High"
-        elif pct >= 40:
-            demand_band = "High"
-        elif pct >= 20:
-            demand_band = "Medium"
         else:
-            demand_band = "Low"
+            demand_band = signal_label(n_jd, jd_count)
+        signal = demand_band
+        recurring = is_recurring(n_jd, jd_count)
 
         # Resume evidence level (four levels, spec #8/#10).
         rh = resume_has_any(c)
@@ -894,9 +931,9 @@ def cumulative_analysis(exclude_id=None, resume_override=None):
 
         skills_out.append(dict(
             name=name, n_jd=n_jd, n_req=n_req, n_pref=n_pref, pct=pct,
-            demand=demand_band, level=level, action=action, tier=tier,
-            kind=c["kind"], category=c["category"], why=c["why"],
-            titles=d["titles"], jd_ids=sorted(d["jd_ids"]),
+            demand=demand_band, signal=signal, recurring=recurring, level=level,
+            action=action, tier=tier, kind=c["kind"], category=c["category"],
+            why=c["why"], titles=d["titles"], jd_ids=sorted(d["jd_ids"]),
             phrases=sorted(d["phrases"])[:6],
             hist_jds=sorted(hist)))
 
@@ -908,9 +945,17 @@ def cumulative_analysis(exclude_id=None, resume_override=None):
     for sk in skills_out:
         tiers[sk["tier"]].append(sk)
 
-    top15 = [sk for sk in skills_out if sk["n_jd"] > 0][:15]
+    # Top 15 by recruiter frequency — but only genuine RECURRING demand skills
+    # belong in "Top 15 recruiters keep asking for". Single-JD signals are kept
+    # separate so they are never presented as recurring demand.
+    recurring_skills = [sk for sk in skills_out if sk["recurring"]]
+    single_jd_skills = [sk for sk in skills_out if sk["n_jd"] == 1]
+    top15 = recurring_skills[:15]
+    top15_single = single_jd_skills  # shown in its own "Emerging / Single-JD" box
 
-    # Core Career Skill Stack (spec #12) — populate only categories with demand.
+    # Core Career Skill Stack (spec #4) — DRIVEN BY RESUME EVIDENCE, not JD
+    # demand. The stack answers "what can I already do?"; JD demand is layered
+    # on later as market context. Built from every category the resume touches.
     core_stack = {}
     for cat, member_names in CATEGORY_MEMBERS.items():
         demonstrated, transferable, needs = [], [], []
@@ -924,14 +969,22 @@ def cumulative_analysis(exclude_id=None, resume_override=None):
                 transferable.append(sk["name"])
             elif sk["level"] in ("partial", "gap") and sk["n_jd"] > 0:
                 needs.append(sk["name"])
+        # A category with NO member evidence is left out (no fake "needs"
+        # from JD-only skills). Only show categories the resume actually maps to.
         if demonstrated or transferable or needs:
             core_stack[cat] = dict(demonstrated=demonstrated,
-                                   transferable=transferable, needs=needs)
+                                   transferable=transferable, needs=needs,
+                                   market_demand={m["name"]: (m["n_jd"], jd_count, m["pct"], m["signal"])
+                                                  for m in members if m["n_jd"] > 0})
 
-    # Learning roadmap (spec #13): demand x evidence x career relevance x gap.
+    # Learning roadmap (spec #9): MARKET DEMAND + MY EVIDENCE + RELEVANCE + GAP.
     roadmap = dict(immediately=[], next=[], later=[], nopriority=[])
     for sk in skills_out:
         if sk["n_jd"] == 0:
+            continue
+        if not sk["recurring"] and sk["level"] in ("gap", "partial"):
+            # appears in only one (or too few) JD -> WATCH, do not learn yet.
+            roadmap["nopriority"].append(sk)
             continue
         if sk["action"] in ("LEARN",) and sk["tier"] in (1, 2):
             roadmap["immediately"].append(sk)
@@ -944,21 +997,45 @@ def cumulative_analysis(exclude_id=None, resume_override=None):
     for k in roadmap:
         roadmap[k].sort(key=lambda x: -x["pct"])
 
-    # Resume positioning (spec #16).
+    # Resume positioning (spec #6/#16). Keywords now carry an EXPLICIT meaning:
+    # "JD frequency: N/Total" — never a bare ×0.
     market_more = [sk for sk in skills_out
                    if sk["level"] == "demonstrated" and sk["pct"] >= 40]
+    sufficient_evidence = jd_count >= GAP_EVIDENCE_MIN
     genuine_gaps = [sk for sk in skills_out
                     if sk["level"] == "gap" and sk["n_jd"] > 0]
+    if genuine_gaps and sufficient_evidence:
+        gap_statement = ("%d genuine gap(s) identified across %d JDs."
+                         % (len(genuine_gaps), jd_count))
+    elif genuine_gaps and not sufficient_evidence:
+        gap_statement = ("No CONFIRMED genuine gaps yet — insufficient cumulative "
+                         "evidence (%d JDs analyzed; %d+ recommended). The skills "
+                         "below appear as gaps in some JDs but need more samples to confirm."
+                         % (jd_count, GAP_EVIDENCE_MIN))
+    else:
+        gap_statement = ("No genuine gaps surfaced yet — %s."
+                         % ("insufficient cumulative evidence"
+                            if not sufficient_evidence
+                            else "most demanded skills show transferable or demonstrated evidence"))
     tech_ai_gaps = [sk for sk in genuine_gaps
                     if any(w in sk["name"] for w in ("AI", "LMS", "Power BI",
                                                      "Excel", "CRM", "e-learning",
                                                      "analytics", "data"))]
     not_add = [sk for sk in skills_out
                if sk["level"] == "na" and sk["pct"] < 20]
-    keywords = sorted(
-        {(p, len([1 for row in rows if hits(p, norm(row["jd_text"] or ""))]))
-         for sk in skills_out for p in sk["phrases"]},
-        key=lambda x: -x[1])[:15]
+    # Keyword frequency with explicit labels (no unexplained ×0).
+    keyword_counts = {}
+    for sk in skills_out:
+        for p in sk["phrases"]:
+            keyword_counts.setdefault(p, 0)
+    for row in rows:
+        jd_norm = norm(row["jd_text"] or "")
+        for sk in skills_out:
+            for p in sk["phrases"]:
+                if hits(p, jd_norm):
+                    keyword_counts[p] += 1
+    keywords = sorted(((p, n) for p, n in keyword_counts.items() if n > 0),
+                      key=lambda x: -x[1])[:15]
 
     # Career direction (spec #15) — confidence scales with sample size.
     roles = {}
@@ -994,12 +1071,36 @@ def cumulative_analysis(exclude_id=None, resume_override=None):
             fit = "Possible — limited JD evidence"
         career_direction.append(dict(role=role_name, fit=fit, fam_jds=fam_jds))
 
-    # Final priority (spec #20).
-    focus = [sk for sk in skills_out
-             if sk["tier"] in (1, 2) and sk["n_jd"] > 0
-             and sk["action"] in ("LEARN", "STRENGTHEN / LEARN",
-                                  "STRENGTHEN / FORMALIZE")][:5]
-    market_more_top = market_more[0]["name"] if market_more else None
+    # Final priority (spec #10) — selected by a blended score, NOT just the
+    # first items in the list. Score = recruiter demand (recurring weight) +
+    # gap severity + career relevance + JD-sample confidence. Results are then
+    # split into the four actions so the user sees MARKET vs STRENGTHEN vs
+    # LEARN vs WATCH separately.
+    relevant_cats = {"Learning & Development", "Training & Facilitation",
+                     "Leadership & People Management", "Sales Training",
+                     "Communication & Stakeholder Management",
+                     "Learning Technology / LMS", "Data / Reporting / Analytics"}
+    def _priority_score(sk):
+        demand_w = (1.0 if sk["recurring"] else 0.15) * (sk["n_jd"] / jd_count if jd_count else 0)
+        gap_w = 1.0 if sk["level"] == "gap" else (0.5 if sk["level"] == "partial" else 0.0)
+        rel_w = 0.6 if sk["category"] in relevant_cats else 0.2
+        conf_w = min(jd_count, GAP_EVIDENCE_MIN) / GAP_EVIDENCE_MIN  # grows with sample
+        return demand_w * 2 + gap_w + rel_w + conf_w * 0.5
+
+    learn_candidates = [sk for sk in skills_out
+                        if sk["action"] in ("LEARN", "STRENGTHEN / LEARN")
+                        and sk["n_jd"] > 0]
+    learn_candidates.sort(key=_priority_score, reverse=True)
+    focus = [sk["name"] for sk in learn_candidates[:5]]
+
+    market_list = [sk for sk in skills_out if sk["level"] == "demonstrated"]
+    market_list.sort(key=lambda s: (-(s["n_jd"] / jd_count if jd_count else 0), -s["pct"]))
+    strengthen_list = [sk for sk in skills_out if sk["level"] == "transferable"]
+    strengthen_list.sort(key=_priority_score, reverse=True)
+    watch_list = [sk for sk in skills_out if (not sk["recurring"]) and sk["n_jd"] > 0]
+    watch_list.sort(key=lambda s: -s["n_jd"])
+
+    market_more_top = market_list[0]["name"] if market_list else None
     top_gap = (genuine_gaps[0]["name"] if genuine_gaps
                else next((sk["name"] for sk in skills_out
                           if sk["level"] in ("partial", "gap") and sk["n_jd"] > 0), None))
@@ -1013,20 +1114,28 @@ def cumulative_analysis(exclude_id=None, resume_override=None):
         trend = "No job descriptions analyzed yet — paste a ChatGPT reply to begin."
     else:
         top_names = [sk["name"] for sk in top15[:3]]
-        trend = (f"Across {jd_count} analyzed JDs, recruiters most repeatedly ask for: "
-                 + ", ".join(top_names) + f". {confidence}.")
+        trend = (f"Across {jd_count} analyzed JDs, the recurring recruiter-demand skills are: "
+                 + (", ".join(top_names) if top_names
+                    else "not yet established — analyze more JDs")
+                 + f". {confidence}.")
 
     return dict(
         jd_count=jd_count, small=small, roles=roles, dom_role=dom_role,
         skills=skills_out, tiers=tiers, tier_label=TIER_LABEL,
         level_label=LEVEL_LABEL, action_label=ACTION_LABEL,
-        core_stack=core_stack, top15=top15, roadmap=roadmap,
+        core_stack=core_stack, top15=top15, top15_single=top15_single,
+        recurring_skills=recurring_skills, single_jd_skills=single_jd_skills,
+        roadmap=roadmap,
         market_more=[sk["name"] for sk in market_more],
+        market_list=[sk["name"] for sk in market_list],
+        strengthen_list=[sk["name"] for sk in strengthen_list],
+        watch_list=[sk["name"] for sk in watch_list],
+        gap_statement=gap_statement,
         genuine_gaps=[sk["name"] for sk in genuine_gaps],
         tech_ai_gaps=[sk["name"] for sk in tech_ai_gaps],
         not_add=not_add, keywords=keywords,
         career_direction=career_direction, confidence=confidence,
-        final=dict(focus=[sk["name"] for sk in focus],
+        final=dict(focus=focus,
                    market_more=market_more_top, top_gap=top_gap,
                    ai_skill=ai_skill, best_dir=best_dir, trend=trend),
         generated=dt.datetime.now().strftime("%d %b %Y, %I:%M %p"))

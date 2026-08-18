@@ -37,17 +37,17 @@ Scroll to section 2 or any Top-15 / tier entry to see this evidence — every pe
 <h2 style="color:#5b8cff">2 &mdash; Recruiter frequency across all JDs</h2>
 <div class="card">
 <table>
-<tr><th>Canonical skill</th><th>JDs</th><th>% of JDs</th><th>Demand</th><th>Your evidence</th><th>Action</th></tr>
+<tr><th>Canonical skill</th><th>JD frequency</th><th>% of JDs</th><th>Signal</th><th>Your evidence</th><th>Action</th></tr>
 {% for s in c.skills %}
 <tr>
 <td>{{s.name}}{% if s.kind=='learned' %} <span class="mut">(learned from your JDs)</span>{% endif %}</td>
 <td>{{s.n_jd}} / {{c.jd_count}}{% if s.n_req %} <span class="mut">({{s.n_req}} req{% if s.n_pref %}, {{s.n_pref}} pref{% endif %})</span>{% endif %}</td>
 <td>{{s.pct}}%</td>
 <td>
-{% if s.demand == 'Very High' %}<span class="pill" style="background:#0f3d2c;border-color:#2f7d5a;color:#7ef0c0">Very High</span>
-{% elif s.demand == 'High' %}<span class="pill" style="background:#10243a;border-color:#3a5a8a;color:#a9c4ff">High</span>
-{% elif s.demand == 'Medium' %}<span class="pill" style="background:#2e2410;border-color:#a8762f;color:#f0c27e">Medium</span>
-{% elif s.demand == 'Low' %}<span class="pill">Low</span>
+{% if s.signal == 'VERY STRONG RECURRING SIGNAL' %}<span class="pill" style="background:#0f3d2c;border-color:#2f7d5a;color:#7ef0c0">Very Strong Recurring</span>
+{% elif s.signal == 'STRONG RECURRING SIGNAL' %}<span class="pill" style="background:#10243a;border-color:#3a5a8a;color:#a9c4ff">Strong Recurring</span>
+{% elif s.signal == 'EMERGING RECURRING SIGNAL' %}<span class="pill" style="background:#2e2410;border-color:#a8762f;color:#f0c27e">Emerging Recurring</span>
+{% elif s.signal == 'SINGLE-JD SIGNAL' %}<span class="pill" style="background:#2a2410;border-color:#6b5a2f;color:#d3c08b">Single-JD Signal</span>
 {% else %}<span class="mut">&mdash;</span>{% endif %}
 </td>
 <td class="ev {{s.level}}">{{c.level_label[s.level].split(' ',1)[0]}}</td>
@@ -55,30 +55,41 @@ Scroll to section 2 or any Top-15 / tier entry to see this evidence — every pe
 </tr>
 {% endfor %}
 </table>
+<p class="mut" style="margin:8px 0 0">Signal is computed as the skill's JD frequency ÷ total JDs (dynamic thresholds: ≥75% Very Strong, ≥50% Strong, ≥25% Emerging, exactly 1 JD = Single-JD Signal). It is NOT a fixed "Medium" just because one JD named the skill.</p>
 </div>
 
-<!-- 6. TOP 15 (true, with representative wording) -->
+<!-- 6. TOP 15 RECRUITING DEMAND (recurring first, single-JD separate) -->
 <h2 style="color:#37d39b">6 &mdash; Top 15 skills recruiters keep asking for</h2>
-<p class="sub" style="margin-bottom:4px">Ranked by actual frequency across all {{c.jd_count}} analyzed JDs.
-Market demand and your evidence are shown SEPARATELY (never combined into one score).</p>
+<p class="sub" style="margin-bottom:4px">Only skills that recur across multiple JDs (≥25% of all analyzed JDs) are listed here as genuine recruiter demand.
+Each entry shows the canonical skill, the original JD wording it matched, where it appeared, JD frequency, and required/preferred counts — so every claim is auditable (#8).</p>
 {% for s in c.top15 %}
 <div class="card gap">
 <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;align-items:center">
 <span class="chip gap">#{{loop.index}} &middot; {{s.name}}</span>
-<span class="mut">{{s.n_jd}} of {{c.jd_count}} JDs &middot; {{s.pct}}% demand{% if s.n_req %} &middot; Required {{s.n_req}}{% if s.n_pref %} / Preferred {{s.n_pref}}{% endif %}{% endif %}</span>
+<span class="mut">{{s.n_jd}} of {{c.jd_count}} JDs &middot; {{s.pct}}% &middot; {{s.signal}}{% if s.n_req %} &middot; Required {{s.n_req}}{% if s.n_pref %} / Preferred {{s.n_pref}}{% endif %}{% endif %}</span>
 </div>
 <div style="margin-top:6px">
-<span class="pill" style="background:#10243a;border-color:#3a5a8a;color:#a9c4ff">Market: {{s.demand}}</span>
+<span class="pill" style="background:#10243a;border-color:#3a5a8a;color:#a9c4ff">Market signal: {{s.signal}}</span>
 <span class="pill" style="background:#2e2410;border-color:#a8762f;color:#f0c27e">My evidence: {{c.level_label[s.level].split(' ',1)[0]}}</span>
 <span class="pill" style="background:#0f3d2c;border-color:#2f7d5a;color:#7ef0c0">Action: {{s.action}}</span>
 </div>
-{% if s.phrases %}<p class="mut" style="margin:8px 0 0"><b>Representative JD wording:</b> &ldquo;{{s.phrases|join('&rdquo; &middot; &ldquo;')}}&rdquo;</p>{% endif %}
+{% if s.phrases %}<p class="mut" style="margin:8px 0 0"><b>Original JD phrases:</b> &ldquo;{{s.phrases|join('&rdquo; &middot; &ldquo;')}}&rdquo;</p>{% endif %}
 <p class="mut" style="margin:6px 0 0">{{s.why}}</p>
-<p class="mut" style="margin:4px 0 0;font-size:12px">Appeared in: {{s.titles|join(', ')}}{% if s.hist_jds %} &middot; you had it in JD(s): {{s.hist_jds|join(', ')}}{% endif %}</p>
+<p class="mut" style="margin:4px 0 0;font-size:12px">Appeared in JDs: {{s.titles|join(', ')}}{% if s.hist_jds %} &middot; you had it in JD(s): {{s.hist_jds|join(', ')}}{% endif %}</p>
 </div>
 {% else %}
-<div class="card"><p class="mut">No skill counts yet &mdash; analyze a few JDs first. (This only shows when zero JDs have been saved.)</p></div>
+<div class="card"><p class="mut">No recurring recruiter-demand skills established yet — analyze more JDs (need ≥2 JDs mentioning a skill at ≥25% frequency).</p></div>
 {% endfor %}
+
+{% if c.top15_single %}
+<h2 style="color:#d3a437">6b &mdash; Emerging / Single-JD Signals</h2>
+<p class="sub" style="margin-bottom:4px">These skills appeared in ONLY ONE of your {{c.jd_count}} JDs. They are <b>not</b> presented as recurring recruiter demand. Watch them — they may become recurring as you add more JDs.</p>
+<div class="card">
+<div class="chips">
+{% for s in c.top15_single %}<span class="chip req">{{s.name}}<span class="sub2">1/{{c.jd_count}} JD &middot; Single-JD Signal</span></span>{% endfor %}
+</div>
+</div>
+{% endif %}
 
 <!-- 3. PRIORITIZE (4 tiers) -->
 <h2>3 &mdash; Prioritized skills (4 tiers)</h2>
@@ -103,14 +114,14 @@ Market demand and your evidence are shown SEPARATELY (never combined into one sc
 </table>
 </div>
 
-<!-- 9. MARKET MORE STRONGLY -->
-<h2 style="color:#37d39b">9 &mdash; Top skills I already possess but should market more strongly</h2>
-{% if c.market_more %}
+<!-- 9. MARKET MORE STRONGLY (your demonstrated skills) -->
+<h2 style="color:#37d39b">9 &mdash; Top skills I already possess (market more strongly)</h2>
+{% if c.market_list %}
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
 <p class="mut" style="margin:0 0 8px;line-height:1.6">These skills have HIGH recruiter demand AND clear evidence on your resume.
 Hermes is NOT telling you to learn them &mdash; it is telling you to <b>re-position</b> them with market language + numbers.</p>
 <ul style="margin:4px 0 0 18px;line-height:1.8">
-{% for k in c.market_more %}<li><b>{{k}}</b> &mdash; demanded by recruiters in {{c.jd_count}} JDs; shown as demonstrated in your history. Lead with it using the JD's own keywords.</li>{% endfor %}
+{% for k in c.market_list %}<li><b>{{k}}</b> &mdash; demonstrated in your resume; lead with it using the JD's own keywords and a number (e.g. "owned 12-trainer team", "cut content time 40%").</li>{% endfor %}
 </ul>
 </div>
 {% else %}
@@ -120,6 +131,7 @@ Hermes is NOT telling you to learn them &mdash; it is telling you to <b>re-posit
 <!-- 10. GENUINE GAP ANALYSIS -->
 <h2 style="color:#ff6b6b">10 &mdash; Real skill-gap analysis</h2>
 <div class="card" style="border-left:3px solid #ff6b6b;background:#2a1414">
+<p style="margin:0 0 6px">{{c.gap_statement}}</p>
 {% if c.genuine_gaps %}
 <p style="margin:0 0 6px"><b>Top genuine gaps (recruiters want it, no resume/transferable evidence):</b></p>
 <ul style="margin:4px 0 0 18px;line-height:1.8">{% for k in c.genuine_gaps %}<li>{{k}} ({{c.jd_count}} JDs demand it)</li>{% endfor %}</ul>
@@ -130,19 +142,23 @@ Hermes is NOT telling you to learn them &mdash; it is telling you to <b>re-posit
 {% endif %}
 </div>
 
-<!-- 12. CORE CAREER SKILL STACK -->
+<!-- 12. CORE CAREER SKILL STACK (driven by MY RESUME, not JD demand) -->
 <h2 style="color:#37d39b">12 &mdash; My Core Career Skill Stack</h2>
+<p class="sub" style="margin-bottom:6px">This stack is built from <b>YOUR RESUME / EXPERIENCE</b> (what you can already do), not from JD demand.
+For each category the JD market demand is shown alongside as context. A skill with 0/{{c.jd_count}} JDs is NOT invented here — only resume-supported categories appear.</p>
 {% for cat, d in c.core_stack.items() %}
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
 <b style="font-size:15px">{{cat}}</b>
 <ul style="margin:8px 0 0 18px;line-height:1.7">
-{% if d.demonstrated %}<li><b>✅ Demonstrated:</b> {{d.demonstrated|join(', ')}}</li>{% endif %}
+{% if d.demonstrated %}<li><b>✅ Currently demonstrated:</b> {{d.demonstrated|join(', ')}}</li>{% endif %}
 {% if d.transferable %}<li><b>🔶 Transferable / adjacent:</b> {{d.transferable|join(', ')}}</li>{% endif %}
 {% if d.needs %}<li><b>🟡 Needs development:</b> {{d.needs|join(', ')}}</li>{% endif %}
+{% if d.market_demand %}<li><b>📊 Market demand for my skills here:</b>
+{% for sk,(n,tot,pc,sig) in d.market_demand.items() %}{{sk}} — {{n}}/{{tot}} JDs ({{pc}}%, {{sig}}){% if not loop.last %}; {% endif %}{% endfor %}</li>{% endif %}
 </ul>
 </div>
 {% else %}
-<div class="card"><p class="mut">No category populated yet — analyze more JDs so the stack fills from real demand.</p></div>
+<div class="card"><p class="mut">No categories populated from your resume yet — once your resume shows experience in a category (e.g. Training, L&D, Sales), it appears here even with no JDs analyzed.</p></div>
 {% endfor %}
 
 <!-- 13. ROADMAP -->
@@ -167,7 +183,7 @@ Hermes is NOT telling you to learn them &mdash; it is telling you to <b>re-posit
 {% if c.market_more %}<p><b>Skills to emphasize / quantify (you already have them):</b></p>
 <ul style="margin:4px 0 0 18px;line-height:1.7">{% for k in c.market_more %}<li>{{k}} — rename using market terminology + add a number (e.g. "owned 12-trainer team", "cut content time 40%").</li>{% endfor %}</ul>{% endif %}
 {% if c.keywords %}<p style="margin-top:12px"><b>Keywords that repeatedly appear in your target JDs:</b></p>
-<div class="chips" style="margin-top:6px">{% for kw, n in c.keywords %}<span class="chip req">{{kw}}<span class="sub2">×{{n}}</span></span>{% endfor %}</div>{% endif %}
+<div class="chips" style="margin-top:6px">{% for kw, n in c.keywords %}<span class="chip req">{{kw}}<span class="sub2">JD frequency: {{n}}/{{c.jd_count}}</span></span>{% endfor %}</div>{% endif %}
 {% if c.not_add %}<p style="margin-top:12px"><b>Skills you should NOT add unless you genuinely have evidence:</b></p>
 <ul style="margin:4px 0 0 18px;line-height:1.7">{% for k in c.not_add %}<li>{{k}}</li>{% endfor %}</ul>{% endif %}
 <p class="mut" style="margin-top:12px">"Do not add" (no evidence) is kept separate from "already have but under-marketed" (see section 9). Never invent experience.</p>
@@ -206,13 +222,27 @@ now {{m.pct}}% of JDs).</li>
 </div>
 {% endif %}
 
-<!-- 20. FINAL -->
+<!-- 20. FINAL (four separate actions) -->
 <h2 style="color:#37d39b">🎯 My Career Skill Priority</h2>
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22">
-<p><b>Top 5 skills I should focus on now:</b></p>
-<ol style="margin:4px 0 10px 18px;line-height:1.8">
-{% for k in c.final.focus %}<li>{{k}}</li>{% else %}<li class="mut">Analyze more JDs to surface focus areas.</li>{% endfor %}
-</ol>
+
+<p><b>A. MARKET MORE STRONGLY</b> <span class="mut">(you already have these — re-position)</span></p>
+{% if c.market_list %}<ul style="margin:4px 0 10px 18px;line-height:1.7">{% for k in c.market_list[:5] %}<li>{{k}}</li>{% endfor %}</ul>
+{% else %}<p class="mut">— none backed by both demand and resume evidence yet.</p>{% endif %}
+
+<p><b>B. STRENGTHEN / FORMALIZE</b> <span class="mut">(you have adjacent experience)</span></p>
+{% if c.strengthen_list %}<ul style="margin:4px 0 10px 18px;line-height:1.7">{% for k in c.strengthen_list[:5] %}<li>{{k}}</li>{% endfor %}</ul>
+{% else %}<p class="mut">— none flagged.</p>{% endif %}
+
+<p><b>C. LEARN</b> <span class="mut">(genuine gap — recruiters want it, you lack it)</span></p>
+{% if c.final.focus %}<ol style="margin:4px 0 10px 18px;line-height:1.8">{% for k in c.final.focus %}<li>{{k}}</li>{% endfor %}</ol>
+{% else %}<p class="mut">— no genuine gaps meet the learning bar yet.</p>{% endif %}
+
+<p><b>D. WATCH / DO NOT PRIORITIZE YET</b> <span class="mut">(single-JD or low-demand signals)</span></p>
+{% if c.watch_list %}<ul style="margin:4px 0 10px 18px;line-height:1.7">{% for k in c.watch_list[:8] %}<li>{{k}} ({{k and 1}}/{{c.jd_count}} JD)</li>{% endfor %}</ul>
+{% else %}<p class="mut">— nothing to watch.</p>{% endif %}
+
+<hr style="border-color:#234;margin:14px 0">
 <p><b>Top skill I already possess but should market more strongly:</b>
 {% if c.final.market_more %}{{c.final.market_more}}{% else %}<span class="mut">&mdash;</span>{% endif %}</p>
 <p><b>Top skill gap I should close:</b>
