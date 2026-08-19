@@ -1,5 +1,20 @@
 {% extends "base.html" %}{% block body %}
 <h1>Career Coach</h1>
+<div id="lastReport" style="display:none;margin-bottom:14px">
+  <a href="#" id="lastReportLink" class="learnbtn" style="display:block;text-align:center">
+    &#8617; Return to your last report: <span id="lastReportName"></span></a>
+</div>
+<script>
+try{
+  var lid = localStorage.getItem('last_report_id');
+  var lname = localStorage.getItem('last_report_title');
+  if(lid){
+    document.getElementById('lastReport').style.display='block';
+    document.getElementById('lastReportName').textContent = lname || ('Report #'+lid);
+    document.getElementById('lastReportLink').href = '/report/'+lid;
+  }
+}catch(e){}
+</script>
 <p class="sub">Upload your resume once. The app gives you a ready message (your resume is already inside). You copy it to your free ChatGPT, add the job description, get the reply, paste it back &mdash; and the app highlights the skill gap, qualification &amp; experience difference, how to learn, and where to learn.</p>
 
 <div class="card">

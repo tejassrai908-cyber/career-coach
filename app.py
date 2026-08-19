@@ -1450,6 +1450,12 @@ def icon512():
     return send_from_directory(os.path.join(BASE, "static"), "icon-512.png")
 
 
+@app.route("/sw.js")
+def service_worker():
+    from flask import send_from_directory
+    return send_from_directory(BASE, "sw.js", mimetype="application/javascript")
+
+
 def lan_ip():
     """Best-guess LAN IP so the phone can reach this laptop."""
     import socket as sk

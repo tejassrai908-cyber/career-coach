@@ -68,4 +68,11 @@ nav{margin-bottom:14px;font-size:14px}nav a{margin-right:16px}
 {% with m = get_flashed_messages(with_categories=true) %}{% for c,t in m %}
 <div class="flash {{c}}">{{t}}</div>{% endfor %}{% endwith %}
 {% block body %}{% endblock %}
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
+</script>
 </body></html>

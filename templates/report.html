@@ -1,6 +1,7 @@
 {% extends "base.html" %}{% block body %}
 <h1>{{jd.title}}</h1>
 <p class="sub">Read as a <b>{{r.role_label}}</b> role &middot; {{r.generated}}</p>
+<script>try{ localStorage.setItem('last_report_id','{{jd.id}}'); localStorage.setItem('last_report_title',{{ ('"'+jd.title.replace('"','')+'"')|safe }}); }catch(e){}</script>
 {% if r.ai_mode %}
 <div class="card" style="border-left:3px solid #37d39b;background:#0f2e22;text-align:center">
 <b style="color:#7ef0c0;font-size:14px">&#9889; Analyzed by OpenRouter AI &mdash; real expert skill read</b>
@@ -169,7 +170,7 @@
   <ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
   <p style="margin:6px 0 2px"><b>Chances if you learn it:</b> {% if g.near %}High — you already do the work; reframing + 1 proof gets you past this.{% else %}Medium-High — this is a real new skill; with a work sample + the proof line above you clear the question.{% endif %}</p>
   <p class="mut" style="margin:6px 0 2px"><b>Resources to upskill:</b></p>
-  {% if g.link %}<div>&#9656; Official / start here: <a href="{{g.link}}" target="_blank" rel="noopener">{{g.link}}</a></div>{% endif %}
+  {% if g.link %}<div>&#9656; Official / start here: <a href="{{g.link.strip()}}" target="_blank" rel="noopener">{{g.link.strip()}}</a></div>{% endif %}
   {% if g.books %}{% for b in g.books %}<div>&#9656; Read: {{b}}</div>{% endfor %}{% endif %}
   {% if g.yt %}{% for y in g.yt %}<div>&#9656; YouTube: {{y}}</div>{% endfor %}{% endif %}
   {% if g.free_tools %}{% for t in g.free_tools %}<div>&#9656; Free tool: {{t}}</div>{% endfor %}{% endif %}
