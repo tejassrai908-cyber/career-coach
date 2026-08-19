@@ -43,6 +43,55 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "career-coach-local")
 app.config["MAX_CONTENT_LENGTH"] = 40 * 1024 * 1024  # 40 MB
 
+import urllib.parse as _up
+
+def _strip_markdown_url(text):
+    """ChatGPT sometimes returns "[label](https://...)" — extract the bare URL."""
+    if not text:
+        return ""
+    t = str(text).strip()
+    m = re.search(r"\]\((https?://[^)\s]+)\)", t)
+    if m:
+        return m.group(1).strip()
+    # or a raw url anywhere
+    m2 = re.search(r"https?://[^\s\]]+", t)
+    if m2:
+        return m2.group(0).strip()
+    return t
+
+def safe_url(text):
+    """Return a clean http(s) URL, or '' if the value isn't a usable link.
+    Strips ChatGPT's markdown, em-dashes, spaces, brackets."""
+    raw = _strip_markdown_url(text)
+    _strip_chars = "[]()\"' "
+    raw = raw.strip().strip(_strip_chars)
+    if not raw or not raw.lower().startswith("http"):
+        return ""
+    # collapse any whitespace that slipped in
+    raw = re.sub(r"\s+", "", raw)
+    return raw
+
+@app.template_filter("safe_url")
+def _f_safe_url(text):
+    return safe_url(text)
+
+def yt_search(topic):
+    """Build a valid YouTube search URL from a free-text topic.
+    Encodes everything so mobile browsers never choke on em-dashes/slashes."""
+    t = _strip_markdown_url(topic)
+    # drop noisy prefixes ChatGPT adds
+    t = re.sub(r"^(youtube\s*(topic)?\s*[:\-]\s*)", "", t, flags=re.I).strip()
+    _strip_chars = "[]()\"' "
+    t = t.strip(_strip_chars)
+    if not t:
+        return "https://www.youtube.com/results?search_query=training"
+    q = _up.quote_plus(t)
+    return "https://www.youtube.com/results?search_query=" + q
+
+@app.template_filter("yt_search")
+def _f_yt_search(topic):
+    return yt_search(topic)
+
 
 @app.route("/health")
 def health():

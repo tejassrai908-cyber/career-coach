@@ -101,15 +101,15 @@
     You just need the framework name + proof — fastest gap to close.</div>{% endif %}
   <p class="mut" style="margin:8px 0 4px">Why they ask: {{g.why}}</p>
   <div><b style="font-size:14px">How to acquire this skill</b><ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul></div>
-  {% if g.link %}<a class="learnbtn" href="{{g.link.strip()}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}
+  {% if g.link %}{% set ll = g.link|safe_url %}{% if ll %}<a class="learnbtn" href="{{ll}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}{% endif %}
   {% if g.books or g.youtube or g.free_tool or g.platforms or g.more %}
   <div style="margin-top:10px"><b style="font-size:14px">Resources to learn from</b>
     <ul style="margin:6px 0 0 18px;line-height:1.6">
       {% if g.books %}<li>&#128218; Book / article: {{g.books}}</li>{% endif %}
-      {% if g.youtube %}<li>&#127909; YouTube: <a href="https://www.youtube.com/results?search_query={{ g.youtube.replace(' ', '+') }}" target="_blank" rel="noopener">{{g.youtube}}</a></li>{% endif %}
+      {% if g.youtube %}<li>&#127909; YouTube: <a href="{{ g.youtube|yt_search }}" target="_blank" rel="noopener">{{g.youtube}}</a></li>{% endif %}
       {% if g.free_tool %}<li>&#128187; Free tool: {{g.free_tool}}</li>{% endif %}
       {% if g.platforms %}<li>&#127891; Platforms / courses: {% for pl in g.platforms %}{{pl}}{% if not loop.last %}; {% endif %}{% endfor %}</li>{% endif %}
-      {% for m in g.more %}<li>&#128279; <a href="{{m.strip()}}" target="_blank" rel="noopener">{{m}}</a></li>{% endfor %}
+      {% for m in g.more %}{% set mu = m|safe_url %}{% if mu %}<li>&#128279; <a href="{{mu}}" target="_blank" rel="noopener">{{m}}</a></li>{% endif %}{% endfor %}
     </ul>
   </div>
   {% endif %}
@@ -127,7 +127,7 @@
 <div class="card imp"><div class="chips" style="margin:0 0 6px"><span class="chip gap">{{g.key}}</span></div>
 <p class="mut" style="margin:8px 0 4px">{{g.why}}</p>
 <ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
-{% if g.link %}<a class="learnbtn" href="{{g.link.strip()}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}
+{% if g.link %}{% set ll = g.link|safe_url %}{% if ll %}<a class="learnbtn" href="{{ll}}" target="_blank" rel="noopener">Learn this &rarr;</a>{% endif %}{% endif %}
 <p class="mut" style="margin-top:10px"><b>Say this:</b> {{g.proof}}</p></div>
 {% endfor %}
 {% endif %}
@@ -170,7 +170,7 @@
   <ul>{% for l in g.learn %}<li>{{l}}</li>{% endfor %}</ul>
   <p style="margin:6px 0 2px"><b>Chances if you learn it:</b> {% if g.near %}High — you already do the work; reframing + 1 proof gets you past this.{% else %}Medium-High — this is a real new skill; with a work sample + the proof line above you clear the question.{% endif %}</p>
   <p class="mut" style="margin:6px 0 2px"><b>Resources to upskill:</b></p>
-  {% if g.link %}<div>&#9656; Official / start here: <a href="{{g.link.strip()}}" target="_blank" rel="noopener">{{g.link.strip()}}</a></div>{% endif %}
+  {% set ol = g.link|safe_url %}{% if ol %}<div>&#9656; Official / start here: <a href="{{ol}}" target="_blank" rel="noopener">{{ol}}</a></div>{% endif %}
   {% if g.books %}{% for b in g.books %}<div>&#9656; Read: {{b}}</div>{% endfor %}{% endif %}
   {% if g.yt %}{% for y in g.yt %}<div>&#9656; YouTube: {{y}}</div>{% endfor %}{% endif %}
   {% if g.free_tools %}{% for t in g.free_tools %}<div>&#9656; Free tool: {{t}}</div>{% endfor %}{% endif %}
