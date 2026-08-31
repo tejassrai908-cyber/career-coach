@@ -1,0 +1,493 @@
+{
+ "id": 1,
+ "title": "Pasted ChatGPT analysis",
+ "role": "not specified",
+ "created": "31 Aug 2026, 02:35 PM",
+ "jd_text": "",
+ "report": {
+  "role": "not specified",
+  "role_label": "not specified",
+  "match_pct": 75,
+  "have": [
+   {
+    "key": "L&D strategy and training planning",
+    "why": "The resume directly shows L&D strategy, training planning, business alignment and end-to-end learning interventions.",
+    "jd_quote": "Develop and execute regional training plans aligned with business objectives."
+   },
+   {
+    "key": "Training Needs Analysis (TNA/TNI)",
+    "why": "This is one of the strongest direct matches. The candidate repeatedly demonstrates TNA/TNI, performance-gap diagnosis and targeted interventions.",
+    "jd_quote": "Conduct Training Needs Analysis (TNA) to identify competency gaps."
+   },
+   {
+    "key": "Classroom and OJT training",
+    "why": "The resume explicitly shows New Hire Training, refresher training, OJT and field coaching, although virtual classroom delivery is not explicitly stated.",
+    "jd_quote": "Design and deliver classroom, virtual, and on-the-job training programs."
+   },
+   {
+    "key": "Training content customization",
+    "why": "The candidate designs training content, facilitator guides, assessments and interventions based on identified performance gaps.",
+    "jd_quote": "Customize training content based on regional business requirements."
+   },
+   {
+    "key": "Product, process and sales capability training",
+    "why": "The resume explicitly demonstrates product, process and sales capability training through NHT, OJT, field coaching and sales enablement.",
+    "jd_quote": "Conduct product, process, customer service, and sales capability training."
+   },
+   {
+    "key": "Sales training and sales capability development",
+    "why": "The candidate has 2+ years of sales training in health insurance and has delivered 50+ OJT and field-coaching interventions.",
+    "jd_quote": "Train front line employees, managers, and channel partners on sales techniques and best practices."
+   },
+   {
+    "key": "Performance/KPI-oriented interventions",
+    "why": "The resume shows KRA monitoring, learner performance analysis, productivity goals and targeted interventions.",
+    "jd_quote": "Drive improvement in key sales and service KPIs through targeted interventions."
+   },
+   {
+    "key": "Stakeholder management",
+    "why": "The candidate partners with Operations, HRBP, Business Leaders and L&D teams to align learning priorities.",
+    "jd_quote": "Partner with Regional Business Heads, Area Managers, and HR teams to align learning priorities."
+   },
+   {
+    "key": "Capability development advisory work",
+    "why": "The resume shows partnership with business leaders and performance-focused capability interventions, closely matching the advisory aspect of the role.",
+    "jd_quote": "Act as a trusted advisor on capability development and performance improvement."
+   },
+   {
+    "key": "L&D team coordination",
+    "why": "The resume explicitly states coordination with L&D teams and current partnership with business stakeholders.",
+    "jd_quote": "Coordinate with central L&D teams for training content and learning initiatives."
+   },
+   {
+    "key": "Training leadership",
+    "why": "The candidate currently leads and mentors 8 training professionals and has driven capability development for 100+ Relationship Managers.",
+    "jd_quote": "Experience managing regional training operations."
+   },
+   {
+    "key": "Large-scale training delivery",
+    "why": "Managing 8 trainers, supporting 100+ Relationship Managers and delivering 50+ OJT/field-coaching interventions provides credible evidence of scale.",
+    "jd_quote": "Proven track record in designing and delivering large-scale training programs."
+   },
+   {
+    "key": "BFSI experience",
+    "why": "The candidate has direct health-insurance sales-training experience, which is relevant to the preferred BFSI requirement.",
+    "jd_quote": "Experience in BFSI or related industries preferred."
+   },
+   {
+    "key": "Graduate qualification",
+    "why": "The candidate has a BSc degree and a Master's degree, exceeding the basic education requirement.",
+    "jd_quote": "Any Graduate"
+   },
+   {
+    "key": "Not requested: AI and automation",
+    "why": "The resume contains substantial AI, automation, Apps Script, n8n and AI-application development experience, but these are not explicitly requested by this JD.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Not requested: Advanced Excel and Power Query",
+    "why": "These are strong resume capabilities but are not explicitly mentioned in the JD.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Not requested: SQL and data visualization",
+    "why": "The resume shows SQL, dashboards, MIS, data analysis and visualization, but the JD does not explicitly request these tools.",
+    "jd_quote": ""
+   }
+  ],
+  "gaps": [
+   {
+    "key": "Regional training planning and execution",
+    "category": "explicitly_required",
+    "jd_quote": "Develop and execute regional training plans aligned with business objectives.",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate clearly has L&D strategy and training planning experience, but the resume does not explicitly demonstrate ownership of a regional training plan.",
+    "proof": "I currently lead 8 training professionals and partner with business leaders to align learning priorities with productivity goals; my next step is applying that same operating model across a defined region.",
+    "learn": [
+     "Build a sample regional training plan covering geography, business targets, trainer capacity, learner segments, monthly calendar and KPIs.",
+     "Learn regional workforce and capability planning using business-performance data rather than training demand alone.",
+     "Create a 90-day regional L&D plan and practise presenting it to a hypothetical Regional Business Head.",
+     "Convert existing PolicyBazaar training planning into measurable regional-business language for interviews."
+    ],
+    "link": "https://www.cipd.org/en/knowledge/factsheets/learning-needs-factsheet/",
+    "books": "Armstrong's Handbook of Learning and Development by Michael Armstrong",
+    "youtube": "YouTube: 'Strategic Learning and Development / Regional L&D Strategy' — ATD and CIPD learning content",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "CIPD Learning and Development resources",
+     "NPTEL Training and Development",
+     "Coursera Learning and Development / HR courses"
+    ],
+    "more": [
+     "https://onlinecourses.nptel.ac.in/noc26_hs65/preview",
+     "https://www.cipd.org/en/topics/learning-development/",
+     "https://www.td.org/education-courses/l/micro-course/overview-of-training-needs-assessment"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Armstrong's Handbook of Learning and Development by Michael Armstrong",
+     "YouTube: 'Strategic Learning and Development / Regional L&D Strategy' — ATD and CIPD learning content",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Virtual training delivery",
+    "category": "explicitly_required",
+    "jd_quote": "Design and deliver classroom, virtual, and on-the-job training programs.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates classroom/NHT, OJT, digital learning communities and online tools, but does not explicitly claim virtual instructor-led training.",
+    "proof": "I have designed and delivered New Hire Training, refresher programs and OJT interventions and have also built digital learning communities; I would extend that experience into structured virtual instructor-led delivery.",
+    "learn": [
+     "Learn virtual instructor-led training design, facilitation and engagement techniques.",
+     "Practise delivering 30-minute virtual sessions with polls, breakout activities, knowledge checks and assessments.",
+     "Build a virtual-training lesson plan and facilitator guide.",
+     "Record two sample virtual sessions and evaluate engagement, pacing and learner interaction."
+    ],
+    "link": "https://www.cipd.org/en/knowledge/factsheets/learning-methods-factsheet/",
+    "books": "The Virtual Training Guidebook by Cindy Huggett",
+    "youtube": "YouTube: 'Virtual Instructor Led Training / VILT facilitation' — ATD",
+    "free_tool": "Google Meet",
+    "platforms": [
+     "Coursera",
+     "LinkedIn Learning",
+     "NPTEL Training and Development"
+    ],
+    "more": [
+     "https://onlinecourses.nptel.ac.in/noc26_hs65/preview",
+     "https://www.cipd.org/en/knowledge/factsheets/learning-methods-factsheet/"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Virtual Training Guidebook by Cindy Huggett",
+     "YouTube: 'Virtual Instructor Led Training / VILT facilitation' — ATD",
+     "Google Meet"
+    ]
+   },
+   {
+    "key": "Corporate learning initiative rollout",
+    "category": "explicitly_required",
+    "jd_quote": "Ensure effective rollout of corporate learning initiatives across the region.",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate has managed learning interventions, NHT, refresher programs, digital learning communities and training execution, but regional rollout of a centrally designed corporate initiative is not explicitly demonstrated.",
+    "proof": "I have overseen NHT, refresher and production-readiness programs while coordinating Operations, HRBP and L&D teams to ensure smooth execution; I can apply this rollout discipline to regional corporate initiatives.",
+    "learn": [
+     "Learn L&D program rollout governance: stakeholder mapping, communication, trainer readiness, launch, adoption and measurement.",
+     "Create a rollout RACI for a hypothetical corporate learning initiative.",
+     "Build a regional rollout dashboard covering attendance, completion, certification, adoption and business impact.",
+     "Practise managing rollout risks such as trainer capacity, inconsistent delivery and stakeholder resistance."
+    ],
+    "link": "https://www.cipd.org/en/topics/learning-development/",
+    "books": "The Learning and Development Handbook by Michelle Parry-Slater",
+    "youtube": "YouTube: 'Learning program implementation and rollout' — ATD",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "CIPD Learning and Development",
+     "Coursera",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "https://www.cipd.org/en/knowledge/factsheets/learning-methods-factsheet/",
+     "https://onlinecourses.nptel.ac.in/noc26_hs65/preview"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Learning and Development Handbook by Michelle Parry-Slater",
+     "YouTube: 'Learning program implementation and rollout' — ATD",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Customer service capability training",
+    "category": "explicitly_required",
+    "jd_quote": "Conduct product, process, customer service, and sales capability training.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows customer engagement, sales-call observations and sales training, but does not explicitly show ownership of customer-service training.",
+    "proof": "My field-coaching work has focused on product pitching, objection handling, customer engagement and sales execution, giving me a strong adjacent foundation for customer-service capability training.",
+    "learn": [
+     "Learn customer-service fundamentals: active listening, empathy, complaint handling, service recovery and customer experience.",
+     "Map customer-service competencies to observable frontline behaviours.",
+     "Design a one-day customer-service capability program with role plays and assessments.",
+     "Practise measuring service-training impact through quality and customer-experience metrics."
+    ],
+    "link": "https://www.coursera.org/learn/introduction-to-customer-service-customer-supprt",
+    "books": "The Effortless Experience by Matthew Dixon, Nick Toman and Rick DeLisi",
+    "youtube": "YouTube: 'Customer Service Training Techniques' — HubSpot",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera — Customer Service, Customer Support, Customer Experience",
+     "LinkedIn Learning",
+     "HubSpot Academy"
+    ],
+    "more": [
+     "https://www.coursera.org/specializations/customer-service",
+     "https://www.coursera.org/courses?query=customer%20service"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Effortless Experience by Matthew Dixon, Nick Toman and Rick DeLisi",
+     "YouTube: 'Customer Service Training Techniques' — HubSpot",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Channel partner training",
+    "category": "explicitly_required",
+    "jd_quote": "Train front line employees, managers, and channel partners on sales techniques and best practices.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has strong sales training and stakeholder-management experience, but the resume does not explicitly show training external channel partners.",
+    "proof": "I have trained and coached Relationship Managers and sales employees and have driven product pitching, objection handling and sales execution; the bridge is applying the same capability model to external channel partners.",
+    "learn": [
+     "Learn channel-sales fundamentals, partner onboarding and partner enablement.",
+     "Study how training differs for employees versus external partners.",
+     "Build a channel-partner onboarding curriculum covering product, process, compliance, sales skills and customer handling.",
+     "Practise a partner-certification or partner-readiness framework."
+    ],
+    "link": "https://trailhead.salesforce.com/content/learn/modules/channel-sales-for-partners",
+    "books": "Partnernomics by David A. Yovanno and Michael A. Kelly",
+    "youtube": "YouTube: 'Channel Partner Training / Partner Enablement / Channel Sales' — Salesforce",
+    "free_tool": "Salesforce Trailhead",
+    "platforms": [
+     "Salesforce Trailhead — Channel Sales for Partners",
+     "Coursera",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "https://trailhead.salesforce.com/c/start_here",
+     "https://trailhead.salesforce.com/content/learn/modules/channel-management-and-partner-portal-strategy/manage-and-grow-your-channel"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Partnernomics by David A. Yovanno and Michael A. Kelly",
+     "YouTube: 'Channel Partner Training / Partner Enablement / Channel Sales' — Salesforce",
+     "Salesforce Trailhead"
+    ]
+   },
+   {
+    "key": "Product launch training and certification programs",
+    "category": "explicitly_required",
+    "jd_quote": "Support new product launches through training and certification programs.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has product/process training and NHT experience, but the resume does not explicitly demonstrate training ownership for a new-product launch or certification program.",
+    "proof": "I have designed product and process training and managed New Hire Training and production-readiness programs; I would use the same design discipline to build launch-readiness and certification programs for new products.",
+    "learn": [
+     "Learn product-launch lifecycle, launch readiness, stakeholder roles and go-to-market basics.",
+     "Design a product-launch training plan covering audience segmentation, curriculum, trainer certification, assessments and launch support.",
+     "Build a sample certification assessment and pass/fail criteria.",
+     "Create a launch-readiness dashboard covering training completion and certification."
+    ],
+    "link": "https://www.coursera.org/learn/product-management-developing-and-delivering-a-new-product/",
+    "books": "Inspired by Marty Cagan",
+    "youtube": "YouTube: 'Product Launch Training / Sales Enablement for Product Launches' — Salesforce",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera — Product Management: Developing and Delivering a New Product",
+     "Salesforce Trailhead",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "https://www.coursera.org/learn/microsoft-product-launch-and-post-launch-management",
+     "https://www.coursera.org/learn/strategic-product-management"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Inspired by Marty Cagan",
+     "YouTube: 'Product Launch Training / Sales Enablement for Product Launches' — Salesforce",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Regional training operations",
+    "category": "explicitly_required",
+    "jd_quote": "Experience managing regional training operations.",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate manages a training team and training operations, but regional geographic ownership is not explicitly demonstrated.",
+    "proof": "I currently lead and mentor 8 training professionals and manage capability development for 100+ Relationship Managers; the main additional scope is regional ownership across locations.",
+    "learn": [
+     "Learn regional L&D operating-model design: trainer deployment, capacity planning, calendars, governance and reporting.",
+     "Build a regional trainer-capacity model in Excel or Google Sheets.",
+     "Create regional governance routines with weekly operating reviews and monthly business reviews.",
+     "Practise managing differences in business needs across locations."
+    ],
+    "link": "https://www.cipd.org/en/topics/learning-development/",
+    "books": "The Learning and Development Handbook by Michelle Parry-Slater",
+    "youtube": "YouTube: 'L&D Operating Model / Training Operations Management' — ATD",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "CIPD",
+     "NPTEL",
+     "Coursera"
+    ],
+    "more": [
+     "https://onlinecourses.nptel.ac.in/noc26_hs65/preview",
+     "https://www.cipd.org/en/knowledge/factsheets/learning-needs-factsheet/"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Learning and Development Handbook by Michelle Parry-Slater",
+     "YouTube: 'L&D Operating Model / Training Operations Management' — ATD",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Regional stakeholder network",
+    "category": "explicitly_required",
+    "jd_quote": "Partner with Regional Business Heads, Area Managers, and HR teams to align learning priorities.",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate already partners with HRBP, Operations and Business Leaders, but the exact Regional Business Head and Area Manager stakeholder structure is not shown.",
+    "proof": "I partner with Operations, HRBP and Business Leaders to align learning priorities with productivity goals, operational requirements and business needs.",
+    "learn": [
+     "Learn stakeholder mapping and influence models for regional business environments.",
+     "Practise converting business problems into capability priorities for business heads.",
+     "Build a monthly Regional L&D Business Review template.",
+     "Practise stakeholder conversations where business leaders challenge training ROI."
+    ],
+    "link": "https://www.cipd.org/en/knowledge/factsheets/learning-needs-factsheet/",
+    "books": "The Trusted Advisor by David H. Maister, Charles H. Green and Robert M. Galford",
+    "youtube": "YouTube: 'L&D Stakeholder Management / Influencing Business Leaders' — ATD",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "CIPD",
+     "LinkedIn Learning",
+     "Coursera"
+    ],
+    "more": [
+     "https://www.cipd.org/en/topics/learning-development/",
+     "https://www.td.org/education-courses/needs-assessment-certificate"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Trusted Advisor by David H. Maister, Charles H. Green and Robert M. Galford",
+     "YouTube: 'L&D Stakeholder Management / Influencing Business Leaders' — ATD",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Central L&D coordination",
+    "category": "explicitly_required",
+    "jd_quote": "Coordinate with central L&D teams for training content and learning initiatives.",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume demonstrates coordination with L&D teams, but does not specifically identify a central L&D function.",
+    "proof": "I have coordinated with Operations, HRBP and L&D teams to ensure smooth training execution and have experience designing training content and learning materials.",
+    "learn": [
+     "Learn central-versus-regional L&D governance models.",
+     "Practise managing content localization while maintaining central standards.",
+     "Build a content-request and version-control workflow between central L&D and regional teams.",
+     "Create a regional feedback loop for centrally designed learning."
+    ],
+    "link": "https://www.cipd.org/en/topics/learning-development/",
+    "books": "The Learning and Development Handbook by Michelle Parry-Slater",
+    "youtube": "YouTube: 'Central L&D and Regional L&D Operating Model' — ATD",
+    "free_tool": "Google Drive",
+    "platforms": [
+     "CIPD",
+     "LinkedIn Learning",
+     "NPTEL Training and Development"
+    ],
+    "more": [
+     "https://onlinecourses.nptel.ac.in/noc26_hs65/preview",
+     "https://www.cipd.org/en/knowledge/factsheets/learning-methods-factsheet/"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Learning and Development Handbook by Michelle Parry-Slater",
+     "YouTube: 'Central L&D and Regional L&D Operating Model' — ATD",
+     "Google Drive"
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The JD explicitly wants 5-8 years of experience in Training, Learning & Development, Sales Training, or Capability Building. The resume states 15+ years overall experience, including 4+ years of corporate training and 2+ years leading sales training, plus earlier training/English-coaching roles. Therefore the candidate is not short of total relevant training experience, although the resume's explicitly stated corporate-training figure is below the JD's lower bound if the employer interprets the requirement strictly as corporate L&D only. Functionally, the candidate is already in Training/L&D and Sales Enablement, so this is primarily a scope/domain gap rather than a level gap: the JD adds regional training operations, channel-partner exposure, product-launch/certification exposure and NBFC/lending context.",
+  "dept_diff": "The JD sits in BFSI, Investments & Trading, specifically an NBFC lending environment, with a regional training/L&D function supporting sales and service. The candidate's current function is Training & L&D / Sales Enablement in health-insurance BFSI. In plain English: the department/function is highly transferable, but the business context changes from health insurance to NBFC lending and the role adds regional business ownership.",
+  "required_skills": [
+   "Regional training planning and execution",
+   "Training Needs Analysis (TNA)",
+   "Competency-gap identification",
+   "Classroom training",
+   "Virtual training",
+   "On-the-job training",
+   "Corporate learning initiative rollout",
+   "Training content customization",
+   "Product training",
+   "Process training",
+   "Customer service training",
+   "Sales capability training",
+   "Frontline employee training",
+   "Manager training",
+   "Channel partner training",
+   "Sales techniques and best practices",
+   "Product-launch training",
+   "Certification programs",
+   "Sales KPI improvement",
+   "Service KPI improvement",
+   "Stakeholder management",
+   "Capability development",
+   "Performance improvement",
+   "Regional training operations",
+   "Large-scale training program design and delivery",
+   "BFSI experience"
+  ],
+  "qualification": {
+   "jd_wants": "verbatim: Any Graduate",
+   "resume_has": "BSc MPC, completed in 2013; Master Degree in English, completed in 2016.",
+   "gap": "No qualification gap. The resume shows a graduate degree and an additional master's degree, satisfying the JD's 'Any Graduate' requirement.",
+   "learn": [
+    "No additional degree or certification is required by the JD.",
+    "For positioning rather than qualification compliance, an L&D credential such as ATD/CIPD training or an HR/L&D certification could strengthen the profile, but it is not required by this JD."
+   ]
+  },
+  "asked_count": 26,
+  "generated": "31 Aug 2026, 02:35 PM",
+  "verdict": "This is a strong and realistic target role for you. The core function is already very close: TNA, L&D strategy, sales capability, product/process training, OJT, coaching, stakeholder management, team leadership and BFSI experience are all present. The main gaps are scope and evidence rather than a fundamental career mismatch: regional training operations, virtual delivery, customer-service training, channel-partner training, formal product-launch/certification programs and NBFC/lending context are not clearly demonstrated. Overall, this is more of a scope/domain expansion than a function change, and the resume should be reframed to make the transferable evidence much more explicit.",
+  "interview": [
+   {
+    "q": "You have worked in health insurance. How will you handle moving into an NBFC lending business?",
+    "a": "My core expertise is capability development rather than a single product category. I currently work across product, process and sales capability, conduct TNA/TNI, use performance data to identify gaps, and convert those gaps into training, OJT and field-coaching interventions. I would apply the same framework to lending while quickly building product, process, credit and customer-journey knowledge specific to the NBFC business.",
+    "tip": ""
+   },
+   {
+    "q": "Have you managed regional training operations before?",
+    "a": "My current role gives me a strong foundation for regional ownership. I lead 8 training professionals, support capability development for 100+ Relationship Managers, monitor learner and performance data, and coordinate with Operations, HRBP and Business Leaders. While my resume does not label this as regional training operations, the operating responsibilities are directly transferable; the additional scope would be managing the same model across multiple locations.",
+    "tip": ""
+   },
+   {
+    "q": "Have you trained channel partners?",
+    "a": "My direct experience has primarily been with employees and Relationship Managers rather than external channel partners. However, I have extensive experience in product pitching, objection handling, customer engagement, sales execution, OJT and field coaching. I would adapt that capability model into a partner-enablement program with product readiness, sales skills, process knowledge, assessments and certification.",
+    "tip": ""
+   },
+   {
+    "q": "Tell us about a product launch or certification program you have supported.",
+    "a": "My resume does not claim direct ownership of a formal new-product certification program, so I would not overstate that experience. What I do have is hands-on product and process training, NHT, refresher training, production-readiness programs, content design and assessments. Those are the building blocks I would use to create launch-readiness training and certification for a new lending product.",
+    "tip": ""
+   },
+   {
+    "q": "How would you prove that training improved sales and service KPIs?",
+    "a": "I would start with the performance gap, establish the baseline, identify the specific behaviour or capability causing the gap, design the intervention, and then track post-training performance. I already use TNA/TNI, performance data, KRAs, field observations and coaching interventions. For this role I would extend that approach to sales and service KPIs such as conversion, productivity, quality and customer-service outcomes.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
