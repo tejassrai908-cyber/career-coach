@@ -1,0 +1,560 @@
+{
+ "id": 4,
+ "title": "Pasted ChatGPT analysis",
+ "role": "not specified",
+ "created": "17 Sep 2026, 07:46 AM",
+ "jd_text": "",
+ "report": {
+  "role": "not specified",
+  "role_label": "not specified",
+  "match_pct": 78,
+  "have": [
+   {
+    "key": "Training program design and execution",
+    "why": "The resume explicitly demonstrates end-to-end NHT, refresher, OJT and learning-intervention design and delivery.",
+    "jd_quote": "Design and execute training programs focused on product knowledge, sales techniques, and best practices for selling mobile products."
+   },
+   {
+    "key": "Sales techniques and sales capability",
+    "why": "Sales Enablement, sales capability development, product pitching, objection handling and sales execution are explicit in the resume.",
+    "jd_quote": "sales techniques"
+   },
+   {
+    "key": "Sales Enablement",
+    "why": "Sales Enablement is explicitly one of the candidate's core competencies and achievements.",
+    "jd_quote": "Sales Enablement"
+   },
+   {
+    "key": "Customer objection handling",
+    "why": "The candidate has conducted 50+ OJT and field-coaching interventions covering objection handling.",
+    "jd_quote": "handle customer objections"
+   },
+   {
+    "key": "Onboarding / New Hire Training",
+    "why": "The candidate has delivered New Hire Training and currently oversees NHT programs.",
+    "jd_quote": "Lead the onboarding process for new sales hires"
+   },
+   {
+    "key": "Product/process training",
+    "why": "The resume explicitly states product/process training and product capability-gap diagnosis.",
+    "jd_quote": "product offerings, company processes"
+   },
+   {
+    "key": "Coaching and mentoring",
+    "why": "The candidate leads and mentors 8 training professionals and conducts performance coaching and field coaching.",
+    "jd_quote": "Coaching and Mentoring"
+   },
+   {
+    "key": "One-to-one coaching",
+    "why": "The resume demonstrates performance coaching and sales-call observations, although the exact phrase one-on-one is not used.",
+    "jd_quote": "Offer one-on-one coaching sessions with individual sales representatives"
+   },
+   {
+    "key": "Presentation skills",
+    "why": "The candidate has extensive teaching, English coaching, soft-skills training, facilitator-guide and classroom-training experience.",
+    "jd_quote": "presentation skills"
+   },
+   {
+    "key": "Sales performance analysis",
+    "why": "The resume explicitly describes MIS, dashboards, learner-performance data, KRAs and data-driven identification of gaps.",
+    "jd_quote": "Monitor sales performance metrics and use data to identify training gaps or areas for improvement."
+   },
+   {
+    "key": "Training-gap identification",
+    "why": "TNA/TNI, performance data and field observations are core parts of the candidate's current role.",
+    "jd_quote": "identify training gaps or areas for improvement"
+   },
+   {
+    "key": "Training-program adjustment",
+    "why": "The candidate uses performance data to prioritize coaching interventions and drive continuous improvement.",
+    "jd_quote": "Adjust training programs accordingly to ensure continued success."
+   },
+   {
+    "key": "Leadership collaboration",
+    "why": "The candidate partners with Operations, HRBP and Business Leaders.",
+    "jd_quote": "Collaborate with Leadership"
+   },
+   {
+    "key": "Training materials",
+    "why": "The resume explicitly states training-content development, facilitator guides, assessments and learning materials.",
+    "jd_quote": "Create Training Materials"
+   },
+   {
+    "key": "Slide decks / presentation content",
+    "why": "PowerPoint is listed in technical skills and training-content development is explicit.",
+    "jd_quote": "manuals, slide decks"
+   },
+   {
+    "key": "E-learning / digital learning",
+    "why": "The candidate has built a Training Practice Hub and lists Digital Learning Solutions, LMS, Storyboarding and training-content development.",
+    "jd_quote": "e-learning modules"
+   },
+   {
+    "key": "Training sessions",
+    "why": "The candidate has delivered NHT, internal movement batches, refresher programs and other training interventions.",
+    "jd_quote": "regular training sessions"
+   },
+   {
+    "key": "Continuous learning culture",
+    "why": "The resume explicitly describes peer learning, knowledge checks, quizzes, WhatsApp learning initiatives and digital learning communities.",
+    "jd_quote": "Foster a Culture of Learning"
+   },
+   {
+    "key": "Knowledge sharing",
+    "why": "Peer learning, quizzes, knowledge checks and WhatsApp-based learning are explicitly documented.",
+    "jd_quote": "encouraging knowledge sharing"
+   },
+   {
+    "key": "Professional development",
+    "why": "The candidate leads capability development for trainers and Relationship Managers.",
+    "jd_quote": "ongoing professional development"
+   },
+   {
+    "key": "Not explicitly requested by JD: TNA/TNI",
+    "why": "This is a significant resume strength that supports the JD's training-gap analysis requirement, although TNA is not named in the JD.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Not explicitly requested by JD: Advanced Excel, Power Query and dashboards",
+    "why": "These support the JD's data-driven sales-performance requirement but are not explicitly named as required tools.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Not explicitly requested by JD: AI and automation",
+    "why": "The resume contains ChatGPT, Copilot, Gemini, Codex, Apps Script and n8n, but the JD does not request these tools.",
+    "jd_quote": ""
+   }
+  ],
+  "gaps": [
+   {
+    "key": "Mobile product knowledge",
+    "category": "explicitly_required",
+    "jd_quote": "product knowledge",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has strong product/process-training experience, but the resume does not show mobile phones, mobile devices or consumer-electronics product training.",
+    "proof": "I currently translate product and process capability gaps into targeted learning interventions and sales training. My domain has been health insurance rather than mobile products, so I would first build product fluency and then apply the same sales-training framework.",
+    "learn": [
+     "Learn smartphone fundamentals: processors, RAM, storage, displays, cameras, batteries, operating systems, connectivity and AI features.",
+     "Study how consumer-electronics sales teams compare products and translate specifications into customer benefits.",
+     "Build a mock mobile-product training module comparing three smartphones by customer segment, use case and value proposition.",
+     "Practise delivering a 15-minute product pitch followed by objection handling."
+    ],
+    "link": "[GSMA — The Mobile Economy 2026](https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/?utm_source=chatgpt.com)",
+    "books": "The Mobile Communications Handbook — Jerry D. Gibson.",
+    "youtube": "YouTube topic: smartphone specifications explained for sales staff — CPU, RAM, display, camera, battery, 5G and AI.",
+    "free_tool": "GSMA resources plus Google Sheets for building a smartphone product-comparison matrix.",
+    "platforms": [
+     "GSMA learning and industry resources",
+     "Coursera — Introduction to Mobile Communications",
+     "edX — Mobile Communications",
+     "YouTube smartphone technology courses"
+    ],
+    "more": [
+     "[GSMA — Mobile Tech Trends](https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/blog-mobile-tech-trends-what-to-watch/?utm_source=chatgpt.com)",
+     "[GSMA — Mobile Economy 2026 report](https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/wp-content/uploads/2026/02/The-Mobile-Economy-2026.pdf?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Mobile Communications Handbook — Jerry D. Gibson.",
+     "YouTube topic: smartphone specifications explained for sales staff — CPU, RAM, display, camera, battery, 5G and AI.",
+     "GSMA resources plus Google Sheets for building a smartphone product-comparison matrix."
+    ]
+   },
+   {
+    "key": "Best practices for selling mobile products",
+    "category": "explicitly_required",
+    "jd_quote": "best practices for selling mobile products",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has extensive sales-training experience, including pitching, objections and sales execution, but the resume does not demonstrate mobile-product retail sales methodology.",
+    "proof": "I have strengthened sales execution through 50+ OJT and field-coaching interventions focused on product pitching, objection handling, customer engagement and sales execution. I would adapt that proven methodology to mobile-product selling after learning the category-specific buying triggers and product-comparison framework.",
+    "learn": [
+     "Learn consultative selling and needs-based selling specifically for consumer electronics.",
+     "Map smartphone features to customer use cases rather than teaching specifications alone.",
+     "Build objection-handling scripts for price, brand, specifications, camera, battery, performance and competitor comparisons.",
+     "Practise a complete mobile sales role-play from discovery to recommendation to objection handling to close."
+    ],
+    "link": "https://academy.hubspot.com/courses/inbound-sales",
+    "books": "SPIN Selling — Neil Rackham.",
+    "youtube": "YouTube topic: smartphone retail sales training / consumer electronics sales techniques / consultative selling.",
+    "free_tool": "Google Sheets — create a mobile-product sales-objection and role-play tracker.",
+    "platforms": [
+     "HubSpot Academy — Inbound Sales",
+     "Coursera — Sales Training: Sales Techniques and Sales Operations",
+     "LinkedIn Learning — Consultative Selling",
+     "Udemy — Retail Sales Training"
+    ],
+    "more": [
+     "https://academy.hubspot.com/courses/inbound-sales",
+     "https://www.coursera.org/courses?query=sales%20training",
+     "https://www.linkedin.com/learning/topics/sales"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "SPIN Selling — Neil Rackham.",
+     "YouTube topic: smartphone retail sales training / consumer electronics sales techniques / consultative selling.",
+     "Google Sheets — create a mobile-product sales-objection and role-play tracker."
+    ]
+   },
+   {
+    "key": "In-person and virtual training solutions",
+    "category": "explicitly_required",
+    "jd_quote": "Create both in-person and virtual training solutions that address the diverse needs of the sales force.",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume shows digital learning solutions, LMS, web-based learning and training applications, but it does not explicitly state ownership of virtual instructor-led training. The underlying capability is close.",
+    "proof": "I have digitized key parts of the L&D journey through web-based learning solutions, built a Training Practice Hub and worked with LMS-supported training requirements; I can extend this into structured virtual instructor-led sales training.",
+    "learn": [
+     "Learn virtual facilitation, engagement, breakout activities, polls, chat-based learning and virtual assessments.",
+     "Practise converting a 60-minute classroom session into a 45-minute virtual session.",
+     "Create virtual facilitator guides and participant activities.",
+     "Run a mock virtual product-training session and collect learner feedback."
+    ],
+    "link": "[Microsoft Learn — Teams training](https://learn.microsoft.com/en-us/training/teams/?utm_source=chatgpt.com)",
+    "books": "The Virtual Training Guidebook — Cindy Huggett.",
+    "youtube": "YouTube topic: virtual instructor-led training facilitation / virtual classroom engagement.",
+    "free_tool": "Microsoft Teams free capabilities or Google Meet for practising virtual facilitation.",
+    "platforms": [
+     "Microsoft Learn — Teams",
+     "ATD — Virtual Instructional Design",
+     "LinkedIn Learning — Virtual Training",
+     "Coursera — Online Teaching"
+    ],
+    "more": [
+     "[ATD — Virtual Instructional Design resources](https://www.td.org/atd-resources/instructional-design?utm_source=chatgpt.com)",
+     "[Microsoft Learn — Master Microsoft Teams for learning environments](https://learn.microsoft.com/en-us/training/courses/master-microsoft-teams-for-any-learning-environment?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Virtual Training Guidebook — Cindy Huggett.",
+     "YouTube topic: virtual instructor-led training facilitation / virtual classroom engagement.",
+     "Microsoft Teams free capabilities or Google Meet for practising virtual facilitation."
+    ]
+   },
+   {
+    "key": "Customer objection handling and closing mobile-product sales",
+    "category": "explicitly_required",
+    "jd_quote": "maximize sales opportunities, and close deals effectively",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate already has objection-handling and sales-execution experience, but the resume does not explicitly show closing consumer-electronics/mobile deals.",
+    "proof": "My 50+ OJT and field-coaching interventions covered product pitching, objection handling, customer engagement and sales execution. I would transfer that capability to mobile retail by adding category-specific objections, competitor comparisons and closing techniques.",
+    "learn": [
+     "Study consultative discovery, value selling and closing frameworks.",
+     "Create mobile-retail objection scenarios and model responses.",
+     "Practise closing after feature-benefit demonstrations.",
+     "Measure role-play performance using discovery, recommendation, objection handling and close criteria."
+    ],
+    "link": "https://academy.hubspot.com/courses/inbound-sales",
+    "books": "SPIN Selling — Neil Rackham.",
+    "youtube": "YouTube topic: objection handling and closing techniques for retail sales.",
+    "free_tool": "Google Forms — create a sales-role-play assessment with scoring.",
+    "platforms": [
+     "HubSpot Academy — Inbound Sales",
+     "Coursera — Sales Training",
+     "LinkedIn Learning — Sales Closing Techniques",
+     "Udemy — Sales Objection Handling"
+    ],
+    "more": [
+     "https://academy.hubspot.com/courses/inbound-sales",
+     "https://www.coursera.org/courses?query=sales%20training",
+     "https://www.linkedin.com/learning/topics/sales"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "SPIN Selling — Neil Rackham.",
+     "YouTube topic: objection handling and closing techniques for retail sales.",
+     "Google Forms — create a sales-role-play assessment with scoring."
+    ]
+   },
+   {
+    "key": "Product managers and marketing collaboration",
+    "category": "explicitly_required",
+    "jd_quote": "Partner with sales leaders, product managers, and marketing teams",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume explicitly shows partnership with Sales, Operations, HR and Business Leaders, but product-manager and marketing-team collaboration is not demonstrated.",
+    "proof": "I currently partner with Operations, HRBP and Business Leaders to align learning priorities with productivity goals and business needs. I would apply the same stakeholder-management model to product and marketing teams for product launches and sales readiness.",
+    "learn": [
+     "Learn the roles of Product, Marketing, Sales and L&D during a product launch.",
+     "Build a sales-readiness RACI covering product knowledge, positioning, competitive intelligence, training and launch communication.",
+     "Practise converting a product brief into a sales-training curriculum.",
+     "Create a launch-readiness checklist for sales representatives."
+    ],
+    "link": "https://www.productschool.com/resources/product-management/product-marketing",
+    "books": "Obviously Awesome — April Dunford.",
+    "youtube": "YouTube topic: product marketing and sales enablement collaboration.",
+    "free_tool": "Google Sheets — build a product-launch sales-readiness tracker.",
+    "platforms": [
+     "Coursera — Product Marketing",
+     "Product School — Product Marketing resources",
+     "HubSpot Academy — Sales Enablement",
+     "LinkedIn Learning — Product Marketing"
+    ],
+    "more": [
+     "https://academy.hubspot.com/courses/sales-enablement",
+     "https://www.productschool.com/resources/product-management/product-marketing"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Obviously Awesome — April Dunford.",
+     "YouTube topic: product marketing and sales enablement collaboration.",
+     "Google Sheets — build a product-launch sales-readiness tracker."
+    ]
+   },
+   {
+    "key": "Product launches",
+    "category": "explicitly_required",
+    "jd_quote": "product launches",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates new-hire and product/process training but does not explicitly document training support for product launches.",
+    "proof": "I have designed product/process training and translated identified capability gaps into targeted interventions. For a product launch, I would apply the same approach to product readiness, sales messaging, objection handling and post-launch reinforcement.",
+    "learn": [
+     "Learn the sales-enablement lifecycle for a new product launch.",
+     "Study launch-readiness planning, sales playbooks, product FAQs and competitive battlecards.",
+     "Create a mock launch-training plan for a new smartphone.",
+     "Design pre-launch, launch-day and post-launch reinforcement activities."
+    ],
+    "link": "https://academy.hubspot.com/courses/sales-enablement",
+    "books": "Obviously Awesome — April Dunford.",
+    "youtube": "YouTube topic: product launch sales enablement / sales readiness.",
+    "free_tool": "Google Slides and Google Sheets for a product-launch playbook and readiness tracker.",
+    "platforms": [
+     "HubSpot Academy — Sales Enablement",
+     "Product School",
+     "Coursera — Product Marketing",
+     "LinkedIn Learning — Product Marketing"
+    ],
+    "more": [
+     "https://academy.hubspot.com/courses/sales-enablement",
+     "https://www.productschool.com/resources/product-management/product-marketing"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Obviously Awesome — April Dunford.",
+     "YouTube topic: product launch sales enablement / sales readiness.",
+     "Google Slides and Google Sheets for a product-launch playbook and readiness tracker."
+    ]
+   },
+   {
+    "key": "Manuals and reference guides",
+    "category": "explicitly_required",
+    "jd_quote": "manuals, slide decks, e-learning modules, and reference guides",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume explicitly shows training content, facilitator guides, assessments, learning materials and digital learning, but manuals and reference guides are not individually named.",
+    "proof": "I have designed training content, facilitator guides, assessments and learning materials and built a Training Practice Hub for reinforcement and readiness.",
+    "learn": [
+     "Create a mobile-product trainer manual from a product specification sheet.",
+     "Create a one-page sales reference guide containing features, benefits, objections and competitor comparisons.",
+     "Convert the same content into an e-learning module.",
+     "Pilot the material with sales users and revise based on feedback."
+    ],
+    "link": "[ATD — Instructional Design resources](https://www.td.org/atd-resources/instructional-design?utm_source=chatgpt.com)",
+    "books": "Map It — Cathy Moore.",
+    "youtube": "YouTube topic: instructional design — creating training manuals, job aids and reference guides.",
+    "free_tool": "Google Docs, Google Slides and H5P.",
+    "platforms": [
+     "ATD — Instructional Design",
+     "LinkedIn Learning — Instructional Design",
+     "Coursera — Instructional Design Foundations",
+     "H5P"
+    ],
+    "more": [
+     "[ATD — Instructional Design Courses](https://www.td.org/atd-resources/instructional-design/courses?utm_source=chatgpt.com)",
+     "https://h5p.org/"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Map It — Cathy Moore.",
+     "YouTube topic: instructional design — creating training manuals, job aids and reference guides.",
+     "Google Docs, Google Slides and H5P."
+    ]
+   },
+   {
+    "key": "Workshops and webinars",
+    "category": "explicitly_required",
+    "jd_quote": "workshops, webinars, and other learning opportunities",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates training sessions, motivational seminars, digital learning and peer learning, but it does not explicitly document workshops or webinars.",
+    "proof": "I have conducted motivational seminars, delivered NHT and internal-movement batches, and created digital learning and peer-learning initiatives. I can convert that facilitation experience into structured workshops and webinars.",
+    "learn": [
+     "Learn workshop design, webinar facilitation and participant engagement.",
+     "Design a 90-minute mobile-product sales workshop with role-play and case practice.",
+     "Run a 30-minute webinar on a smartphone product launch.",
+     "Use participant feedback and attendance data to improve subsequent sessions."
+    ],
+    "link": "[ATD Webinars](https://webinars.td.org/events-center?utm_source=chatgpt.com)",
+    "books": "The Accidental Trainer — Dianna Booher.",
+    "youtube": "YouTube topic: webinar facilitation and workshop design for corporate training.",
+    "free_tool": "Microsoft Teams or Google Meet for practice sessions.",
+    "platforms": [
+     "ATD Webinars",
+     "Microsoft Learn — Teams",
+     "LinkedIn Learning — Virtual Training",
+     "Coursera — Online Teaching"
+    ],
+    "more": [
+     "[ATD Webinars](https://webinars.td.org/events-center?utm_source=chatgpt.com)",
+     "[Microsoft Learn — Teams training](https://learn.microsoft.com/en-us/training/teams/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Accidental Trainer — Dianna Booher.",
+     "YouTube topic: webinar facilitation and workshop design for corporate training.",
+     "Microsoft Teams or Google Meet for practice sessions."
+    ]
+   },
+   {
+    "key": "Mobile industry trends, mobile technology and mobile devices",
+    "category": "explicitly_required",
+    "jd_quote": "Continuously monitor the latest trends in mobile technology, mobile devices, and sales strategies",
+    "on_resume": false,
+    "near": false,
+    "why": "This is the clearest genuine domain-learning gap. The resume does not show mobile-industry, smartphone or consumer-electronics knowledge.",
+    "proof": "I do not currently claim mobile-industry experience on my resume. My relevant bridge is that I routinely monitor product/process changes and translate them into training interventions; I would apply that learning discipline to the mobile category.",
+    "learn": [
+     "Read the current GSMA Mobile Economy report and track major developments in 5G, AI devices, eSIM, connectivity and device ecosystems.",
+     "Follow smartphone manufacturers and major mobile-industry publications to understand product cycles and competitive positioning.",
+     "Create a weekly one-page mobile-industry briefing covering technology, devices, customer trends and sales implications.",
+     "Turn each major technology trend into a sales-training implication."
+    ],
+    "link": "[GSMA — The Mobile Economy 2026](https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/?utm_source=chatgpt.com)",
+    "books": "The Mobile Communications Handbook — Jerry D. Gibson.",
+    "youtube": "YouTube topic: smartphone technology, 5G, eSIM, mobile AI and mobile-device trends.",
+    "free_tool": "Google Sheets or Notion for a weekly mobile-industry trend tracker.",
+    "platforms": [
+     "GSMA Intelligence",
+     "Coursera — Mobile Communications",
+     "edX — Mobile Communications",
+     "YouTube technology channels"
+    ],
+    "more": [
+     "[GSMA — Mobile Tech Trends](https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/blog-mobile-tech-trends-what-to-watch/?utm_source=chatgpt.com)",
+     "[GSMA — Mobile Economy 2026 report](https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/wp-content/uploads/2026/02/The-Mobile-Economy-2026.pdf?utm_source=chatgpt.com)",
+     "[GSMA Newsroom](https://www.gsma.com/newsroom/press-releases/?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "The Mobile Communications Handbook — Jerry D. Gibson.",
+     "YouTube topic: smartphone technology, 5G, eSIM, mobile AI and mobile-device trends.",
+     "Google Sheets or Notion for a weekly mobile-industry trend tracker."
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The JD does not specify a required number of years of experience, so the experience requirement is not specified. The candidate has 15+ years overall experience, 4+ years of corporate training experience and 2+ years leading sales training in health insurance. Functionally, the candidate is already in Training/L&D and Sales Enablement, which is closely aligned with this JD. The principal gap is industry/domain: the JD is for consumer electronics/mobile-product sales training, while the candidate's documented sales-training domain is health insurance. This is primarily a domain gap, not a fundamental level gap.",
+  "dept_diff": "The JD is shown under the Sales & Business Development department and the Consumer Electronics & Appliances industry. The candidate currently works in Training/L&D and Sales Enablement within BFSI/health insurance. In practical terms, the training function is highly transferable, but the candidate would be moving from insurance sales enablement to consumer-electronics/mobile sales enablement.",
+  "required_skills": [
+   "Training program design and execution",
+   "Product knowledge",
+   "Sales techniques",
+   "Best practices for selling mobile products",
+   "In-person training",
+   "Virtual training",
+   "Sales Enablement",
+   "Sales support",
+   "Customer objection handling",
+   "Sales opportunity maximization",
+   "Closing deals",
+   "Sales onboarding",
+   "Product offerings",
+   "Company processes",
+   "Coaching and mentoring",
+   "Product knowledge",
+   "Presentation skills",
+   "Sales strategies",
+   "Sales performance analysis",
+   "Sales performance metrics",
+   "Data-driven training-gap identification",
+   "Training-program adjustment",
+   "Leadership collaboration",
+   "Sales-leader partnership",
+   "Product-manager partnership",
+   "Marketing-team partnership",
+   "Business-goal alignment",
+   "Product-launch alignment",
+   "Training materials",
+   "Manuals",
+   "Slide decks",
+   "E-learning modules",
+   "Reference guides",
+   "Training sessions",
+   "Workshops",
+   "Webinars",
+   "Mobile-industry trends",
+   "Mobile technology",
+   "Mobile devices",
+   "Continuous learning culture",
+   "Knowledge sharing",
+   "Professional development"
+  ],
+  "qualification": {
+   "jd_wants": "not specified",
+   "resume_has": "Master’s Degree in English | 2016; B.Sc. – MPC | 2013; Intermediate – MPC | 2008; SSC – 10th Standard | 2006. No professional certification is listed.",
+   "gap": "No education, degree or certification requirement is stated in the visible JD, so there is no identifiable qualification gap.",
+   "learn": [
+    "No additional degree or certification is required based on the visible JD.",
+    "For domain credibility, optional learning in mobile technology, consumer electronics and sales enablement would strengthen the application but is not a stated qualification requirement."
+   ]
+  },
+  "asked_count": 32,
+  "generated": "17 Sep 2026, 07:46 AM",
+  "verdict": "This is a strong functional match because the JD is fundamentally a sales-training and sales-enablement role, and the resume already demonstrates sales training, product/process training, onboarding, coaching, TNA/TNI, performance analysis, content development and continuous learning. The main gap is mobile/consumer-electronics domain knowledge, plus some specific delivery experiences such as webinars and formal product-launch collaboration; these are adjacent and learnable rather than a wholesale career-function gap. The JD does not specify experience years, salary, notice period or educational qualifications.",
+  "interview": [
+   {
+    "q": "Your sales-training experience is primarily in health insurance. How will you train people to sell smartphones and other mobile products?",
+    "a": "The product domain is different, but the underlying sales-training methodology is directly transferable. I have led sales training, conducted TNA/TNI, delivered 50+ OJT and field-coaching interventions covering product pitching, objection handling, customer engagement and sales execution. I would first build deep product knowledge of the mobile portfolio and then translate specifications into customer benefits, sales scenarios and objection-handling practice.",
+    "tip": ""
+   },
+   {
+    "q": "What do you know about the current mobile-device market?",
+    "a": "My current resume does not claim direct mobile-industry experience, so I would not overstate it. I am actively bridging that gap by studying mobile technology, device specifications, 5G, eSIM, AI-enabled devices and current industry trends. My existing strength is converting product and process knowledge into structured sales training.",
+    "tip": ""
+   },
+   {
+    "q": "How would you design training for a new smartphone launch?",
+    "a": "I would begin with the product brief and target customer, identify the sales behaviours required, create a product-learning module, develop feature-to-benefit messaging, build competitor and objection-handling scenarios, conduct role-plays and then measure sales readiness. This builds directly on my experience designing training content, assessments, NHT programs, OJT and field coaching.",
+    "tip": ""
+   },
+   {
+    "q": "How do you identify whether poor sales performance is a training problem?",
+    "a": "I use performance data, TNA/TNI and field observations rather than assuming every performance problem is caused by training. In my current role I monitor KRAs and learner-performance data, identify capability gaps and prioritize coaching interventions. I would apply the same approach using mobile-sales metrics such as conversion, product mix, attachment opportunities and observed sales behaviours.",
+    "tip": ""
+   },
+   {
+    "q": "Have you conducted virtual training, workshops or webinars?",
+    "a": "My resume demonstrates digital learning solutions, LMS-supported training, web-based learning applications, motivational seminars and classroom training. It does not specifically list webinars, so I would be transparent about that. The underlying facilitation and digital-learning capability is already present, and I can quickly formalize it through virtual-facilitation practice.",
+    "tip": ""
+   },
+   {
+    "q": "How would you collaborate with Product and Marketing during a product launch?",
+    "a": "I currently partner with Operations, HRBP and Business Leaders to align learning with business needs. I would use the same stakeholder-management approach with Product and Marketing: understand the product positioning, translate it into sales behaviours and training content, build FAQs and objection handling, and establish a sales-readiness check before launch.",
+    "tip": ""
+   },
+   {
+    "q": "How would you measure whether your mobile-sales training worked?",
+    "a": "I would measure it at multiple levels: knowledge and assessment scores, observed sales behaviours, coaching outcomes and business performance. My existing experience with MIS, dashboards, KRAs, performance data and training-effectiveness tracking provides the measurement foundation; I would then connect those measures to mobile-sales outcomes.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
