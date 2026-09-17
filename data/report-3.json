@@ -1,0 +1,535 @@
+{
+ "id": 3,
+ "title": "Pasted ChatGPT analysis",
+ "role": "not specified",
+ "created": "17 Sep 2026, 07:15 AM",
+ "jd_text": "",
+ "report": {
+  "role": "not specified",
+  "role_label": "not specified",
+  "match_pct": 64,
+  "have": [
+   {
+    "key": "Training & Development",
+    "why": "The resume is strongly centered on L&D, training delivery, training leadership and capability development.",
+    "jd_quote": "Training & Development"
+   },
+   {
+    "key": "Learning & Development (L&D)",
+    "why": "The candidate's current function is L&D and sales training leadership.",
+    "jd_quote": "Learning & Development (L&D)"
+   },
+   {
+    "key": "Trainer Management",
+    "why": "The resume explicitly states leadership and mentoring of 8 training professionals.",
+    "jd_quote": "Trainer Management"
+   },
+   {
+    "key": "Training Needs Analysis (TNA)",
+    "why": "TNA/TNI is repeatedly demonstrated in the current role and achievements.",
+    "jd_quote": "Training Needs Analysis (TNA)"
+   },
+   {
+    "key": "Training Content Development",
+    "why": "The candidate designs training content, facilitator guides, assessments and learning materials.",
+    "jd_quote": "Training Content Development"
+   },
+   {
+    "key": "Learning interventions",
+    "why": "The resume explicitly describes targeted learning interventions based on performance gaps.",
+    "jd_quote": "learning interventions"
+   },
+   {
+    "key": "Behavioral training",
+    "why": "Earlier experience includes English, communication and soft-skills training, while current work includes coaching and learner engagement.",
+    "jd_quote": "behavioral training"
+   },
+   {
+    "key": "Team Management & Coaching",
+    "why": "The candidate leads 8 training professionals and conducts coaching and field-coaching interventions.",
+    "jd_quote": "Team Management & Coaching"
+   },
+   {
+    "key": "Performance Management",
+    "why": "The resume shows monitoring of KRAs, learner performance data and trainer productivity.",
+    "jd_quote": "Performance Management"
+   },
+   {
+    "key": "Capability Building",
+    "why": "Capability development is a major part of the current role and achievements.",
+    "jd_quote": "Capability Building"
+   },
+   {
+    "key": "Stakeholder Management",
+    "why": "The candidate partners with Operations, HRBP, Business Leaders and other stakeholders.",
+    "jd_quote": "Stakeholder Management"
+   },
+   {
+    "key": "Continuous Improvement",
+    "why": "The resume explicitly describes continuous learning, performance improvement and data-driven intervention.",
+    "jd_quote": "Continuous Improvement"
+   },
+   {
+    "key": "Training effectiveness through metrics and assessments",
+    "why": "The candidate tracks learner performance, KRAs, MIS, dashboards and assessments.",
+    "jd_quote": "Monitor training effectiveness through defined metrics, assessments, feedback, and service-quality outcomes."
+   },
+   {
+    "key": "Operations partnership",
+    "why": "The current role explicitly partners with Operations to align learning with productivity and business needs.",
+    "jd_quote": "Partner with Operations, Category, Quality, and other cross-functional teams"
+   },
+   {
+    "key": "Cross-functional collaboration",
+    "why": "The resume repeatedly demonstrates cross-functional partnership with Operations, HRBP and business leaders.",
+    "jd_quote": "other cross-functional teams"
+   },
+   {
+    "key": "Training needs identification and solution development",
+    "why": "TNA/TNI, performance data and field observations are used to identify gaps and create interventions.",
+    "jd_quote": "identify training needs and develop solutions"
+   },
+   {
+    "key": "Business requirements alignment",
+    "why": "The candidate explicitly aligns learning priorities with productivity goals, operational requirements and business needs.",
+    "jd_quote": "business requirements"
+   },
+   {
+    "key": "Training design and delivery",
+    "why": "The resume shows NHT, refresher programs, OJT, field coaching, content design and facilitator-guide development.",
+    "jd_quote": "designing and delivering training programs"
+   }
+  ],
+  "gaps": [
+   {
+    "key": "Home-cleaning and blue-collar/service workforce training",
+    "category": "explicitly_required",
+    "jd_quote": "Lead and manage end-to-end training programs for home cleaning service professionals across assigned cities.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has extensive frontline, BPO, sales and training experience, but the resume does not show direct training of home-cleaning professionals or a blue-collar service workforce. This is the largest functional-domain gap.",
+    "proof": "I have led New Hire Training, OJT and field-coaching interventions and supported capability development for 100+ Relationship Managers; my next step is applying the same performance-based training model to a hands-on home-services workforce.",
+    "learn": [
+     "Start with the NSDC General Housekeeper occupational standard and facilitator material to understand the actual job tasks, competency structure and learning content of a domestic/home-services worker.",
+     "Study housekeeping operations, cleaning methods, hygiene, equipment, customer interaction and safety before designing a training curriculum.",
+     "Build a sample 5-day blue-collar training curriculum containing demonstration, practice, observation, feedback and certification checkpoints.",
+     "Create a competency matrix separating technical job skills, safety, service behaviour and customer handling."
+    ],
+    "link": "https://nsdcindia.org/general-housekeeper",
+    "books": "Managing Housekeeping Operations, 4th Edition — William D. Frye and Johnny O. Reinholdt. ",
+    "youtube": "YouTube topic: Professional Housekeeping Training / Hotel Housekeeping Training — Training Express. ",
+    "free_tool": "H5P — https://h5p.org/ — create interactive demonstrations, quizzes and practice activities. ",
+    "platforms": [
+     "NSDC occupational standards and skilling content",
+     "Coursera — Introduction to Hospitality Management in the 21st Century",
+     "NPTEL — Managing Services",
+     "AHLEI — Skills, Tasks and Results Training (START)"
+    ],
+    "more": [
+     "https://nsdcindia.org/housekeeping-trainee-0",
+     "https://nsdcindia.org/contentavailability/1409",
+     "https://www.nptel.ac.in/courses/110104065",
+     "https://info.ahlei.org/start/"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Managing Housekeeping Operations, 4th Edition — William D. Frye and Johnny O. Reinholdt. ",
+     "YouTube topic: Professional Housekeeping Training / Hotel Housekeeping Training — Training Express. ",
+     "H5P — https://h5p.org/ — create interactive demonstrations, quizzes and practice activities. "
+    ]
+   },
+   {
+    "key": "SOP Development & Implementation",
+    "category": "explicitly_required",
+    "jd_quote": "SOP Development & Implementation",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates training content, facilitator guides, process training and learning interventions, but it does not explicitly show ownership of SOP creation, version control, implementation and compliance.",
+    "proof": "I have designed training content, facilitator guides, assessments and learning materials around product and process gaps; I would extend this capability into operational SOP creation by documenting the standard work, training against it and measuring adherence.",
+    "learn": [
+     "Learn the difference between a process, procedure, SOP, work instruction and job aid.",
+     "Practise converting an observed workflow into a step-by-step SOP with purpose, scope, responsibilities, procedure, safety points and quality checks.",
+     "Learn version control, approval, review cycles and implementation governance.",
+     "Build one sample home-cleaning SOP and a corresponding trainer checklist."
+    ],
+    "link": "https://asq.org/quality-progress/articles/step-by-step?id=868c6fdbc52149e5b2941b4f15fbfb99",
+    "books": "The Toyota Way, 2nd Edition — Jeffrey K. Liker; use the standard-work and continuous-improvement concepts alongside SOP practice.",
+    "youtube": "YouTube topic: SOP development / Standard Operating Procedure writing / Standardized Work.",
+    "free_tool": "Google Docs — use it to create SOP templates, revision history and controlled work instructions.",
+    "platforms": [
+     "ASQ Quality Management",
+     "Lean Enterprise Institute — Standardized Work",
+     "LinkedIn Learning — Learning and Development / Train-the-Trainer",
+     "NPTEL — Quality Management"
+    ],
+    "more": [
+     "https://www.lean.org/lexicon-terms/standardized-work/",
+     "https://www.lean.org/events-training/forms-templates/",
+     "https://asq.org/training/catalog/topics/quality-management",
+     "https://www.iso.org/quality-management/principles"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Toyota Way, 2nd Edition — Jeffrey K. Liker; use the standard-work and continuous-improvement concepts alongside SOP practice.",
+     "YouTube topic: SOP development / Standard Operating Procedure writing / Standardized Work.",
+     "Google Docs — use it to create SOP templates, revision history and controlled work instructions."
+    ]
+   },
+   {
+    "key": "Hands-on technical training and job-specific modules",
+    "category": "explicitly_required",
+    "jd_quote": "Conduct hands-on technical and behavioral training",
+    "on_resume": true,
+    "near": true,
+    "why": "Behavioral training and product/process training are present, but the resume does not demonstrate hands-on technical instruction for physical cleaning tasks, tools, chemicals or equipment.",
+    "proof": "I have delivered product/process training, 50+ OJT and field-coaching interventions, and designed assessments and learning materials; I would apply the same learn-demonstrate-practise-observe-feedback model to physical service tasks.",
+    "learn": [
+     "Learn Training Within Industry Job Instruction (TWI-JI) for teaching physical tasks step by step.",
+     "Create job breakdown sheets for cleaning activities such as bathroom cleaning, floor cleaning, equipment use and chemical handling.",
+     "Convert the job breakdown into demonstrations, supervised practice and competency assessments.",
+     "Use H5P to supplement physical practice with visual demonstrations and knowledge checks."
+    ],
+    "link": "https://www.lean.org/events-training/events/investing-in-workers-using-job-methods-and-job-instruction/",
+    "books": "Training Within Industry: The Foundation of Lean — Donald A. Dinero.",
+    "youtube": "How To Perform Training Within Industry Job Instruction — QProductivity. ",
+    "free_tool": "H5P — https://h5p.org/ — create interactive modules, quizzes and scenario practice. ",
+    "platforms": [
+     "Lean Enterprise Institute",
+     "LinkedIn Learning — Train the Trainer",
+     "NPTEL — Quality Management",
+     "NSDC skilling content"
+    ],
+    "more": [
+     "https://www.lean.org/events-training/forms-templates/",
+     "https://www.nsdcindia.org/nos-listing/35",
+     "https://www.nsdcindia.org/general-housekeeper",
+     "https://h5p.org/content-types-and-applications"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Training Within Industry: The Foundation of Lean — Donald A. Dinero.",
+     "How To Perform Training Within Industry Job Instruction — QProductivity. ",
+     "H5P — https://h5p.org/ — create interactive modules, quizzes and scenario practice. "
+    ]
+   },
+   {
+    "key": "Service Quality Management and service-quality gap diagnosis",
+    "category": "explicitly_required",
+    "jd_quote": "Service Quality Management",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate already performs capability-gap diagnosis and uses performance data, but the resume does not explicitly show service-quality measurement, service-quality gap models, customer satisfaction metrics or service recovery.",
+    "proof": "I combine TNA/TNI, performance data and field observations to identify capability gaps and drive focused interventions; I can apply the same evidence-based approach to service-quality gaps by mapping customer expectations against actual service delivery.",
+    "learn": [
+     "Learn SERVQUAL and the service-quality gap model.",
+     "Study customer expectations, reliability, responsiveness, assurance, empathy and tangibles.",
+     "Build a service-quality scorecard linking training interventions to customer complaints, quality audits and repeat-service outcomes.",
+     "Practise root-cause analysis on a hypothetical home-cleaning service-quality problem."
+    ],
+    "link": "https://www.nptel.ac.in/courses/110104065",
+    "books": "Services Marketing: People, Technology, Strategy — Christopher Lovelock and Jochen Wirtz.",
+    "youtube": "NPTEL IIT Bombay — Introduction of Quality / Service Quality. ",
+    "free_tool": "Google Sheets — build a SERVQUAL/service-quality gap tracker and Pareto analysis.",
+    "platforms": [
+     "NPTEL — Managing Services",
+     "NPTEL — Services Marketing",
+     "ASQ — Quality Management",
+     "Coursera — International Hospitality & Healthcare Services Marketing"
+    ],
+    "more": [
+     "https://archive.nptel.ac.in/content/storage2/courses/110101010/modules/module1/lec3/1.7.html",
+     "https://www.nptel.ac.in/courses/110104065",
+     "https://www.coursera.org/learn/healthcare-marketing-hospitality-management",
+     "https://www.iso.org/standard/71582.html"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Services Marketing: People, Technology, Strategy — Christopher Lovelock and Jochen Wirtz.",
+     "NPTEL IIT Bombay — Introduction of Quality / Service Quality. ",
+     "Google Sheets — build a SERVQUAL/service-quality gap tracker and Pareto analysis."
+    ]
+   },
+   {
+    "key": "Multi-city trainer leadership at 10-12 trainer scale",
+    "category": "explicitly_required",
+    "jd_quote": "Lead, coach, and mentor 10–12 city-level trainers",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate already leads and mentors trainers, but the resume states 8 training professionals rather than 10–12 city-level trainers and does not demonstrate city-level distributed trainer management.",
+    "proof": "I currently lead and mentor 8 training professionals and have strengthened delivery consistency and capability across the team; I would use the same governance model with city-wise trainer scorecards, calibration and performance reviews.",
+    "learn": [
+     "Learn distributed-team management and multi-location operating rhythms.",
+     "Build a city-wise trainer dashboard covering productivity, quality, attendance, training effectiveness and capability gaps.",
+     "Create a monthly trainer calibration process and standard trainer scorecard.",
+     "Practise managing a simulated 12-trainer network using Google Sheets."
+    ],
+    "link": "https://www.coursera.org/specializations/leading-teams/",
+    "books": "The Coaching Habit — Michael Bungay Stanier.",
+    "youtube": "YouTube topic: Managing and coaching distributed teams / trainer performance management.",
+    "free_tool": "Google Sheets — create a 12-city trainer performance dashboard and calibration matrix.",
+    "platforms": [
+     "Coursera — Leading People and Teams",
+     "LinkedIn Learning — Develop Your Coaching Skills as a Leader or Manager",
+     "LinkedIn Learning — Learning and Development",
+     "Coursera — Leading Teams"
+    ],
+    "more": [
+     "https://www.coursera.org/learn/leading-teams",
+     "https://www.linkedin.com/learning/paths/develop-your-coaching-skills-as-a-leader-or-manager",
+     "https://www.linkedin.com/learning/topics/learning-and-development"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "The Coaching Habit — Michael Bungay Stanier.",
+     "YouTube topic: Managing and coaching distributed teams / trainer performance management.",
+     "Google Sheets — create a 12-city trainer performance dashboard and calibration matrix."
+    ]
+   },
+   {
+    "key": "Category and Quality stakeholder partnership",
+    "category": "explicitly_required",
+    "jd_quote": "Partner with Operations, Category, Quality, and other cross-functional teams",
+    "on_resume": true,
+    "near": true,
+    "why": "Operations and HR/business stakeholder partnership are explicit on the resume, but Category and Quality functions are not.",
+    "proof": "I currently partner with Operations, HRBP and Business Leaders to align learning priorities with productivity and business needs; I would extend this model to Category and Quality by using shared service metrics and agreed capability priorities.",
+    "learn": [
+     "Learn stakeholder mapping, RACI, influence-impact analysis and expectation management.",
+     "Create a cross-functional training-needs forum involving Operations, Quality, Category and L&D.",
+     "Practise converting quality and operational data into a joint training action plan.",
+     "Build a stakeholder communication matrix for a multi-city service-training rollout."
+    ],
+    "link": "https://www.coursera.org/learn/stakeholder-management",
+    "books": "Stakeholder Management — Stephen R. Covey principles can be supplemented with formal stakeholder-analysis frameworks.",
+    "youtube": "YouTube topic: Stakeholder mapping, RACI and cross-functional stakeholder management.",
+    "free_tool": "Google Sheets — create stakeholder maps, RACI matrices and action trackers.",
+    "platforms": [
+     "Coursera — Stakeholder Management",
+     "Coursera — Google Stakeholder Management",
+     "LinkedIn Learning — Learning and Development",
+     "Coursera — Business Analysis: Project and Stakeholder Management"
+    ],
+    "more": [
+     "https://www.coursera.org/specializations/google-stakeholder-management",
+     "https://www.coursera.org/learn/business-analysis-project-and-stakeholder-management",
+     "https://www.linkedin.com/learning/topics/learning-and-development"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Stakeholder Management — Stephen R. Covey principles can be supplemented with formal stakeholder-analysis frameworks.",
+     "YouTube topic: Stakeholder mapping, RACI and cross-functional stakeholder management.",
+     "Google Sheets — create stakeholder maps, RACI matrices and action trackers."
+    ]
+   },
+   {
+    "key": "Industry standards and explicit customer-expectation management",
+    "category": "explicitly_required",
+    "jd_quote": "Ensure training programs are aligned with industry standards, business requirements, and customer expectations.",
+    "on_resume": true,
+    "near": true,
+    "why": "Business requirements are clearly demonstrated, but industry standards and explicit customer-expectation frameworks are not demonstrated in the resume.",
+    "proof": "I align learning priorities with productivity goals, operational requirements and business needs and use performance data to identify gaps; I would add documented industry/service standards and customer-experience measures to the same governance model.",
+    "learn": [
+     "Study ISO quality-management principles, especially customer focus, process approach, evidence-based decision making and continual improvement.",
+     "Learn how service standards are translated into observable behaviours and quality checklists.",
+     "Map customer expectations to service standards, training objectives and assessment criteria.",
+     "Build a sample training-alignment matrix connecting business requirement, customer expectation, standard, learning objective and KPI."
+    ],
+    "link": "https://www.iso.org/quality-management/principles",
+    "books": "Quality Management for Organizational Excellence — David L. Goetsch and Stanley Davis.",
+    "youtube": "YouTube topic: ISO 9001 quality management principles and customer focus.",
+    "free_tool": "Google Sheets — create an industry-standard/customer-expectation/training-KPI alignment matrix.",
+    "platforms": [
+     "ISO quality-management resources",
+     "ASQ Quality Management",
+     "NPTEL — Quality Management",
+     "Coursera — Hospitality Management"
+    ],
+    "more": [
+     "https://www.iso.org/standard/9001",
+     "https://www.iso.org/quality-management/quality-assurance",
+     "https://asq.org/training/catalog/topics/quality-management",
+     "https://www.nptel.ac.in/courses/110105088"
+    ],
+    "chances": "High if near/reframe",
+    "bridge": [],
+    "tools": [
+     "Quality Management for Organizational Excellence — David L. Goetsch and Stanley Davis.",
+     "YouTube topic: ISO 9001 quality management principles and customer focus.",
+     "Google Sheets — create an industry-standard/customer-expectation/training-KPI alignment matrix."
+    ]
+   },
+   {
+    "key": "Hospitality / facility management / home-services domain experience",
+    "category": "preferred",
+    "jd_quote": "5+ years of experience in Training & Development, preferably in: Hospitality / Hotels; Facility Management; Home Services; Startups / Consumer Services",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows BFSI, BPO, education and sales-training experience, but none of the listed preferred domain backgrounds is explicitly present.",
+    "proof": "My background spans MNC, BFSI, BPO and education environments, with extensive training, OJT, capability building and team leadership; I am therefore bringing a transferable L&D operating model while closing the industry-specific knowledge gap.",
+    "learn": [
+     "Complete an introductory hospitality-management course to learn guest experience, service standards, hotel operations and hospitality terminology.",
+     "Study housekeeping operations, facility-management basics and home-service operating models.",
+     "Review NSDC occupational standards for General Housekeeper and Housekeeping Trainee roles.",
+     "Create a mock home-services training calendar and competency framework as a portfolio project."
+    ],
+    "link": "https://www.coursera.org/learn/introduction-to-hospitality-management-in-the-21st-century",
+    "books": "Managing Housekeeping Operations, 4th Edition — William D. Frye and Johnny O. Reinholdt. ",
+    "youtube": "YouTube topic: Professional Housekeeping Training / Hotel Housekeeping Training. ",
+    "free_tool": "Google Sheets — build a housekeeping competency matrix and service-quality dashboard.",
+    "platforms": [
+     "Coursera — Introduction to Hospitality Management in the 21st Century",
+     "Coursera — Essentials of Hospitality Management",
+     "NPTEL — Managing Services",
+     "AHLEI — START"
+    ],
+    "more": [
+     "https://www.coursera.org/specializations/essentials-of-hospitality-management",
+     "https://www.nptel.ac.in/courses/110104065",
+     "https://info.ahlei.org/start/",
+     "https://nsdcindia.org/general-housekeeper"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "Managing Housekeeping Operations, 4th Edition — William D. Frye and Johnny O. Reinholdt. ",
+     "YouTube topic: Professional Housekeeping Training / Hotel Housekeeping Training. ",
+     "Google Sheets — build a housekeeping competency matrix and service-quality dashboard."
+    ]
+   },
+   {
+    "key": "Startups / consumer-services domain exposure",
+    "category": "preferred",
+    "jd_quote": "Startups / Consumer Services",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has consumer-facing BFSI and sales-training exposure, but the resume does not explicitly show startup or home/consumer-service operations.",
+    "proof": "I have worked in customer-facing BFSI/BPO environments and led sales capability programs where learner performance directly connects to customer interaction and business outcomes; the bridge is applying that capability model to a consumer-service operation.",
+    "learn": [
+     "Learn service-business economics: customer journey, service delivery, quality, repeat usage and frontline productivity.",
+     "Study consumer-service operating models and the role of frontline capability in customer experience.",
+     "Map a hypothetical home-service customer journey and identify training moments at each touchpoint.",
+     "Build a case study showing how training could reduce service failures and improve customer experience."
+    ],
+    "link": "https://www.nptel.ac.in/courses/110104065",
+    "books": "Services Marketing: A Practical Approach — Biplab Datta. ",
+    "youtube": "YouTube topic: Service Management, Service Quality and Customer Experience — NPTEL.",
+    "free_tool": "Google Sheets — create a customer journey/service-quality tracker.",
+    "platforms": [
+     "NPTEL — Managing Services",
+     "NPTEL — Services Marketing",
+     "Coursera — Hospitality Management",
+     "Coursera — International Hospitality & Healthcare Services Marketing"
+    ],
+    "more": [
+     "https://onlinecourses-archive.nptel.ac.in/noc19_mg09/preview",
+     "https://www.coursera.org/learn/healthcare-marketing-hospitality-management",
+     "https://www.nptel.ac.in/courses/110104065"
+    ],
+    "chances": "Medium if new but learnable",
+    "bridge": [],
+    "tools": [
+     "Services Marketing: A Practical Approach — Biplab Datta. ",
+     "YouTube topic: Service Management, Service Quality and Customer Experience — NPTEL.",
+     "Google Sheets — create a customer journey/service-quality tracker."
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The JD explicitly wants 5+ years of Training & Development experience. The resume states 15+ years overall experience and 4+ years of corporate training, while also listing earlier trainer/coach roles from 2011 onward; therefore the resume demonstrates substantial training history, but it does not state one consolidated T&D-years figure that makes the 5+ requirement completely auditable. The current function is Training/L&D/Sales Enablement, while the JD is Training/L&D for home cleaning and service operations. The main difference is therefore domain/function context rather than a wholesale career-level mismatch. The JD does not specify salary or notice period.",
+  "dept_diff": "The JD belongs to Training & Development/L&D within a home-services, hospitality/facility/service-quality operating environment. The candidate currently works in Training/L&D and Sales Enablement within BFSI/health-insurance operations. In plain English: the department/function is substantially the same, but the operating department and subject matter are different — the new role trains physical home-service professionals rather than insurance/sales employees.",
+  "required_skills": [
+   "Training & Development",
+   "Learning & Development (L&D)",
+   "Trainer Management",
+   "Training Needs Analysis (TNA)",
+   "Training Content Development",
+   "SOP Development & Implementation",
+   "Technical & Behavioral Training",
+   "Blue-Collar Workforce Training",
+   "Service Quality Management",
+   "Customer Experience",
+   "Team Management & Coaching",
+   "Performance Management",
+   "Capability Building",
+   "Stakeholder Management",
+   "Continuous Improvement",
+   "Hospitality / Facility Management",
+   "End-to-end training program management",
+   "Training effectiveness measurement",
+   "Service-quality gap identification",
+   "Multi-city trainer management",
+   "Cross-functional partnership with Operations, Category and Quality",
+   "Industry standards and customer-expectation alignment",
+   "Hands-on frontline/service-professional training",
+   "Training methodologies for blue-collar/service professionals"
+  ],
+  "qualification": {
+   "jd_wants": "Bachelor's degree in Hospitality Management, Business Administration, or a related field.",
+   "resume_has": "Master’s Degree in English | 2016; B.Sc. – MPC | 2013; Intermediate – MPC | 2008; SSC – 10th Standard | 2006. No professional certification is listed.",
+   "gap": "The candidate has a bachelor's degree, but the stated bachelor's field is B.Sc. – MPC rather than Hospitality Management or Business Administration. Whether B.Sc. – MPC qualifies as a 'related field' is not established by the JD. No certification requirement is stated in the JD.",
+   "learn": [
+    "For the knowledge gap, complete a structured hospitality-management program such as Coursera's Introduction to Hospitality Management in the 21st Century.",
+    "For a stronger formal domain credential, consider a recognized postgraduate diploma, PG certificate or degree in Hospitality Management, Business Administration or a closely related service-management discipline if the employer treats the degree requirement strictly.",
+    "Use NSDC housekeeping occupational standards and AHLEI housekeeping material to build practical domain knowledge alongside the formal qualification path."
+   ]
+  },
+  "asked_count": 27,
+  "generated": "17 Sep 2026, 07:15 AM",
+  "verdict": "This JD needs a strong Training/L&D operator who can also understand home cleaning, blue-collar workforce training, SOPs, service quality and multi-city service operations. The resume matches the core L&D function well — TNA, content, learning interventions, trainer leadership, coaching, metrics, stakeholder management and continuous improvement — but the major gaps are the home-services/hospitality domain, direct blue-collar workforce exposure, formal SOP/service-quality ownership and the stated degree field. This is primarily a domain and qualification gap rather than a different-department problem; salary and notice period are not specified.",
+  "interview": [
+   {
+    "q": "You have mainly trained insurance, BPO and sales employees. Why should we consider you for training home-cleaning professionals?",
+    "a": "My domain has been different, but the core L&D operating model is highly transferable. In my current role I conduct TNA/TNI, use performance data and field observations to identify gaps, design targeted interventions, lead 8 training professionals and have delivered 50+ OJT and field-coaching interventions. I would apply that same model to the home-services workforce, while first learning the technical cleaning standards, safety requirements and customer-service expectations of the job.",
+    "tip": ""
+   },
+   {
+    "q": "Have you created SOPs before?",
+    "a": "My resume demonstrates strong adjacent experience in product/process training, facilitator guides, training content and learning materials, but it does not claim formal SOP ownership. I would bridge that by documenting the current process, defining the standard work, converting it into step-by-step job instructions, training employees against it and then measuring adherence and service quality.",
+    "tip": ""
+   },
+   {
+    "q": "How would you train a frontline worker who has limited classroom-learning experience?",
+    "a": "I would use a practical, demonstration-led approach rather than relying heavily on lecture. My 50+ OJT and field-coaching interventions give me a strong foundation for this. I would break the task into observable steps, demonstrate it, let the learner practise, observe performance, provide immediate feedback and certify competency through a practical assessment.",
+    "tip": ""
+   },
+   {
+    "q": "How would you measure whether training improved home-cleaning service quality?",
+    "a": "I would start with the business and quality problem, identify the behavioural or technical gap, define the training intervention and then measure both learning and operational outcomes. My current experience with MIS, dashboards, KRAs, learner-performance data and assessments gives me the measurement foundation; I would add service-quality metrics such as audit scores, repeat complaints, customer feedback and adherence to cleaning standards.",
+    "tip": ""
+   },
+   {
+    "q": "You currently manage 8 training professionals. How would you manage 10–12 trainers across different cities?",
+    "a": "I already lead and mentor 8 training professionals and have worked on delivery consistency and capability development. For a larger distributed team, I would introduce a common trainer scorecard, city-wise dashboards, calibration sessions, observation standards, monthly performance reviews and targeted trainer-development plans so that the operating model remains consistent across cities.",
+    "tip": ""
+   },
+   {
+    "q": "How would you work with Operations, Category and Quality when they disagree about the training priority?",
+    "a": "I would bring the discussion back to evidence. I already partner with Operations, HRBP and Business Leaders and use performance data and field observations to identify capability gaps. I would use a shared problem statement, customer/service-quality data, root-cause analysis and an agreed KPI to determine whether the issue is actually a training problem and then align the intervention with all stakeholders.",
+    "tip": ""
+   },
+   {
+    "q": "What do you know about housekeeping or home-cleaning safety?",
+    "a": "I would not claim hands-on expertise that is not on my resume. Before taking ownership of the training program, I would study the applicable housekeeping standards, cleaning procedures, equipment, chemical safety, PPE, hygiene and customer-service requirements. I would then convert those requirements into job breakdowns, demonstrations, practice and assessments.",
+    "tip": ""
+   },
+   {
+    "q": "Your degree is B.Sc. MPC rather than Hospitality Management or Business Administration. How do you address that?",
+    "a": "My formal bachelor's degree is B.Sc. MPC and my master's is in English. My professional specialization, however, is Training and L&D, with extensive training leadership and capability-development experience. I would address the domain-specific qualification gap through structured hospitality/service-management learning and by demonstrating practical knowledge of housekeeping, service quality and frontline workforce training.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
