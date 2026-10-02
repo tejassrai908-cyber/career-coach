@@ -1,0 +1,1021 @@
+{
+ "id": 8,
+ "title": "Pasted ChatGPT analysis",
+ "role": "Coders, Auditors, Trainers and Team lead",
+ "created": "02 Oct 2026, 09:50 AM",
+ "jd_text": "",
+ "report": {
+  "role": "Coders, Auditors, Trainers and Team lead",
+  "role_label": "Coders, Auditors, Trainers and Team lead",
+  "match_pct": 0,
+  "have": [
+   {
+    "key": "Learning & Development",
+    "why": "The resume shows 15+ years of training, coaching and learning experience, while the JD does not explicitly ask for L&D as a standalone skill.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Sales Training",
+    "why": "The resume shows 2+ years leading sales training in health insurance; the JD does not ask for sales training.",
+    "jd_quote": ""
+   },
+   {
+    "key": "TNA/TNI",
+    "why": "The resume explicitly includes Training Needs Analysis/Identification and capability-gap diagnosis; the JD does not mention TNA/TNI.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Instructional Design",
+    "why": "The resume includes instructional design, storyboarding, facilitator guides, assessments and training content development; the JD does not explicitly request instructional design.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Performance Coaching and OJT",
+    "why": "The resume includes performance coaching, OJT and 50+ field-coaching interventions; the JD does not explicitly request these skills.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Training Team Leadership",
+    "why": "The resume states that the candidate currently leads 8 training professionals; the JD asks for Team lead experience specifically in Medical coding, not generic training leadership.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Training Content Development",
+    "why": "The resume explicitly includes training content, facilitator guides and assessments; the JD does not explicitly request this skill.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Learning Analytics and MIS",
+    "why": "The resume includes dashboards, MIS, performance data and learning analytics; these are not explicitly requested in the JD.",
+    "jd_quote": ""
+   },
+   {
+    "key": "AI and Automation",
+    "why": "The resume includes ChatGPT, Copilot, Gemini, Codex, Apps Script, n8n and workflow automation; the JD does not request AI or automation.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Advanced Excel",
+    "why": "Advanced Excel, Power Query and dashboards are present on the resume but are not requested in the JD.",
+    "jd_quote": ""
+   },
+   {
+    "key": "Web/Application Development",
+    "why": "The resume includes HTML, CSS, JavaScript and web-based training/performance solutions; the JD does not ask for application development.",
+    "jd_quote": ""
+   }
+  ],
+  "gaps": [
+   {
+    "key": "IVR",
+    "category": "explicitly_required",
+    "jd_quote": "IVR",
+    "on_resume": false,
+    "near": false,
+    "why": "IVR is explicitly listed as a must-have skill, but it is not present anywhere in the supplied resume. The JD does not define what IVR specifically means in this Medical Coding context.",
+    "proof": "I have strong experience in training, process learning and performance enablement, but I have not listed IVR experience on my resume.",
+    "learn": [
+     "First confirm the employer's exact meaning of IVR because the JD provides only the acronym.",
+     "If the employer means a specific medical-coding workflow or system, learn that workflow from the employer's terminology.",
+     "Do not claim IVR experience until the employer confirms the intended meaning and you have relevant hands-on exposure."
+    ],
+    "link": "",
+    "books": "",
+    "youtube": "",
+    "free_tool": "",
+    "platforms": [],
+    "more": [
+     "Ask the recruiter what IVR stands for in this JD.",
+     "Request the expected IVR workflow or tool name before preparing for an interview."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": []
+   },
+   {
+    "key": "Surgery",
+    "category": "explicitly_required",
+    "jd_quote": "Surgery",
+    "on_resume": false,
+    "near": false,
+    "why": "Surgery is explicitly listed as a must-have skill. The resume contains health-insurance product training experience but does not show medical-surgical coding experience.",
+    "proof": "My background is in health-insurance sales training and learning interventions; I have not claimed surgical coding experience.",
+    "learn": [
+     "Study the coding workflow for surgical procedures.",
+     "Learn how surgical documentation is translated into applicable diagnosis and procedure codes.",
+     "Study procedure documentation, operative reports and coding guidelines relevant to the certification path you choose.",
+     "Practice with case-based surgical coding exercises."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current ICD-10-CM, CPT and HCPCS Level II codebooks; use the current-year editions required by the certification or employer.",
+    "youtube": "Search the official AAPC and AHIMA channels for medical coding and surgical coding education.",
+    "free_tool": "CMS ICD-10-CM resources",
+    "platforms": [
+     "AHIMA",
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "Build a small surgical coding case portfolio.",
+     "Learn documentation terminology used in operative reports.",
+     "Practice coding scenarios before claiming the skill professionally."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM, CPT and HCPCS Level II codebooks; use the current-year editions required by the certification or employer.",
+     "Search the official AAPC and AHIMA channels for medical coding and surgical coding education.",
+     "CMS ICD-10-CM resources"
+    ]
+   },
+   {
+    "key": "medical coder",
+    "category": "explicitly_required",
+    "jd_quote": "medical coder",
+    "on_resume": false,
+    "near": false,
+    "why": "The JD explicitly requires medical-coder capability, while the resume is centered on L&D, sales training, coaching and health-insurance training rather than medical coding.",
+    "proof": "I have 15+ years of training and coaching experience and 2+ years of health-insurance sales-training leadership, but my resume does not show medical-coder work experience.",
+    "learn": [
+     "Learn medical terminology, anatomy and physiology as coding prerequisites.",
+     "Learn ICD-10-CM diagnosis coding.",
+     "Learn CPT procedure coding and HCPCS Level II.",
+     "Practice reading clinical documentation and assigning codes.",
+     "Complete structured medical-coding case practice.",
+     "Consider a recognized medical-coding certification path such as CPC or CCS."
+    ],
+    "link": "https://www.aapc.com/certifications/cpc",
+    "books": "Current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+    "youtube": "AAPC and AHIMA medical-coding education channels.",
+    "free_tool": "CMS ICD-10-CM coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Start with anatomy and medical terminology.",
+     "Progress to ICD-10-CM, CPT and HCPCS.",
+     "Practice real-world coding cases.",
+     "Prepare for CPC or CCS after foundational training."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+     "AAPC and AHIMA medical-coding education channels.",
+     "CMS ICD-10-CM coding resources"
+    ]
+   },
+   {
+    "key": "IPDRG",
+    "category": "explicitly_required",
+    "jd_quote": "IPDRG",
+    "on_resume": false,
+    "near": false,
+    "why": "IPDRG is explicitly listed as a must-have skill and is not present in the resume.",
+    "proof": "My resume demonstrates strong training and performance-management capability, but it does not show inpatient DRG coding experience.",
+    "learn": [
+     "Learn inpatient coding fundamentals.",
+     "Study diagnosis and procedure coding used in inpatient records.",
+     "Learn MS-DRG concepts, grouping logic and documentation requirements.",
+     "Practice inpatient case scenarios and DRG assignment."
+    ],
+    "link": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/ms-drg-classifications-and-software",
+    "books": "Current ICD-10-CM and ICD-10-PCS codebooks plus an up-to-date MS-DRG reference.",
+    "youtube": "Search AHIMA and AAPC channels for inpatient coding and MS-DRG education.",
+    "free_tool": "CMS MS-DRG resources",
+    "platforms": [
+     "CMS",
+     "AHIMA",
+     "AAPC"
+    ],
+    "more": [
+     "Learn ICD-10-PCS after ICD-10-CM fundamentals.",
+     "Practice inpatient discharge-summary coding.",
+     "Study MS-DRG grouping examples."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM and ICD-10-PCS codebooks plus an up-to-date MS-DRG reference.",
+     "Search AHIMA and AAPC channels for inpatient coding and MS-DRG education.",
+     "CMS MS-DRG resources"
+    ]
+   },
+   {
+    "key": "Home Heath",
+    "category": "explicitly_required",
+    "jd_quote": "Home Heath",
+    "on_resume": false,
+    "near": false,
+    "why": "The JD explicitly spells this as 'Home Heath'. The resume does not show home-health coding experience.",
+    "proof": "My resume includes health-insurance training experience but does not show home-health coding experience.",
+    "learn": [
+     "Confirm whether the employer means Home Health because the JD spells it 'Home Heath'.",
+     "Learn home-health documentation and coding workflows.",
+     "Study OASIS-related terminology and home-health coding requirements.",
+     "Practice home-health coding cases."
+    ],
+    "link": "https://www.cms.gov/medicare/quality/home-health/oasis-data-sets",
+    "books": "Current home-health coding reference and applicable ICD-10-CM codebook.",
+    "youtube": "Search CMS, AHIMA and AAPC resources for home-health coding.",
+    "free_tool": "CMS OASIS resources",
+    "platforms": [
+     "CMS",
+     "AHIMA",
+     "AAPC"
+    ],
+    "more": [
+     "Confirm the employer's intended terminology.",
+     "Learn OASIS and home-health documentation basics.",
+     "Practice home-health case studies."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current home-health coding reference and applicable ICD-10-CM codebook.",
+     "Search CMS, AHIMA and AAPC resources for home-health coding.",
+     "CMS OASIS resources"
+    ]
+   },
+   {
+    "key": "ED pro",
+    "category": "preferred",
+    "jd_quote": "ED pro",
+    "on_resume": false,
+    "near": false,
+    "why": "ED pro is listed under Good to have skills but is not mentioned on the resume. The JD does not explain whether this refers to a specific software or workflow.",
+    "proof": "I have experience with LMS, Google Workspace, dashboards and web-based training solutions, but I have not listed ED pro experience.",
+    "learn": [
+     "Confirm the exact product or system meant by 'ED pro'.",
+     "Learn the employer's expected workflow after the system is identified.",
+     "Practice the relevant coding workflow only after the exact tool is confirmed."
+    ],
+    "link": "",
+    "books": "",
+    "youtube": "",
+    "free_tool": "",
+    "platforms": [],
+    "more": [
+     "Ask the recruiter whether ED pro means a specific medical-coding application.",
+     "Do not substitute general software experience for direct ED pro experience."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": []
+   },
+   {
+    "key": "E/M",
+    "category": "preferred",
+    "jd_quote": "E/M",
+    "on_resume": false,
+    "near": false,
+    "why": "E/M is explicitly listed as a good-to-have skill and is not present in the resume.",
+    "proof": "My resume shows training and assessment experience but does not show Evaluation and Management coding.",
+    "learn": [
+     "Learn Evaluation and Management coding fundamentals.",
+     "Study documentation requirements for E/M services.",
+     "Learn the applicable E/M code families and current coding guidelines.",
+     "Practice E/M case scenarios."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current CPT codebook and official E/M guidance.",
+    "youtube": "AAPC and AHIMA E/M coding education.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Study E/M documentation first.",
+     "Practice selecting the correct E/M code from clinical cases."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current CPT codebook and official E/M guidance.",
+     "AAPC and AHIMA E/M coding education.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "IP Drg",
+    "category": "preferred",
+    "jd_quote": "IP Drg",
+    "on_resume": false,
+    "near": false,
+    "why": "IP Drg is separately listed under Good to have skills and is not shown on the resume.",
+    "proof": "My resume does not demonstrate inpatient DRG coding experience.",
+    "learn": [
+     "Study inpatient coding.",
+     "Learn MS-DRG concepts and grouping.",
+     "Practice inpatient documentation-to-DRG scenarios."
+    ],
+    "link": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/ms-drg-classifications-and-software",
+    "books": "Current ICD-10-CM and ICD-10-PCS codebooks plus current MS-DRG reference.",
+    "youtube": "AAPC and AHIMA inpatient coding resources.",
+    "free_tool": "CMS MS-DRG resources",
+    "platforms": [
+     "CMS",
+     "AHIMA",
+     "AAPC"
+    ],
+    "more": [
+     "Learn inpatient coding before attempting DRG grouping.",
+     "Practice case-based DRG assignment."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM and ICD-10-PCS codebooks plus current MS-DRG reference.",
+     "AAPC and AHIMA inpatient coding resources.",
+     "CMS MS-DRG resources"
+    ]
+   },
+   {
+    "key": "CDI",
+    "category": "preferred",
+    "jd_quote": "CDI",
+    "on_resume": false,
+    "near": true,
+    "why": "CDI is not listed on the resume. The candidate has adjacent experience in TNA/TNI, documentation-related training content, assessments, performance analysis and identifying capability gaps, but no Clinical Documentation Integrity experience is shown.",
+    "proof": "I have experience identifying capability gaps through TNA/TNI, performance data and field observations and designing targeted interventions, although I have not worked in Clinical Documentation Integrity.",
+    "learn": [
+     "Learn Clinical Documentation Integrity fundamentals.",
+     "Study the relationship between clinical documentation, coding and reimbursement.",
+     "Learn common documentation-quality issues and compliant clarification concepts.",
+     "Practice CDI case scenarios."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "AHIMA CDI reference material and current coding guidelines.",
+    "youtube": "AHIMA CDI education resources.",
+    "free_tool": "CMS documentation and coding resources",
+    "platforms": [
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Use your existing gap-analysis and training background as transferable evidence.",
+     "Add actual CDI exposure before claiming direct CDI experience."
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "AHIMA CDI reference material and current coding guidelines.",
+     "AHIMA CDI education resources.",
+     "CMS documentation and coding resources"
+    ]
+   },
+   {
+    "key": "Medical Coding",
+    "category": "preferred",
+    "jd_quote": "Medical Coding",
+    "on_resume": false,
+    "near": false,
+    "why": "Medical Coding is explicitly listed as a good-to-have skill and is not present in the resume.",
+    "proof": "My experience is in health-insurance sales training and L&D rather than medical coding.",
+    "learn": [
+     "Study medical terminology and anatomy.",
+     "Learn ICD-10-CM, CPT and HCPCS Level II.",
+     "Practice coding from clinical documentation.",
+     "Build experience through supervised coding practice.",
+     "Consider CPC or CCS certification."
+    ],
+    "link": "https://www.aapc.com/certifications/cpc",
+    "books": "Current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+    "youtube": "AAPC and AHIMA medical-coding education channels.",
+    "free_tool": "CMS ICD-10-CM resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Start with fundamentals before specializing.",
+     "Use practice cases to build evidence for interviews."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+     "AAPC and AHIMA medical-coding education channels.",
+     "CMS ICD-10-CM resources"
+    ]
+   },
+   {
+    "key": "Ancillary",
+    "category": "preferred",
+    "jd_quote": "Ancillary",
+    "on_resume": false,
+    "near": false,
+    "why": "Ancillary is listed as a good-to-have skill but is not mentioned in the resume.",
+    "proof": "My resume does not show ancillary medical coding experience.",
+    "learn": [
+     "Confirm which ancillary coding area the employer expects.",
+     "Study ancillary-service documentation and coding.",
+     "Practice relevant ancillary coding scenarios."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current applicable coding manuals based on the ancillary specialty.",
+    "youtube": "AAPC and AHIMA coding education resources.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AHIMA",
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "Ask the recruiter which ancillary specialty is relevant.",
+     "Avoid claiming a specialty that is not actually specified."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current applicable coding manuals based on the ancillary specialty.",
+     "AAPC and AHIMA coding education resources.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "Auditor",
+    "category": "preferred",
+    "jd_quote": "Auditor",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume contains performance monitoring, assessments, training effectiveness and quality-oriented interventions, which are adjacent to audit thinking, but it does not show medical coding audit experience.",
+    "proof": "I have experience using performance data, assessments, field observations and targeted interventions to identify and address capability gaps, but I have not performed medical coding audits.",
+    "learn": [
+     "Learn medical coding audit methodology.",
+     "Study coding accuracy, compliance and documentation review.",
+     "Practice reviewing coded charts against source documentation.",
+     "Learn how audit findings are documented and communicated."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current coding guidelines and medical coding audit references.",
+    "youtube": "AHIMA and AAPC audit/coding education resources.",
+    "free_tool": "CMS coding guidance",
+    "platforms": [
+     "AHIMA",
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "Your quality/performance analysis experience is transferable.",
+     "You still need actual medical-coding audit exposure."
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "Current coding guidelines and medical coding audit references.",
+     "AHIMA and AAPC audit/coding education resources.",
+     "CMS coding guidance"
+    ]
+   },
+   {
+    "key": "Evaluation and management",
+    "category": "preferred",
+    "jd_quote": "Evaluation and management",
+    "on_resume": false,
+    "near": false,
+    "why": "Evaluation and management is explicitly listed and is not shown as medical E/M coding experience on the resume.",
+    "proof": "My resume includes training evaluation and effectiveness activities, but not Evaluation and Management medical coding.",
+    "learn": [
+     "Learn E/M coding fundamentals.",
+     "Study current E/M documentation and code-selection rules.",
+     "Practice E/M coding cases."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current CPT codebook and official E/M guidance.",
+    "youtube": "AAPC and AHIMA E/M coding education.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Do not confuse training evaluation experience with E/M medical coding."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current CPT codebook and official E/M guidance.",
+     "AAPC and AHIMA E/M coding education.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "Pathology",
+    "category": "preferred",
+    "jd_quote": "Pathology",
+    "on_resume": false,
+    "near": false,
+    "why": "Pathology is listed as a good-to-have skill and is absent from the resume.",
+    "proof": "My resume does not show pathology coding experience.",
+    "learn": [
+     "Study pathology-related medical terminology.",
+     "Learn the relevant pathology coding concepts and documentation.",
+     "Practice pathology coding cases."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current CPT and ICD-10-CM codebooks relevant to pathology.",
+    "youtube": "AAPC and AHIMA specialty coding resources.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Build specialty knowledge only after medical-coding fundamentals."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current CPT and ICD-10-CM codebooks relevant to pathology.",
+     "AAPC and AHIMA specialty coding resources.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "Ccs",
+    "category": "preferred",
+    "jd_quote": "Ccs",
+    "on_resume": false,
+    "near": false,
+    "why": "Ccs is listed as a good-to-have skill. No CCS credential or CCS-level coding experience appears in the resume.",
+    "proof": "My resume shows a Master's degree and extensive training experience, but it does not list CCS certification or medical coding experience.",
+    "learn": [
+     "Learn the CCS certification eligibility and exam structure.",
+     "Build ICD-10-CM, ICD-10-PCS and coding knowledge.",
+     "Practice coding cases aligned to CCS-style competencies.",
+     "Review current AHIMA certification requirements before registering."
+    ],
+    "link": "https://www.ahima.org/certification-careers/certifications-overview/ccs/",
+    "books": "Current AHIMA CCS exam preparation resources and required codebooks.",
+    "youtube": "AHIMA CCS preparation and medical-coding education resources.",
+    "free_tool": "CMS ICD-10-CM and ICD-10-PCS resources",
+    "platforms": [
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "CCS is a certification path, not something to claim without earning it.",
+     "Check current AHIMA eligibility and exam requirements."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current AHIMA CCS exam preparation resources and required codebooks.",
+     "AHIMA CCS preparation and medical-coding education resources.",
+     "CMS ICD-10-CM and ICD-10-PCS resources"
+    ]
+   },
+   {
+    "key": "Lab coder",
+    "category": "preferred",
+    "jd_quote": "Lab coder",
+    "on_resume": false,
+    "near": false,
+    "why": "Lab coder is listed as a good-to-have skill and is not present on the resume.",
+    "proof": "My resume does not show laboratory coding experience.",
+    "learn": [
+     "Learn laboratory-service terminology.",
+     "Study applicable CPT and ICD-10-CM coding concepts.",
+     "Practice laboratory coding scenarios."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current CPT and ICD-10-CM codebooks.",
+    "youtube": "AAPC and AHIMA coding resources.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Learn general coding before specializing in laboratory coding."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current CPT and ICD-10-CM codebooks.",
+     "AAPC and AHIMA coding resources.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "CPC",
+    "category": "preferred",
+    "jd_quote": "CPC",
+    "on_resume": false,
+    "near": false,
+    "why": "CPC is explicitly listed as a good-to-have skill and the resume does not list CPC certification.",
+    "proof": "I have a Master's degree and extensive training experience, but CPC certification is not listed on my resume.",
+    "learn": [
+     "Study the CPC certification structure.",
+     "Learn anatomy, medical terminology and coding guidelines.",
+     "Develop ICD-10-CM, CPT and HCPCS Level II coding skills.",
+     "Complete CPC-style practice tests.",
+     "Check current AAPC eligibility and examination requirements."
+    ],
+    "link": "https://www.aapc.com/certifications/cpc",
+    "books": "Current AAPC CPC study guide and current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+    "youtube": "AAPC medical-coding and CPC preparation resources.",
+    "free_tool": "CMS ICD-10-CM resources",
+    "platforms": [
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "CPC can provide formal evidence of foundational coding knowledge.",
+     "Certification alone does not create the four years of Medical Coding experience required for the Trainer/TL roles."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current AAPC CPC study guide and current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+     "AAPC medical-coding and CPC preparation resources.",
+     "CMS ICD-10-CM resources"
+    ]
+   },
+   {
+    "key": "Inpatient",
+    "category": "preferred",
+    "jd_quote": "Inpatient",
+    "on_resume": false,
+    "near": false,
+    "why": "Inpatient is listed as a good-to-have skill and is not present in the resume.",
+    "proof": "My resume does not show inpatient medical coding experience.",
+    "learn": [
+     "Learn inpatient medical coding workflow.",
+     "Study inpatient documentation and discharge records.",
+     "Learn ICD-10-CM and ICD-10-PCS fundamentals.",
+     "Practice inpatient coding cases."
+    ],
+    "link": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/ms-drg-classifications-and-software",
+    "books": "Current ICD-10-CM and ICD-10-PCS codebooks.",
+    "youtube": "AHIMA and AAPC inpatient coding resources.",
+    "free_tool": "CMS inpatient coding and MS-DRG resources",
+    "platforms": [
+     "CMS",
+     "AHIMA",
+     "AAPC"
+    ],
+    "more": [
+     "Build inpatient knowledge after learning general coding fundamentals."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM and ICD-10-PCS codebooks.",
+     "AHIMA and AAPC inpatient coding resources.",
+     "CMS inpatient coding and MS-DRG resources"
+    ]
+   },
+   {
+    "key": "Radiology",
+    "category": "preferred",
+    "jd_quote": "Radiology",
+    "on_resume": false,
+    "near": false,
+    "why": "Radiology is listed as a good-to-have skill and is absent from the resume.",
+    "proof": "My resume does not show radiology coding experience.",
+    "learn": [
+     "Learn radiology terminology and documentation.",
+     "Study applicable CPT and ICD-10-CM coding concepts.",
+     "Practice radiology coding cases."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current CPT and ICD-10-CM codebooks.",
+    "youtube": "AAPC and AHIMA specialty coding resources.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Specialize after gaining general medical-coding fundamentals."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current CPT and ICD-10-CM codebooks.",
+     "AAPC and AHIMA specialty coding resources.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "Anesthesia",
+    "category": "preferred",
+    "jd_quote": "Anesthesia",
+    "on_resume": false,
+    "near": false,
+    "why": "Anesthesia is listed as a good-to-have skill and is not present on the resume.",
+    "proof": "My resume does not show anesthesia coding experience.",
+    "learn": [
+     "Learn anesthesia terminology and documentation.",
+     "Study applicable CPT anesthesia coding concepts.",
+     "Practice anesthesia coding cases."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current CPT codebook and relevant anesthesia coding references.",
+    "youtube": "AAPC and AHIMA specialty coding resources.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Develop general coding skills before specialty anesthesia coding."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current CPT codebook and relevant anesthesia coding references.",
+     "AAPC and AHIMA specialty coding resources.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "E and M",
+    "category": "preferred",
+    "jd_quote": "E and M",
+    "on_resume": false,
+    "near": false,
+    "why": "E and M is separately listed under Good to have skills and is not shown on the resume as medical E/M coding experience.",
+    "proof": "My resume does not demonstrate E and M medical coding experience.",
+    "learn": [
+     "Learn Evaluation and Management coding.",
+     "Study documentation requirements and current code-selection rules.",
+     "Practice E/M coding cases."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current CPT codebook and official E/M guidance.",
+    "youtube": "AAPC and AHIMA E/M coding education.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Treat this as the same medical coding domain as E/M, while preserving the exact JD wording."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current CPT codebook and official E/M guidance.",
+     "AAPC and AHIMA E/M coding education.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "Denial Coding",
+    "category": "preferred",
+    "jd_quote": "Denial Coding",
+    "on_resume": false,
+    "near": true,
+    "why": "Denial Coding is listed as a good-to-have skill but is not shown on the resume. The candidate has adjacent experience in identifying performance gaps and designing corrective interventions, but that is not claims-denial coding.",
+    "proof": "I have experience diagnosing performance gaps, using data and observations to identify issues, and implementing corrective interventions; I have not performed medical claims denial coding.",
+    "learn": [
+     "Learn medical-claim denial terminology and workflows.",
+     "Study how coding, documentation and payer rules can contribute to denials.",
+     "Learn denial analysis and coding-related root-cause identification.",
+     "Practice denial scenarios and corrective coding workflows."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current medical coding guidelines plus a current healthcare claims/denial-management reference.",
+    "youtube": "AHIMA and AAPC resources on coding, claims and denial management.",
+    "free_tool": "CMS coding and billing resources",
+    "platforms": [
+     "AHIMA",
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "Do not present performance-gap management as denial-coding experience.",
+     "Use your existing root-cause and corrective-action experience as transferable evidence."
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "Current medical coding guidelines plus a current healthcare claims/denial-management reference.",
+     "AHIMA and AAPC resources on coding, claims and denial management.",
+     "CMS coding and billing resources"
+    ]
+   },
+   {
+    "key": "Minimum 1 year Medical coding experience for coder",
+    "category": "explicitly_required",
+    "jd_quote": "For coder - Need minimum 1 year experience in Medical coding.",
+    "on_resume": false,
+    "near": false,
+    "why": "The resume shows 15+ years of overall training/teaching experience but does not show one year of Medical coding experience.",
+    "proof": "I have 15+ years of teaching, coaching and training experience, including health-insurance sales training, but I do not have one year of Medical coding experience listed.",
+    "learn": [
+     "Build foundational medical-coding knowledge.",
+     "Obtain supervised practical coding exposure.",
+     "Create documented case-based coding practice.",
+     "Pursue an entry-level medical-coding pathway before claiming the one-year experience requirement."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+    "youtube": "AAPC and AHIMA medical-coding education resources.",
+    "free_tool": "CMS ICD-10-CM resources",
+    "platforms": [
+     "AAPC",
+     "AHIMA",
+     "CMS"
+    ],
+    "more": [
+     "Certification can demonstrate knowledge but does not itself equal one year of employment experience.",
+     "The current resume does not satisfy this experience requirement."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM, CPT and HCPCS Level II codebooks.",
+     "AAPC and AHIMA medical-coding education resources.",
+     "CMS ICD-10-CM resources"
+    ]
+   },
+   {
+    "key": "Minimum 3 years Medical coding experience for Auditory",
+    "category": "explicitly_required",
+    "jd_quote": "For Auditory - Need minimum 3 years experience in Medical coding.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has extensive training and quality/performance experience, but the resume does not show three years of Medical coding. The JD itself uses the word 'Auditory'.",
+    "proof": "I have extensive experience in performance coaching, assessments, training effectiveness and team capability development, but I do not have three years of Medical coding experience.",
+    "learn": [
+     "First build Medical coding knowledge and practical experience.",
+     "Then develop medical-coding audit skills.",
+     "Practice chart review, coding accuracy review and audit documentation.",
+     "Build sufficient domain experience before targeting the three-year Medical coding requirement."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current coding guidelines and medical-coding audit references.",
+    "youtube": "AHIMA and AAPC coding/audit education.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AHIMA",
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "The resume's audit-adjacent performance experience is transferable but does not replace Medical coding experience."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current coding guidelines and medical-coding audit references.",
+     "AHIMA and AAPC coding/audit education.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "Minimum 4 years Medical coding experience for Trainer",
+    "category": "explicitly_required",
+    "jd_quote": "For Trainer - Need minimum 4 years experience in Medical coding",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate clearly has substantial trainer experience, including current leadership of 8 training professionals, but the JD requires four years specifically in Medical coding and the resume does not show that domain experience.",
+    "proof": "I have 15+ years across teaching, coaching and training and 4+ years of corporate training, including leading 8 training professionals, but I have not worked as a Medical coding professional.",
+    "learn": [
+     "Acquire formal Medical coding knowledge.",
+     "Gain hands-on Medical coding experience.",
+     "Build medical-coding training capability after developing sufficient subject-matter expertise.",
+     "Create coding-training demonstrations, assessments and coaching interventions.",
+     "Target Medical Coding Trainer roles only after the required domain experience is genuinely established."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current ICD-10-CM, CPT and HCPCS Level II codebooks plus medical-coding training references.",
+    "youtube": "AAPC and AHIMA coding education channels.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AHIMA",
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "Your trainer capability is a strong transferable component.",
+     "The four-year Medical coding domain requirement remains a material gap."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current ICD-10-CM, CPT and HCPCS Level II codebooks plus medical-coding training references.",
+     "AAPC and AHIMA coding education channels.",
+     "CMS coding resources"
+    ]
+   },
+   {
+    "key": "Minimum 4 years Team lead experience in Medical coding",
+    "category": "explicitly_required",
+    "jd_quote": "For TL - Need minimum 4 years with Team lead experience in Medical coding",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates Team Lead experience and current leadership of 8 training professionals, but it does not demonstrate four years of Team Lead experience in the Medical coding domain.",
+    "proof": "I currently lead 8 training professionals and have Team Lead experience, but my leadership experience is in training/L&D and health-insurance sales enablement rather than Medical coding.",
+    "learn": [
+     "Build Medical coding subject-matter expertise.",
+     "Gain Medical coding production experience.",
+     "Develop medical-coding quality, productivity and accuracy management knowledge.",
+     "Progress into Medical coding team leadership after obtaining the required domain experience.",
+     "Build leadership evidence around coding KPIs, quality, productivity and audit outcomes."
+    ],
+    "link": "https://www.ahima.org/education-events/medical-coding-hub/",
+    "books": "Current medical-coding references plus healthcare coding operations and quality-management material.",
+    "youtube": "AHIMA and AAPC coding education resources.",
+    "free_tool": "CMS coding resources",
+    "platforms": [
+     "AHIMA",
+     "AAPC",
+     "CMS"
+    ],
+    "more": [
+     "Your existing people-leadership experience is directly transferable.",
+     "The missing element is the Medical coding domain experience required by the JD."
+    ],
+    "chances": "Low",
+    "bridge": [],
+    "tools": [
+     "Current medical-coding references plus healthcare coding operations and quality-management material.",
+     "AHIMA and AAPC coding education resources.",
+     "CMS coding resources"
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The resume has 15+ years of overall teaching/training/coaching experience, 4+ years of corporate training and current Team Lead responsibility. However, the JD requires Medical coding domain experience: minimum 1 year for coder, minimum 3 years for the role written as 'Auditory', minimum 4 years for Trainer, and minimum 4 years with Team lead experience in Medical coding for TL. The resume does not show Medical coding employment experience, so the general experience cannot be substituted for the JD's domain-specific experience requirement.",
+  "dept_diff": "The candidate's background is primarily Learning & Development, Sales Training, Sales Enablement, health-insurance training, coaching and training-team leadership. The JD is primarily Medical Coding/Healthcare Coding and lists coding specialties, coding certifications and Medical coding experience. The candidate has transferable training and leadership capabilities, but the core department/domain experience requested by the JD is different.",
+  "required_skills": [
+   "IVR",
+   "Surgery",
+   "medical coder",
+   "IPDRG",
+   "Home Heath"
+  ],
+  "qualification": {
+   "jd_wants": "The screenshot does not specify an educational degree or academic qualification. It does specify Medical coding experience requirements for the different roles and lists CPC and Ccs under Good to have skills.",
+   "resume_has": "Master's Degree in English (2016), B.Sc. MPC (2013), and extensive training/L&D experience.",
+   "gap": "There is no stated degree-qualification gap because the JD does not specify a degree. However, the resume does not show CPC or Ccs certification and does not show the Medical coding experience required for the listed roles.",
+   "learn": [
+    "No additional academic degree is identified as necessary from the screenshot.",
+    "If targeting Medical Coding roles, build Medical coding knowledge and practical experience.",
+    "Consider CPC or CCS only after reviewing the relevant eligibility requirements and choosing the certification aligned with the target role."
+   ]
+  },
+  "asked_count": 37,
+  "generated": "02 Oct 2026, 09:50 AM",
+  "verdict": "The resume demonstrates strong transferable capability in training, Team Lead responsibility, instructional design, coaching, assessments, performance analysis and health-insurance sales training. However, the screenshot's core requirement is Medical Coding domain experience. None of the five Must have skills is demonstrated on the resume, and the role-specific experience requirements also require Medical coding experience that is not shown. The strongest transferable fit is for the Trainer/TL aspects of the work, but the Medical coding domain requirement is a substantial gap. The JD also explicitly states 'NO OPENING FOR FRESHER or other field experience', which directly affects a candidate coming from L&D/Sales Training rather than Medical Coding.",
+  "interview": [
+   {
+    "q": "You have extensive training and Team Lead experience. Do you have Medical coding experience?",
+    "a": "My core experience is in Learning & Development, sales training and Team Lead responsibilities. I have 15+ years across teaching, coaching and training and currently lead 8 training professionals, but I have not worked in a Medical coding production role.",
+    "tip": ""
+   },
+   {
+    "q": "Do you have the four years of Medical coding experience required for the Trainer position?",
+    "a": "No. I have 4+ years of corporate training experience, but that experience is not four years of Medical coding. I would therefore not represent my current experience as satisfying that specific domain requirement.",
+    "tip": ""
+   },
+   {
+    "q": "Do you have four years of Team Lead experience in Medical coding?",
+    "a": "I have Team Lead experience and currently lead 8 training professionals, but my Team Lead experience is in training/L&D and health-insurance sales enablement, not Medical coding.",
+    "tip": ""
+   },
+   {
+    "q": "Do you have CPC or CCS certification?",
+    "a": "Neither CPC nor CCS is listed on my current resume. My academic background includes a Master's degree in English and a B.Sc. in MPC.",
+    "tip": ""
+   },
+   {
+    "q": "Why are you interested in a Medical Coding Trainer role despite your L&D background?",
+    "a": "My strongest transferable areas are trainer leadership, capability-gap diagnosis, instructional design, assessments, OJT, performance coaching, stakeholder management and training effectiveness. I would need to build the Medical coding subject-matter expertise required for this role before claiming direct coding expertise.",
+    "tip": ""
+   },
+   {
+    "q": "Do you have experience with Denial Coding?",
+    "a": "No direct Denial Coding experience is listed on my resume. My adjacent experience is in identifying performance gaps, analysing data and field observations, and designing corrective learning interventions.",
+    "tip": ""
+   },
+   {
+    "q": "Do you have experience with E/M coding?",
+    "a": "No direct E/M medical coding experience is listed on my resume. My experience with evaluation relates to training effectiveness and learner/performance assessment rather than Evaluation and Management medical coding.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
