@@ -1,0 +1,948 @@
+{
+ "id": 7,
+ "title": "Pasted ChatGPT analysis",
+ "role": "Area Training Manager",
+ "created": "02 Oct 2026, 03:22 AM",
+ "jd_text": "",
+ "report": {
+  "role": "Area Training Manager",
+  "role_label": "Area Training Manager",
+  "match_pct": 63,
+  "have": [
+   {
+    "key": "Training Needs Analysis and training intervention planning",
+    "why": "The JD requires identifying training needs, planning training and coaching, and managing a training roadmap. The resume explicitly shows TNA/TNI and targeted learning interventions.",
+    "jd_quote": "Visit allocated branches on a regular basis to ensure that training needs are identified training courses planned accordingly"
+   },
+   {
+    "key": "Training calendar management",
+    "why": "The resume lists Training Planning & Calendar Management and experience managing training agendas and batches.",
+    "jd_quote": "Freeze, by month end, training calendar for the following months"
+   },
+   {
+    "key": "Training delivery",
+    "why": "The candidate currently leads NHT, refresher and production-readiness training and has extensive trainer experience.",
+    "jd_quote": "Conduct Trainings as per calendar/need/flavor of the month"
+   },
+   {
+    "key": "Sales coaching and field coaching",
+    "why": "The resume documents 50+ OJT and field-coaching interventions, sales-call observations and performance coaching.",
+    "jd_quote": "Train/Coach RM s"
+   },
+   {
+    "key": "Relationship and stakeholder management",
+    "why": "The resume explicitly demonstrates stakeholder partnership with Operations, HRBP, Business Leaders and cross-functional teams.",
+    "jd_quote": "Build good relationships"
+   },
+   {
+    "key": "Operational support and training SPOC responsibilities",
+    "why": "The candidate partners with Operations and manages end-to-end training execution, closely matching the operational-support/SPOC requirement.",
+    "jd_quote": "Provide operational support Act as a Single Point of Contact for all training related issues"
+   },
+   {
+    "key": "MIS, dashboards and reporting",
+    "why": "The resume explicitly lists Training MIS, Dashboards & Reporting, MIS, dashboards and performance-data analysis.",
+    "jd_quote": "Analytics/ Comparisons/MIS Reporting"
+   },
+   {
+    "key": "Performance analysis and corrective coaching",
+    "why": "The resume shows performance monitoring, data-driven gap diagnosis, coaching interventions and continuous improvement.",
+    "jd_quote": "Analyze data cuts on Performance of RM s pre post training take corrective action, plan training and coaching basis the same."
+   },
+   {
+    "key": "Induction and follow-up training",
+    "why": "The candidate has extensive NHT experience and delivers refresher/follow-up interventions.",
+    "jd_quote": "Impart training - induction and follow-up trainings as per Training Road Map."
+   },
+   {
+    "key": "Instructional design",
+    "why": "The resume explicitly lists Instructional Design, Storyboarding, training content development and learning intervention design.",
+    "jd_quote": "tools available in instructional design space"
+   },
+   {
+    "key": "Team leadership and people management",
+    "why": "The candidate leads and mentors 8 training professionals and supports capability development for 100+ RMs.",
+    "jd_quote": "People Management"
+   },
+   {
+    "key": "Mentoring and coaching",
+    "why": "The resume explicitly documents mentoring trainers, performance coaching, OJT and field coaching.",
+    "jd_quote": "Mentoring skills"
+   },
+   {
+    "key": "Performance management",
+    "why": "The resume explicitly describes monitoring KRAs, learner performance and performance-management dashboards.",
+    "jd_quote": "Performance Management skills"
+   },
+   {
+    "key": "Problem solving",
+    "why": "The resume demonstrates capability-gap diagnosis, corrective interventions and process improvement.",
+    "jd_quote": "Problem solving skills"
+   },
+   {
+    "key": "Influencing and stakeholder coordination",
+    "why": "The resume explicitly lists Stakeholder & Cross-functional Management and Business & Learning Alignment.",
+    "jd_quote": "Peer level co-ordination and influencing skills"
+   },
+   {
+    "key": "Communication, leadership, teamwork and relationship building",
+    "why": "The resume demonstrates trainer leadership, stakeholder management, learner engagement, coaching and cross-functional collaboration.",
+    "jd_quote": "Communication skills Creative thinking skills Supervising/Leadership skills Teamwork Skills Influencing skills Relationship Building skills Decision making skills"
+   },
+   {
+    "key": "Graduation",
+    "why": "The resume shows a B.Sc. degree.",
+    "jd_quote": "Qualification Graduation with"
+   },
+   {
+    "key": "Experience in training area",
+    "why": "The candidate has substantial training experience across PolicyBazaar, 24-7 Intouch, Aegis and education/training organizations.",
+    "jd_quote": "Experience in handling in Sales or Training area"
+   },
+   {
+    "key": "Life-insurance-related training adjacency",
+    "why": "The candidate has 2+ years of sales training in health insurance and currently works in insurance training, creating an adjacent insurance-domain foundation.",
+    "jd_quote": "Life Insurance Sales Training experience essential"
+   }
+  ],
+  "gaps": [
+   {
+    "key": "Sales targets and desired product mix",
+    "category": "explicitly_required",
+    "jd_quote": "Interact / Train Coach RM s to help them achieve sales targets desired product mix.",
+    "on_resume": false,
+    "near": true,
+    "why": "The role combines training with direct sales-performance enablement and product-mix outcomes. The resume shows sales enablement and performance coaching, but not ownership of life-insurance sales targets/product mix.",
+    "proof": "I currently use performance data, coaching and field observations to identify sales capability gaps and drive targeted interventions for Relationship Managers.",
+    "learn": [
+     "Learn sales-funnel, activation, product-mix and conversion metrics using a sample RM dashboard.",
+     "Practise translating a sales target into activity, conversion and product-mix coaching actions.",
+     "Build one case study showing how a trainer intervention improved a sales KPI."
+    ],
+    "link": "https://www.coursera.org/learn/sales-strategy",
+    "books": "The Sales Acceleration Formula — Mark Roberge",
+    "youtube": "YouTube: sales funnel, sales productivity and insurance sales coaching",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Coursera — Sales Strategy",
+     "LinkedIn Learning — Sales Coaching and Sales Management"
+    ],
+    "more": [
+     "https://www.salesforce.com/resources/articles/sales-funnel/",
+     "https://academy.hubspot.com/courses/sales-training"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Sales Acceleration Formula — Mark Roberge",
+     "YouTube: sales funnel, sales productivity and insurance sales coaching",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Branch visits and branch-based training-needs diagnosis",
+    "category": "explicitly_required",
+    "jd_quote": "Visit allocated branches on a regular basis to ensure that training needs are identified training courses planned accordingly",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume has field coaching, OJT, visit planning and training-needs analysis, but does not explicitly show regular branch ownership.",
+    "proof": "I have conducted 50+ OJT and field-coaching interventions and developed a Visit Planner application to plan and track trainer visits, buddy-ups and trainee activities.",
+    "learn": [
+     "Learn branch-performance review and field-training diagnosis.",
+     "Create a branch-visit checklist covering sales, product knowledge, process and behavioural observations.",
+     "Practise converting branch observations into a monthly training plan."
+    ],
+    "link": "https://www.coursera.org/learn/coaching-skills-for-managers",
+    "books": "The Coaching Habit — Michael Bungay Stanier",
+    "youtube": "YouTube: field sales coaching and branch training needs analysis",
+    "free_tool": "Google Forms + Google Sheets",
+    "platforms": [
+     "Coursera — Coaching Skills for Managers",
+     "LinkedIn Learning — Coaching and Developing Employees"
+    ],
+    "more": [
+     "https://www.coursera.org/learn/leading-teams",
+     "https://support.google.com/docs/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Coaching Habit — Michael Bungay Stanier",
+     "YouTube: field sales coaching and branch training needs analysis",
+     "Google Forms + Google Sheets"
+    ]
+   },
+   {
+    "key": "Life-insurance customer needs analysis, TALIC solution pitching and joint calls",
+    "category": "explicitly_required",
+    "jd_quote": "Train/Coach RM s on identifying understanding life insurance needs of clients pitch appropriate TALIC solutions and support them in joint calls where required.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has sales pitching, objection handling and customer-engagement coaching experience in health insurance, but the JD specifically requires life-insurance needs analysis, Tata AIA/TALIC solutions and joint sales calls.",
+    "proof": "I have delivered 50+ OJT and field-coaching interventions focused on product pitching, objection handling, customer engagement and sales execution.",
+    "learn": [
+     "Build knowledge of term, savings, ULIP, annuity and protection products.",
+     "Learn needs-based life-insurance fact finding and suitability conversations.",
+     "Practise joint-call role plays from discovery through recommendation and objection handling.",
+     "Study Tata AIA's current product portfolio before interview preparation."
+    ],
+    "link": "https://www.irdai.gov.in/",
+    "books": "LOMA 281 — Meeting Customer Needs With Insurance and Annuities",
+    "youtube": "YouTube: needs-based life insurance selling and life insurance advisor role-play",
+    "free_tool": "Google Sheets for needs-analysis case practice",
+    "platforms": [
+     "LOMA — LOMA 281",
+     "Coursera — Insurance and risk-management courses"
+    ],
+    "more": [
+     "https://www.loma.org/en/professional-development/catalog/",
+     "https://www.irdai.gov.in/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "LOMA 281 — Meeting Customer Needs With Insurance and Annuities",
+     "YouTube: needs-based life insurance selling and life insurance advisor role-play",
+     "Google Sheets for needs-analysis case practice"
+    ]
+   },
+   {
+    "key": "JFW with Relationship Managers and activation/product mix",
+    "category": "explicitly_required",
+    "jd_quote": "Do JFW with RM to drive activation product mix.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume has field coaching and sales-call observation, but JFW/Joint Field Work and activation-product-mix ownership are not explicitly shown.",
+    "proof": "I conduct OJT and field coaching focused on product pitching, objection handling, customer engagement and sales execution.",
+    "learn": [
+     "Learn the purpose and structure of Joint Field Work.",
+     "Practise pre-call briefing, observation, live coaching and post-call feedback.",
+     "Connect JFW observations to activation and product-mix metrics."
+    ],
+    "link": "https://www.coursera.org/learn/coaching-skills-for-managers",
+    "books": "The Coaching Habit — Michael Bungay Stanier",
+    "youtube": "YouTube: joint field work sales coaching / field sales coaching",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "LinkedIn Learning — Sales Coaching",
+     "Coursera — Coaching Skills for Managers"
+    ],
+    "more": [
+     "https://academy.hubspot.com/courses/sales-training",
+     "https://www.salesforce.com/resources/articles/sales-coaching/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Coaching Habit — Michael Bungay Stanier",
+     "YouTube: joint field work sales coaching / field sales coaching",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Competitive life-insurance product analysis",
+    "category": "explicitly_required",
+    "jd_quote": "Ability to analyze competition products and provide compelling reasons basis this analysis on advantages strengths of TALIC products vis- -vis market",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume has product/process training and analytics, but no documented life-insurance competitor-product comparison.",
+    "proof": "I use MIS, dashboards and performance data to identify capability gaps and create targeted learning interventions.",
+    "learn": [
+     "Build a comparison framework covering premium, benefits, exclusions, riders, surrender, maturity, charges and suitability.",
+     "Compare three life-insurance products from publicly available brochures.",
+     "Practise converting factual differences into compliant sales-training talking points."
+    ],
+    "link": "https://www.irdai.gov.in/",
+    "books": "LOMA 281 — Meeting Customer Needs With Insurance and Annuities",
+    "youtube": "YouTube: life insurance product comparison and insurance sales training",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "LOMA",
+     "Coursera — Insurance courses"
+    ],
+    "more": [
+     "https://www.loma.org/en/professional-development/catalog/",
+     "https://www.irdai.gov.in/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "LOMA 281 — Meeting Customer Needs With Insurance and Annuities",
+     "YouTube: life insurance product comparison and insurance sales training",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Fund-performance reports and ULIP fund comparison",
+    "category": "explicitly_required",
+    "jd_quote": "Ability to understand FUND performance reports of TALIC funds and compare them with other ULIP funds as per similar asset class and provide compelling reasons on strengths of TALIC funds in various asset classes basis chosen benchmark with that of other funds of similar class.",
+    "on_resume": false,
+    "near": false,
+    "why": "The resume does not demonstrate ULIP fund analysis, asset-class benchmarking or fund-performance interpretation.",
+    "proof": "",
+    "learn": [
+     "Learn equity, debt, balanced/hybrid and money-market fund concepts.",
+     "Learn NAV, benchmark, absolute return, CAGR, volatility and risk-adjusted comparison.",
+     "Practise comparing funds within the same asset class using publicly available data.",
+     "Learn how to explain performance without making unsupported return promises."
+    ],
+    "link": "https://nptel.ac.in/courses/110105036",
+    "books": "The Intelligent Investor — Benjamin Graham",
+    "youtube": "YouTube: ULIP fund performance analysis, CAGR, benchmark and asset allocation",
+    "free_tool": "Microsoft Excel or Google Sheets",
+    "platforms": [
+     "NPTEL — Investment Management",
+     "NPTEL — Financial Markets and Instruments",
+     "Coursera — Investment Management"
+    ],
+    "more": [
+     "https://nptel.ac.in/courses/110105036",
+     "https://nptel.ac.in/courses/110105121",
+     "https://www.amfiindia.com/"
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "The Intelligent Investor — Benjamin Graham",
+     "YouTube: ULIP fund performance analysis, CAGR, benchmark and asset allocation",
+     "Microsoft Excel or Google Sheets"
+    ]
+   },
+   {
+    "key": "Investment asset classes and financial positioning of life insurance",
+    "category": "explicitly_required",
+    "jd_quote": "Ability to understand and explain various investment assets class and opportunities and position where life insurance as an investment asset class stands out fits in.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has insurance-sector knowledge and analytics, but the resume does not show investment-asset-class expertise.",
+    "proof": "My current role involves health-insurance product training and sales capability development, while I use data and dashboards to support business decisions.",
+    "learn": [
+     "Study equity, debt, gold, cash, mutual funds and insurance-linked investment concepts.",
+     "Learn risk-return, liquidity, time horizon and diversification.",
+     "Understand where different life-insurance products fit within financial planning.",
+     "Practise explaining the concepts in simple customer-facing language."
+    ],
+    "link": "https://nptel.ac.in/courses/110105036",
+    "books": "Indian Financial System — Bharati V. Pathak",
+    "youtube": "YouTube: asset classes, portfolio diversification and financial planning for beginners",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "NPTEL — Investment Management",
+     "NPTEL — Financial Markets and Instruments"
+    ],
+    "more": [
+     "https://nptel.ac.in/courses/110105121",
+     "https://www.amfiindia.com/"
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "Indian Financial System — Bharati V. Pathak",
+     "YouTube: asset classes, portfolio diversification and financial planning for beginners",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Financial products, equity market, portfolio diversification and financial planning",
+    "category": "explicitly_required",
+    "jd_quote": "Good understanding of financial products, equity market, portfolio diversification, financial planning knowledge skills",
+    "on_resume": false,
+    "near": false,
+    "why": "These finance concepts are explicitly listed and are not demonstrated in the resume.",
+    "proof": "",
+    "learn": [
+     "Start with financial-market fundamentals and common investment products.",
+     "Study equity-market structure, risk/return and diversification.",
+     "Learn basic financial-planning concepts such as goals, time horizon, risk profile and asset allocation.",
+     "Practise explaining a hypothetical portfolio and why each asset class is included."
+    ],
+    "link": "https://nptel.ac.in/courses/110105036",
+    "books": "Indian Financial System — Bharati V. Pathak",
+    "youtube": "YouTube: equity markets, portfolio diversification and financial planning basics",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "NPTEL — Investment Management",
+     "NPTEL — Financial Markets and Institutions",
+     "Coursera — Investment Management"
+    ],
+    "more": [
+     "https://nptel.ac.in/courses/110105121",
+     "https://www.amfiindia.com/"
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "Indian Financial System — Bharati V. Pathak",
+     "YouTube: equity markets, portfolio diversification and financial planning basics",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Life-insurance or financial-domain expertise",
+    "category": "explicitly_required",
+    "jd_quote": "Is a domain expert in life insurance or financial domain.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has insurance training experience, but it is health insurance rather than life insurance/financial-domain expertise.",
+    "proof": "I have 2+ years leading sales training in the health insurance industry and currently lead insurance sales-training capability at PolicyBazaar.",
+    "learn": [
+     "Build a structured life-insurance product knowledge map.",
+     "Study life-insurance regulation, products, underwriting, claims, riders and policy servicing.",
+     "Add investment and financial-market knowledge.",
+     "Use LOMA coursework to create a formal life-insurance knowledge credential."
+    ],
+    "link": "https://www.loma.org/en/professional-development/catalog/",
+    "books": "LOMA 280/281 — Principles of Insurance / Meeting Customer Needs With Insurance and Annuities",
+    "youtube": "YouTube: life insurance fundamentals and life insurance product training",
+    "free_tool": "Google Sheets product-comparison workbook",
+    "platforms": [
+     "LOMA",
+     "NPTEL — Financial Markets and Institutions",
+     "Coursera — Insurance and Investment courses"
+    ],
+    "more": [
+     "https://www.loma.org/en/professional-development/catalog/",
+     "https://www.irdai.gov.in/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "LOMA 280/281 — Principles of Insurance / Meeting Customer Needs With Insurance and Annuities",
+     "YouTube: life insurance fundamentals and life insurance product training",
+     "Google Sheets product-comparison workbook"
+    ]
+   },
+   {
+    "key": "Latest instructional-design trends, technology and tools",
+    "category": "explicitly_required",
+    "jd_quote": "Is on top of the latest trends, technology and tools available in instructional design space and helps the team to embrace them effectively.",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume already shows instructional design, AI tools, digital learning and web applications. The remaining gap is mainly demonstrating awareness of current instructional-design trends in interview language.",
+    "proof": "I have digitized key parts of the L&D journey through web-based learning and performance solutions and use AI tools, automation and data-driven reporting to improve learning effectiveness.",
+    "learn": [
+     "Create a current instructional-design toolkit covering ADDIE, adult learning, scenario-based learning, microlearning and digital assessment.",
+     "Document three examples where technology improved training effectiveness.",
+     "Prepare examples of how AI can support—not replace—learning design."
+    ],
+    "link": "https://www.coursera.org/learn/instructional-design-foundations-applications",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "YouTube: instructional design trends, microlearning and scenario-based learning",
+    "free_tool": "H5P",
+    "platforms": [
+     "Coursera — Instructional Design",
+     "LinkedIn Learning — Instructional Design",
+     "H5P"
+    ],
+    "more": [
+     "https://h5p.org/",
+     "https://www.learningguild.com/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "YouTube: instructional design trends, microlearning and scenario-based learning",
+     "H5P"
+    ]
+   },
+   {
+    "key": "Business/market awareness and innovative content creation",
+    "category": "explicitly_required",
+    "jd_quote": "Uses business/market awareness and innovation to create content which is original and impactful.",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume demonstrates business-aligned learning interventions, digital learning applications, quizzes and AI-assisted content creation, but does not explicitly use the phrase market awareness.",
+    "proof": "I shifted training from generic delivery to targeted capability development by combining TNA/TNI, performance data and field observations to drive focused interventions.",
+    "learn": [
+     "Map business KPIs to learning objectives.",
+     "Practise creating short, original sales-learning assets from business problems.",
+     "Build one portfolio example showing problem → data → intervention → business outcome."
+    ],
+    "link": "https://www.coursera.org/learn/instructional-design-foundations-applications",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "YouTube: business-aligned L&D and learning needs analysis",
+    "free_tool": "Canva Free",
+    "platforms": [
+     "Coursera — Instructional Design",
+     "LinkedIn Learning — Learning and Development"
+    ],
+    "more": [
+     "https://www.td.org/",
+     "https://www.learningguild.com/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "YouTube: business-aligned L&D and learning needs analysis",
+     "Canva Free"
+    ]
+   },
+   {
+    "key": "Anticipating learner challenges and changing learning design",
+    "category": "explicitly_required",
+    "jd_quote": "Has the ability to anticipate challenges faced by learners and suggest changes in learning plan and design that can be incorporated by team members.",
+    "on_resume": true,
+    "near": true,
+    "why": "TNA/TNI, learner-performance monitoring and targeted interventions are already strong adjacent evidence.",
+    "proof": "I use performance data and field observations to identify product, process and sales capability gaps and drive focused interventions.",
+    "learn": [
+     "Learn to document learner personas and common failure points.",
+     "Use assessment and performance data to predict recurring learner gaps.",
+     "Practise redesigning a module based on evidence."
+    ],
+    "link": "https://www.coursera.org/learn/instructional-design-foundations-applications",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "YouTube: learning needs analysis and learner-centered instructional design",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera — Instructional Design",
+     "LinkedIn Learning — Instructional Design"
+    ],
+    "more": [
+     "https://h5p.org/",
+     "https://www.td.org/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "YouTube: learning needs analysis and learner-centered instructional design",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Mixing instructional-design principles to solve design problems",
+    "category": "explicitly_required",
+    "jd_quote": "Has the ability to mix and match appropriate ID principles to resolve design problems",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume explicitly lists Instructional Design, Adult Learning, Storyboarding and Learning Intervention Design.",
+    "proof": "I design training content, facilitator guides, assessments and learning materials based on identified performance gaps.",
+    "learn": [
+     "Refresh ADDIE, adult learning, Bloom's taxonomy, experiential learning and scenario-based learning.",
+     "Practise choosing methods based on learner and business needs rather than using one model for every problem.",
+     "Create two before/after redesign examples."
+    ],
+    "link": "https://www.coursera.org/learn/instructional-design-foundations-applications",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "YouTube: ADDIE, Bloom's taxonomy and adult learning instructional design",
+    "free_tool": "H5P",
+    "platforms": [
+     "Coursera — Instructional Design",
+     "LinkedIn Learning — Instructional Design"
+    ],
+    "more": [
+     "https://h5p.org/",
+     "https://www.td.org/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "YouTube: ADDIE, Bloom's taxonomy and adult learning instructional design",
+     "H5P"
+    ]
+   },
+   {
+    "key": "Life-insurance technical sales experience",
+    "category": "explicitly_required",
+    "jd_quote": "Technical Sales experience in life insurance or other field",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume has sales-training and sales-enablement experience but does not state personal technical sales experience, particularly in life insurance.",
+    "proof": "I have led sales capability development and field coaching for Relationship Managers, including product pitching, objection handling, customer engagement and sales execution.",
+    "learn": [
+     "Strengthen direct sales-cycle knowledge from prospecting through closure.",
+     "Learn life-insurance technical product conversations.",
+     "Use field-coaching experience to demonstrate practical sales understanding while being transparent that your core experience is training rather than frontline selling."
+    ],
+    "link": "https://www.irdai.gov.in/",
+    "books": "SPIN Selling — Neil Rackham",
+    "youtube": "YouTube: life insurance sales process and consultative selling",
+    "free_tool": "Google Sheets sales funnel tracker",
+    "platforms": [
+     "Coursera — Sales Training",
+     "HubSpot Academy — Sales Training"
+    ],
+    "more": [
+     "https://academy.hubspot.com/courses/sales-training",
+     "https://www.irdai.gov.in/"
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "SPIN Selling — Neil Rackham",
+     "YouTube: life insurance sales process and consultative selling",
+     "Google Sheets sales funnel tracker"
+    ]
+   },
+   {
+    "key": "MS Office, PowerPoint and Word",
+    "category": "explicitly_required",
+    "jd_quote": "Good Knowledge of MS Office; Power-point Word",
+    "on_resume": true,
+    "near": true,
+    "why": "PowerPoint is explicitly on the resume, while Word and the broader MS Office suite are not explicitly listed.",
+    "proof": "I design training content, facilitator guides, assessments and learning materials and have PowerPoint listed under Technical Skills.",
+    "learn": [
+     "Refresh Word document formatting, styles, tables and templates.",
+     "Practise PowerPoint executive presentations and training decks.",
+     "Practise integrating Excel, Word and PowerPoint for training MIS and stakeholder reporting."
+    ],
+    "link": "https://support.microsoft.com/en-us/office/foundations-experiences/try-it-with-templates",
+    "books": "Microsoft Office Step by Step — Joan Lambert",
+    "youtube": "YouTube: Microsoft 365 Word and PowerPoint training",
+    "free_tool": "Microsoft 365 for the web",
+    "platforms": [
+     "Microsoft Learn",
+     "LinkedIn Learning — Microsoft 365"
+    ],
+    "more": [
+     "https://support.microsoft.com/en-us/office/",
+     "https://learn.microsoft.com/training/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Microsoft Office Step by Step — Joan Lambert",
+     "YouTube: Microsoft 365 Word and PowerPoint training",
+     "Microsoft 365 for the web"
+    ]
+   },
+   {
+    "key": "Life-insurance subject-matter expertise and product knowledge",
+    "category": "explicitly_required",
+    "jd_quote": "Life Insurance subject matter expertise",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has health-insurance product expertise and sales-training experience, but life insurance is a distinct product domain.",
+    "proof": "I have 2+ years leading sales training in the health insurance industry and hands-on experience in product/process training and sales capability development.",
+    "learn": [
+     "Study life-insurance product categories, policy lifecycle, underwriting, claims, riders and servicing.",
+     "Study life-insurance sales and customer-needs analysis.",
+     "Complete a recognized insurance qualification such as an appropriate LOMA course.",
+     "Create a life-insurance product-comparison portfolio before interview."
+    ],
+    "link": "https://www.loma.org/en/professional-development/catalog/",
+    "books": "LOMA 280 — Principles of Insurance",
+    "youtube": "YouTube: life insurance product knowledge and policy lifecycle",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "LOMA",
+     "Coursera — Insurance courses"
+    ],
+    "more": [
+     "https://www.loma.org/en/professional-development/catalog/",
+     "https://www.irdai.gov.in/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "LOMA 280 — Principles of Insurance",
+     "YouTube: life insurance product knowledge and policy lifecycle",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Team management",
+    "category": "explicitly_required",
+    "jd_quote": "Team Management skills",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate directly leads and mentors eight training professionals.",
+    "proof": "I lead and mentor a team of 8 training professionals, ensuring consistent learning delivery, quality standards and achievement of training objectives.",
+    "learn": [
+     "Prepare measurable examples covering delegation, coaching, performance management and conflict handling.",
+     "Map team-management examples to business outcomes.",
+     "Prepare a 30-60-90 day team-management approach for the interview."
+    ],
+    "link": "https://www.coursera.org/learn/leading-teams",
+    "books": "The Making of a Manager — Julie Zhuo",
+    "youtube": "YouTube: people management and first-time manager skills",
+    "free_tool": "Google Sheets team-performance tracker",
+    "platforms": [
+     "Coursera — Leading Teams",
+     "LinkedIn Learning — People Management"
+    ],
+    "more": [
+     "https://www.coursera.org/learn/leading-teams",
+     "https://www.td.org/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Making of a Manager — Julie Zhuo",
+     "YouTube: people management and first-time manager skills",
+     "Google Sheets team-performance tracker"
+    ]
+   },
+   {
+    "key": "Business perspective planning",
+    "category": "explicitly_required",
+    "jd_quote": "Business perspective planning",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume shows Business & Learning Alignment and partnership with business leaders, although the exact phrase business perspective planning is not used.",
+    "proof": "I partner with Operations, HRBP and Business Leaders to align learning priorities with productivity goals, operational requirements and business needs.",
+    "learn": [
+     "Practise converting business goals into learning KPIs.",
+     "Create training plans linked to sales and productivity metrics.",
+     "Prepare examples showing business impact rather than only training activity."
+    ],
+    "link": "https://www.coursera.org/learn/strategic-planning",
+    "books": "The First 90 Days — Michael D. Watkins",
+    "youtube": "YouTube: strategic planning and business-aligned L&D",
+    "free_tool": "Google Sheets",
+    "platforms": [
+     "Coursera — Strategic Planning",
+     "LinkedIn Learning — Business Strategy"
+    ],
+    "more": [
+     "https://www.td.org/",
+     "https://www.coursera.org/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The First 90 Days — Michael D. Watkins",
+     "YouTube: strategic planning and business-aligned L&D",
+     "Google Sheets"
+    ]
+   },
+   {
+    "key": "Self-management",
+    "category": "explicitly_required",
+    "jd_quote": "Self-management",
+    "on_resume": true,
+    "near": true,
+    "why": "Leadership of a training team, multiple stakeholder groups and several digital L&D initiatives provides adjacent evidence, although the resume does not use the exact term.",
+    "proof": "I currently lead a team of training professionals while managing end-to-end learning interventions and partnering with multiple business stakeholders.",
+    "learn": [
+     "Prepare STAR examples showing prioritization, deadline management and handling competing stakeholder demands.",
+     "Use a weekly priority and stakeholder-management framework.",
+     "Prepare one example of recovering a delayed or difficult training deliverable."
+    ],
+    "link": "https://www.coursera.org/learn/work-smarter-not-harder",
+    "books": "Getting Things Done — David Allen",
+    "youtube": "YouTube: time management, prioritization and self-management for managers",
+    "free_tool": "Google Tasks / Google Calendar",
+    "platforms": [
+     "Coursera",
+     "LinkedIn Learning"
+    ],
+    "more": [
+     "https://support.google.com/tasks/",
+     "https://support.google.com/calendar/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Getting Things Done — David Allen",
+     "YouTube: time management, prioritization and self-management for managers",
+     "Google Tasks / Google Calendar"
+    ]
+   },
+   {
+    "key": "Creative thinking and decision making",
+    "category": "explicitly_required",
+    "jd_quote": "Communication skills Creative thinking skills Supervising/Leadership skills Teamwork Skills Influencing skills Relationship Building skills Decision making skills",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume demonstrates digital solutions, AI-assisted content creation, learning interventions and leadership decisions.",
+    "proof": "I digitized key parts of the L&D and performance-management journey through web-based solutions and AI-enabled career-development applications.",
+    "learn": [
+     "Prepare one STAR example for each of creativity, decision making and influencing.",
+     "Quantify the problem, decision, implementation and outcome.",
+     "Practise explaining why you selected a particular intervention."
+    ],
+    "link": "https://www.coursera.org/learn/creative-thinking-techniques-and-tools-for-success",
+    "books": "Think Again — Adam Grant",
+    "youtube": "YouTube: creative problem solving and managerial decision making",
+    "free_tool": "Miro Free",
+    "platforms": [
+     "Coursera — Creative Thinking",
+     "LinkedIn Learning — Decision-Making"
+    ],
+    "more": [
+     "https://www.mindtools.com/",
+     "https://miro.com/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Think Again — Adam Grant",
+     "YouTube: creative problem solving and managerial decision making",
+     "Miro Free"
+    ]
+   },
+   {
+    "key": "Service-to-sales training exposure",
+    "category": "explicitly_required",
+    "jd_quote": "Should have exposure to service-to-sales training",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows sales training, customer engagement and performance coaching, but does not explicitly show service-to-sales conversion training.",
+    "proof": "My sales capability interventions have included product pitching, objection handling, customer engagement and sales execution.",
+    "learn": [
+     "Learn the service-to-sales conversion model.",
+     "Practise identifying sales opportunities during service interactions.",
+     "Build a role-play around needs discovery, cross-sell and objection handling.",
+     "Add a service-to-sales case study to the interview portfolio."
+    ],
+    "link": "https://academy.hubspot.com/courses/sales-training",
+    "books": "SPIN Selling — Neil Rackham",
+    "youtube": "YouTube: service-to-sales training and cross-sell coaching",
+    "free_tool": "Google Forms role-play assessment",
+    "platforms": [
+     "HubSpot Academy — Sales Training",
+     "Coursera — Sales Training"
+    ],
+    "more": [
+     "https://academy.hubspot.com/courses/sales-training",
+     "https://www.salesforce.com/resources/articles/cross-selling/"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "SPIN Selling — Neil Rackham",
+     "YouTube: service-to-sales training and cross-sell coaching",
+     "Google Forms role-play assessment"
+    ]
+   },
+   {
+    "key": "At least 5 years of sales experience",
+    "category": "explicitly_required",
+    "jd_quote": "At least 5 years of sales experience",
+    "on_resume": false,
+    "near": true,
+    "why": "This is a significant experience requirement. The resume demonstrates sales training and sales enablement but does not state five years of frontline sales experience.",
+    "proof": "I have 2+ years leading sales training in the health insurance industry and extensive experience developing sales capability through OJT, field coaching and sales-call observations.",
+    "learn": [
+     "Do not claim five years of frontline sales experience unless you can document it.",
+     "Position your actual experience accurately as sales capability, field coaching and sales enablement.",
+     "Prepare examples demonstrating practical understanding of sales execution and business metrics.",
+     "If selected, clarify whether the employer accepts sales-training experience as an alternative to frontline sales tenure."
+    ],
+    "link": "https://www.coursera.org/learn/sales-strategy",
+    "books": "SPIN Selling — Neil Rackham",
+    "youtube": "YouTube: consultative selling and insurance sales process",
+    "free_tool": "HubSpot CRM Free",
+    "platforms": [
+     "HubSpot Academy",
+     "Coursera — Sales Strategy"
+    ],
+    "more": [
+     "https://academy.hubspot.com/",
+     "https://www.salesforce.com/resources/"
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "SPIN Selling — Neil Rackham",
+     "YouTube: consultative selling and insurance sales process",
+     "HubSpot CRM Free"
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The JD explicitly asks for at least 5 years of sales experience and essential life-insurance sales-training experience. The resume shows 15+ years overall experience, 4+ years of corporate training, 2+ years leading sales training in health insurance, and current leadership of 8 training professionals. Therefore, the overall experience volume is substantial, but the specific gap is mainly frontline life-insurance sales experience and life-insurance/financial-domain depth. The role is not simply a level gap: it is primarily a domain/function gap from health-insurance L&D and sales enablement into life-insurance distribution training, with an additional frontline-sales-experience requirement.",
+  "dept_diff": "The JD belongs to Distribution Training / Teaching & Training and is specifically an Area Training Manager role supporting a life-insurance sales/distribution force. The candidate's current function is Training & L&D / Sales Enablement within health insurance. The departmental family is therefore closely related, but the product and business domain changes from health insurance to life insurance and from general sales capability to life-insurance distribution training.",
+  "required_skills": [
+   "Life-insurance sales training",
+   "Technical sales experience",
+   "Life-insurance product knowledge",
+   "Life-insurance subject-matter expertise",
+   "Financial products knowledge",
+   "Equity-market knowledge",
+   "Portfolio diversification",
+   "Financial planning",
+   "Life-insurance product comparison",
+   "Competition-product analysis",
+   "ULIP fund-performance analysis",
+   "Investment asset classes",
+   "Training Needs Analysis",
+   "Training planning",
+   "Training-calendar management",
+   "Sales coaching",
+   "Field coaching",
+   "Joint Field Work",
+   "Sales targets and product mix",
+   "Activation/product mix",
+   "MIS reporting",
+   "Performance analysis",
+   "Corrective action",
+   "Induction and follow-up training",
+   "Instructional design",
+   "Business/market awareness",
+   "Innovation and creative thinking",
+   "Team management",
+   "People management",
+   "Mentoring",
+   "Performance management",
+   "Problem solving",
+   "Stakeholder relationship building",
+   "Influencing",
+   "Communication",
+   "Leadership",
+   "Teamwork",
+   "Decision making",
+   "MS Office",
+   "PowerPoint",
+   "Word",
+   "Service-to-sales training"
+  ],
+  "qualification": {
+   "jd_wants": "verbatim: Graduation with MBA preferred At least 2 papers of CFP (AFP), preferably a CFP; Insurance Qualification like LUTCF, LOMA Level 1/Alll will be an added advantage",
+   "resume_has": "Master’s Degree in English | 2016; B.Sc. – MPC | 2013; Intermediate – MPC | 2008; SSC – 10th Standard | 2006. No CFP/AFP, CFP, LUTCF or LOMA qualification is listed.",
+   "gap": "Graduation is already satisfied by the B.Sc. degree, and the resume also shows a Master’s degree. MBA is preferred but not shown. The JD additionally prefers at least 2 papers of CFP (AFP), preferably CFP, and says insurance qualifications such as LUTCF or LOMA Level 1/All are an added advantage; none of these certifications are shown on the resume.",
+   "learn": [
+    "For the strongest domain bridge, start with LOMA insurance coursework such as LOMA 280/281 and progress toward an appropriate designation.",
+    "Consider CFP education if the career direction requires broader financial-planning expertise.",
+    "An MBA is not necessary to claim as already completed; it is a preferred qualification in this JD and can be considered separately if relevant to the long-term career plan."
+   ]
+  },
+  "asked_count": 41,
+  "generated": "02 Oct 2026, 03:22 AM",
+  "verdict": "This JD is closely aligned with the candidate's Training/L&D leadership background: the resume already covers TNA/TNI, training delivery, calendar planning, sales coaching, OJT, field coaching, MIS, performance analysis, instructional design, stakeholder management, team leadership and mentoring. The major gaps are life-insurance rather than health-insurance domain expertise, frontline sales experience, life-insurance product/competitive analysis, ULIP fund-performance analysis, financial-market knowledge, investment asset classes and service-to-sales/JFW exposure. The qualification requirement is partly met through graduation and a Master’s degree; MBA, CFP/AFP and insurance qualifications are not shown. Overall, the main transition is domain/technical rather than a fundamental L&D capability gap.",
+  "interview": [
+   {
+    "q": "You have strong health-insurance training experience. How would you transition into life-insurance sales training?",
+    "a": "My core strength is not limited to one insurance product. I currently lead a team of eight training professionals and work on TNA/TNI, product and process training, sales capability, OJT, field coaching and performance interventions. I have also delivered more than 50 OJT and field-coaching interventions focused on product pitching, objection handling, customer engagement and sales execution. I would bridge the product-domain difference by systematically learning life-insurance products, needs analysis, ULIPs, investment concepts and the Tata AIA product portfolio before taking ownership of the role.",
+    "tip": ""
+   },
+   {
+    "q": "The role requires understanding life-insurance needs and coaching RMs during joint calls. What relevant experience do you have?",
+    "a": "My direct experience is in health-insurance sales capability rather than life-insurance joint calls, so I would not claim otherwise. However, I have conducted 50+ OJT and field-coaching interventions involving product pitching, objection handling, customer engagement and sales execution. I would apply the same coaching structure to life insurance: pre-call objective setting, observation of discovery and pitch, live intervention where appropriate, and structured post-call feedback.",
+    "tip": ""
+   },
+   {
+    "q": "How would you compare two life-insurance products and convert the comparison into training?",
+    "a": "I would first define the comparison criteria rather than relying on generic product claims: customer need, protection, benefits, exclusions, riders, premium structure, policy term, liquidity, charges, suitability and relevant investment characteristics. I would then create a factual comparison, identify where each product is suitable, and convert those findings into role plays and objection-handling scenarios. My existing approach of combining TNA/TNI, performance data and field observations would then be used to determine which parts of the product comparison require reinforcement.",
+    "tip": ""
+   },
+   {
+    "q": "The JD requires ULIP fund-performance analysis. Your resume does not show this. How will you handle it?",
+    "a": "That is an area I would need to strengthen. My current strength is MIS, dashboards and performance-data analysis, so I already have the analytical foundation. I would apply that capability to fund analysis by learning NAV, CAGR, benchmark comparison, asset-class comparison, volatility and risk-return concepts, and then practise comparing funds within similar asset classes. I would be transparent that this is a new technical domain for me rather than overstating existing expertise.",
+    "tip": ""
+   },
+   {
+    "q": "The JD asks for at least five years of sales experience. What is your interpretation of your own experience against that requirement?",
+    "a": "My resume does not claim five years of frontline sales experience. My relevant experience is sales capability development: I have led sales training in health insurance, coached Relationship Managers, conducted field interventions, supported sales execution and used performance data to identify capability gaps. I would present that distinction honestly and explain how the sales-enablement experience gives me practical exposure to sales behaviour, while acknowledging that frontline sales tenure is a specific requirement in the JD.",
+    "tip": ""
+   },
+   {
+    "q": "How have you demonstrated people management and drive for results?",
+    "a": "I currently lead and mentor eight training professionals and support capability development for more than 100 Relationship Managers. I monitor learner and training performance, use MIS and dashboards to identify gaps, and translate those gaps into coaching and learning interventions. This combines people leadership with measurable performance management rather than treating training delivery as an isolated activity.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
