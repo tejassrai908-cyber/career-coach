@@ -1,0 +1,733 @@
+{
+ "id": 13,
+ "title": "Pasted ChatGPT analysis",
+ "role": "Product Training Analyst",
+ "created": "03 Oct 2026, 01:53 PM",
+ "jd_text": "",
+ "report": {
+  "role": "Product Training Analyst",
+  "role_label": "Product Training Analyst",
+  "match_pct": 64,
+  "have": [
+   {
+    "key": "Training content and learning-material development",
+    "why": "The JD requires ongoing development and maintenance of training content, and the resume directly shows training-content, facilitator-guide, assessment, and learning-material development.",
+    "jd_quote": "developing, organizing, and maintaining high-quality training materials"
+   },
+   {
+    "key": "Instructional design",
+    "why": "The resume explicitly lists Instructional Design and describes designing learning interventions and training content.",
+    "jd_quote": "Strong understanding of adult learning principles and instructional design."
+   },
+   {
+    "key": "Interactive/digital learning",
+    "why": "The Training Practice Hub and digital-learning work demonstrate practical experience creating digital learning experiences, quizzes, knowledge checks and web-based learning solutions.",
+    "jd_quote": "Assist in designing and developing interactive training programs"
+   },
+   {
+    "key": "PowerPoint",
+    "why": "PowerPoint is explicitly listed in the resume's technical skills and the candidate has extensive presentation/training experience.",
+    "jd_quote": "PowerPoint presentations tailored to user needs."
+   },
+   {
+    "key": "Presentation and communication",
+    "why": "The resume shows extensive classroom training, coaching, seminars, stakeholder communication and communication-skills training.",
+    "jd_quote": "Strong presentation and communication skills"
+   },
+   {
+    "key": "Explaining complex concepts",
+    "why": "The candidate has repeatedly translated product, process and sales concepts into training, coaching and learning materials.",
+    "jd_quote": "Present complex concepts in a clear, relatable manner"
+   },
+   {
+    "key": "Training effectiveness and performance analytics",
+    "why": "The resume explicitly includes Learning Analytics, Training Effectiveness & Evaluation, performance data, dashboards and learner-progress tracking.",
+    "jd_quote": "Monitor the adoption and effectiveness of training programs through user feedback and analytics."
+   },
+   {
+    "key": "User/performance feedback analysis",
+    "why": "The candidate already combines TNA/TNI, performance data and field observations to identify capability gaps and drive interventions.",
+    "jd_quote": "Analyze user feedback and performance data to identify gaps in training and improve materials."
+   },
+   {
+    "key": "Stakeholder and cross-functional collaboration",
+    "why": "The resume explicitly describes partnering with Operations, HRBP, Business Leaders, Sales and other stakeholders.",
+    "jd_quote": "Collaborate with stakeholders to ensure all training materials, including videos, guides, and interactive elements, are accurate, engaging, and optimized for the target audience."
+   },
+   {
+    "key": "Adult learning principles",
+    "why": "Adult Learning is explicitly listed in the resume's Core Competencies and the candidate has extensive adult/corporate training experience.",
+    "jd_quote": "Strong understanding of adult learning principles and instructional design."
+   },
+   {
+    "key": "Analytical skills",
+    "why": "The resume explicitly lists data analysis, dashboards, MIS, business reporting and learning analytics.",
+    "jd_quote": "Strong analytical skills to interpret data and feedback."
+   },
+   {
+    "key": "LMS experience",
+    "why": "The resume explicitly lists LMS and states that the candidate used LMS and project-supported tools to manage training requirements.",
+    "jd_quote": "Experience with tools like LMS, CMS, or digital adoption platforms."
+   },
+   {
+    "key": "Organizational and multitasking capability",
+    "why": "The resume demonstrates management of training teams, multiple batches, OJT, field coaching, learning interventions, dashboards and several digital projects.",
+    "jd_quote": "Excellent organizational and multitasking abilities."
+   },
+   {
+    "key": "Written and verbal communication",
+    "why": "The candidate has extensive communication-training, English-coaching, presentation, facilitation and stakeholder-management experience.",
+    "jd_quote": "Excellent written and verbal communication skills, with the ability to explain complex technical concepts in simple terms."
+   },
+   {
+    "key": "3+ years relevant training/instructional-design experience",
+    "why": "The resume states 15+ years overall experience, 4+ years of corporate training experience and extensive instructional-design/training responsibilities.",
+    "jd_quote": "3+ years of experience in product training, instructional design, or a related role."
+   },
+   {
+    "key": "Healthcare domain exposure",
+    "why": "The candidate currently leads sales training in the health-insurance industry, providing adjacent healthcare-domain exposure.",
+    "jd_quote": "Familiarity with healthcare technology or SaaS is preferred."
+   }
+  ],
+  "gaps": [
+   {
+    "key": "Onboarding videos",
+    "category": "explicitly_required",
+    "jd_quote": "developing, organizing, and maintaining high-quality training materials, onboarding videos and in-app guidance.",
+    "on_resume": false,
+    "near": true,
+    "why": "The role requires reusable onboarding-video creation, while the resume shows training-content development but does not explicitly document creating onboarding videos.",
+    "proof": "I have designed training content, facilitator guides, assessments and learning materials and have built digital learning solutions; I would extend that experience into structured onboarding-video production.",
+    "learn": [
+     "Create one 3-5 minute onboarding video explaining a healthcare-product workflow.",
+     "Learn scripting, screen recording, voice narration, captions, trimming and branding.",
+     "Build a small portfolio of three onboarding videos: product overview, how-to workflow and feature update."
+    ],
+    "link": "[Loom: How to record your first video](https://www.loom.com/community/how-to-record-your-first-video?utm_source=chatgpt.com)",
+    "books": "The Non-Designer's Design Book — Robin Williams",
+    "youtube": "Search YouTube for: Loom onboarding video tutorial and product training video creation",
+    "free_tool": "Loom free plan or Canva Free Video Editor",
+    "platforms": [
+     "LinkedIn Learning — Instructional Design",
+     "Coursera — Online Learning Design for Educators"
+    ],
+    "more": [
+     "[Canva Free Video Editor](https://www.canva.com/video-editor/?utm_source=chatgpt.com)",
+     "[Coursera Online Learning Design for Educators](https://www.coursera.org/specializations/online-learning-design-educators/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Non-Designer's Design Book — Robin Williams",
+     "Search YouTube for: Loom onboarding video tutorial and product training video creation",
+     "Loom free plan or Canva Free Video Editor"
+    ]
+   },
+   {
+    "key": "In-app guidance",
+    "category": "explicitly_required",
+    "jd_quote": "in-app guidance",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has built web applications and digital-learning solutions, but the resume does not explicitly show experience designing contextual in-product guidance.",
+    "proof": "I developed web-based learning and performance applications including Training Practice Hub, 90 Days Command Center and Visit Planner, giving me a practical foundation for moving from digital learning to in-product guidance.",
+    "learn": [
+     "Learn the difference between training content and contextual product guidance.",
+     "Design tooltips, walkthroughs, checklists and feature-discovery flows for a sample healthcare SaaS product.",
+     "Create a prototype showing first-time-user onboarding and feature adoption."
+    ],
+    "link": "[Atlassian Product Management Templates](https://www.atlassian.com/software/confluence/templates/collections/product-managers?utm_source=chatgpt.com)",
+    "books": "Don't Make Me Think — Steve Krug",
+    "youtube": "Search YouTube for: in-app onboarding UX, product walkthroughs and contextual onboarding",
+    "free_tool": "Figma Free",
+    "platforms": [
+     "Coursera — Google UX Design",
+     "LinkedIn Learning — UX/Product Design courses"
+    ],
+    "more": [
+     "[UserTesting UX Research Guides](https://www.usertesting.com/resources/guides?utm_source=chatgpt.com)",
+     "[Atlassian Product Management Templates](https://www.atlassian.com/software/confluence/templates/collections/product-managers?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Don't Make Me Think — Steve Krug",
+     "Search YouTube for: in-app onboarding UX, product walkthroughs and contextual onboarding",
+     "Figma Free"
+    ]
+   },
+   {
+    "key": "Online courses",
+    "category": "explicitly_required",
+    "jd_quote": "including online courses, workshops, in-app guidance flows, and PowerPoint presentations tailored to user needs.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates digital learning and training design but does not explicitly state ownership of online-course development.",
+    "proof": "I developed the Training Practice Hub as a structured digital learning experience and have hands-on experience designing learning interventions, assessments and training content.",
+    "learn": [
+     "Learn online-course architecture: objectives, modules, lessons, activities, assessments and completion criteria.",
+     "Convert an existing product-training module into a self-paced online course.",
+     "Publish the course as an LMS-ready portfolio sample."
+    ],
+    "link": "[Coursera Online Learning Design for Educators](https://www.coursera.org/specializations/online-learning-design-educators/?utm_source=chatgpt.com)",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "Search YouTube for: how to design an online course instructional design",
+    "free_tool": "Moodle",
+    "platforms": [
+     "Coursera — Online Learning Design for Educators",
+     "LinkedIn Learning — Instructional Design"
+    ],
+    "more": [
+     "[Coursera Instructional Design Foundations and Applications](https://www.coursera.org/learn/instructional-design-foundations-applications?utm_source=chatgpt.com)",
+     "[LinkedIn Learning Instructional Design courses](https://www.linkedin.com/learning/topics/instructional-design?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "Search YouTube for: how to design an online course instructional design",
+     "Moodle"
+    ]
+   },
+   {
+    "key": "Workshops",
+    "category": "explicitly_required",
+    "jd_quote": "including online courses, workshops, in-app guidance flows, and PowerPoint presentations tailored to user needs.",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume shows live training, seminars and coaching, but does not explicitly use the term workshop in the corporate-training experience.",
+    "proof": "I have delivered New Hire Training, refresher programs, motivational seminars and more than 50 OJT and field-coaching interventions, so the facilitation foundation is already established.",
+    "learn": [
+     "Convert existing classroom training into workshop format with objectives, activities, practice and debriefs.",
+     "Create a 60-90 minute product-training workshop.",
+     "Measure workshop effectiveness using participant feedback and post-session performance."
+    ],
+    "link": "[HubSpot Academy Building an Effective Training](https://academy.hubspot.com/courses/grow-your-training-skills?utm_source=chatgpt.com)",
+    "books": "Telling Ain't Training — Harold D. Stolovitch and Erica J. Keeps",
+    "youtube": "Search YouTube for: instructional design workshop facilitation",
+    "free_tool": "Google Slides",
+    "platforms": [
+     "HubSpot Academy",
+     "LinkedIn Learning — Training and Education"
+    ],
+    "more": [
+     "[LinkedIn Learning Training and Education](https://www.linkedin.com/learning/topics/training-and-education?utm_source=chatgpt.com)",
+     "[Coursera Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Telling Ain't Training — Harold D. Stolovitch and Erica J. Keeps",
+     "Search YouTube for: instructional design workshop facilitation",
+     "Google Slides"
+    ]
+   },
+   {
+    "key": "Tailoring training to user needs",
+    "category": "explicitly_required",
+    "jd_quote": "PowerPoint presentations tailored to user needs.",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume demonstrates TNA/TNI and targeted interventions, but the specific product-user context is not explicit.",
+    "proof": "I combine TNA/TNI, performance data and field observations to identify capability gaps and drive targeted learning interventions rather than generic training.",
+    "learn": [
+     "Translate user research and product feedback into learning requirements.",
+     "Create learner personas and needs-based learning objectives.",
+     "Build one product-training presentation with different pathways for different user groups."
+    ],
+    "link": "[Coursera Instructional Design Foundations and Applications](https://www.coursera.org/learn/instructional-design-foundations-applications?utm_source=chatgpt.com)",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "Search YouTube for: learner needs analysis instructional design",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera — Instructional Design Foundations and Applications",
+     "LinkedIn Learning — Instructional Design: Needs Analysis"
+    ],
+    "more": [
+     "[LinkedIn Learning Instructional Design courses](https://www.linkedin.com/learning/topics/instructional-design?utm_source=chatgpt.com)",
+     "[Coursera Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "Search YouTube for: learner needs analysis instructional design",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "Recording training and onboarding videos using personal voice",
+    "category": "explicitly_required",
+    "jd_quote": "Record training and onboarding videos, how-to guides using personal voice to create reusable training materials that align with the company s quality and branding standards.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows content creation and training delivery but does not document voice-recorded video production or video-editing workflow.",
+    "proof": "I have extensive live training and content-development experience and can transfer that presentation ability into narrated, reusable video content.",
+    "learn": [
+     "Write concise video scripts with narration cues.",
+     "Record screen plus voice using Loom.",
+     "Edit mistakes, add captions, branding and callouts, then publish three portfolio samples."
+    ],
+    "link": "[Loom screen recording guide](https://www.loom.com/blog/how-to-do-a-screen-recording?utm_source=chatgpt.com)",
+    "books": "The Visual Story — Bruce Block",
+    "youtube": "Search YouTube for: Loom screen recording with voice and product walkthrough tutorial",
+    "free_tool": "Loom or Canva Free Video Editor",
+    "platforms": [
+     "LinkedIn Learning — Video Training",
+     "Coursera — Online Learning Design for Educators"
+    ],
+    "more": [
+     "[Loom screen recorder](https://www.loom.com/lp/screen-capture-lp?utm_source=chatgpt.com)",
+     "[Canva Free Video Editor](https://www.canva.com/video-editor/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Visual Story — Bruce Block",
+     "Search YouTube for: Loom screen recording with voice and product walkthrough tutorial",
+     "Loom or Canva Free Video Editor"
+    ]
+   },
+   {
+    "key": "Product and engineering collaboration",
+    "category": "explicitly_required",
+    "jd_quote": "Coordinate with product and engineering teams to stay updated on new features and incorporate them into training content.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume demonstrates cross-functional stakeholder management, but the named Product and Engineering functions are not shown.",
+    "proof": "I currently partner with Operations, HRBP and Business Leaders to align learning priorities with business needs, and I have built web applications with live operational data, giving me a foundation for working with product and technical stakeholders.",
+    "learn": [
+     "Learn basic product-development terminology: roadmap, feature, release, sprint, backlog, user story and acceptance criteria.",
+     "Practise converting a feature specification into a training requirement.",
+     "Build a mock Product-to-Training workflow showing feature briefing, content update and release communication."
+    ],
+    "link": "[Atlassian Agile Coach](https://www.atlassian.com/agile.6?utm_source=chatgpt.com)",
+    "books": "Inspired — Marty Cagan",
+    "youtube": "Search YouTube for: product manager engineering collaboration and product training workflow",
+    "free_tool": "Jira Free",
+    "platforms": [
+     "Atlassian University",
+     "Coursera — Product Management / Agile courses"
+    ],
+    "more": [
+     "[Atlassian Product Management Templates](https://www.atlassian.com/software/confluence/templates/collections/product-managers?utm_source=chatgpt.com)",
+     "[Atlassian Agile tutorials](https://www.atlassian.com/agile/tutorials?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Inspired — Marty Cagan",
+     "Search YouTube for: product manager engineering collaboration and product training workflow",
+     "Jira Free"
+    ]
+   },
+   {
+    "key": "Video recording and editing tools: Loom, Trupeer, Runway",
+    "category": "explicitly_required",
+    "jd_quote": "Experience with tools for video recording and editing (using tools like Loom, Trupeer, Runway etc..).",
+    "on_resume": false,
+    "near": true,
+    "why": "No video-recording/editing tool is listed in the resume, although the candidate has strong content-development and digital-learning experience.",
+    "proof": "I have designed digital learning solutions and training content and have hands-on experience with AI-assisted content creation, which provides an adjacent foundation for learning the required video-production tools.",
+    "learn": [
+     "Learn Loom for recording narrated screen demonstrations.",
+     "Learn Canva or Trupeer for editing, captions, branding and product walkthroughs.",
+     "Explore Runway for AI-assisted video editing and create two polished training-video samples."
+    ],
+    "link": "[Runway Academy](https://academy.runwayml.com/courses?utm_source=chatgpt.com)",
+    "books": "Video Made on a Mac — Kevin Holesh",
+    "youtube": "Search YouTube for: Loom tutorial, Trupeer tutorial and Runway AI video editing",
+    "free_tool": "Canva Free Video Editor",
+    "platforms": [
+     "Runway Academy",
+     "LinkedIn Learning — Video Editing"
+    ],
+    "more": [
+     "[Loom screen recording guide](https://www.loom.com/blog/how-to-do-a-screen-recording?utm_source=chatgpt.com)",
+     "[Trupeer training-video resources](https://www.trupeer.ai/blog?utm_source=chatgpt.com)",
+     "[Canva Free Video Editor](https://www.canva.com/video-editor/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Video Made on a Mac — Kevin Holesh",
+     "Search YouTube for: Loom tutorial, Trupeer tutorial and Runway AI video editing",
+     "Canva Free Video Editor"
+    ]
+   },
+   {
+    "key": "User-friendly release notes",
+    "category": "explicitly_required",
+    "jd_quote": "Collaborate on user-friendly release notes for product updates.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows training-content development and stakeholder communication but does not show product-release-note ownership.",
+    "proof": "I regularly translate product and process information into training materials, facilitator guides and learning interventions; the bridge is adapting that communication into concise release-note language.",
+    "learn": [
+     "Learn release-note structure: feature, user benefit, what changed, who is affected and action required.",
+     "Rewrite three hypothetical software updates into user-friendly release notes.",
+     "Practise validating release notes with a product/engineering stakeholder before publication."
+    ],
+    "link": "[Atlassian Confluence templates](https://www.atlassian.com/software/confluence/templates/?utm_source=chatgpt.com)",
+    "books": "The Pyramid Principle — Barbara Minto",
+    "youtube": "Search YouTube for: how to write software product release notes",
+    "free_tool": "Google Docs",
+    "platforms": [
+     "Atlassian University",
+     "LinkedIn Learning — Technical Writing"
+    ],
+    "more": [
+     "[Atlassian Product Management Templates](https://www.atlassian.com/software/confluence/templates/collections/product-managers?utm_source=chatgpt.com)",
+     "[Atlassian Confluence templates](https://www.atlassian.com/software/confluence/templates/categories/docs-and-reports?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Pyramid Principle — Barbara Minto",
+     "Search YouTube for: how to write software product release notes",
+     "Google Docs"
+    ]
+   },
+   {
+    "key": "User research",
+    "category": "explicitly_required",
+    "jd_quote": "Conduct user research to understand learning preferences and optimize training delivery methods.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows TNA/TNI, field observations, learner engagement and performance data, but not formal user-research methods.",
+    "proof": "I already use TNA/TNI, performance data and field observations to identify capability gaps and design targeted interventions; I would extend that process with structured user interviews, surveys and usability research.",
+    "learn": [
+     "Learn qualitative versus quantitative user research.",
+     "Practise writing research objectives, interview guides and survey questions.",
+     "Conduct five mock learner interviews and convert findings into training-design changes."
+    ],
+    "link": "[UserTesting UX Research Methodology Guidebook](https://www.usertesting.com/resources/guides/ux-research-methodology-guidebook?utm_source=chatgpt.com)",
+    "books": "Just Enough Research — Erika Hall",
+    "youtube": "Search YouTube for: UX user research interviews and usability testing",
+    "free_tool": "Google Forms",
+    "platforms": [
+     "Coursera — Google UX Design",
+     "LinkedIn Learning — UX Research"
+    ],
+    "more": [
+     "[UserTesting User Research Guides](https://www.usertesting.com/resources/guides?utm_source=chatgpt.com)",
+     "[UserTesting User Interview Guide](https://www.usertesting.com/resources/guides/complete-guide-user-interviews?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Just Enough Research — Erika Hall",
+     "Search YouTube for: UX user research interviews and usability testing",
+     "Google Forms"
+    ]
+   },
+   {
+    "key": "CMS or digital adoption platform experience",
+    "category": "explicitly_required",
+    "jd_quote": "Experience with tools like LMS, CMS, or digital adoption platforms.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume explicitly proves LMS experience but does not show CMS or digital-adoption-platform experience. This is therefore a partial rather than a completely new gap.",
+    "proof": "I have used LMS tools and developed web-based learning applications such as Training Practice Hub and Career Coach, giving me a strong adjacent foundation for digital-adoption tooling.",
+    "learn": [
+     "Learn the distinction between LMS, CMS and digital adoption platforms.",
+     "Practise creating and organizing training content in a CMS.",
+     "Build a sample product-adoption walkthrough using a free or trial digital-adoption tool."
+    ],
+    "link": "[Coursera Digital Learning Design and Instructional Technology Foundations](https://www.coursera.org/specializations/digital-learning-instructional-design?utm_source=chatgpt.com)",
+    "books": "The Accidental Instructional Designer — Cammy Bean",
+    "youtube": "Search YouTube for: LMS vs CMS vs digital adoption platform",
+    "free_tool": "Moodle",
+    "platforms": [
+     "Coursera — Digital Learning Design & Instructional Tech Foundations",
+     "LinkedIn Learning — LMS and digital learning courses"
+    ],
+    "more": [
+     "[Coursera Digital Learning Design and Instructional Tech Foundations](https://www.coursera.org/specializations/digital-learning-instructional-design?utm_source=chatgpt.com)",
+     "[Coursera Learning and Development](https://www.coursera.org/learn/learning-and-development?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Accidental Instructional Designer — Cammy Bean",
+     "Search YouTube for: LMS vs CMS vs digital adoption platform",
+     "Moodle"
+    ]
+   },
+   {
+    "key": "Healthcare technology or SaaS",
+    "category": "preferred",
+    "jd_quote": "Familiarity with healthcare technology or SaaS is preferred.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has healthcare/health-insurance domain experience and web-application exposure, but the resume does not explicitly establish healthcare technology or SaaS product experience.",
+    "proof": "I have more than two years of sales-training leadership in the health-insurance industry and have developed multiple web applications, giving me adjacent healthcare and technology exposure.",
+    "learn": [
+     "Learn common healthcare SaaS concepts, users, workflows and product terminology.",
+     "Study healthcare-product onboarding, privacy and compliance considerations.",
+     "Create a mock training module for a healthcare SaaS product and explain the user journey."
+    ],
+    "link": "[HHS HIPAA Privacy Rule guidance](https://www.hhs.gov/hipaa/for-professionals/faq/what-does-the-hipaa-privacy-rule-require-the-average-provider-to-do/index.html?utm_source=chatgpt.com)",
+    "books": "Healthcare Information Systems: A Practical Approach for Health Care Management — Karen A. Wager, Frances W. Lee and John P. Glaser",
+    "youtube": "Search YouTube for: healthcare SaaS product training and healthcare technology fundamentals",
+    "free_tool": "Moodle for healthcare-training practice",
+    "platforms": [
+     "Coursera — Instructional Methods in Health Professions Education",
+     "Coursera — Digital Learning Design & Instructional Technology Foundations"
+    ],
+    "more": [
+     "[Coursera Instructional Methods in Health Professions Education](https://www.coursera.org/learn/instructional-methods-education?utm_source=chatgpt.com)",
+     "[HHS HIPAA Privacy Rule FAQ](https://www.hhs.gov/hipaa/for-professionals/faq/what-does-the-hipaa-privacy-rule-require-the-average-provider-to-do/index.html?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "Healthcare Information Systems: A Practical Approach for Health Care Management — Karen A. Wager, Frances W. Lee and John P. Glaser",
+     "Search YouTube for: healthcare SaaS product training and healthcare technology fundamentals",
+     "Moodle for healthcare-training practice"
+    ]
+   },
+   {
+    "key": "Relevant bachelor's degree",
+    "category": "explicitly_required",
+    "jd_quote": "Bachelor s degree in a relevant field (e.g., Instructional Design, Communication, Healthcare or Technology).",
+    "on_resume": true,
+    "near": true,
+    "why": "The candidate has a B.Sc. and Master's degree, but neither is explicitly one of the JD's examples of relevant fields. The B.Sc. is in MPC and the Master's is in English.",
+    "proof": "I hold a B.Sc. in MPC and a Master's Degree in English, alongside extensive professional experience in training, instructional design and learning development.",
+    "learn": [
+     "No immediate degree replacement is required solely from the JD wording; the candidate already holds bachelor's and master's degrees.",
+     "If the employer treats 'relevant field' narrowly, add a recognized instructional-design or digital-learning credential.",
+     "Document the instructional-design coursework and portfolio prominently on the resume."
+    ],
+    "link": "[Coursera Instructional Design Foundations and Applications](https://www.coursera.org/learn/instructional-design-foundations-applications?utm_source=chatgpt.com)",
+    "books": "Design for How People Learn — Julie Dirksen",
+    "youtube": "Search YouTube for: instructional design foundations and ADDIE",
+    "free_tool": "Google Slides",
+    "platforms": [
+     "Coursera — Instructional Design Foundations and Applications",
+     "LinkedIn Learning — Instructional Design"
+    ],
+    "more": [
+     "[Coursera Instructional Design courses](https://www.coursera.org/courses?query=instructional+design&utm_source=chatgpt.com)",
+     "[LinkedIn Learning Instructional Design courses](https://www.linkedin.com/learning/topics/instructional-design?utm_source=chatgpt.com)"
+    ],
+    "chances": "Medium",
+    "bridge": [],
+    "tools": [
+     "Design for How People Learn — Julie Dirksen",
+     "Search YouTube for: instructional design foundations and ADDIE",
+     "Google Slides"
+    ]
+   },
+   {
+    "key": "HIPAA and healthcare compliance regulations",
+    "category": "preferred",
+    "jd_quote": "Knowledge of HIPAA and other healthcare compliance regulations.",
+    "on_resume": false,
+    "near": true,
+    "why": "The candidate has health-insurance training experience but the resume does not mention HIPAA or healthcare-compliance training.",
+    "proof": "I have more than two years of sales-training leadership in health insurance and have extensive experience creating product/process training; I would need to add formal HIPAA and healthcare-compliance knowledge.",
+    "learn": [
+     "Start with the HHS HIPAA Privacy Rule and minimum-necessary standard.",
+     "Learn the major HIPAA concepts relevant to training: Privacy Rule, Security Rule, protected health information and workforce training.",
+     "Create a one-page HIPAA training outline and a sample compliance-learning module."
+    ],
+    "link": "[HHS HIPAA Privacy Rule guidance](https://www.hhs.gov/hipaa/for-professionals/faq/what-does-the-hipaa-privacy-rule-require-the-average-provider-to-do/index.html?utm_source=chatgpt.com)",
+    "books": "HIPAA Compliance: A Practical Guide for Healthcare Organizations — authoritative compliance reference material",
+    "youtube": "Search YouTube for: HHS HIPAA Privacy Rule basics for beginners",
+    "free_tool": "Google Docs or Google Slides for creating a HIPAA training module",
+    "platforms": [
+     "HHS HIPAA training/resources",
+     "Coursera — Instructional Methods in Health Professions Education"
+    ],
+    "more": [
+     "[HHS HIPAA Minimum Necessary Requirement](https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/minimum-necessary-requirement/index.html?utm_source=chatgpt.com)",
+     "[HHS HIPAA Privacy Rule FAQ](https://www.hhs.gov/hipaa/for-professionals/faq/what-does-the-hipaa-privacy-rule-require-the-average-provider-to-do/index.html?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "HIPAA Compliance: A Practical Guide for Healthcare Organizations — authoritative compliance reference material",
+     "Search YouTube for: HHS HIPAA Privacy Rule basics for beginners",
+     "Google Docs or Google Slides for creating a HIPAA training module"
+    ]
+   },
+   {
+    "key": "Agile development methodologies",
+    "category": "preferred",
+    "jd_quote": "Familiarity with agile development methodologies.",
+    "on_resume": false,
+    "near": true,
+    "why": "The resume shows web-application development and cross-functional work but does not mention Agile, Scrum or Kanban.",
+    "proof": "I have developed multiple web applications and worked with operational stakeholders on digital solutions; I would add formal Agile/Scrum/Kanban knowledge to bridge the software-product environment.",
+    "learn": [
+     "Learn Agile values, principles, Scrum and Kanban.",
+     "Practise creating a Jira backlog, user stories, sprint and retrospective.",
+     "Apply Agile terminology to a real training-product project and explain how training content changes can follow product releases."
+    ],
+    "link": "[Atlassian Agile Coach](https://www.atlassian.com/agile.6?utm_source=chatgpt.com)",
+    "books": "User Story Mapping — Jeff Patton",
+    "youtube": "[The Beginner's Guide to Agile in Jira — Atlassian University](https://www.youtube.com/watch?v=pg4gmxBsvnU&utm_source=chatgpt.com)",
+    "free_tool": "Jira Free",
+    "platforms": [
+     "Atlassian University",
+     "Coursera — Agile Project Management courses"
+    ],
+    "more": [
+     "[Atlassian Agile tutorials](https://www.atlassian.com/agile/tutorials?utm_source=chatgpt.com)",
+     "[Atlassian Scrum tutorial](https://www.atlassian.com/agile/tutorials/how-to-do-scrum-with-jira?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "User Story Mapping — Jeff Patton",
+     "[The Beginner's Guide to Agile in Jira — Atlassian University](https://www.youtube.com/watch?v=pg4gmxBsvnU&utm_source=chatgpt.com)",
+     "Jira Free"
+    ]
+   },
+   {
+    "key": "Technical concepts for a non-technical audience",
+    "category": "preferred",
+    "jd_quote": "with the ability to explain technical details to a non-technical audience.",
+    "on_resume": true,
+    "near": true,
+    "why": "The resume strongly demonstrates communication and training capability, but technical-product communication is not explicitly evidenced.",
+    "proof": "My experience includes translating product, process and sales concepts into training content and delivering New Hire Training, coaching and learning interventions to employees with different levels of expertise.",
+    "learn": [
+     "Practise explaining one technical feature in three levels: executive, end-user and beginner.",
+     "Use analogies, visuals and task-based examples instead of technical jargon.",
+     "Record a five-minute product explanation and evaluate it for clarity."
+    ],
+    "link": "[LinkedIn Learning Instructional Design courses](https://www.linkedin.com/learning/topics/instructional-design?utm_source=chatgpt.com)",
+    "books": "The Art of Explanation — Lee LeFever",
+    "youtube": "Search YouTube for: how to explain technical concepts to non technical people",
+    "free_tool": "Loom",
+    "platforms": [
+     "LinkedIn Learning",
+     "Coursera — Online Learning Design for Educators"
+    ],
+    "more": [
+     "[Loom screen recording guide](https://www.loom.com/blog/how-to-do-a-screen-recording?utm_source=chatgpt.com)",
+     "[Coursera Online Learning Design for Educators](https://www.coursera.org/specializations/online-learning-design-educators/?utm_source=chatgpt.com)"
+    ],
+    "chances": "High",
+    "bridge": [],
+    "tools": [
+     "The Art of Explanation — Lee LeFever",
+     "Search YouTube for: how to explain technical concepts to non technical people",
+     "Loom"
+    ]
+   }
+  ],
+  "implied": [],
+  "exp_diff": "The JD wants 3+ years of experience in product training, instructional design, or a related role. The resume shows 15+ years overall experience, 4+ years of corporate training experience, 2+ years leading sales training in health insurance, and explicit instructional-design responsibilities. Therefore, the years requirement is covered. The main difference is function/domain: the candidate's strongest recent function is Training/L&D and sales enablement in health insurance, while this role is Product Training within a software-product/healthcare-technology environment. This is primarily a function/domain transition rather than a seniority or years-of-experience gap.",
+  "dept_diff": "The JD belongs to Product Training / Learning within a Software Product organization, with close interaction with Product and Engineering. The candidate's current department/function is Training & L&D / Sales Enablement, primarily supporting Sales, Operations and HR. The move therefore involves shifting from business/sales training toward product education, user enablement and software-product training.",
+  "required_skills": [
+   "Developing, organizing, and maintaining high-quality training materials",
+   "Onboarding videos",
+   "In-app guidance",
+   "Interactive training programs",
+   "Online courses",
+   "Workshops",
+   "In-app guidance flows",
+   "PowerPoint presentations tailored to user needs",
+   "Training and onboarding video recording",
+   "How-to guides",
+   "Clear and relatable presentation",
+   "Presentation and communication skills",
+   "Explaining technical details to a non-technical audience",
+   "Coordination with product and engineering teams",
+   "Video recording and editing",
+   "Loom",
+   "Trupeer",
+   "Runway",
+   "User feedback and performance-data analysis",
+   "User-friendly release notes",
+   "Training-program adoption and effectiveness analytics",
+   "User research",
+   "Stakeholder collaboration",
+   "Bachelor's degree in a relevant field",
+   "3+ years of product training, instructional design, or related experience",
+   "Analytical skills",
+   "LMS",
+   "CMS",
+   "Digital adoption platforms",
+   "Healthcare technology or SaaS familiarity",
+   "Organizational and multitasking abilities",
+   "Adult learning principles",
+   "Instructional design",
+   "Written and verbal communication",
+   "HIPAA",
+   "Healthcare compliance regulations",
+   "Agile development methodologies"
+  ],
+  "qualification": {
+   "jd_wants": "verbatim: Bachelor s degree in a relevant field (e.g., Instructional Design, Communication, Healthcare or Technology).",
+   "resume_has": "Master’s Degree in English (2016) and B.Sc. – MPC (2013). No professional certification is listed.",
+   "gap": "The candidate satisfies the requirement of having a bachelor's degree, but the resume does not show a bachelor's degree specifically in Instructional Design, Communication, Healthcare or Technology. The B.Sc. – MPC is a science degree and the Master's is in English, so the relevance of the degree would depend on how broadly the employer interprets 'relevant field'.",
+   "learn": [
+    "Add a recognized instructional-design/digital-learning credential rather than pursuing another full degree immediately.",
+    "Complete a structured Instructional Design course covering ADDIE, learning theory, needs analysis, assessment and digital learning.",
+    "Build a product-training portfolio containing an online course, onboarding video, product walkthrough and user-research-based training redesign."
+   ]
+  },
+  "asked_count": 32,
+  "generated": "03 Oct 2026, 01:53 PM",
+  "verdict": "This JD is a close functional adjacency rather than a completely new career direction: the resume already covers instructional design, adult learning, training-content development, LMS, analytics, stakeholder management, presentation and healthcare-domain exposure. The main gaps are product-training execution in a software environment—especially onboarding videos, in-app guidance, formal user research, release notes, Product/Engineering collaboration, video tools, CMS/digital-adoption platforms, HIPAA and Agile. The experience-years requirement is covered; the larger transition is from Training/L&D and sales enablement into Product Training within a software-product environment.",
+  "interview": [
+   {
+    "q": "Your background is strongly in L&D and sales training. Why are you applying for a Product Training Analyst role in a software-product company?",
+    "a": "My core strength is translating complex product and process information into practical learning. At PolicyBazaar, I conduct TNA/TNI, design training content, facilitator guides and assessments, use performance data to identify gaps, and build digital learning solutions such as Training Practice Hub and 90 Days Command Center. The next step I am deliberately building is applying those capabilities to product education, user onboarding and software-product training.",
+    "tip": ""
+   },
+   {
+    "q": "Have you created onboarding or product-training videos using tools such as Loom, Trupeer or Runway?",
+    "a": "My resume does not currently show formal experience with those specific video tools, so I would not claim that experience. However, I have extensive training-content development, live facilitation and digital-learning experience, including web-based learning applications. I am currently bridging that gap by learning screen recording, narration, editing and product-walkthrough workflows and would be able to demonstrate portfolio samples.",
+    "tip": ""
+   },
+   {
+    "q": "How would you work with Product and Engineering teams when a new feature is released?",
+    "a": "I would first understand the feature, target user, user problem, workflow and expected behavior. I would then translate that information into learning objectives, a user-facing walkthrough, supporting documentation and, where required, a short training video. My existing experience partnering with Operations, HRBP and Business Leaders gives me a strong foundation in stakeholder alignment, while I am adding Agile and product-development terminology to work more effectively with Product and Engineering.",
+    "tip": ""
+   },
+   {
+    "q": "You have healthcare insurance experience, but where is your HIPAA knowledge?",
+    "a": "My healthcare exposure is through health insurance rather than direct HIPAA compliance work, so I would distinguish the two rather than overstate my experience. I already have healthcare-domain training experience and am building specific HIPAA knowledge through HHS resources, focusing on the Privacy Rule, protected health information, minimum-necessary requirements and workforce training.",
+    "tip": ""
+   },
+   {
+    "q": "How would you conduct user research to improve training?",
+    "a": "I already use TNA/TNI, learner performance data and field observations to identify capability gaps. For this role I would formalize that into user research by defining a research objective, interviewing representative users, combining qualitative feedback with performance data, identifying recurring friction points and converting those findings into changes to the learning journey and training materials.",
+    "tip": ""
+   },
+   {
+    "q": "How would you measure whether product training is effective?",
+    "a": "I would combine learner feedback with behavioral and performance data. In my current role I monitor learner performance, KRAs and training effectiveness, use MIS and dashboards to identify gaps, and prioritize coaching interventions. For product training, I would extend that approach to measures such as completion, assessment performance, feature adoption, user feedback and post-training task success.",
+    "tip": ""
+   },
+   {
+    "q": "Do you have experience with CMS or digital adoption platforms?",
+    "a": "My resume explicitly demonstrates LMS experience and web-based digital-learning application development, but it does not claim CMS or digital-adoption-platform experience. I would position LMS plus my digital-learning application experience as the adjacent foundation and explain that I am currently building hands-on familiarity with the CMS and digital-adoption side.",
+    "tip": ""
+   },
+   {
+    "q": "What would you put in a product-training release note?",
+    "a": "I would keep it user-focused: what changed, why it matters, who is affected, what the user needs to do, and where to find help. My existing experience converting product and process information into training materials gives me the communication foundation; the new element is applying that same discipline to concise product-release communication.",
+    "tip": ""
+   },
+   {
+    "q": "What is your experience with Agile?",
+    "a": "Agile is not currently listed as professional experience on my resume, so I would not present myself as an experienced Agile practitioner. I have, however, developed multiple web applications and worked with stakeholders around digital solutions. I am building Agile knowledge through Scrum, Kanban and Jira practice so I can better understand how product changes move from backlog to release and then into training content.",
+    "tip": ""
+   }
+  ],
+  "ai": true,
+  "ai_mode": true,
+  "ai_engine": "paste-back (ChatGPT / any AI via copy-paste, no API key)",
+  "sources": [
+   "paste-back from ChatGPT/any AI"
+  ]
+ }
+}
